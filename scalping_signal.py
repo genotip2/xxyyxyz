@@ -123,7 +123,6 @@ def generate_signal(pair, data):
     macd_signal_m15 = data['macd_signal_m15']
     bb_lower_m15 = data['bb_lower_m15']
     bb_upper_m15 = data['bb_upper_m15']
-    price = data['pricr']
     adx_m15 = data['adx_m15']
     obv_m15 = data['obv_m15']
     candle_m15 = data['candle_m15']
