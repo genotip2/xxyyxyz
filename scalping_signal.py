@@ -93,8 +93,8 @@ def analyze_pair(symbol):
         analysis_m15 = handler_m15.get_analysis()
 
         return {
-                'ma9_m15': analysis_m15.indicators.get('MA9'),
-                'ma21_m15': analysis_m15.indicators.get('MA21'),
+                'ma9_m15': analysis_m15.indicators.get('MA(9)'),
+                'ma21_m15': analysis_m15.indicators.get('MA(21)'),
                 'rsi_m15': analysis_m15.indicators.get('RSI'),
                 'macd_m15': analysis_m15.indicators.get('MACD.macd'),
                 'macd_signal_m15': analysis_m15.indicators.get('MACD.signal'),
