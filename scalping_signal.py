@@ -101,6 +101,7 @@ def analyze_pair(symbol):
                 "ADX": analysis_m15.indicators.get("ADX"),
                 "OBV": analysis_m15.indicators.get("OBV"),
                 "Candle": analysis_m15.summary["RECOMMENDATION"]
+                "price": analysis_m15.indicators.get("close")
             },
             "H1": {
                 "EMA9": analysis_h1.indicators.get("EMA9"),
@@ -127,7 +128,6 @@ def analyze_pair(symbol):
 # ==============================
 def generate_signal(pair, data):
     """Generate trading signal"""
-    current_price = data["M15"]["Close_price"]
     ema9_m15, ema9_h1 = data["M15"]["EMA9"], data["H1"]["EMA9"]
     ema21_m15, ema21_h1 = data["M15"]["EMA21"], data["H1"]["EMA21"]
     rsi_m15, rsi_h1 = data["M15"]["RSI"], data["H1"]["RSI"]
@@ -176,11 +176,10 @@ def generate_signal(pair, data):
     
     return None, None
 
-def send_telegram_alert(signal_type, pair, current_price, data, buy_price=None):
+def send_telegram_alert(signal_type, pair, price, data, buy_price=None):
     """Kirim notifikasi ke Telegram"""
     display_pair = f"{pair[:-4]}/USDT"
     message = ""
-    buy_score, sell_score = calculate_scores(data)
     
     emoji = {
         'BUY': '🚀', 
