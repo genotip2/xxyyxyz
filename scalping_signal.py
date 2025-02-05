@@ -82,8 +82,8 @@ def analyze_pair(symbol):
         analysis_m15 = handler_m15.get_analysis()
 
         return {
-                'ema9_m15': analysis_m15.indicators.get('EMA9'),
-                'ema21_m15': analysis_m15.indicators.get('EMA21'),
+                'ma9_m15': analysis_m15.indicators.get('MA9'),
+                'ma21_m15': analysis_m15.indicators.get('MA21'),
                 'rsi_m15': analysis_m15.indicators.get('RSI'),
                 'macd_m15': analysis_m15.indicators.get('MACD.MACD'),
                 'macd_signal_m15': analysis_m15.indicators.get('MACD.signal'),
@@ -104,9 +104,9 @@ def analyze_pair(symbol):
 # ==============================
 def generate_signal(pair, data):
     """Generate trading signal"""
-    price = data['close_price_m15']
-    ema9_m15 = data['ema9_m15']
-    ema21_m15 = data['ema21_m15']
+    price = data['price']
+    ma9_m15 = data['ma9_m15']
+    ma21_m15 = data['ma21_m15']
     rsi_m15 = data['rsi_m15']
     macd_m15 = data['macd_m15']
     macd_signal_m15 = data['macd_signal_m15']
@@ -118,6 +118,7 @@ def generate_signal(pair, data):
     candle_m15 = data['candle_m15']
     
     buy_signal = (
+            ma9_m15 > ma21_m15 and  # MA 9 cross up MA 21 di M15
             rsi_m15 < 30 and  # RSI M15 oversold
             macd_m15 > macd_signal_m15 and  # MACD bullish crossover di M15
             close_price_m15 <= bb_lower_m15 and  # Harga di lower Bollinger Band
@@ -127,6 +128,7 @@ def generate_signal(pair, data):
             pair not in ACTIVE_BUYS
         )
     sell_signal = (
+            ma9_m15 < ma21_m15 and  # MA 9 cross down MA 21 di M15
             rsi_m15 > 70 and  # RSI M15 overbought
             macd_m15 < macd_signal_m15 and  # MACD bearish crossover di M15
             close_price_m15 >= bb_upper_m15 and  # Harga di upper Bollinger Band
