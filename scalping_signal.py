@@ -101,7 +101,7 @@ def analyze_pair(symbol):
                 "ADX": analysis_m15.indicators.get("ADX"),
                 "OBV": analysis_m15.indicators.get("OBV"),
                 "Candle": analysis_m15.summary["RECOMMENDATION"]
-                "price": analysis_m15.indicators.get("close")
+                'price': analysis_m15.indicators.get("close")
             },
             "H1": {
                 "EMA9": analysis_h1.indicators.get("EMA9"),
