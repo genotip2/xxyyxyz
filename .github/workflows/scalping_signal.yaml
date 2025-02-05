@@ -1,4 +1,4 @@
-name: Crypto Trading Bot
+name: Scalping Signal Bot
 
 on:
   schedule:
