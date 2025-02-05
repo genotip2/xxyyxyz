@@ -57,19 +57,40 @@ def get_binance_top_pairs():
 
 
 def fetch_price_data(symbol):
-    """Mengambil data harga dari CoinGecko"""
-    url = f"https://api.coingecko.com/api/v3/coins/binancecoin/market_chart"
-    params = {'vs_currency': 'usd', 'days': '1', 'interval': 'minute'}
+def get_binance_top_pairs():
+    """Ambil 50 pair teratas berdasarkan volume trading"""
+    url = "https://api.coingecko.com/api/v3/exchanges/binance/tickers"
+    params = {'include_exchange_logo': 'false', 'order': 'volume_desc'}
     
     try:
         response = requests.get(url, params=params)
         data = response.json()
         
-        prices = [p[1] for p in data['prices']]
-        return pd.Series(prices)
+        if 'tickers' not in data:
+            print("❌ Tidak ada data ticker ditemukan.")
+            return []
+
+        usdt_pairs = [t for t in data['tickers'] if t['target'] == 'USDT']
+        sorted_pairs = sorted(usdt_pairs, 
+                            key=lambda x: x['converted_volume']['usd'], 
+                            reverse=True)[:50]
+        
+        # Pastikan kita menangani 'prices' dan key lainnya dengan aman
+        pairs = []
+        for pair in sorted_pairs:
+            try:
+                pair_symbol = f"{pair['base']}USDT"
+                # Pastikan harga ada di data ticker
+                if 'last' in pair:
+                    pairs.append(pair_symbol)
+            except KeyError as e:
+                print(f"⚠️ Data tidak lengkap untuk pair: {pair.get('base', 'Unknown')}, error: {e}")
+
+        return pairs
+    
     except Exception as e:
-        print(f"❌ Error fetching data {symbol}: {e}")
-        return None
+        print(f"❌ Error fetching data: {e}")
+        return []
 
 # ==============================
 # FUNGSI ANALISIS
