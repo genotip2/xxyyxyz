@@ -127,6 +127,7 @@ def analyze_pair(symbol):
 # ==============================
 def generate_signal(pair, data):
     """Generate trading signal"""
+    current_price = data["M15"]["Close_price"]
     ema9_m15, ema9_h1 = data["M15"]["EMA9"], data["H1"]["EMA9"]
     ema21_m15, ema21_h1 = data["M15"]["EMA21"], data["H1"]["EMA21"]
     rsi_m15, rsi_h1 = data["M15"]["RSI"], data["H1"]["RSI"]
@@ -236,7 +237,7 @@ def main():
                 continue
 
             display_pair = f"{pair[:-4]}/USDT"
-            print(f"\n📈 {display_pair}:"
+            print(f"\n📈 {display_pair}:")
             
             signal, price = generate_signal(pair, data)
             if signal:
