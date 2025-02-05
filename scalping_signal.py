@@ -1,8 +1,7 @@
 import os
 import requests
-import yfinance as yf
-import pandas_ta as ta
 import pandas as pd
+import pandas_ta as ta
 from datetime import datetime, timedelta
 import json
 
@@ -50,7 +49,6 @@ def save_active_buys_to_json():
 def get_binance_top_pairs():
     url = "https://api.coingecko.com/api/v3/exchanges/binance/tickers"
     params = {'include_exchange_logo': 'false', 'order': 'volume_desc'}
-    
     try:
         response = requests.get(url, params=params)
         data = response.json()
@@ -64,76 +62,72 @@ def get_binance_top_pairs():
 # ==============================
 # FUNGSI ANALISIS DENGAN PANDAS
 # ==============================
+def fetch_ohlcv(symbol, interval):
+    # Implementasi data source disini (contoh: yfinance, CCXT, dll)
+    # Return DataFrame dengan kolom: open, high, low, close, volume
+    # Contoh dummy data untuk demonstrasi
+    return pd.DataFrame({
+        'close': [50000 + i*100 for i in range(100)],
+        'open': [49500 + i*100 for i in range(100)],
+        'high': [50500 + i*100 for i in range(100)],
+        'low': [49000 + i*100 for i in range(100)],
+        'volume': [1000 + i*10 for i in range(100)]
+    })
+
+def calculate_indicators(df):
+    df['EMA9'] = ta.ema(df['close'], length=9)
+    df['EMA21'] = ta.ema(df['close'], length=21)
+    df['RSI'] = ta.rsi(df['close'], length=14)
+    macd = ta.macd(df['close'])
+    df = pd.concat([df, macd], axis=1)
+    bb = ta.bbands(df['close'])
+    df = pd.concat([df, bb], axis=1)
+    df['ADX'] = ta.adx(df['high'], df['low'], df['close'], length=14)['ADX_14']
+    df['OBV'] = ta.obv(df['close'], df['volume'])
+    return df
+
 def analyze_pair(symbol):
     try:
-        # Konversi simbol untuk Yahoo Finance
-        yf_symbol = symbol.replace('USDT', '-USD')
+        # Ambil data untuk 15m dan 1h
+        df_m15 = fetch_ohlcv(symbol, '15m')
+        df_h1 = fetch_ohlcv(symbol, '1h')
         
-        # Ambil data 15 menit
-        data_m15 = yf.download(yf_symbol, period='7d', interval='15m')
-        if data_m15.empty:
-            return None
-            
-        # Hitung indikator untuk 15m
-        data_m15.ta.ema(length=9, append=True, col_names={'EMA9'})
-        data_m15.ta.ema(length=21, append=True, col_names={'EMA21'})
-        data_m15.ta.rsi(append=True, col_names={'RSI'})
-        data_m15.ta.macd(append=True, col_names={'MACD', 'MACD_signal', 'MACD_hist'})
-        data_m15.ta.bbands(append=True, col_names={'BB_lower', 'BB_mid', 'BB_upper'})
-        data_m15.ta.adx(append=True, col_names={'ADX'})
-        data_m15.ta.obv(append=True, col_names={'OBV'})
+        # Hitung indikator
+        df_m15 = calculate_indicators(df_m15)
+        df_h1 = calculate_indicators(df_h1)
         
-        latest_m15 = data_m15.iloc[-1]
-        
-        # Ambil data 1 jam
-        data_h1 = yf.download(yf_symbol, period='30d', interval='1h')
-        if data_h1.empty:
-            return None
-            
-        # Hitung indikator untuk 1h
-        data_h1.ta.ema(length=9, append=True, col_names={'EMA9'})
-        data_h1.ta.ema(length=21, append=True, col_names={'EMA21'})
-        data_h1.ta.rsi(append=True, col_names={'RSI'})
-        data_h1.ta.macd(append=True, col_names={'MACD', 'MACD_signal', 'MACD_hist'})
-        data_h1.ta.bbands(append=True, col_names={'BB_lower', 'BB_mid', 'BB_upper'})
-        data_h1.ta.adx(append=True, col_names={'ADX'})
-        data_h1.ta.obv(append=True, col_names={'OBV'})
-        
-        latest_h1 = data_h1.iloc[-1]
-        
+        # Ambil nilai terakhir
         return {
-            'ema9_m15': latest_m15['EMA9'],
-            'ema21_m15': latest_m15['EMA21'],
-            'rsi_m15': latest_m15['RSI'],
-            'macd_m15': latest_m15['MACD'],
-            'macd_signal_m15': latest_m15['MACD_signal'],
-            'bb_lower_m15': latest_m15['BB_lower'],
-            'bb_upper_m15': latest_m15['BB_upper'],
-            'close_price_m15': latest_m15['Close'],
-            'adx_m15': latest_m15['ADX'],
-            'obv_m15': latest_m15['OBV'],
-            
-            'ema9_h1': latest_h1['EMA9'],
-            'ema21_h1': latest_h1['EMA21'],
-            'rsi_h1': latest_h1['RSI'],
-            'macd_h1': latest_h1['MACD'],
-            'macd_signal_h1': latest_h1['MACD_signal'],
-            'bb_lower_h1': latest_h1['BB_lower'],
-            'bb_upper_h1': latest_h1['BB_upper'],
-            'close_price_h1': latest_h1['Close'],
-            'adx_h1': latest_h1['ADX'],
-            'obv_h1': latest_h1['OBV']
+            'ema9_m15': df_m15['EMA9'].iloc[-1],
+            'ema21_m15': df_m15['EMA21'].iloc[-1],
+            'rsi_m15': df_m15['RSI'].iloc[-1],
+            'macd_m15': df_m15['MACD_12_26_9'].iloc[-1],
+            'macd_signal_m15': df_m15['MACDs_12_26_9'].iloc[-1],
+            'bb_lower_m15': df_m15['BBL_20_2.0'].iloc[-1],
+            'bb_upper_m15': df_m15['BBU_20_2.0'].iloc[-1],
+            'close_price_m15': df_m15['close'].iloc[-1],
+            'adx_m15': df_m15['ADX'].iloc[-1],
+            'obv_m15': df_m15['OBV'].iloc[-1],
+            'ema9_h1': df_h1['EMA9'].iloc[-1],
+            'ema21_h1': df_h1['EMA21'].iloc[-1],
+            'rsi_h1': df_h1['RSI'].iloc[-1],
+            'macd_h1': df_h1['MACD_12_26_9'].iloc[-1],
+            'macd_signal_h1': df_h1['MACDs_12_26_9'].iloc[-1],
+            'bb_lower_h1': df_h1['BBL_20_2.0'].iloc[-1],
+            'bb_upper_h1': df_h1['BBU_20_2.0'].iloc[-1],
+            'close_price_h1': df_h1['close'].iloc[-1],
+            'adx_h1': df_h1['ADX'].iloc[-1],
+            'obv_h1': df_h1['OBV'].iloc[-1]
         }
     except Exception as e:
         print(f"⚠️ Error analisis {symbol}: {str(e)}")
         return None
 
 # ==============================
-# FUNGSI TRADING (TIDAK BERUBAH)
+# FUNGSI TRADING (TETAP SAMA)
 # ==============================
 def generate_signal(pair, data):
     price = data['close_price_m15']
-    
     buy_signal = (
         data['ema9_m15'] > data['ema21_m15'] and
         data['ema9_h1'] > data['ema21_h1'] and
@@ -178,34 +172,29 @@ def generate_signal(pair, data):
         return 'SELL', ACTIVE_BUYS[pair]['price']
     return None, None
 
-def send_telegram_alert(signal_type, pair, price, data, buy_price=None):
-    display_pair = f"{pair[:-4]}/USDT"
+def send_telegram_alert(signal_type, pair, price, data):
     emoji = {'BUY': '🚀', 'SELL': '⚠️', 'TAKE PROFIT': '✅', 'STOP LOSS': '🛑'}.get(signal_type, 'ℹ️')
-    message = f"{emoji} {signal_type}\n💱 {display_pair}\n💲 Price: ${price:.8f}\n"
+    message = f"{emoji} {signal_type}\n💱 {pair[:-4]}/USDT\n💲 Price: ${price:.8f}"
     
     if signal_type == 'BUY':
-        message += f"🔍 RSI: {data['rsi_m15']:.1f}\n"
         ACTIVE_BUYS[pair] = {'price': price, 'time': datetime.now()}
-    
+        message += f"\n🔍 RSI: {data['rsi_m15']:.1f}"
     elif signal_type in ['TAKE PROFIT', 'STOP LOSS', 'SELL']:
-        entry = ACTIVE_BUYS.get(pair)
+        entry = ACTIVE_BUYS.get(pair, {})
         if entry:
             profit = ((price - entry['price'])/entry['price'])*100
             duration = str(datetime.now() - entry['time']).split('.')[0]
-            message += f"💲 Entry: ${entry['price']:.8f}\n"
-            message += f"💰 {'Profit' if profit > 0 else 'Loss'}: {profit:+.2f}%\n"
-            message += f"🕒 Hold Duration: {duration}"
-            
+            message += f"\n💲 Entry: ${entry['price']:.8f}"
+            message += f"\n💰 {'Profit' if profit > 0 else 'Loss'}: {profit:+.2f}%"
+            message += f"\n🕒 Hold Duration: {duration}"
             if signal_type in ['STOP LOSS', 'SELL']:
                 del ACTIVE_BUYS[pair]
-    
-    print(f"📢 Mengirim alert: {message}")
-    save_active_buys_to_json()
     
     requests.post(
         f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage",
         json={'chat_id': TELEGRAM_CHAT_ID, 'text': message, 'parse_mode': 'Markdown'}
     )
+    save_active_buys_to_json()
 
 # ==============================
 # FUNGSI UTAMA
@@ -222,7 +211,7 @@ def main():
                 
             signal, price = generate_signal(pair, data)
             if signal:
-                send_telegram_alert(signal, pair, data['close_price_m15'], data)
+                send_telegram_alert(signal, pair, price, data)
                 
             # Auto close position
             if pair in ACTIVE_BUYS:
