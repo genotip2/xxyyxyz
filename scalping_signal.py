@@ -39,24 +39,6 @@ def save_active_buys_to_json():
     except Exception as e:
         print(f"❌ Gagal menyimpan: {str(e)}")
 
-
-def get_binance_top_pairs():
-    """Ambil 50 pair teratas berdasarkan volume trading dari CoinGecko"""
-    url = "https://api.coingecko.com/api/v3/exchanges/binance/tickers"
-    params = {'include_exchange_logo': 'false', 'order': 'volume_desc'}
-
-    try:
-        response = requests.get(url, params=params)
-        data = response.json()
-        usdt_pairs = [t for t in data['tickers'] if t['target'] == 'USDT']
-        sorted_pairs = sorted(usdt_pairs, key=lambda x: x['converted_volume']['usd'], reverse=True)[:50]
-        return [f"{p['base']}USDT" for p in sorted_pairs]
-    except Exception as e:
-        print(f"❌ Error fetching data: {e}")
-        return []
-
-
-def fetch_price_data(symbol):
 def get_binance_top_pairs():
     """Ambil 50 pair teratas berdasarkan volume trading"""
     url = "https://api.coingecko.com/api/v3/exchanges/binance/tickers"
