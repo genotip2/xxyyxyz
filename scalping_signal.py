@@ -71,7 +71,6 @@ def get_binance_top_pairs():
 # FUNGSI ANALISIS
 # ==============================
 def analyze_coin(symbol):
-def analyze_coin(symbol):
     try:
         handler_m15 = TA_Handler(
             symbol=symbol.replace("USDT", ""),
