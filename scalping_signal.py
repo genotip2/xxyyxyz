@@ -76,7 +76,7 @@ def analyze_pair(symbol):
             symbol=symbol.replace("USDT", ""),
             exchange="BINANCE",
             screener="crypto",
-            interval=Interval.INTERVAL_15_MINUTE
+            interval=Interval.INTERVAL_15_MINUTES
         )
         handler_h1 = TA_Handler(
             symbol=symbol.replace("USDT", ""),
