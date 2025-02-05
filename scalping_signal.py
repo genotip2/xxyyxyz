@@ -23,7 +23,7 @@ else:
         loaded = json.load(f)
         ACTIVE_BUYS = {
             pair: {
-                'price': data['price'],
+                'price': data['close_price_m15'],
                 'time': datetime.fromisoformat(data['time'])
             } 
             for pair, data in loaded.items()
@@ -38,7 +38,7 @@ def save_active_buys_to_json():
         to_save = {}
         for pair, data in ACTIVE_BUYS.items():
             to_save[pair] = {
-                'price': data['price'],
+                'price': data['close_price_m15'],
                 'time': data['time'].isoformat()
             }
             
@@ -66,18 +66,7 @@ def get_binance_top_pairs():
     except Exception as e:
         print(f"❌ Error fetching data: {e}")
         return []
-
-def calculate_fibonacci_levels(high, low):
-    """Hitung level Fibonacci Retracement"""
-    diff = high - low
-    return {
-        'level_23_6': high - 0.236 * diff,
-        'level_38_2': high - 0.382 * diff,
-        'level_50': high - 0.5 * diff,
-        'level_61_8': high - 0.618 * diff,
-        'level_78_6': high - 0.786 * diff
-    }
-
+      
 # ==============================
 # FUNGSI ANALISIS
 # ==============================
@@ -89,21 +78,40 @@ def analyze_pair(symbol):
             screener="CRYPTO",
             interval=Interval.INTERVAL_15_MINUTES
         )
+        handler_h1 = TA_Handler(
+            symbol=symbol,
+            exchange="BINANCE",
+            screener="CRYPTO",
+            interval=Interval.INTERVAL_1_HOUR
+        )
 
         analysis_m15 = handler_m15.get_analysis()
+        analysis_h1 = handler_h1.get_analysis()
 
         return {
-                'ma9_m15': analysis_m15.indicators.get('MA(9)'),
-                'ma21_m15': analysis_m15.indicators.get('MA(21)'),
+                'ema9_m15': analysis_m15.indicators.get('EMA9'),
+                'ema21_m15': analysis_m15.indicators.get('EMA21'),
                 'rsi_m15': analysis_m15.indicators.get('RSI'),
-                'macd_m15': analysis_m15.indicators.get('MACD.macd'),
+                'macd_m15': analysis_m15.indicators.get('MACD.MACD'),
                 'macd_signal_m15': analysis_m15.indicators.get('MACD.signal'),
                 'bb_lower_m15': analysis_m15.indicators.get('BB.lower'),
                 'bb_upper_m15': analysis_m15.indicators.get('BB.upper'),
-                'price': analysis_m15.indicators.get('close'),
+                'close_price_m15': analysis_m15.indicators.get('close'),
                 'adx_m15': analysis_m15.indicators.get('ADX'),
                 'obv_m15': analysis_m15.indicators.get('OBV'),
-                'candle_m15': analysis_m15.summary['RECOMMENDATION']
+                'candle_m15': analysis_m15.summary['RECOMMENDATION'],
+
+                'ema9_h1': analysis_h1.indicators.get('EMA9'),
+                'ema21_h1': analysis_h1.indicators.get('EMA21'),
+                'rsi_h1': analysis_h1.indicators.get('RSI'),
+                'macd_h1': analysis_h1.indicators.get('MACD.MACD'),
+                'macd_signal_h1': analysis_h1.indicators.get('MACD.signal'),
+                'bb_lower_h1': analysis_h1.indicators.get('BB.lower'),
+                'bb_upper_h1': analysis_h1.indicators.get('BB.upper'),
+                'close_price_h1': analysis_h1.indicators.get('close'),
+                'adx_h1': analysis_h1.indicators.get('ADX'),
+                'obv_h1': analysis_h1.indicators.get('OBV'),
+                'candle_h1': analysis_h1.summary['RECOMMENDATION']
          }
          
     except Exception as e:
@@ -115,32 +123,51 @@ def analyze_pair(symbol):
 # ==============================
 def generate_signal(pair, data):
     """Generate trading signal"""
-    price = data['price']
-    ma9_m15 = data['ma9_m15']
-    ma21_m15 = data['ma21_m15']
+    price = data ['close_price_m15']
+    ema9_m15 = data['ema9_m15']
+    ema21_m15 = data['ema21_m15']
     rsi_m15 = data['rsi_m15']
     macd_m15 = data['macd_m15']
     macd_signal_m15 = data['macd_signal_m15']
     bb_lower_m15 = data['bb_lower_m15']
     bb_upper_m15 = data['bb_upper_m15']
+    close_price_m15 = data['close_price_m15']
     adx_m15 = data['adx_m15']
     obv_m15 = data['obv_m15']
     candle_m15 = data['candle_m15']
     
+    price = data ['close_price_h1']
+    ema9_h1 = data['ema9_h1']
+    ema21_h1 = data['ema21_h1']
+    rsi_h1 = data['rsi_h1']
+    macd_h1 = data['macd_h1']
+    macd_signal_h1 = data['macd_signal_h1']
+    bb_lower_h1 = data['bb_lower_h1']
+    bb_upper_h1 = data['bb_upper_h1']
+    close_price_h1 = data['close_price_h1']
+    adx_h1 = data['adx_h1']
+    obv_h1 = data['obv_h1']
+    candle_h1 = data['candle_h1']
     buy_signal = (
-            ma9_m15 > ma21_m15 and  # EMA 9 cross up EMA 21 di M15
-            rsi_m15 < 30 and  # RSI M15 oversold
-            macd_m15 > macd_signal_m15 and  # MACD bullish crossover di M15
-            price <= bb_lower_m15 and  # Harga di lower Bollinger Band
+            ema9_m15 > ema21_m15 and ema9_h1 > ema21_h1 and  # EMA 9 cross up EMA 21 di M15 & H1
+            rsi_m15 < 30 and rsi_h1 < 50 and  # RSI M15 oversold, RSI H1 belum overbought
+            macd_m15 > macd_signal_m15 and macd_h1 > macd_signal_h1 and  # MACD bullish crossover di M15 & H1
+            close_price_m15 <= bb_lower_m15 and close_price_h1 <= bb_lower_h1 and  # Harga di lower Bollinger Band
+            adx_m15 > 25 and adx_h1 > 25 and  # ADX menunjukkan tren kuat di M15 & H1
+            obv_m15 > 0 and obv_h1 > 0 and  # OBV meningkat di M15 & H1
             ("BUY" in candle_m15 or "STRONG_BUY" in candle_m15) and  # Candlestick reversal di M15
+            ("BUY" in candle_h1 or "STRONG_BUY" in candle_h1) and  # Candlestick reversal di H1
             pair not in ACTIVE_BUYS
         )
     sell_signal = (
-            ma9_m15 < ma21_m15 and  # EMA 9 cross down EMA 21 di M15
-            rsi_m15 > 70 and  # RSI M15 overbought
-            macd_m15 < macd_signal_m15 and  # MACD bearish crossover di M15
-            price >= bb_upper_m15 and  # Harga di upper Bollinger Band
+            ema9_m15 < ema21_m15 and ema9_h1 < ema21_h1 and  # EMA 9 cross down EMA 21 di M15 & H1
+            rsi_m15 > 70 and rsi_h1 > 50 and  # RSI M15 overbought, RSI H1 belum oversold
+            macd_m15 < macd_signal_m15 and macd_h1 < macd_signal_h1 and  # MACD bearish crossover di M15 & H1
+            close_price_m15 >= bb_upper_m15 and close_price_h1 >= bb_upper_h1 and  # Harga di upper Bollinger Band
+            adx_m15 > 25 and adx_h1 > 25 and  # ADX menunjukkan tren kuat di M15 & H1
+            obv_m15 < 0 and obv_h1 < 0 and  # OBV menurun di M15 & H1
             ("SELL" in candle_m15 or "STRONG_SELL" in candle_m15) and  # Candlestick reversal di M15
+            ("SELL" in candle_h1 or "STRONG_SELL" in candle_h1) and  # Candlestick reversal di H1
             pair in ACTIVE_BUYS
         )
     take_profit = pair in ACTIVE_BUYS and price > ACTIVE_BUYS[pair]['close_price_m15'] * 1.05
@@ -153,15 +180,14 @@ def generate_signal(pair, data):
     elif stop_loss:
         return 'STOP LOSS', price
     elif sell_signal:
-        return 'SELL', ACTIVE_BUYS[pair]['price']
+        return 'SELL', ACTIVE_BUYS[pair]['close_price_m15']
     
     return None, None
 
-def send_telegram_alert(signal_type, pair, current_price, data, buy_price=None):
+def send_telegram_alert(signal_type, pair, price, data, buy_price=None):
     """Kirim notifikasi ke Telegram"""
     display_pair = f"{pair[:-4]}/USDT"
     message = ""
-    buy_score, sell_score = calculate_scores(data)
     
     emoji = {
         'BUY': '🚀', 
@@ -172,19 +198,19 @@ def send_telegram_alert(signal_type, pair, current_price, data, buy_price=None):
 
     base_msg = f"{emoji} **{signal_type}**\n"
     base_msg += f"💱 {display_pair}\n"
-    base_msg += f"💲 Price: ${current_price:.8f}\n"
+    base_msg += f"💲 Price: ${price:.8f}\n"
 
     if signal_type == 'BUY':
-        message = f"🔍 RSI: {data['rsi']:.1f}"
+        message = f"{base_msg}🔍 RSI: {data['rsi']:.1f}\n"
         ACTIVE_BUYS[pair] = {'price': current_price, 'time': datetime.now()}
 
     elif signal_type in ['TAKE PROFIT', 'STOP LOSS', 'SELL']:
         entry = ACTIVE_BUYS.get(pair)
         if entry:
-            profit = ((current_price - entry['price'])/entry['price'])*100
+            profit = ((current_price - entry['close_price_m15'])/entry['close_price_m15'])*100
             duration = str(datetime.now() - entry['time']).split('.')[0]
             
-            message = f"{base_msg}💲 Entry: ${entry['price']:.8f}\n"
+            message = f"{base_msg}💲 Entry: ${entry['close_price_m15']:.8f}\n"
             message += f"💰 {'Profit' if profit > 0 else 'Loss'}: {profit:+.2f}%\n"
             message += f"🕒 Hold Duration: {duration}"
 
@@ -222,16 +248,16 @@ def main():
             
             signal, price = generate_signal(pair, data)
             if signal:
-                send_telegram_alert(signal, pair, data['price'], data, price)
+                send_telegram_alert(signal, pair, data['close_price_m15'], data, price)
                 
             # Auto close position
             if pair in ACTIVE_BUYS:
                 position = ACTIVE_BUYS[pair]
                 duration = datetime.now() - position['time']
-                profit = (data['price'] - position['price'])/position['price']*100
+                profit = (data['close_price_m15'] - position['close_price_m15'])/position['close_price_m15']*100
                 
                 if duration > timedelta(hours=24) or abs(profit) > 8:
-                    send_telegram_alert('SELL', pair, data['price'], data, position['price'])
+                    send_telegram_alert('SELL', pair, data['close_price_m15'], data, position['close_price_m15'])
                     
         except Exception as e:
             print(f"⚠️ Error di {pair}: {str(e)}")
