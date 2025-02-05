@@ -89,10 +89,10 @@ def analyze_pair(symbol):
         analysis_h1 = handler_h1.get_analysis()
 
         # Data indikator M15
-        ema9_m15 = analysis_m15.indicators["EMA9"]
-        ema21_m15 = analysis_m15.indicators["EMA21"]
-        rsi_m15 = analysis_m15.indicators["RSI"]
-        macd_m15 = analysis_m15.indicators["MACD.macd"]
+        ema9_m15 = analysis_m15.indicators.get["EMA9"]
+        ema21_m15 = analysis_m15.indicators.get["EMA21"]
+        rsi_m15 = analysis_m15.indicators.get["RSI"]
+        macd_m15 = analysis_m15.indicators.get["MACD.macd"]
         macd_signal_m15 = analysis_m15.indicators["MACD.signal"]
         bb_lower_m15 = analysis_m15.indicators["BB.lower"]
         bb_upper_m15 = analysis_m15.indicators["BB.upper"]
