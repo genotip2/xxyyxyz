@@ -96,7 +96,7 @@ def analyze_pair(symbol):
                 'ma9_m15': analysis_m15.indicators.get('MA9'),
                 'ma21_m15': analysis_m15.indicators.get('MA21'),
                 'rsi_m15': analysis_m15.indicators.get('RSI'),
-                'macd_m15': analysis_m15.indicators.get('MACD.MACD'),
+                'macd_m15': analysis_m15.indicators.get('MACD.macd'),
                 'macd_signal_m15': analysis_m15.indicators.get('MACD.signal'),
                 'bb_lower_m15': analysis_m15.indicators.get('BB.lower'),
                 'bb_upper_m15': analysis_m15.indicators.get('BB.upper'),
@@ -133,7 +133,6 @@ def generate_signal(pair, data):
             macd_m15 > macd_signal_m15 and  # MACD bullish crossover di M15
             price <= bb_lower_m15 and  # Harga di lower Bollinger Band
             adx_m15 > 25 and  # ADX menunjukkan tren kuat di M15
-            obv_m15 > 0 and  # OBV meningkat di M15
             ("BUY" in candle_m15 or "STRONG_BUY" in candle_m15) and  # Candlestick reversal di M15
             pair not in ACTIVE_BUYS
         )
@@ -143,7 +142,6 @@ def generate_signal(pair, data):
             macd_m15 < macd_signal_m15 and  # MACD bearish crossover di M15
             price >= bb_upper_m15 and  # Harga di upper Bollinger Band
             adx_m15 > 25 and  # ADX menunjukkan tren kuat di M15
-            obv_m15 < 0 and  # OBV menurun di M15
             ("SELL" in candle_m15 or "STRONG_SELL" in candle_m15) and  # Candlestick reversal di M15
             pair in ACTIVE_BUYS
         )
