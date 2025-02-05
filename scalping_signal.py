@@ -91,7 +91,7 @@ def analyze_pair(symbol):
         return {
                 'ema9_m15': analysis_m15.indicators.get('EMA9'),
                 'ema21_m15': analysis_m15.indicators.get('EMA21'),
-                rsi_m15': analysis_m15.indicators.get('RSI'),
+                'rsi_m15': analysis_m15.indicators.get('RSI'),
                 'macd_m15': analysis_m15.indicators.get('MACD.macd'),
                 'macd_signal_m15': analysis_m15.indicators.get('MACD.signal'),
                 'bb_lower_m15': analysis_m15.indicators.get('BB.lower'),
@@ -99,7 +99,7 @@ def analyze_pair(symbol):
                 'close_price_m15': analysis_m15.indicators.get('close'),
                 'adx_m15': analysis_m15.indicators.get('ADX'),
                 'obv_m15': analysis_m15.indicators.get('OBV'),
-                'obv_m15': analysis_m15.summary['RECOMMENDATION'],
+                'candle_m15': analysis_m15.summary['RECOMMENDATION'],
 
                 'ema9_h1': analysis_h1.indicators.get('EMA9'),
                 'ema21_h1': analysis_h1.indicators.get('EMA21'),
@@ -124,6 +124,30 @@ def analyze_pair(symbol):
 def generate_signal(pair, data):
     """Generate trading signal"""
     price = data ['close_price_m15']
+    ema9_m15 = data['ema9_m15']
+    ema21_m15 = data['ema21_m15']
+    rsi_m15 = data['rsi_m15']
+    macd_m15 = data['macd_m15']
+    macd_signal_m15 = data['macd_signal_m15']
+    bb_lower_m15 = data['bb_lower_m15']
+    bb_upper_m15 = data['bb_upper_m15']
+    close_price_m15 = data['close_price_m15']
+    adx_m15 = data['adx_m15']
+    obv_m15 = data['obv_m15']
+    candle_m15 = data['candle_m15']
+    
+    price = data ['close_price_h1']
+    ema9_h1 = data['ema9_h1']
+    ema21_h1 = data['ema21_h1']
+    rsi_h1 = data['rsi_h1']
+    macd_h1 = data['macd_h1']
+    macd_signal_h1 = data['macd_signal_h1']
+    bb_lower_h1 = data['bb_lower_h1']
+    bb_upper_h1 = data['bb_upper_h1']
+    close_price_h1 = data['close_price_h1']
+    adx_h1 = data['adx_h1']
+    obv_h1 = data['obv_h1']
+    candle_h1 = data['candle_h1']
     buy_signal = (
             ema9_m15 > ema21_m15 and ema9_h1 > ema21_h1 and  # EMA 9 cross up EMA 21 di M15 & H1
             rsi_m15 < 30 and rsi_h1 < 50 and  # RSI M15 oversold, RSI H1 belum overbought
@@ -174,7 +198,7 @@ def send_telegram_alert(signal_type, pair, price, data, buy_price=None):
 
     base_msg = f"{emoji} **{signal_type}**\n"
     base_msg += f"💱 {display_pair}\n"
-    base_msg += f"💲 Price: ${current_price:.8f}\n"
+    base_msg += f"💲 Price: ${price:.8f}\n"
 
     if signal_type == 'BUY':
         message = f"{base_msg}🔍 RSI: {data['rsi']:.1f}\n"
