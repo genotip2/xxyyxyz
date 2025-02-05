@@ -89,37 +89,31 @@ def analyze_coin(symbol):
         analysis_m15 = handler_m15.get_analysis()
         analysis_h1 = handler_h1.get_analysis()
 
-        data = {
-            "symbol": symbol,
-            "M15": {
-                "EMA9": analysis_m15.indicators["EMA9"],
-                "EMA21": analysis_m15.indicators["EMA21"],
-                "RSI": analysis_m15.indicators["RSI"],
-                "MACD": analysis_m15.indicators["MACD.macd"],
-                "MACD_signal": analysis_m15.indicators["MACD.signal"],
-                "BB_lower": analysis_m15.indicators["BB.lower"],
-                "BB_upper": analysis_m15.indicators["BB.upper"],
-                "close_price": analysis_m15.indicators["close"],
-                "ADX": analysis_m15.indicators["ADX"],
-                "OBV": analysis_m15.indicators["OBV"],
-                "candle": analysis_m15.summary["RECOMMENDATION"]
-            },
-            "H1": {
-                "EMA9": analysis_h1.indicators["EMA9"],
-                "EMA21": analysis_h1.indicators["EMA21"],
-                "RSI": analysis_h1.indicators["RSI"],
-                "MACD": analysis_h1.indicators["MACD.macd"],
-                "MACD_signal": analysis_h1.indicators["MACD.signal"],
-                "BB_lower": analysis_h1.indicators["BB.lower"],
-                "BB_upper": analysis_h1.indicators["BB.upper"],
-                "close_price": analysis_h1.indicators["close"],
-                "ADX": analysis_h1.indicators["ADX"],
-                "OBV": analysis_h1.indicators["OBV"],
-                "candle": analysis_h1.summary["RECOMMENDATION"]
-            }
-        }
+        return
+        ema9_m15 = analysis_m15.indicators["EMA9"]
+        ema21_m15 = analysis_m15.indicators["EMA21"]
+        rsi_m15 = analysis_m15.indicators["RSI"]
+        macd_m15 = analysis_m15.indicators["MACD.macd"]
+        macd_signal_m15 = analysis_m15.indicators["MACD.signal"]
+        bb_lower_m15 = analysis_m15.indicators["BB.lower"]
+        bb_upper_m15 = analysis_m15.indicators["BB.upper"]
+        close_price_m15 = analysis_m15.indicators["close"]
+        adx_m15 = analysis_m15.indicators["ADX"]
+        obv_m15 = analysis_m15.indicators["OBV"]
+        candle_m15 = analysis_m15.summary["RECOMMENDATION"]
 
-        return data  # Mengembalikan data indikator
+        # Data indikator H1
+        ema9_h1 = analysis_h1.indicators["EMA9"]
+        ema21_h1 = analysis_h1.indicators["EMA21"]
+        rsi_h1 = analysis_h1.indicators["RSI"]
+        macd_h1 = analysis_h1.indicators["MACD.macd"]
+        macd_signal_h1 = analysis_h1.indicators["MACD.signal"]
+        bb_lower_h1 = analysis_h1.indicators["BB.lower"]
+        bb_upper_h1 = analysis_h1.indicators["BB.upper"]
+        close_price_h1 = analysis_h1.indicators["close"]
+        adx_h1 = analysis_h1.indicators["ADX"]
+        obv_h1 = analysis_h1.indicators["OBV"]
+        candle_h1 = analysis_h1.summary["RECOMMENDATION"]
         
     except Exception as e:
         print(f"⚠️ Error analisis {symbol}: {str(e)}")
@@ -233,7 +227,6 @@ def main():
 
             display_pair = f"{pair[:-4]}/USDT"
             print(f"\n📈 {display_pair}:")
-            print(f"Support: {data['support']:.8f} | Resistance: {data['resistance']:.8f}")
             print(f"BB: {data['bb_lower']:.8f} - {data['bb_upper']:.8f}")
             
             signal, price = generate_signal(pair, data)
