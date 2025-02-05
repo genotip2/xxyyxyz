@@ -23,7 +23,7 @@ else:
         loaded = json.load(f)
         ACTIVE_BUYS = {
             pair: {
-                'price': data['price'],
+                'price': data["close_price_m15"],
                 'time': datetime.fromisoformat(data['time'])
             } 
             for pair, data in loaded.items()
@@ -38,7 +38,7 @@ def save_active_buys_to_json():
         to_save = {}
         for pair, data in ACTIVE_BUYS.items():
             to_save[pair] = {
-                'price': data['price'],
+                'price': data["close_price_m15"],
                 'time': data['time'].isoformat()
             }
             
@@ -89,36 +89,31 @@ def analyze_pair(symbol):
         analysis_h1 = handler_h1.get_analysis()
 
         return {
-            "M15": {
-                "EMA9": analysis_m15.indicators.get("EMA9"),
-                "EMA21": analysis_m15.indicators.get("EMA21"),
-                "RSI": analysis_m15.indicators.get("RSI"),
-                "MACD": analysis_m15.indicators.get("MACD.macd"),
-                "MACD_signal": analysis_m15.indicators.get("MACD.signal"),
-                "BB_lower": analysis_m15.indicators.get("BB.lower"),
-                "BB_upper": analysis_m15.indicators.get("BB.upper"),
-                "Close_price": analysis_m15.indicators.get("close"),
-                "ADX": analysis_m15.indicators.get("ADX"),
-                "OBV": analysis_m15.indicators.get("OBV"),
-                "Candle": analysis_m15.summary["RECOMMENDATION"],
-                "price": analysis_m15.indicators.get("close")
-            },
-            "H1": {
-                "EMA9": analysis_h1.indicators.get("EMA9"),
-                "EMA21": analysis_h1.indicators.get("EMA21"),
-                "RSI": analysis_h1.indicators.get("RSI"),
-                "MACD": analysis_h1.indicators.get("MACD.macd"),
-                "MACD_signal": analysis_h1.indicators.get("MACD.signal"),
-                "BB_lower": analysis_h1.indicators.get("BB.lower"),
-                "BB_upper": analysis_h1.indicators.get("BB.upper"),
-                "Close_price": analysis_h1.indicators.get("close"),
-                "ADX": analysis_h1.indicators.get("ADX"),
-                "OBV": analysis_h1.indicators.get("OBV"),
-                "Candle": analysis_h1.summary["RECOMMENDATION"]
-            }
-        }
-   
+                "ema9_m15": analysis_m15.indicators.get("EMA9"),
+                "ema21_m15": analysis_m15.indicators.get("EMA21"),
+                "rsi_m15": analysis_m15.indicators.get("RSI"),
+                "macd_m15": analysis_m15.indicators.get("MACD.macd"),
+                "macd_signal_m15": analysis_m15.indicators.get("MACD.signal"),
+                "bb_lower_m15": analysis_m15.indicators.get("BB.lower"),
+                "bb_upper_m15": analysis_m15.indicators.get("BB.upper"),
+                "close_price_m15": analysis_m15.indicators.get("close"),
+                "adx_m15": analysis_m15.indicators.get("ADX"),
+                "obv_m15": analysis_m15.indicators.get("OBV"),
+                "obv_m15": analysis_m15.summary["RECOMMENDATION"],
 
+                "ema9_h1": analysis_h1.indicators.get("EMA9"),
+                "ema21_h1": analysis_h1.indicators.get("EMA21"),
+                "rsi_h1": analysis_h1.indicators.get("RSI"),
+                "macd_h1": analysis_h1.indicators.get("MACD.macd"),
+                "macd_signal_h1": analysis_h1.indicators.get("MACD.signal"),
+                "bb_lower_h1": analysis_h1.indicators.get("BB.lower"),
+                "bb_upper_h1": analysis_h1.indicators.get("BB.upper"),
+                "close_price_h1": analysis_h1.indicators.get("close"),
+                "adx_h1": analysis_h1.indicators.get("ADX"),
+                "obv_h1": analysis_h1.indicators.get("OBV"),
+                "candle_h1": analysis_h1.summary["RECOMMENDATION"]
+         }
+         
     except Exception as e:
         print(f"⚠️ Error analisis {symbol}: {str(e)}")
         return None
@@ -128,20 +123,7 @@ def analyze_pair(symbol):
 # ==============================
 def generate_signal(pair, data):
     """Generate trading signal"""
-    'price' = ["M15"]["price"]
-    current_price = data['price']
-    ema9_m15, ema9_h1 = data["M15"]["EMA9"], data["H1"]["EMA9"]
-    ema21_m15, ema21_h1 = data["M15"]["EMA21"], data["H1"]["EMA21"]
-    rsi_m15, rsi_h1 = data["M15"]["RSI"], data["H1"]["RSI"]
-    macd_m15, macd_signal_m15 = data["M15"]["MACD"], data["M15"]["MACD_signal"]
-    macd_h1, macd_signal_h1 = data["H1"]["MACD"], data["H1"]["MACD_signal"]
-    bb_lower_m15, bb_upper_m15 = data["M15"]["BB_lower"], data["M15"]["BB_upper"]
-    bb_lower_h1, bb_upper_h1 = data["H1"]["BB_lower"], data["H1"]["BB_upper"]
-    close_price_m15, close_price_h1 = data["M15"]["Close_price"], data["H1"]["Close_price"]
-    adx_m15, adx_h1 = data["M15"]["ADX"], data["H1"]["ADX"]
-    obv_m15, obv_h1 = data["M15"]["OBV"], data["H1"]["OBV"]
-    candle_m15, candle_h1 = data["M15"]["Candle"], data["H1"]["Candle"]
-
+    price = data ["close_price_m15"]
     buy_signal = (
             ema9_m15 > ema21_m15 and ema9_h1 > ema21_h1 and  # EMA 9 cross up EMA 21 di M15 & H1
             rsi_m15 < 30 and rsi_h1 < 50 and  # RSI M15 oversold, RSI H1 belum overbought
@@ -164,8 +146,8 @@ def generate_signal(pair, data):
             ("SELL" in candle_h1 or "STRONG_SELL" in candle_h1) and  # Candlestick reversal di H1
             pair in ACTIVE_BUYS
         )
-    take_profit = pair in ACTIVE_BUYS and current_price > ACTIVE_BUYS[pair]['price'] * 1.05
-    stop_loss = pair in ACTIVE_BUYS and current_price < ACTIVE_BUYS[pair]['price'] * 0.98
+    take_profit = pair in ACTIVE_BUYS and price > ACTIVE_BUYS[pair]["close_price_m15"] * 1.05
+    stop_loss = pair in ACTIVE_BUYS and price < ACTIVE_BUYS[pair]["close_price_m15"] * 0.98
 
     if buy_signal:
         return 'BUY', price
@@ -174,7 +156,7 @@ def generate_signal(pair, data):
     elif stop_loss:
         return 'STOP LOSS', price
     elif sell_signal:
-        return 'SELL', ACTIVE_BUYS[pair]['price']
+        return 'SELL', ACTIVE_BUYS[pair]["close_price_m15"]
     
     return None, None
 
@@ -201,10 +183,10 @@ def send_telegram_alert(signal_type, pair, price, data, buy_price=None):
     elif signal_type in ['TAKE PROFIT', 'STOP LOSS', 'SELL']:
         entry = ACTIVE_BUYS.get(pair)
         if entry:
-            profit = ((current_price - entry['price'])/entry['price'])*100
+            profit = ((current_price - entry["close_price_m15"])/entry["close_price_m15"])*100
             duration = str(datetime.now() - entry['time']).split('.')[0]
             
-            message = f"{base_msg}💲 Entry: ${entry['price']:.8f}\n"
+            message = f"{base_msg}💲 Entry: ${entry["close_price_m15"]:.8f}\n"
             message += f"💰 {'Profit' if profit > 0 else 'Loss'}: {profit:+.2f}%\n"
             message += f"🕒 Hold Duration: {duration}"
 
@@ -242,16 +224,16 @@ def main():
             
             signal, price = generate_signal(pair, data)
             if signal:
-                send_telegram_alert(signal, pair, data['price'], data, price)
+                send_telegram_alert(signal, pair, data["close_price_m15"], data, price)
                 
             # Auto close position
             if pair in ACTIVE_BUYS:
                 position = ACTIVE_BUYS[pair]
                 duration = datetime.now() - position['time']
-                profit = (data['price'] - position['price'])/position['price']*100
+                profit = (data["close_price_m15"] - position["close_price_m15"])/position["close_price_m15"]*100
                 
                 if duration > timedelta(hours=24) or abs(profit) > 8:
-                    send_telegram_alert('SELL', pair, data['price'], data, position['price'])
+                    send_telegram_alert('SELL', pair, data["close_price_m15"], data, position["close_price_m15"])
                     
         except Exception as e:
             print(f"⚠️ Error di {pair}: {str(e)}")
