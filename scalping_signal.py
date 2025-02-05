@@ -1,8 +1,8 @@
 import os
 import requests
-from tradingview_ta import TA_Handler, Interval
-from datetime import datetime, timedelta
+import pandas as pd
 import json
+from datetime import datetime, timedelta
 
 # ==============================
 # KONFIGURASI
@@ -10,11 +10,9 @@ import json
 TELEGRAM_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
 TELEGRAM_CHAT_ID = os.getenv('TELEGRAM_CHAT_ID')
 ACTIVE_BUYS = {}
-BUY_SCORE_THRESHOLD = 5
-SELL_SCORE_THRESHOLD = 4
 FILE_PATH = 'active_buys.json'
 
-# Inisialisasi file JSON dengan handling datetime
+# Inisialisasi file JSON
 if not os.path.exists(FILE_PATH):
     with open(FILE_PATH, 'w') as f:
         json.dump({}, f)
@@ -23,9 +21,9 @@ else:
         loaded = json.load(f)
         ACTIVE_BUYS = {
             pair: {
-                'price': data['close_price_m15'],
+                'price': data['price'],
                 'time': datetime.fromisoformat(data['time'])
-            } 
+            }
             for pair, data in loaded.items()
         }
 
@@ -33,236 +31,158 @@ else:
 # FUNGSI UTILITAS
 # ==============================
 def save_active_buys_to_json():
-    """Simpan data dengan konversi datetime ke string"""
     try:
-        to_save = {}
-        for pair, data in ACTIVE_BUYS.items():
-            to_save[pair] = {
-                'price': data['close_price_m15'],
-                'time': data['time'].isoformat()
-            }
-            
+        to_save = {pair: {'price': data['price'], 'time': data['time'].isoformat()} for pair, data in ACTIVE_BUYS.items()}
         with open(FILE_PATH, 'w') as f:
             json.dump(to_save, f, indent=4)
-            
         print("✅ Berhasil menyimpan active_buys.json")
     except Exception as e:
         print(f"❌ Gagal menyimpan: {str(e)}")
 
+
 def get_binance_top_pairs():
-    """Ambil 50 pair teratas berdasarkan volume trading"""
+    """Ambil 50 pair teratas berdasarkan volume trading dari CoinGecko"""
     url = "https://api.coingecko.com/api/v3/exchanges/binance/tickers"
     params = {'include_exchange_logo': 'false', 'order': 'volume_desc'}
-    
+
     try:
         response = requests.get(url, params=params)
         data = response.json()
         usdt_pairs = [t for t in data['tickers'] if t['target'] == 'USDT']
-        sorted_pairs = sorted(usdt_pairs, 
-                            key=lambda x: x['converted_volume']['usd'], 
-                            reverse=True)[:50]
+        sorted_pairs = sorted(usdt_pairs, key=lambda x: x['converted_volume']['usd'], reverse=True)[:50]
         return [f"{p['base']}USDT" for p in sorted_pairs]
-    
     except Exception as e:
         print(f"❌ Error fetching data: {e}")
         return []
-      
+
+
+def fetch_price_data(symbol):
+    """Mengambil data harga dari CoinGecko"""
+    url = f"https://api.coingecko.com/api/v3/coins/binancecoin/market_chart"
+    params = {'vs_currency': 'usd', 'days': '1', 'interval': 'minute'}
+    
+    try:
+        response = requests.get(url, params=params)
+        data = response.json()
+        
+        prices = [p[1] for p in data['prices']]
+        return pd.Series(prices)
+    except Exception as e:
+        print(f"❌ Error fetching data {symbol}: {e}")
+        return None
+
 # ==============================
 # FUNGSI ANALISIS
 # ==============================
+def calculate_indicators(df):
+    """Menghitung indikator teknikal"""
+    df['ema9'] = df['close'].ewm(span=9, adjust=False).mean()
+    df['ema21'] = df['close'].ewm(span=21, adjust=False).mean()
+
+    delta = df['close'].diff()
+    gain = (delta.where(delta > 0, 0)).rolling(14).mean()
+    loss = (-delta.where(delta < 0, 0)).rolling(14).mean()
+    rs = gain / loss
+    df['rsi'] = 100 - (100 / (1 + rs))
+
+    df['macd'] = df['ema9'] - df['ema21']
+    df['macd_signal'] = df['macd'].ewm(span=9, adjust=False).mean()
+
+    df['bb_middle'] = df['close'].rolling(window=20).mean()
+    df['bb_upper'] = df['bb_middle'] + 2 * df['close'].rolling(window=20).std()
+    df['bb_lower'] = df['bb_middle'] - 2 * df['close'].rolling(window=20).std()
+
+    df['adx'] = (df['macd'] - df['macd'].shift(1)).abs().rolling(14).mean()
+
+    df['obv'] = (df['close'].diff() > 0).astype(int).cumsum()
+
+    return df
+
+
 def analyze_pair(symbol):
-    try:
-        handler_m15 = TA_Handler(
-            symbol=symbol,
-            exchange="BINANCE",
-            screener="CRYPTO",
-            interval=Interval.INTERVAL_15_MINUTES
-        )
-        handler_h1 = TA_Handler(
-            symbol=symbol,
-            exchange="BINANCE",
-            screener="CRYPTO",
-            interval=Interval.INTERVAL_1_HOUR
-        )
-
-        analysis_m15 = handler_m15.get_analysis()
-        analysis_h1 = handler_h1.get_analysis()
-
-        return {
-                'ema9_m15': analysis_m15.indicators.get('EMA9'),
-                'ema21_m15': analysis_m15.indicators.get('EMA21'),
-                'rsi_m15': analysis_m15.indicators.get('RSI'),
-                'macd_m15': analysis_m15.indicators.get('MACD.MACD'),
-                'macd_signal_m15': analysis_m15.indicators.get('MACD.signal'),
-                'bb_lower_m15': analysis_m15.indicators.get('BB.lower'),
-                'bb_upper_m15': analysis_m15.indicators.get('BB.upper'),
-                'close_price_m15': analysis_m15.indicators.get('close'),
-                'adx_m15': analysis_m15.indicators.get('ADX'),
-                'obv_m15': analysis_m15.indicators.get('OBV'),
-                'candle_m15': analysis_m15.summary['RECOMMENDATION'],
-
-                'ema9_h1': analysis_h1.indicators.get('EMA9'),
-                'ema21_h1': analysis_h1.indicators.get('EMA21'),
-                'rsi_h1': analysis_h1.indicators.get('RSI'),
-                'macd_h1': analysis_h1.indicators.get('MACD.MACD'),
-                'macd_signal_h1': analysis_h1.indicators.get('MACD.signal'),
-                'bb_lower_h1': analysis_h1.indicators.get('BB.lower'),
-                'bb_upper_h1': analysis_h1.indicators.get('BB.upper'),
-                'close_price_h1': analysis_h1.indicators.get('close'),
-                'adx_h1': analysis_h1.indicators.get('ADX'),
-                'obv_h1': analysis_h1.indicators.get('OBV'),
-                'candle_h1': analysis_h1.summary['RECOMMENDATION']
-         }
-         
-    except Exception as e:
-        print(f"⚠️ Error analisis {symbol}: {str(e)}")
+    """Analisis indikator teknikal berdasarkan data harga"""
+    price_data = fetch_price_data(symbol)
+    if price_data is None:
         return None
+
+    df = pd.DataFrame({'close': price_data})
+    df = calculate_indicators(df)
+
+    return df.iloc[-1].to_dict()
+
 
 # ==============================
 # FUNGSI TRADING
 # ==============================
-# ==============================
-# FUNGSI TRADING (DENGAN SKOR)
-# ==============================
 def generate_signal(pair, data):
-    """Generate trading signal menggunakan sistem skor"""
-    score_buy = 0
-    score_sell = 0
+    """Generate sinyal trading berdasarkan indikator"""
+    buy_signal = (
+        data['ema9'] > data['ema21'] and
+        data['rsi'] < 30 and
+        data['macd'] > data['macd_signal'] and
+        data['close'] <= data['bb_lower'] and
+        data['adx'] > 25 and
+        data['obv'] > 0 and
+        pair not in ACTIVE_BUYS
+    )
 
-    # Harga & indikator
-    price_m15 = data['close_price_m15']
-    price_h1 = data['close_price_h1']
-    
-    # BUY Scoring
-    if data['ema9_m15'] > data['ema21_m15'] and data['ema9_h1'] > data['ema21_h1']:
-        score_buy += 1  # EMA 9 cross up EMA 21
-    if data['rsi_m15'] < 30 and data['rsi_h1'] < 50:
-        score_buy += 1  # RSI oversold
-    if data['macd_m15'] > data['macd_signal_m15'] and data['macd_h1'] > data['macd_signal_h1']:
-        score_buy += 1  # MACD bullish crossover
-    if price_m15 <= data['bb_lower_m15'] and price_h1 <= data['bb_lower_h1']:
-        score_buy += 1  # Harga di lower Bollinger Band
-    if data['adx_m15'] > 25 and data['adx_h1'] > 25:
-        score_buy += 1  # ADX tren kuat
-    if data['obv_m15'] > 0 and data['obv_h1'] > 0:
-        score_buy += 1  # OBV meningkat
-    if "BUY" in data['candle_m15'] or "STRONG_BUY" in data['candle_m15']:
-        score_buy += 1  # Candlestick reversal M15
-    if "BUY" in data['candle_h1'] or "STRONG_BUY" in data['candle_h1']:
-        score_buy += 1  # Candlestick reversal H1
+    sell_signal = (
+        data['ema9'] < data['ema21'] and
+        data['rsi'] > 70 and
+        data['macd'] < data['macd_signal'] and
+        data['close'] >= data['bb_upper'] and
+        data['adx'] > 25 and
+        data['obv'] < 0 and
+        pair in ACTIVE_BUYS
+    )
 
-    # SELL Scoring
-    if data['ema9_m15'] < data['ema21_m15'] and data['ema9_h1'] < data['ema21_h1']:
-        score_sell += 1  # EMA 9 cross down EMA 21
-    if data['rsi_m15'] > 70 and data['rsi_h1'] > 50:
-        score_sell += 1  # RSI overbought
-    if data['macd_m15'] < data['macd_signal_m15'] and data['macd_h1'] < data['macd_signal_h1']:
-        score_sell += 1  # MACD bearish crossover
-    if price_m15 >= data['bb_upper_m15'] and price_h1 >= data['bb_upper_h1']:
-        score_sell += 1  # Harga di upper Bollinger Band
-    if data['adx_m15'] > 25 and data['adx_h1'] > 25:
-        score_sell += 1  # ADX tren kuat
-    if data['obv_m15'] < 0 and data['obv_h1'] < 0:
-        score_sell += 1  # OBV menurun
-    if "SELL" in data['candle_m15'] or "STRONG_SELL" in data['candle_m15']:
-        score_sell += 1  # Candlestick reversal M15
-    if "SELL" in data['candle_h1'] or "STRONG_SELL" in data['candle_h1']:
-        score_sell += 1  # Candlestick reversal H1
+    take_profit = pair in ACTIVE_BUYS and data['close'] > ACTIVE_BUYS[pair]['price'] * 1.05
+    stop_loss = pair in ACTIVE_BUYS and data['close'] < ACTIVE_BUYS[pair]['price'] * 0.98
 
-    # Ambil keputusan berdasarkan skor
-    if score_buy >= BUY_SCORE_THRESHOLD and pair not in ACTIVE_BUYS:
-        return 'BUY', price_m15
-    elif score_sell >= SELL_SCORE_THRESHOLD and pair in ACTIVE_BUYS:
+    if buy_signal:
+        return 'BUY', data['close']
+    elif take_profit:
+        return 'TAKE PROFIT', data['close']
+    elif stop_loss:
+        return 'STOP LOSS', data['close']
+    elif sell_signal:
         return 'SELL', ACTIVE_BUYS[pair]['price']
-    
-    # Stop loss & take profit
-    if pair in ACTIVE_BUYS:
-        entry_price = ACTIVE_BUYS[pair]['price']
-        if price_m15 > entry_price * 1.05:
-            return 'TAKE PROFIT', price_m15
-        elif price_m15 < entry_price * 0.98:
-            return 'STOP LOSS', price_m15
 
     return None, None
 
-def send_telegram_alert(signal_type, pair, price, data, buy_price=None):
-    """Kirim notifikasi ke Telegram"""
-    display_pair = f"{pair[:-4]}/USDT"
-    message = ""
-    
-    emoji = {
-        'BUY': '🚀', 
-        'SELL': '⚠️', 
-        'TAKE PROFIT': '✅', 
-        'STOP LOSS': '🛑'
-    }.get(signal_type, 'ℹ️')
 
-    base_msg = f"{emoji} **{signal_type}**\n"
-    base_msg += f"💱 {display_pair}\n"
-    base_msg += f"💲 Price: ${price:.8f}\n"
+def send_telegram_alert(signal_type, pair, price):
+    """Mengirim notifikasi ke Telegram"""
+    message = f"📢 **{signal_type}**\n💱 {pair}\n💲 Price: ${price:.8f}\n"
 
     if signal_type == 'BUY':
-        message = f"{base_msg}🔍 RSI: {data['rsi']:.1f}\n"
-        ACTIVE_BUYS[pair] = {'price': current_price, 'time': datetime.now()}
+        ACTIVE_BUYS[pair] = {'price': price, 'time': datetime.now()}
 
     elif signal_type in ['TAKE PROFIT', 'STOP LOSS', 'SELL']:
-        entry = ACTIVE_BUYS.get(pair)
-        if entry:
-            profit = ((current_price - entry['close_price_m15'])/entry['close_price_m15'])*100
-            duration = str(datetime.now() - entry['time']).split('.')[0]
-            
-            message = f"{base_msg}💲 Entry: ${entry['close_price_m15']:.8f}\n"
-            message += f"💰 {'Profit' if profit > 0 else 'Loss'}: {profit:+.2f}%\n"
-            message += f"🕒 Hold Duration: {duration}"
+        del ACTIVE_BUYS[pair]
 
-            if signal_type in ['STOP LOSS', 'SELL']:
-                del ACTIVE_BUYS[pair]
-
-    print(f"📢 Mengirim alert: {message}")
-
-    try:
-        save_active_buys_to_json()
-    except Exception as e:
-        print(f"❌ Gagal menyimpan: {str(e)}")
+    save_active_buys_to_json()
 
     requests.post(
         f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage",
         json={'chat_id': TELEGRAM_CHAT_ID, 'text': message, 'parse_mode': 'Markdown'}
     )
 
+
 # ==============================
 # FUNGSI UTAMA
 # ==============================
 def main():
-    """Program utama"""
     pairs = get_binance_top_pairs()
     print(f"🔍 Memulai analisis {len(pairs)} pair - {datetime.now().strftime('%d/%m %H:%M')}")
 
     for pair in pairs:
-        try:
-            data = analyze_pair(pair)
-            if not data:
-                continue
-
-            display_pair = f"{pair[:-4]}/USDT"
-            print(f"\n📈 {display_pair}:")
-            
+        data = analyze_pair(pair)
+        if data:
             signal, price = generate_signal(pair, data)
             if signal:
-                send_telegram_alert(signal, pair, data['close_price_m15'], data, price)
-                
-            # Auto close position
-            if pair in ACTIVE_BUYS:
-                position = ACTIVE_BUYS[pair]
-                duration = datetime.now() - position['time']
-                profit = (data['close_price_m15'] - position['close_price_m15'])/position['close_price_m15']*100
-                
-                if duration > timedelta(hours=24) or abs(profit) > 8:
-                    send_telegram_alert('SELL', pair, data['close_price_m15'], data, position['close_price_m15'])
-                    
-        except Exception as e:
-            print(f"⚠️ Error di {pair}: {str(e)}")
-            continue
+                send_telegram_alert(signal, pair, price)
+
 
 if __name__ == "__main__":
     main()
