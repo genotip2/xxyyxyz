@@ -71,6 +71,7 @@ def get_binance_top_pairs():
 # FUNGSI ANALISIS
 # ==============================
 def analyze_coin(symbol):
+def analyze_coin(symbol):
     try:
         handler_m15 = TA_Handler(
             symbol=symbol.replace("USDT", ""),
@@ -85,11 +86,10 @@ def analyze_coin(symbol):
             interval=Interval.INTERVAL_1_HOUR
         )
 
-        # Data indikator M15
         analysis_m15 = handler_m15.get_analysis()
         analysis_h1 = handler_h1.get_analysis()
 
-        return
+        # Data indikator M15
         ema9_m15 = analysis_m15.indicators["EMA9"]
         ema21_m15 = analysis_m15.indicators["EMA21"]
         rsi_m15 = analysis_m15.indicators["RSI"]
@@ -114,7 +114,37 @@ def analyze_coin(symbol):
         adx_h1 = analysis_h1.indicators["ADX"]
         obv_h1 = analysis_h1.indicators["OBV"]
         candle_h1 = analysis_h1.summary["RECOMMENDATION"]
-        
+
+        # Kembalikan hasil analisis sebagai dictionary
+        return {
+            "M15": {
+                "EMA9": ema9_m15,
+                "EMA21": ema21_m15,
+                "RSI": rsi_m15,
+                "MACD": macd_m15,
+                "MACD_signal": macd_signal_m15,
+                "BB_lower": bb_lower_m15,
+                "BB_upper": bb_upper_m15,
+                "Close_price": close_price_m15,
+                "ADX": adx_m15,
+                "OBV": obv_m15,
+                "Candle": candle_m15
+            },
+            "H1": {
+                "EMA9": ema9_h1,
+                "EMA21": ema21_h1,
+                "RSI": rsi_h1,
+                "MACD": macd_h1,
+                "MACD_signal": macd_signal_h1,
+                "BB_lower": bb_lower_h1,
+                "BB_upper": bb_upper_h1,
+                "Close_price": close_price_h1,
+                "ADX": adx_h1,
+                "OBV": obv_h1,
+                "Candle": candle_h1
+            }
+        }
+
     except Exception as e:
         print(f"⚠️ Error analisis {symbol}: {str(e)}")
         return None
