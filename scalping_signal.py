@@ -118,7 +118,6 @@ def generate_signal(pair, data):
     candle_m15 = data['candle_m15']
     
     buy_signal = (
-            ema9_m15 > ema21_m15 and  # EMA 9 cross up EMA 21 di M15
             rsi_m15 < 30 and  # RSI M15 oversold
             macd_m15 > macd_signal_m15 and  # MACD bullish crossover di M15
             close_price_m15 <= bb_lower_m15 and  # Harga di lower Bollinger Band
@@ -128,7 +127,6 @@ def generate_signal(pair, data):
             pair not in ACTIVE_BUYS
         )
     sell_signal = (
-            ema9_m15 < ema21_m15 and  # EMA 9 cross down EMA 21 di M15
             rsi_m15 > 70 and  # RSI M15 overbought
             macd_m15 < macd_signal_m15 and  # MACD bearish crossover di M15
             close_price_m15 >= bb_upper_m15 and  # Harga di upper Bollinger Band
