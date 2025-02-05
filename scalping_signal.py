@@ -153,10 +153,17 @@ def analyze_pair(symbol):
 # ==============================
 def generate_signal(pair, data):
     """Generate trading signal"""
-    price = data['price']
-    display_pair = f"{pair[:-4]}/USDT"
-
-    print(f"{display_pair} - Price: {price:.8f} | Buy: {buy_score}/7 | Sell: {sell_score}/6")
+    ema9_m15, ema21_m15 = data["M15"]["EMA9"], data["M15"]["EMA21"]
+    ema9_h1, ema21_h1 = data["H1"]["EMA9"], data["H1"]["EMA21"]
+    rsi_m15, rsi_h1 = data["M15"]["RSI"], data["H1"]["RSI"]
+    macd_m15, macd_signal_m15 = data["M15"]["MACD"], data["M15"]["MACD_signal"]
+    macd_h1, macd_signal_h1 = data["H1"]["MACD"], data["H1"]["MACD_signal"]
+    bb_lower_m15, bb_upper_m15 = data["M15"]["BB_lower"], data["M15"]["BB_upper"]
+    bb_lower_h1, bb_upper_h1 = data["H1"]["BB_lower"], data["H1"]["BB_upper"]
+    close_price_m15, close_price_h1 = data["M15"]["Close_price"], data["H1"]["Close_price"]
+    adx_m15, adx_h1 = data["M15"]["ADX"], data["H1"]["ADX"]
+    obv_m15, obv_h1 = data["M15"]["OBV"], data["H1"]["OBV"]
+    candle_m15, candle_h1 = data["M15"]["Candle"], data["H1"]["Candle"]
 
     buy_signal = (
             ema9_m15 > ema21_m15 and ema9_h1 > ema21_h1 and  # EMA 9 cross up EMA 21 di M15 & H1
