@@ -224,8 +224,6 @@ def main():
 
             display_pair = f"{pair[:-4]}/USDT"
             print(f"\n📈 {display_pair}:")
-            print(f"Support: {data['support']:.8f} | Resistance: {data['resistance']:.8f}")
-            print(f"BB: {data['bb_lower']:.8f} - {data['bb_upper']:.8f}")
             
             signal, price = generate_signal(pair, data)
             if signal:
