@@ -132,7 +132,6 @@ def generate_signal(pair, data):
             rsi_m15 < 30 and  # RSI M15 oversold
             macd_m15 > macd_signal_m15 and  # MACD bullish crossover di M15
             price <= bb_lower_m15 and  # Harga di lower Bollinger Band
-            adx_m15 > 25 and  # ADX menunjukkan tren kuat di M15
             ("BUY" in candle_m15 or "STRONG_BUY" in candle_m15) and  # Candlestick reversal di M15
             pair not in ACTIVE_BUYS
         )
@@ -141,7 +140,6 @@ def generate_signal(pair, data):
             rsi_m15 > 70 and  # RSI M15 overbought
             macd_m15 < macd_signal_m15 and  # MACD bearish crossover di M15
             price >= bb_upper_m15 and  # Harga di upper Bollinger Band
-            adx_m15 > 25 and  # ADX menunjukkan tren kuat di M15
             ("SELL" in candle_m15 or "STRONG_SELL" in candle_m15) and  # Candlestick reversal di M15
             pair in ACTIVE_BUYS
         )
