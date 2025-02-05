@@ -121,67 +121,68 @@ def analyze_pair(symbol):
 # ==============================
 # FUNGSI TRADING
 # ==============================
+# ==============================
+# FUNGSI TRADING (DENGAN SKOR)
+# ==============================
 def generate_signal(pair, data):
-    """Generate trading signal"""
-    price = data ['close_price_m15']
-    ema9_m15 = data['ema9_m15']
-    ema21_m15 = data['ema21_m15']
-    rsi_m15 = data['rsi_m15']
-    macd_m15 = data['macd_m15']
-    macd_signal_m15 = data['macd_signal_m15']
-    bb_lower_m15 = data['bb_lower_m15']
-    bb_upper_m15 = data['bb_upper_m15']
-    close_price_m15 = data['close_price_m15']
-    adx_m15 = data['adx_m15']
-    obv_m15 = data['obv_m15']
-    candle_m15 = data['candle_m15']
-    
-    price = data ['close_price_h1']
-    ema9_h1 = data['ema9_h1']
-    ema21_h1 = data['ema21_h1']
-    rsi_h1 = data['rsi_h1']
-    macd_h1 = data['macd_h1']
-    macd_signal_h1 = data['macd_signal_h1']
-    bb_lower_h1 = data['bb_lower_h1']
-    bb_upper_h1 = data['bb_upper_h1']
-    close_price_h1 = data['close_price_h1']
-    adx_h1 = data['adx_h1']
-    obv_h1 = data['obv_h1']
-    candle_h1 = data['candle_h1']
-    buy_signal = (
-            ema9_m15 > ema21_m15 and ema9_h1 > ema21_h1 and  # EMA 9 cross up EMA 21 di M15 & H1
-            rsi_m15 < 30 and rsi_h1 < 50 and  # RSI M15 oversold, RSI H1 belum overbought
-            macd_m15 > macd_signal_m15 and macd_h1 > macd_signal_h1 and  # MACD bullish crossover di M15 & H1
-            close_price_m15 <= bb_lower_m15 and close_price_h1 <= bb_lower_h1 and  # Harga di lower Bollinger Band
-            adx_m15 > 25 and adx_h1 > 25 and  # ADX menunjukkan tren kuat di M15 & H1
-            obv_m15 > 0 and obv_h1 > 0 and  # OBV meningkat di M15 & H1
-            ("BUY" in candle_m15 or "STRONG_BUY" in candle_m15) and  # Candlestick reversal di M15
-            ("BUY" in candle_h1 or "STRONG_BUY" in candle_h1) and  # Candlestick reversal di H1
-            pair not in ACTIVE_BUYS
-        )
-    sell_signal = (
-            ema9_m15 < ema21_m15 and ema9_h1 < ema21_h1 and  # EMA 9 cross down EMA 21 di M15 & H1
-            rsi_m15 > 70 and rsi_h1 > 50 and  # RSI M15 overbought, RSI H1 belum oversold
-            macd_m15 < macd_signal_m15 and macd_h1 < macd_signal_h1 and  # MACD bearish crossover di M15 & H1
-            close_price_m15 >= bb_upper_m15 and close_price_h1 >= bb_upper_h1 and  # Harga di upper Bollinger Band
-            adx_m15 > 25 and adx_h1 > 25 and  # ADX menunjukkan tren kuat di M15 & H1
-            obv_m15 < 0 and obv_h1 < 0 and  # OBV menurun di M15 & H1
-            ("SELL" in candle_m15 or "STRONG_SELL" in candle_m15) and  # Candlestick reversal di M15
-            ("SELL" in candle_h1 or "STRONG_SELL" in candle_h1) and  # Candlestick reversal di H1
-            pair in ACTIVE_BUYS
-        )
-    take_profit = pair in ACTIVE_BUYS and price > ACTIVE_BUYS[pair]['close_price_m15'] * 1.05
-    stop_loss = pair in ACTIVE_BUYS and price < ACTIVE_BUYS[pair]['close_price_m15'] * 0.98
+    """Generate trading signal menggunakan sistem skor"""
+    score_buy = 0
+    score_sell = 0
 
-    if buy_signal:
-        return 'BUY', price
-    elif take_profit:
-        return 'TAKE PROFIT', price
-    elif stop_loss:
-        return 'STOP LOSS', price
-    elif sell_signal:
-        return 'SELL', ACTIVE_BUYS[pair]['close_price_m15']
+    # Harga & indikator
+    price_m15 = data['close_price_m15']
+    price_h1 = data['close_price_h1']
     
+    # BUY Scoring
+    if data['ema9_m15'] > data['ema21_m15'] and data['ema9_h1'] > data['ema21_h1']:
+        score_buy += 1  # EMA 9 cross up EMA 21
+    if data['rsi_m15'] < 30 and data['rsi_h1'] < 50:
+        score_buy += 1  # RSI oversold
+    if data['macd_m15'] > data['macd_signal_m15'] and data['macd_h1'] > data['macd_signal_h1']:
+        score_buy += 1  # MACD bullish crossover
+    if price_m15 <= data['bb_lower_m15'] and price_h1 <= data['bb_lower_h1']:
+        score_buy += 1  # Harga di lower Bollinger Band
+    if data['adx_m15'] > 25 and data['adx_h1'] > 25:
+        score_buy += 1  # ADX tren kuat
+    if data['obv_m15'] > 0 and data['obv_h1'] > 0:
+        score_buy += 1  # OBV meningkat
+    if "BUY" in data['candle_m15'] or "STRONG_BUY" in data['candle_m15']:
+        score_buy += 1  # Candlestick reversal M15
+    if "BUY" in data['candle_h1'] or "STRONG_BUY" in data['candle_h1']:
+        score_buy += 1  # Candlestick reversal H1
+
+    # SELL Scoring
+    if data['ema9_m15'] < data['ema21_m15'] and data['ema9_h1'] < data['ema21_h1']:
+        score_sell += 1  # EMA 9 cross down EMA 21
+    if data['rsi_m15'] > 70 and data['rsi_h1'] > 50:
+        score_sell += 1  # RSI overbought
+    if data['macd_m15'] < data['macd_signal_m15'] and data['macd_h1'] < data['macd_signal_h1']:
+        score_sell += 1  # MACD bearish crossover
+    if price_m15 >= data['bb_upper_m15'] and price_h1 >= data['bb_upper_h1']:
+        score_sell += 1  # Harga di upper Bollinger Band
+    if data['adx_m15'] > 25 and data['adx_h1'] > 25:
+        score_sell += 1  # ADX tren kuat
+    if data['obv_m15'] < 0 and data['obv_h1'] < 0:
+        score_sell += 1  # OBV menurun
+    if "SELL" in data['candle_m15'] or "STRONG_SELL" in data['candle_m15']:
+        score_sell += 1  # Candlestick reversal M15
+    if "SELL" in data['candle_h1'] or "STRONG_SELL" in data['candle_h1']:
+        score_sell += 1  # Candlestick reversal H1
+
+    # Ambil keputusan berdasarkan skor
+    if score_buy >= BUY_SCORE_THRESHOLD and pair not in ACTIVE_BUYS:
+        return 'BUY', price_m15
+    elif score_sell >= SELL_SCORE_THRESHOLD and pair in ACTIVE_BUYS:
+        return 'SELL', ACTIVE_BUYS[pair]['price']
+    
+    # Stop loss & take profit
+    if pair in ACTIVE_BUYS:
+        entry_price = ACTIVE_BUYS[pair]['price']
+        if price_m15 > entry_price * 1.05:
+            return 'TAKE PROFIT', price_m15
+        elif price_m15 < entry_price * 0.98:
+            return 'STOP LOSS', price_m15
+
     return None, None
 
 def send_telegram_alert(signal_type, pair, price, data, buy_price=None):
