@@ -18,7 +18,7 @@ jobs:
         python-version: '3.9'
 
     - name: Install Dependencies
-      run: pip install requests pandas_ta pandas
+      run: pip install requests Tradingview-ta
 
     - name: Run Bot
       env:
