@@ -186,7 +186,7 @@ def send_telegram_alert(signal_type, pair, price, data, buy_price=None):
             profit = ((current_price - entry["close_price_m15"])/entry["close_price_m15"])*100
             duration = str(datetime.now() - entry['time']).split('.')[0]
             
-            message = f"{base_msg}💲 Entry: ${entry["close_price_m15"]:.8f}\n"
+            message = f"{base_msg}💲 Entry: ${entry['close_price_m15']:.8f}\n"
             message += f"💰 {'Profit' if profit > 0 else 'Loss'}: {profit:+.2f}%\n"
             message += f"🕒 Hold Duration: {duration}"
 
