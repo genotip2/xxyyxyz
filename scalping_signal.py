@@ -101,7 +101,7 @@ def analyze_pair(symbol):
                 "ADX": analysis_m15.indicators.get("ADX"),
                 "OBV": analysis_m15.indicators.get("OBV"),
                 "Candle": analysis_m15.summary["RECOMMENDATION"]
-                "price": analysis_m15.indicators.get("close")
+                "close": analysis_m15.indicators.get("close")
             },
             "H1": {
                 "EMA9": analysis_h1.indicators.get("EMA9"),
@@ -128,7 +128,7 @@ def analyze_pair(symbol):
 # ==============================
 def generate_signal(pair, data):
     """Generate trading signal"""
-    price = data["price"]
+    price = data["close"]
     ema9_m15, ema9_h1 = data["M15"]["EMA9"], data["H1"]["EMA9"]
     ema21_m15, ema21_h1 = data["M15"]["EMA21"], data["H1"]["EMA21"]
     rsi_m15, rsi_h1 = data["M15"]["RSI"], data["H1"]["RSI"]
@@ -163,8 +163,8 @@ def generate_signal(pair, data):
             ("SELL" in candle_h1 or "STRONG_SELL" in candle_h1) and  # Candlestick reversal di H1
             pair in ACTIVE_BUYS
         )
-    take_profit = pair in ACTIVE_BUYS and price > ACTIVE_BUYS[pair]["price"] * 1.05
-    stop_loss = pair in ACTIVE_BUYS and price < ACTIVE_BUYS[pair]["price"] * 0.98
+    take_profit = pair in ACTIVE_BUYS and price > ACTIVE_BUYS[pair]["close"] * 1.05
+    stop_loss = pair in ACTIVE_BUYS and price < ACTIVE_BUYS[pair]["close"] * 0.98
 
     if buy_signal:
         return 'BUY', price
@@ -173,7 +173,7 @@ def generate_signal(pair, data):
     elif stop_loss:
         return 'STOP LOSS', price
     elif sell_signal:
-        return 'SELL', ACTIVE_BUYS[pair]["price"]
+        return 'SELL', ACTIVE_BUYS[pair]["close"]
     
     return None, None
 
@@ -195,15 +195,15 @@ def send_telegram_alert(signal_type, pair, price, data, buy_price=None):
 
     if signal_type == 'BUY':
         message = f"{base_msg}🔍 RSI: {data['rsi']:.1f}\n"
-        ACTIVE_BUYS[pair] = {"price": price, 'time': datetime.now()}
+        ACTIVE_BUYS[pair] = {"close": price, 'time': datetime.now()}
 
     elif signal_type in ['TAKE PROFIT', 'STOP LOSS', 'SELL']:
         entry = ACTIVE_BUYS.get(pair)
         if entry:
-            profit = ((price - entry["price"])/entry["price"])*100
+            profit = ((price - entry["close"])/entry["close"])*100
             duration = str(datetime.now() - entry['time']).split('.')[0]
             
-            message = f"{base_msg}💲 Entry: ${entry["price"]:.8f}\n"
+            message = f"{base_msg}💲 Entry: ${entry["close"]:.8f}\n"
             message += f"💰 {'Profit' if profit > 0 else 'Loss'}: {profit:+.2f}%\n"
             message += f"🕒 Hold Duration: {duration}"
 
@@ -241,16 +241,16 @@ def main():
             
             signal, price = generate_signal(pair, data)
             if signal:
-                send_telegram_alert(signal, pair, data["price"], data, price)
+                send_telegram_alert(signal, pair, data["close"], data, price)
                 
             # Auto close position
             if pair in ACTIVE_BUYS:
                 position = ACTIVE_BUYS[pair]
                 duration = datetime.now() - position['time']
-                profit = (data["price"] - position["price"])/position["price"]*100
+                profit = (data["close"] - position["close"])/position["close"]*100
                 
                 if duration > timedelta(hours=24) or abs(profit) > 8:
-                    send_telegram_alert('SELL', pair, data["price"], data, position["price"])
+                    send_telegram_alert('SELL', pair, data["close"], data, position["close"])
                     
         except Exception as e:
             print(f"⚠️ Error di {pair}: {str(e)}")
