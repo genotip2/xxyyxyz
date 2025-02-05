@@ -89,8 +89,8 @@ def analyze_pair(symbol):
         analysis_h1 = handler_h1.get_analysis()
 
         return {
-                'ema9_m15': analysis_m15.indicators.get('EMA9'),
-                'ema21_m15': analysis_m15.indicators.get('EMA21'),
+                'ema10_m15': analysis_m15.indicators.get('EMA10'),
+                'ema20_m15': analysis_m15.indicators.get('EMA20'),
                 'rsi_m15': analysis_m15.indicators.get('RSI'),
                 'macd_m15': analysis_m15.indicators.get('MACD.MACD'),
                 'macd_signal_m15': analysis_m15.indicators.get('MACD.signal'),
@@ -101,10 +101,10 @@ def analyze_pair(symbol):
                 'obv_m15': analysis_m15.indicators.get('OBV'),
                 'candle_m15': analysis_m15.summary['RECOMMENDATION'],
 
-                'ema9_h1': analysis_h1.indicators.get('EMA9'),
-                'ema21_h1': analysis_h1.indicators.get('EMA21'),
+                'ema10_h1': analysis_h1.indicators.get('EMA10'),
+                'ema20_h1': analysis_h1.indicators.get('EMA20'),
                 'rsi_h1': analysis_h1.indicators.get('RSI'),
-                'macd_h1': analysis_h1.indicators.get('MACD.MACD'),
+                'macd_h1': analysis_h1.indicators.get('MACD.macd'),
                 'macd_signal_h1': analysis_h1.indicators.get('MACD.signal'),
                 'bb_lower_h1': analysis_h1.indicators.get('BB.lower'),
                 'bb_upper_h1': analysis_h1.indicators.get('BB.upper'),
@@ -124,8 +124,8 @@ def analyze_pair(symbol):
 def generate_signal(pair, data):
     """Generate trading signal"""
     price = data ['close_price_m15']
-    ema9_m15 = data['ema9_m15']
-    ema21_m15 = data['ema21_m15']
+    ema10_m15 = data['ema10_m15']
+    ema20_m15 = data['ema20_m15']
     rsi_m15 = data['rsi_m15']
     macd_m15 = data['macd_m15']
     macd_signal_m15 = data['macd_signal_m15']
@@ -137,8 +137,8 @@ def generate_signal(pair, data):
     candle_m15 = data['candle_m15']
     
     price = data ['close_price_h1']
-    ema9_h1 = data['ema9_h1']
-    ema21_h1 = data['ema21_h1']
+    ema10_h1 = data['ema10_h1']
+    ema20_h1 = data['ema20_h1']
     rsi_h1 = data['rsi_h1']
     macd_h1 = data['macd_h1']
     macd_signal_h1 = data['macd_signal_h1']
@@ -149,7 +149,7 @@ def generate_signal(pair, data):
     obv_h1 = data['obv_h1']
     candle_h1 = data['candle_h1']
     buy_signal = (
-            ema9_m15 > ema21_m15 and ema9_h1 > ema21_h1 and  # EMA 9 cross up EMA 21 di M15 & H1
+            ema10_m15 > ema20_m15 and ema10_h1 > ema20_h1 and  # EMA 9 cross up EMA 21 di M15 & H1
             rsi_m15 < 30 and rsi_h1 < 50 and  # RSI M15 oversold, RSI H1 belum overbought
             macd_m15 > macd_signal_m15 and macd_h1 > macd_signal_h1 and  # MACD bullish crossover di M15 & H1
             close_price_m15 <= bb_lower_m15 and close_price_h1 <= bb_lower_h1 and  # Harga di lower Bollinger Band
@@ -160,7 +160,7 @@ def generate_signal(pair, data):
             pair not in ACTIVE_BUYS
         )
     sell_signal = (
-            ema9_m15 < ema21_m15 and ema9_h1 < ema21_h1 and  # EMA 9 cross down EMA 21 di M15 & H1
+            ema10_m15 < ema20_m15 and ema10_h1 < ema20_h1 and  # EMA 9 cross down EMA 21 di M15 & H1
             rsi_m15 > 70 and rsi_h1 > 50 and  # RSI M15 overbought, RSI H1 belum oversold
             macd_m15 < macd_signal_m15 and macd_h1 < macd_signal_h1 and  # MACD bearish crossover di M15 & H1
             close_price_m15 >= bb_upper_m15 and close_price_h1 >= bb_upper_h1 and  # Harga di upper Bollinger Band
