@@ -88,61 +88,35 @@ def analyze_pair(symbol):
         analysis_m15 = handler_m15.get_analysis()
         analysis_h1 = handler_h1.get_analysis()
 
-        # Data indikator M15
-        ema9_m15 = analysis_m15.indicators.get["EMA9"]
-        ema21_m15 = analysis_m15.indicators.get["EMA21"]
-        rsi_m15 = analysis_m15.indicators.get["RSI"]
-        macd_m15 = analysis_m15.indicators.get["MACD.macd"]
-        macd_signal_m15 = analysis_m15.indicators["MACD.signal"]
-        bb_lower_m15 = analysis_m15.indicators["BB.lower"]
-        bb_upper_m15 = analysis_m15.indicators["BB.upper"]
-        close_price_m15 = analysis_m15.indicators["close"]
-        adx_m15 = analysis_m15.indicators["ADX"]
-        obv_m15 = analysis_m15.indicators["OBV"]
-        candle_m15 = analysis_m15.summary["RECOMMENDATION"]
-
-        # Data indikator H1
-        ema9_h1 = analysis_h1.indicators["EMA9"]
-        ema21_h1 = analysis_h1.indicators["EMA21"]
-        rsi_h1 = analysis_h1.indicators["RSI"]
-        macd_h1 = analysis_h1.indicators["MACD.macd"]
-        macd_signal_h1 = analysis_h1.indicators["MACD.signal"]
-        bb_lower_h1 = analysis_h1.indicators["BB.lower"]
-        bb_upper_h1 = analysis_h1.indicators["BB.upper"]
-        close_price_h1 = analysis_h1.indicators["close"]
-        adx_h1 = analysis_h1.indicators["ADX"]
-        obv_h1 = analysis_h1.indicators["OBV"]
-        candle_h1 = analysis_h1.summary["RECOMMENDATION"]
-
-        # Kembalikan hasil analisis sebagai dictionary
         return {
             "M15": {
-                "EMA9": ema9_m15,
-                "EMA21": ema21_m15,
-                "RSI": rsi_m15,
-                "MACD": macd_m15,
-                "MACD_signal": macd_signal_m15,
-                "BB_lower": bb_lower_m15,
-                "BB_upper": bb_upper_m15,
-                "Close_price": close_price_m15,
-                "ADX": adx_m15,
-                "OBV": obv_m15,
-                "Candle": candle_m15
+                "EMA9": analysis_m15.indicators.get("EMA9"),
+                "EMA21": analysis_m15.indicators.get("EMA21"),
+                "RSI": analysis_m15.indicators.get("RSI"),
+                "MACD": analysis_m15.indicators.get("MACD.macd"),
+                "MACD_signal": analysis_m15.indicators.get("MACD.signal"),
+                "BB_lower": analysis_m15.indicators.get("BB.lower"),
+                "BB_upper": analysis_m15.indicators.get("BB.upper"),
+                "Close_price": analysis_m15.indicators.get("close"),
+                "ADX": analysis_m15.indicators.get("ADX"),
+                "OBV": analysis_m15.indicators.get("OBV"),
+                "Candle": analysis_m15.summary["RECOMMENDATION"]
             },
             "H1": {
-                "EMA9": ema9_h1,
-                "EMA21": ema21_h1,
-                "RSI": rsi_h1,
-                "MACD": macd_h1,
-                "MACD_signal": macd_signal_h1,
-                "BB_lower": bb_lower_h1,
-                "BB_upper": bb_upper_h1,
-                "Close_price": close_price_h1,
-                "ADX": adx_h1,
-                "OBV": obv_h1,
-                "Candle": candle_h1
+                "EMA9": analysis_h1.indicators.get("EMA9"),
+                "EMA21": analysis_h1.indicators.get("EMA21"),
+                "RSI": analysis_h1.indicators.get("RSI"),
+                "MACD": analysis_h1.indicators.get("MACD.macd"),
+                "MACD_signal": analysis_h1.indicators.get("MACD.signal"),
+                "BB_lower": analysis_h1.indicators.get("BB.lower"),
+                "BB_upper": analysis_h1.indicators.get("BB.upper"),
+                "Close_price": analysis_h1.indicators.get("close"),
+                "ADX": analysis_h1.indicators.get("ADX"),
+                "OBV": analysis_h1.indicators.get("OBV"),
+                "Candle": analysis_h1.summary["RECOMMENDATION"]
             }
         }
+   
 
     except Exception as e:
         print(f"⚠️ Error analisis {symbol}: {str(e)}")
