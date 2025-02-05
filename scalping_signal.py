@@ -153,7 +153,7 @@ def generate_signal(pair, data):
     elif stop_loss:
         return 'STOP LOSS', price
     elif sell_signal:
-        return 'SELL', ACTIVE_BUYS[pair]['close_price_m15']
+        return 'SELL', ACTIVE_BUYS[pair]['price']
     
     return None, None
 
