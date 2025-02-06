@@ -170,7 +170,7 @@ def calculate_scores(data):
     ("BUY" in candle_h1 or "STRONG_BUY" in candle_h1)   # Candlestick reversal di H1
 ]
 
-sell_conditions = [
+    sell_conditions = [
     safe_compare(ema10_m15, ema20_m15, '<'),  # EMA 10 < EMA 20 di M15
     safe_compare(ema10_h1, ema20_h1, '<'),    # EMA 10 < EMA 20 di H1
     rsi_m15 is not None and rsi_m15 > 70,     # RSI M15 overbought
