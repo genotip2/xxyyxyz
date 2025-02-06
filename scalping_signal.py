@@ -215,6 +215,7 @@ def send_telegram_alert(signal_type, pair, price, data, buy_price=None):
     base_msg = f"{emoji} **{signal_type}**\n"
     base_msg += f"💱 {display_pair}\n"
     base_msg += f"💲 Price: ${price:.8f}\n"
+    base_msg += f"📊 Score: BUY {buy_score}/6 | SELL {sell_score}/7\n"
 
     if signal_type == 'BUY':
         message = f"{base_msg}🔍 RSI: M15 = {data['rsi_m15']:.2f} | H1 = {data['rsi_h1']:.2f}\n"
