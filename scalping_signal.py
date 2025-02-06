@@ -50,34 +50,31 @@ def save_active_buys_to_json():
         print(f"❌ Gagal menyimpan: {str(e)}")
 
 def get_binance_top_pairs():
-    """Ambil 50 pair USDT dengan penurunan harga terbesar dalam 24 jam di Binance"""
+    """Ambil 50 pair dengan penurunan terbesar dalam 24 jam di Binance"""
     url = "https://api.coingecko.com/api/v3/exchanges/binance/tickers"
-    
-    try:
-        response = requests.get(url)
-        data = response.json()
+    params = {'include_exchange_logo': 'false', 'order': 'volume_desc'}
 
-        # Filter hanya pair USDT yang memiliki data perubahan harga 24 jam
-        usdt_pairs = [
-            t for t in data['tickers']
-            if t['target'] == 'USDT' 
-            and 'last' in t  # Harga terakhir harus ada
-            and 'converted_last' in t
-            and 'usd_24h_change' in t['converted_last']
-            and isinstance(t['converted_last']['usd_24h_change'], (int, float))
-        ]
+    try:  
+        response = requests.get(url, params=params)  
+        data = response.json()  
+        
+        # Filter hanya USDT pairs dan pastikan ada data harga 24 jam
+        usdt_pairs = [t for t in data['tickers'] if t['target'] == 'USDT' and 'price_change_percentage_24h' in t]
+        
+        # Urutkan berdasarkan penurunan harga terbesar dalam 24 jam
+        sorted_pairs = sorted(usdt_pairs,   
+                              key=lambda x: x['price_change_percentage_24h'],   
+                              reverse=False)[:50]  # Urutan ASCENDING (turun terbesar)
 
-        # Urutkan berdasarkan penurunan harga terbesar dalam 24 jam (nilai negatif paling besar)
-        sorted_pairs = sorted(usdt_pairs, 
-                              key=lambda x: x['converted_last']['usd_24h_change'])[:50]
+        return [f"{p['base']}USDT" for p in sorted_pairs]  
 
-        # Ambil simbol koin
-        return [f"{p['base']}USDT" for p in sorted_pairs]
-
-    except Exception as e:
-        print(f"❌ Error fetching data: {e}")
+    except Exception as e:  
+        print(f"❌ Error fetching data: {e}")  
         return []
 
+# Contoh penggunaan
+top_losers = get_binance_top_losers()
+print(top_losers)
 # ==============================
 # FUNGSI ANALISIS
 # ==============================
