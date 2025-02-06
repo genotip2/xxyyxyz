@@ -281,10 +281,10 @@ def main():
             if pair in ACTIVE_BUYS:
                 position = ACTIVE_BUYS[pair]
                 duration = datetime.now() - position['time']
-                profit = (data['close_price_m15'] - position['close_price_m15'])/position['close_price_m15']*100
+                profit = (data['price'] - position['price'])/position['price']*100
                 
                 if duration > timedelta(hours=24) or abs(profit) > 8:
-                    send_telegram_alert('SELL', pair, data['close_price_m15'], data, position['close_price_m15'])
+                    send_telegram_alert('SELL', pair, data['price'], data, position['price'])
                     
         except Exception as e:
             print(f"⚠️ Error di {pair}: {str(e)}")
