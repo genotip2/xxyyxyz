@@ -179,8 +179,7 @@ def calculate_scores(data):
 def generate_signal(pair, data):
     """Generate trading signal"""
     price = data['close_price_m15']
-    buy_score = data[sum(buy_conditions)]
-    sell_score = data[sum(sell_conditions)]
+    buy_score, sell_score = calculate_scores(data)
     display_pair = f"{pair[:-4]}/USDT"
 
     print(f"{display_pair} - Price: {price:.8f} | Buy: {buy_score}/6 | Sell: {sell_score}/7")
