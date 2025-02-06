@@ -50,28 +50,23 @@ def save_active_buys_to_json():
         print(f"❌ Gagal menyimpan: {str(e)}")
 
 def get_binance_top_pairs():
-    """Ambil 50 pair dengan penurunan terbesar dalam 24 jam di Binance"""
+    """Ambil 50 pair teratas berdasarkan volume trading"""
     url = "https://api.coingecko.com/api/v3/exchanges/binance/tickers"
     params = {'include_exchange_logo': 'false', 'order': 'volume_desc'}
-
-    try:  
-        response = requests.get(url, params=params)  
-        data = response.json()  
-        
-        # Filter hanya USDT pairs dan pastikan ada data harga 24 jam
-        usdt_pairs = [t for t in data['tickers'] if t['target'] == 'USDT' and 'price_change_percentage_24h' in t]
-        
-        # Urutkan berdasarkan penurunan harga terbesar dalam 24 jam
-        sorted_pairs = sorted(usdt_pairs,   
-                              key=lambda x: x['price_change_percentage_24h'],   
-                              reverse=False)[:50]  # Urutan ASCENDING (turun terbesar)
-
-        return [f"{p['base']}USDT" for p in sorted_pairs]  
-
-    except Exception as e:  
-        print(f"❌ Error fetching data: {e}")  
+    
+    try:
+        response = requests.get(url, params=params)
+        data = response.json()
+        usdt_pairs = [t for t in data['tickers'] if t['target'] == 'USDT']
+        sorted_pairs = sorted(usdt_pairs, 
+                            key=lambda x: x['converted_volume']['usd'], 
+                            reverse=True)[:50]
+        return [f"{p['base']}USDT" for p in sorted_pairs]
+    
+    except Exception as e:
+        print(f"❌ Error fetching data: {e}")
         return []
-
+      
 # ==============================
 # FUNGSI ANALISIS
 # ==============================
@@ -136,8 +131,12 @@ def safe_compare(val1, val2, operator='>'):
     return False  # Kembalikan False jika ada nilai yang None atau operator yang tidak valid
 	
 
-def calculate_scores(data):
+def generate_signal(pair, data):
+    """Generate trading signal"""
     price = data['close_price_m15']
+    display_pair = f"{pair[:-4]}/USDT"
+    print(f"{display_pair} - Price: {price:.8f}")
+
     ema10_m15 = data['ema10_m15']
     ema20_m15 = data['ema20_m15']
     rsi_m15 = data['rsi_m15']
@@ -160,48 +159,30 @@ def calculate_scores(data):
     obv_h1 = data['obv_h1']
     candle_h1 = data['candle_h1']
     
-    buy_conditions = [
-    safe_compare(ema10_m15, ema20_m15, '>'),  # EMA 10 > EMA 20 di M15
-    safe_compare(ema10_h1, ema20_h1, '>'),    # EMA 10 > EMA 20 di H1
-    rsi_m15 is not None and rsi_m15 < 30,     # RSI M15 oversold
-    rsi_h1 is not None and rsi_h1 < 50,       # RSI H1 belum overbought
-    safe_compare(macd_m15, macd_signal_m15, '>'),  # MACD M15 > Signal M15 (bullish crossover)
-    safe_compare(macd_h1, macd_signal_h1, '>'),  # MACD H1 > Signal H1 (bullish crossover)
-    price <= bb_lower_m15,                   # Harga di bawah lower BB M15
-    price <= bb_lower_h1,                    # Harga di bawah lower BB H1
-    adx_m15 is not None and adx_m15 > 25,     # ADX M15 > 25 (tren kuat)
-    adx_h1 is not None and adx_h1 > 25,       # ADX H1 > 25 (tren kuat)
-    ("BUY" in candle_m15 or "STRONG_BUY" in candle_m15),  # Candlestick reversal di M15
-    ("BUY" in candle_h1 or "STRONG_BUY" in candle_h1)   # Candlestick reversal di H1
-]
+    buy_signal = (
+        safe_compare(ema10_m15, ema20_m15, '>') and  # EMA 10 > EMA 20 di M15
+        safe_compare(ema10_h1, ema20_h1, '>') and    # EMA 10 > EMA 20 di H1
+        rsi_m15 is not None and rsi_m15 < 30 and     # RSI M15 oversold
+        safe_compare(macd_m15, macd_signal_m15, '>') and  # MACD M15 bullish crossover
+        price <= bb_lower_m15 and                    # Harga di bawah lower BB M15
+        adx_h1 is not None and adx_h1 > 25 and       # ADX H1 > 25 (tren kuat)
+        ("BUY" in candle_m15 or "STRONG_BUY" in candle_m15) and  # Candlestick reversal di M15
+        ("BUY" in candle_h1 or "STRONG_BUY" in candle_h1) and    # Candlestick reversal di H1
+        pair not in ACTIVE_BUYS                      # Pair belum dibeli
+    )
 
-    sell_conditions = [
-    safe_compare(ema10_m15, ema20_m15, '<'),  # EMA 10 < EMA 20 di M15
-    safe_compare(ema10_h1, ema20_h1, '<'),    # EMA 10 < EMA 20 di H1
-    rsi_m15 is not None and rsi_m15 > 70,     # RSI M15 overbought
-    rsi_h1 is not None and rsi_h1 > 50,       # RSI H1 belum oversold
-    safe_compare(macd_m15, macd_signal_m15, '<'),  # MACD M15 < Signal M15 (bearish crossover)
-    safe_compare(macd_h1, macd_signal_h1, '<'),  # MACD H1 < Signal H1 (bearish crossover)
-    price >= bb_upper_m15,                   # Harga di atas upper BB M15
-    price >= bb_upper_h1,                    # Harga di atas upper BB H1
-    adx_m15 is not None and adx_m15 > 25,     # ADX M15 > 25 (tren kuat)
-    adx_h1 is not None and adx_h1 > 25,       # ADX H1 > 25 (tren kuat)
-    ("SELL" in candle_m15 or "STRONG_SELL" in candle_m15),  # Candlestick reversal di M15
-    ("SELL" in candle_h1 or "STRONG_SELL" in candle_h1)   # Candlestick reversal di H1
-]
+    sell_signal = (
+        safe_compare(ema10_m15, ema20_m15, '<') and  # EMA 10 < EMA 20 di M15
+        safe_compare(ema10_h1, ema20_h1, '<') and    # EMA 10 < EMA 20 di H1
+        rsi_h1 is not None and rsi_h1 > 50 and       # RSI H1 belum oversold
+        safe_compare(macd_h1, macd_signal_h1, '<') and  # MACD H1 bearish crossover
+        price >= bb_upper_h1 and                    # Harga di atas upper BB H1
+        adx_h1 is not None and adx_h1 > 25 and       # ADX H1 > 25 (tren kuat)
+        ("SELL" in candle_m15 or "STRONG_SELL" in candle_m15) and  # Candlestick reversal di M15
+        ("SELL" in candle_h1 or "STRONG_SELL" in candle_h1) and    # Candlestick reversal di H1
+        pair in ACTIVE_BUYS                          # Pair sudah dibeli
+    )
     
-    return sum(buy_conditions), sum(sell_conditions)
-	
-def generate_signal(pair, data):
-    """Generate trading signal"""
-    price = data['close_price_m15']
-    buy_score, sell_score = calculate_scores(data)
-    display_pair = f"{pair[:-4]}/USDT"
-
-    print(f"{display_pair} - Price: {price:.8f} | Buy: {buy_score}/12 | Sell: {sell_score}/12")
-
-    buy_signal = buy_score >= BUY_SCORE_THRESHOLD and pair not in ACTIVE_BUYS
-    sell_signal = sell_score >= SELL_SCORE_THRESHOLD and pair in ACTIVE_BUYS
     take_profit = pair in ACTIVE_BUYS and price > ACTIVE_BUYS[pair]['close_price_m15'] * 1.05
     stop_loss = pair in ACTIVE_BUYS and price < ACTIVE_BUYS[pair]['close_price_m15'] * 0.98
 
@@ -212,8 +193,8 @@ def generate_signal(pair, data):
     elif stop_loss:
         return 'STOP LOSS', price
     elif sell_signal:
-        return 'SELL', ACTIVE_BUYS[pair]['close_price_m15']
-    
+        return 'SELL', ACTIVE_BUYS.get(pair, {}).get('close_price_m15', price)
+
     return None, None
 
 def send_telegram_alert(signal_type, pair, price, data, buy_price=None):
