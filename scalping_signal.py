@@ -49,29 +49,34 @@ def save_active_buys_to_json():
     except Exception as e:
         print(f"❌ Gagal menyimpan: {str(e)}")
 
+
 def get_binance_top_pairs():
     """Ambil 50 pair USDT dengan penurunan harga terbesar dalam 24 jam di Binance"""
     url = "https://api.coingecko.com/api/v3/exchanges/binance/tickers"
+    params = {'include_exchange_logo': 'false'}
     
     try:
-        response = requests.get(url)
+        response = requests.get(url, params=params)
         data = response.json()
-        
+
+        # Filter hanya pair USDT yang memiliki data perubahan harga 24 jam
         usdt_pairs = [
-            t for t in data['tickers'] 
-            if t['target'] == 'USDT' and t['converted_last']['usd'] is not None and t['converted_volume']['usd'] is not None
+            t for t in data['tickers']
+            if t['target'] == 'USDT' 
+            and 'converted_last' in t
+            and 'usd_24h_change' in t['converted_last']
+            and isinstance(t['converted_last']['usd_24h_change'], (int, float))
         ]
-        
-        # Urutkan berdasarkan persentase perubahan harga dalam 24 jam (dari yang turun paling besar)
-        sorted_pairs = sorted(usdt_pairs, key=lambda x: x.get('last_traded_at', 0) - x.get('converted_last', {}).get('usd', 0))
-        
-        # Ambil 50 pasangan dengan penurunan harga terbesar
-        return [f"{p['base']}USDT" for p in sorted_pairs[:50]]
-    
+
+        # Urutkan berdasarkan penurunan harga terbesar dalam 24 jam
+        sorted_pairs = sorted(usdt_pairs, 
+                            key=lambda x: x['converted_last']['usd_24h_change'])[:50]
+
+        return [f"{p['base']}USDT" for p in sorted_pairs]
+
     except Exception as e:
         print(f"❌ Error fetching data: {e}")
         return []
-      
 # ==============================
 # FUNGSI ANALISIS
 # ==============================
