@@ -186,8 +186,8 @@ def generate_signal(pair, data):
 
     buy_signal = buy_score >= BUY_SCORE_THRESHOLD and pair not in ACTIVE_BUYS and data['rsi_m15'] < 30
     sell_signal = sell_score >= SELL_SCORE_THRESHOLD and pair in ACTIVE_BUYS
-    take_profit = pair in ACTIVE_BUYS and price > ACTIVE_BUYS[pair]['close_price_m15'] * 1.05
-    stop_loss = pair in ACTIVE_BUYS and price < ACTIVE_BUYS[pair]['close_price_m15'] * 0.98
+    take_profit = pair in ACTIVE_BUYS and price > ACTIVE_BUYS[pair]['price'] * 1.05
+    stop_loss = pair in ACTIVE_BUYS and price < ACTIVE_BUYS[pair]['price'] * 0.98
 
     if buy_signal:
         return 'BUY', price
@@ -196,7 +196,7 @@ def generate_signal(pair, data):
     elif stop_loss:
         return 'STOP LOSS', price
     elif sell_signal:
-        return 'SELL', ACTIVE_BUYS[pair]['close_price_m15']
+        return 'SELL', ACTIVE_BUYS[pair]['price']
     
     return None, None
 
