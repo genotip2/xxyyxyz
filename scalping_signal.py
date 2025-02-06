@@ -229,7 +229,7 @@ def send_telegram_alert(signal_type, pair, price, data, buy_price=None):
 
     if signal_type == 'BUY':
         message = f"{base_msg}🔍 RSI: M15 = {data['rsi_m15']:.2f} | H1 = {data['rsi_h1']:.2f}\n"
-        ACTIVE_BUYS[pair] = {'price': current_price, 'time': datetime.now()}
+        ACTIVE_BUYS[pair] = {'price': price, 'time': datetime.now()}
 
     elif signal_type in ['TAKE PROFIT', 'STOP LOSS', 'SELL']:
         entry = ACTIVE_BUYS.get(pair)
