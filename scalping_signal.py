@@ -266,6 +266,15 @@ def main():
 
     for pair in pairs:
         try:
+    price = data['close_price_m15']
+    if price is None or price <= 0:
+        raise ValueError(f"Invalid price for {pair}")
+except KeyError:
+    print(f"Price data missing for {pair}")
+    return  # Hentikan eksekusi jika data harga tidak ditemukan
+except ValueError as e:
+    print(e)
+    return  # Hentikan eksekusi jika harga tidak valid
             data = analyze_pair(pair)
             if not data:
                 continue
