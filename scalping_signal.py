@@ -49,7 +49,7 @@ def save_active_buys_to_json():
     except Exception as e:
         print(f"❌ Gagal menyimpan: {str(e)}")
 
-def get_binance_top_losers():
+def get_binance_top_pairs()
     """Ambil 50 pair USDT dengan penurunan harga terbesar dalam 24 jam di Binance"""
     url = "https://api.coingecko.com/api/v3/exchanges/binance/tickers"
     
