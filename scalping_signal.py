@@ -224,7 +224,7 @@ def send_telegram_alert(signal_type, pair, price, data, buy_score, sell_score, b
     elif signal_type in ['TAKE PROFIT', 'STOP LOSS', 'SELL']:
         entry = ACTIVE_BUYS.get(pair)
         if entry:
-            profit = ((price - entry['price'])/entry['pri'])*100
+            profit = ((price - entry['price'])/entry['price'])*100
             duration = str(datetime.now() - entry['time']).split('.')[0]
             
             message = f"{base_msg}💲 Entry: ${entry['price']:.8f}\n"
