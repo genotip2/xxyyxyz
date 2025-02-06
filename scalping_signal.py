@@ -122,8 +122,6 @@ def analyze_pair(symbol):
 # FUNGSI TRADING
 # ==============================
 def calculate_scores(data):
-
-
     price = data ['close_price_m15']
     ema10_m15 = data['ema10_m15']
     ema20_m15 = data['ema20_m15']
