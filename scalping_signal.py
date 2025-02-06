@@ -200,7 +200,7 @@ def generate_signal(pair, data):
     
     return None, None
 
-def send_telegram_alert(signal_type, pair, price, data, buy_price=None):
+def send_telegram_alert(signal_type, pair, price, data, buy_score, sell_score, buy_price=None):
     """Kirim notifikasi ke Telegram"""
     display_pair = f"{pair[:-4]}/USDT"
     message = ""
