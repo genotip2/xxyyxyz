@@ -267,7 +267,7 @@ def main():
             buy_score, sell_score = calculate_scores(data)  # Tambahkan perhitungan skor
 
             if signal:
-            send_telegram_alert(signal, pair, price, data, buy_score, sell_score)
+                send_telegram_alert(signal, pair, price, data, buy_score, sell_score)
             # Auto close position
             if pair in ACTIVE_BUYS:
                 position = ACTIVE_BUYS[pair]
