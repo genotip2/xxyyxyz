@@ -213,8 +213,6 @@ def generate_signal(pair, data):
 
 def send_telegram_alert(signal_type, pair, price, data, buy_price=None):
     """Kirim notifikasi ke Telegram"""
-	rsi_m15 = data['rsi_m15']
-    rsi_h1 = data['rsi_h15']
     display_pair = f"{pair[:-4]}/USDT"
     message = ""
     
@@ -230,7 +228,7 @@ def send_telegram_alert(signal_type, pair, price, data, buy_price=None):
     base_msg += f"💲 Price: ${price:.8f}\n"
 
     if signal_type == 'BUY':
-        message = f"{base_msg}🔍 RSI: M15 = {rsi_m15:.2f} | H1 = {rsi_h1:.2f}\n"
+        message = f"{base_msg}🔍 RSI: M15 = {data['rsi_m15']:.2f} | H1 = {data['rsi_h1']:.2f}\n"
         ACTIVE_BUYS[pair] = {'price': current_price, 'time': datetime.now()}
 
     elif signal_type in ['TAKE PROFIT', 'STOP LOSS', 'SELL']:
