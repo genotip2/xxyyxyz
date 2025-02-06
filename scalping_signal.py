@@ -161,7 +161,7 @@ def calculate_scores(data):
     safe_compare(macd_m15, macd_signal_m15, '>'),  # MACD M15 > Signal M15 (bullish crossover)
     price <= bb_lower_m15,                   # Harga di bawah lower BB M15
     adx_h1 is not None and adx_h1 > 25,       # ADX H1 > 25 (tren kuat)
-    if candle_m15 and ("BUY" in candle_m15 or "STRONG_BUY" in candle_m15) # Candlestick reversal di M15
+    ("BUY" in candle_m15 or "STRONG_BUY" in candle_m15),  # Candlestick reversal di M15
 ]
 
     sell_conditions = [
@@ -171,7 +171,7 @@ def calculate_scores(data):
     safe_compare(macd_h1, macd_signal_h1, '<'),  # MACD H1 < Signal H1 (bearish crossover)
     price >= bb_upper_h1,                    # Harga di atas upper BB H1
     adx_h1 is not None and adx_h1 > 25,       # ADX H1 > 25 (tren kuat)
-    if candle_m15 and ("SELL" in candle_m15 or "STRONG_SELL" in candle_m15)
+    ("SELL" in candle_m15 or "STRONG_SELL" in candle_m15),  # Candlestick reversal di M15
 ]
     
     return sum(buy_conditions), sum(sell_conditions)
