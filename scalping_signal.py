@@ -121,11 +121,14 @@ def analyze_pair(symbol):
 # ==============================
 # FUNGSI TRADING
 # ==============================
-def safe_compare(val1, val2):
-    """Perbandingan aman untuk menangani None."""
-    if val1 is None or val2 is None:
-        return False
-    return val1 > val2
+def safe_compare(val1, val2, operator='>'):
+    """Periksa apakah kedua nilai bukan None dan bandingkan dengan operator yang diberikan"""
+    if val1 is not None and val2 is not None:
+        if operator == '>':
+            return val1 > val2
+        elif operator == '<':
+            return val1 < val2
+    return False  # Kembalikan False jika ada nilai yang None atau operator yang tidak valid
 	
 
 def calculate_scores(data):
