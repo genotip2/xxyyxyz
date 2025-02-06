@@ -127,8 +127,9 @@ def safe_compare(val1, val2):
         return False
     return val1 > val2
 	
+
 def calculate_scores(data):
-    price = data ['close_price_m15']
+    price = data['close_price_m15']
     ema10_m15 = data['ema10_m15']
     ema20_m15 = data['ema20_m15']
     rsi_m15 = data['rsi_m15']
@@ -136,7 +137,6 @@ def calculate_scores(data):
     macd_signal_m15 = data['macd_signal_m15']
     bb_lower_m15 = data['bb_lower_m15']
     bb_upper_m15 = data['bb_upper_m15']
-    close_price_m15 = data['close_price_m15']
     adx_m15 = data['adx_m15']
     obv_m15 = data['obv_m15']
     candle_m15 = data['candle_m15']
@@ -148,43 +148,41 @@ def calculate_scores(data):
     macd_signal_h1 = data['macd_signal_h1']
     bb_lower_h1 = data['bb_lower_h1']
     bb_upper_h1 = data['bb_upper_h1']
-    close_price_h1 = data['close_price_h1']
     adx_h1 = data['adx_h1']
     obv_h1 = data['obv_h1']
     candle_h1 = data['candle_h1']
     
-    
     buy_conditions = [
-        ema10_m15 > ema20_m15,
-        ema10_h1 > ema20_h1, # EMA 9 cross up EMA 21 di M15 & H1
-        rsi_m15 < 30,
-        rsi_h1 < 50, # RSI M15 oversold, RSI H1 belum overbought
-        macd_m15 > macd_signal_m15,
-        macd_h1 > macd_signal_h1, # MACD bullish crossover di M15 & H1
-        close_price_m15 <= bb_lower_m15,
-        close_price_h1 <= bb_lower_h1, # Harga di lower Bollinger Band
-        adx_m15 > 25,
-        adx_h1 > 25, # ADX menunjukkan tren kuat di M15 & H1
-        ("BUY" in candle_m15 or "STRONG_BUY" in candle_m15), # Candlestick reversal di M15
+        safe_compare(ema10_m15, ema20_m15),
+        safe_compare(ema10_h1, ema20_h1),  # EMA 9 cross up EMA 21 di M15 & H1
+        rsi_m15 is not None and rsi_m15 < 30,
+        rsi_h1 is not None and rsi_h1 < 50,  # RSI M15 oversold, RSI H1 belum overbought
+        safe_compare(macd_m15, macd_signal_m15),
+        safe_compare(macd_h1, macd_signal_h1),  # MACD bullish crossover di M15 & H1
+        price <= bb_lower_m15,
+        price <= bb_lower_h1,  # Harga di lower Bollinger Band
+        adx_m15 is not None and adx_m15 > 25,
+        adx_h1 is not None and adx_h1 > 25,  # ADX menunjukkan tren kuat di M15 & H1
+        ("BUY" in candle_m15 or "STRONG_BUY" in candle_m15),  # Candlestick reversal di M15
         ("BUY" in candle_h1 or "STRONG_BUY" in candle_h1)  # Candlestick reversal di H1
     ]
+    
     sell_conditions = [
-            ema10_m15 < ema20_m15,
-	    ema10_h1 < ema20_h1, # EMA 9 cross down EMA 21 di M15 & H1
-            rsi_m15 > 70,
-	    rsi_h1 > 50, # RSI M15 overbought, RSI H1 belum oversold
-            macd_m15 < macd_signal_m15,
-	    macd_h1 < macd_signal_h1, # MACD bearish crossover di M15 & H1
-            close_price_m15 >= bb_upper_m15,
-	    close_price_h1 >= bb_upper_h1, # Harga di upper Bollinger Band
-            adx_m15 > 25,
-	    adx_h1 > 25, # ADX menunjukkan tren kuat di M15 & H1
-            ("SELL" in candle_m15 or "STRONG_SELL" in candle_m15), # Candlestick reversal di M15
-            ("SELL" in candle_h1 or "STRONG_SELL" in candle_h1) # Candlestick reversal di H1
-            
+        safe_compare(ema10_m15, ema20_m15),
+        safe_compare(ema10_h1, ema20_h1),  # EMA 9 cross down EMA 21 di M15 & H1
+        rsi_m15 is not None and rsi_m15 > 70,
+        rsi_h1 is not None and rsi_h1 > 50,  # RSI M15 overbought, RSI H1 belum oversold
+        safe_compare(macd_m15, macd_signal_m15),
+        safe_compare(macd_h1, macd_signal_h1),  # MACD bearish crossover di M15 & H1
+        price >= bb_upper_m15,
+        price >= bb_upper_h1,  # Harga di upper Bollinger Band
+        adx_m15 is not None and adx_m15 > 25,
+        adx_h1 is not None and adx_h1 > 25,  # ADX menunjukkan tren kuat di M15 & H1
+        ("SELL" in candle_m15 or "STRONG_SELL" in candle_m15),  # Candlestick reversal di M15
+        ("SELL" in candle_h1 or "STRONG_SELL" in candle_h1)  # Candlestick reversal di H1
     ]
+    
     return sum(buy_conditions), sum(sell_conditions)
-       
 def generate_signal(pair, data):
     """Generate trading signal"""
     price = data['close_price_m15']
