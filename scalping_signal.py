@@ -122,7 +122,6 @@ def analyze_pair(symbol):
 # FUNGSI TRADING
 # ==============================
 def calculate_scores(data):
-	
 
 
     price = data ['close_price_m15']
@@ -166,25 +165,32 @@ def calculate_scores(data):
         ("BUY" in candle_h1 or "STRONG_BUY" in candle_h1)  # Candlestick reversal di H1
     ]
     sell_conditions = [
-            ema10_m15 < ema20_m15 and ema10_h1 < ema20_h1 and  # EMA 9 cross down EMA 21 di M15 & H1
-            rsi_m15 > 70 and rsi_h1 > 50 and  # RSI M15 overbought, RSI H1 belum oversold
-            macd_m15 < macd_signal_m15 and macd_h1 < macd_signal_h1 and  # MACD bearish crossover di M15 & H1
-            close_price_m15 >= bb_upper_m15 and close_price_h1 >= bb_upper_h1 and  # Harga di upper Bollinger Band
-            adx_m15 > 25 and adx_h1 > 25 and  # ADX menunjukkan tren kuat di M15 & H1
-            ("SELL" in candle_m15 or "STRONG_SELL" in candle_m15) and  # Candlestick reversal di M15
-            ("SELL" in candle_h1 or "STRONG_SELL" in candle_h1) and  # Candlestick reversal di H1
-            pair in ACTIVE_BUYS
-        )
+            ema10_m15 < ema20_m15,
+	    ema10_h1 < ema20_h1, # EMA 9 cross down EMA 21 di M15 & H1
+            rsi_m15 > 70,
+	    rsi_h1 > 50, # RSI M15 overbought, RSI H1 belum oversold
+            macd_m15 < macd_signal_m15,
+	    macd_h1 < macd_signal_h1, # MACD bearish crossover di M15 & H1
+            close_price_m15 >= bb_upper_m15,
+	    close_price_h1 >= bb_upper_h1, # Harga di upper Bollinger Band
+            adx_m15 > 25,
+	    adx_h1 > 25, # ADX menunjukkan tren kuat di M15 & H1
+            ("SELL" in candle_m15 or "STRONG_SELL" in candle_m15), # Candlestick reversal di M15
+            ("SELL" in candle_h1 or "STRONG_SELL" in candle_h1) # Candlestick reversal di H1
+            
+    ]
     return sum(buy_conditions), sum(sell_conditions)
        
 def generate_signal(pair, data):
-	    """Generate trading signal"""
-	price = data['close_price_m15']
+    """Generate trading signal"""
+    price = data['close_price_m15']
     buy_score, sell_score = calculate_scores(data)
     display_pair = f"{pair[:-4]}/USDT"
 
     print(f"{display_pair} - Price: {price:.8f} | Buy: {buy_score}/7 | Sell: {sell_score}/6")
 
+    buy_signal = buy_score >= BUY_SCORE_THRESHOLD and pair not in ACTIVE_BUYS
+    sell_signal = sell_score >= SELL_SCORE_THRESHOLD and pair in ACTIVE_BUYS
     take_profit = pair in ACTIVE_BUYS and price > ACTIVE_BUYS[pair]['close_price_m15'] * 1.05
     stop_loss = pair in ACTIVE_BUYS and price < ACTIVE_BUYS[pair]['close_price_m15'] * 0.98
 
