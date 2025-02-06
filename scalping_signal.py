@@ -186,6 +186,7 @@ def calculate_scores(data):
 ]
     
     return sum(buy_conditions), sum(sell_conditions)
+	
 def generate_signal(pair, data):
     """Generate trading signal"""
     price = data['close_price_m15']
@@ -212,6 +213,8 @@ def generate_signal(pair, data):
 
 def send_telegram_alert(signal_type, pair, price, data, buy_price=None):
     """Kirim notifikasi ke Telegram"""
+	rsi_m15 = data['rsi_m15']
+    rsi_h1 = data['rsi_h15']
     display_pair = f"{pair[:-4]}/USDT"
     message = ""
     
