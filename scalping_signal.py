@@ -10,8 +10,8 @@ import json
 TELEGRAM_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
 TELEGRAM_CHAT_ID = os.getenv('TELEGRAM_CHAT_ID')
 ACTIVE_BUYS = {}
-BUY_SCORE_THRESHOLD = 3
-SELL_SCORE_THRESHOLD = 4
+BUY_SCORE_THRESHOLD = 7
+SELL_SCORE_THRESHOLD = 7
 FILE_PATH = 'active_buys.json'
 
 # Inisialisasi file JSON dengan handling datetime
@@ -193,7 +193,7 @@ def generate_signal(pair, data):
     buy_score, sell_score = calculate_scores(data)
     display_pair = f"{pair[:-4]}/USDT"
 
-    print(f"{display_pair} - Price: {price:.8f} | Buy: {buy_score}/7 | Sell: {sell_score}/6")
+    print(f"{display_pair} - Price: {price:.8f} | Buy: {buy_score}/12 | Sell: {sell_score}/12")
 
     buy_signal = buy_score >= BUY_SCORE_THRESHOLD and pair not in ACTIVE_BUYS
     sell_signal = sell_score >= SELL_SCORE_THRESHOLD and pair in ACTIVE_BUYS
