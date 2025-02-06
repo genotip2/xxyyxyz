@@ -121,6 +121,12 @@ def analyze_pair(symbol):
 # ==============================
 # FUNGSI TRADING
 # ==============================
+def safe_compare(val1, val2):
+    """Perbandingan aman untuk menangani None."""
+    if val1 is None or val2 is None:
+        return False
+    return val1 > val2
+	
 def calculate_scores(data):
     price = data ['close_price_m15']
     ema10_m15 = data['ema10_m15']
