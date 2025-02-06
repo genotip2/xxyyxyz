@@ -154,7 +154,6 @@ def generate_signal(pair, data):
             macd_m15 > macd_signal_m15 and macd_h1 > macd_signal_h1 and  # MACD bullish crossover di M15 & H1
             close_price_m15 <= bb_lower_m15 and close_price_h1 <= bb_lower_h1 and  # Harga di lower Bollinger Band
             adx_m15 > 25 and adx_h1 > 25 and  # ADX menunjukkan tren kuat di M15 & H1
-            obv_m15 > 0 and obv_h1 > 0 and  # OBV meningkat di M15 & H1
             ("BUY" in candle_m15 or "STRONG_BUY" in candle_m15) and  # Candlestick reversal di M15
             ("BUY" in candle_h1 or "STRONG_BUY" in candle_h1) and  # Candlestick reversal di H1
             pair not in ACTIVE_BUYS
@@ -165,7 +164,6 @@ def generate_signal(pair, data):
             macd_m15 < macd_signal_m15 and macd_h1 < macd_signal_h1 and  # MACD bearish crossover di M15 & H1
             close_price_m15 >= bb_upper_m15 and close_price_h1 >= bb_upper_h1 and  # Harga di upper Bollinger Band
             adx_m15 > 25 and adx_h1 > 25 and  # ADX menunjukkan tren kuat di M15 & H1
-            obv_m15 < 0 and obv_h1 < 0 and  # OBV menurun di M15 & H1
             ("SELL" in candle_m15 or "STRONG_SELL" in candle_m15) and  # Candlestick reversal di M15
             ("SELL" in candle_h1 or "STRONG_SELL" in candle_h1) and  # Candlestick reversal di H1
             pair in ACTIVE_BUYS
