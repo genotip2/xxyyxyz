@@ -121,68 +121,81 @@ def analyze_pair(symbol):
 # ==============================
 # FUNGSI TRADING
 # ==============================
+def calculate_scores(data):
+	
+
+
+    price = data ['close_price_m15']
+    ema10_m15 = data['ema10_m15']
+    ema20_m15 = data['ema20_m15']
+    rsi_m15 = data['rsi_m15']
+    macd_m15 = data['macd_m15']
+    macd_signal_m15 = data['macd_signal_m15']
+    bb_lower_m15 = data['bb_lower_m15']
+    bb_upper_m15 = data['bb_upper_m15']
+    close_price_m15 = data['close_price_m15']
+    adx_m15 = data['adx_m15']
+    obv_m15 = data['obv_m15']
+    candle_m15 = data['candle_m15']
+
+    ema10_h1 = data['ema10_h1']
+    ema20_h1 = data['ema20_h1']
+    rsi_h1 = data['rsi_h1']
+    macd_h1 = data['macd_h1']
+    macd_signal_h1 = data['macd_signal_h1']
+    bb_lower_h1 = data['bb_lower_h1']
+    bb_upper_h1 = data['bb_upper_h1']
+    close_price_h1 = data['close_price_h1']
+    adx_h1 = data['adx_h1']
+    obv_h1 = data['obv_h1']
+    candle_h1 = data['candle_h1']
+    
+    
+    buy_conditions = [
+        ema10_m15 > ema20_m15,
+        ema10_h1 > ema20_h1, # EMA 9 cross up EMA 21 di M15 & H1
+        rsi_m15 < 30,
+        rsi_h1 < 50, # RSI M15 oversold, RSI H1 belum overbought
+        macd_m15 > macd_signal_m15,
+        macd_h1 > macd_signal_h1, # MACD bullish crossover di M15 & H1
+        close_price_m15 <= bb_lower_m15,
+        close_price_h1 <= bb_lower_h1, # Harga di lower Bollinger Band
+        adx_m15 > 25,
+        adx_h1 > 25, # ADX menunjukkan tren kuat di M15 & H1
+        ("BUY" in candle_m15 or "STRONG_BUY" in candle_m15), # Candlestick reversal di M15
+        ("BUY" in candle_h1 or "STRONG_BUY" in candle_h1)  # Candlestick reversal di H1
+    ]
+    sell_conditions = [
+            ema10_m15 < ema20_m15 and ema10_h1 < ema20_h1 and  # EMA 9 cross down EMA 21 di M15 & H1
+            rsi_m15 > 70 and rsi_h1 > 50 and  # RSI M15 overbought, RSI H1 belum oversold
+            macd_m15 < macd_signal_m15 and macd_h1 < macd_signal_h1 and  # MACD bearish crossover di M15 & H1
+            close_price_m15 >= bb_upper_m15 and close_price_h1 >= bb_upper_h1 and  # Harga di upper Bollinger Band
+            adx_m15 > 25 and adx_h1 > 25 and  # ADX menunjukkan tren kuat di M15 & H1
+            ("SELL" in candle_m15 or "STRONG_SELL" in candle_m15) and  # Candlestick reversal di M15
+            ("SELL" in candle_h1 or "STRONG_SELL" in candle_h1) and  # Candlestick reversal di H1
+            pair in ACTIVE_BUYS
+        )
+    return sum(buy_conditions), sum(sell_conditions)
+       
 def generate_signal(pair, data):
-    """Generate trading signal dengan sistem skor"""
-    score = 0
-    
-    # Pastikan nilai indikator tidak None
-    def safe_compare(val1, val2):
-        if val1 is None or val2 is None:
-            return False  # Anggap False jika ada indikator yang hilang
-        return val1 > val2
-    
-    # EMA 10 & EMA 20
-    if safe_compare(data['ema10_m15'], data['ema20_m15']) and safe_compare(data['ema10_h1'], data['ema20_h1']):
-        score += 2  # Bullish
-    elif not safe_compare(data['ema10_m15'], data['ema20_m15']) and not safe_compare(data['ema10_h1'], data['ema20_h1']):
-        score -= 2  # Bearish
-    
-    # RSI
-    if data['rsi_m15'] is not None:
-        if data['rsi_m15'] < 30:
-            score += 1  # Oversold (bullish)
-        elif data['rsi_m15'] > 70:
-            score -= 1  # Overbought (bearish)
-    
-    # MACD crossover
-    if safe_compare(data['macd_m15'], data['macd_signal_m15']) and safe_compare(data['macd_h1'], data['macd_signal_h1']):
-        score += 2  # Bullish
-    elif not safe_compare(data['macd_m15'], data['macd_signal_m15']) and not safe_compare(data['macd_h1'], data['macd_signal_h1']):
-        score -= 2  # Bearish
-    
-    # Bollinger Bands
-    if data['bb_lower_m15'] is not None and data['bb_lower_h1'] is not None:
-        if data['close_price_m15'] <= data['bb_lower_m15'] and data['close_price_h1'] <= data['bb_lower_h1']:
-            score += 1  # Harga menyentuh BB bawah (bullish)
-        elif data['close_price_m15'] >= data['bb_upper_m15'] and data['close_price_h1'] >= data['bb_upper_h1']:
-            score -= 1  # Harga menyentuh BB atas (bearish)
-    
-    # ADX menunjukkan tren kuat
-    if data['adx_m15'] is not None and data['adx_h1'] is not None:
-        if data['adx_m15'] > 25 and data['adx_h1'] > 25:
-            score += 1  # Tren kuat (bullish)
-        elif data['adx_m15'] < 20 and data['adx_h1'] < 20:
-            score -= 1  # Tren lemah (bearish)
-    
-    # Candlestick reversal
-    if data['candle_m15'] and ("BUY" in data['candle_m15'] or "STRONG_BUY" in data['candle_m15']):
-        score += 2
-    elif data['candle_m15'] and ("SELL" in data['candle_m15'] or "STRONG_SELL" in data['candle_m15']):
-        score -= 2
-    
+	    """Generate trading signal"""
+	price = data['close_price_m15']
+    buy_score, sell_score = calculate_scores(data)
+    display_pair = f"{pair[:-4]}/USDT"
+
+    print(f"{display_pair} - Price: {price:.8f} | Buy: {buy_score}/7 | Sell: {sell_score}/6")
+
     take_profit = pair in ACTIVE_BUYS and price > ACTIVE_BUYS[pair]['close_price_m15'] * 1.05
     stop_loss = pair in ACTIVE_BUYS and price < ACTIVE_BUYS[pair]['close_price_m15'] * 0.98
 
-    
-    # Menentukan sinyal berdasarkan skor
-    if score >= BUY_SCORE_THRESHOLD and pair not in ACTIVE_BUYS:
-        return 'BUY', data['close_price_m15']
-    elif score <= -SELL_SCORE_THRESHOLD and pair in ACTIVE_BUYS:
-        return 'SELL', data['close_price_m15']
+    if buy_signal:
+        return 'BUY', price
     elif take_profit:
         return 'TAKE PROFIT', price
     elif stop_loss:
         return 'STOP LOSS', price
+    elif sell_signal:
+        return 'SELL', ACTIVE_BUYS[pair]['close_price_m15']
     
     return None, None
 
