@@ -169,9 +169,9 @@ def calculate_scores(data):
     safe_compare(ema10_h1, ema20_h1, '<'),    # EMA 10 < EMA 20 di H1
     rsi_h1 is not None and rsi_h1 > 50,       # RSI H1 belum oversold
     safe_compare(macd_h1, macd_signal_h1, '<'),  # MACD H1 < Signal H1 (bearish crossover)
-    price >= bb_upper_h1,                    # Harga di atas upper BB H1
+    price >= bb_upper_h1,                     # Harga di atas upper BB H1
     adx_h1 is not None and adx_h1 > 25,       # ADX H1 > 25 (tren kuat)
-    ("SELL" in candle_m15 or "STRONG_SELL" in candle_m15)  # Candlestick reversal di M15
+    ("SELL" in candle_m15 if candle_m15 else False) or ("STRONG_SELL" in candle_m15 if candle_m15 else False)  # Candlestick reversal di M15
 ]
     
     return sum(buy_conditions), sum(sell_conditions)
