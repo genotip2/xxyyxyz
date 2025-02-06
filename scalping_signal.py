@@ -264,9 +264,10 @@ def main():
             print(f"\n📈 {display_pair}:")
             
             signal, price = generate_signal(pair, data)
+            buy_score, sell_score = calculate_scores(data)  # Tambahkan perhitungan skor
+
             if signal:
-                send_telegram_alert(signal, pair, data['close_price_m15'], data, price)
-                
+            send_telegram_alert(signal, pair, price, data, buy_score, sell_score)
             # Auto close position
             if pair in ACTIVE_BUYS:
                 position = ACTIVE_BUYS[pair]
