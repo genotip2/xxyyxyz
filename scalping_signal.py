@@ -265,7 +265,7 @@ def main():
             
             signal, price = generate_signal(pair, data)
             if signal:
-                send_telegram_alert(signal, pair, data['price'], data, price)
+                send_telegram_alert(signal, pair, data['close_price_m15'], data, price)
                 
             # Auto close position
             if pair in ACTIVE_BUYS:
