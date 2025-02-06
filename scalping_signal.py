@@ -156,34 +156,34 @@ def calculate_scores(data):
     candle_h1 = data['candle_h1']
     
     buy_conditions = [
-        safe_compare(ema10_m15, ema20_m15),
-        safe_compare(ema10_h1, ema20_h1),  # EMA 9 cross up EMA 21 di M15 & H1
-        rsi_m15 is not None and rsi_m15 < 30,
-        rsi_h1 is not None and rsi_h1 < 50,  # RSI M15 oversold, RSI H1 belum overbought
-        safe_compare(macd_m15, macd_signal_m15),
-        safe_compare(macd_h1, macd_signal_h1),  # MACD bullish crossover di M15 & H1
-        price <= bb_lower_m15,
-        price <= bb_lower_h1,  # Harga di lower Bollinger Band
-        adx_m15 is not None and adx_m15 > 25,
-        adx_h1 is not None and adx_h1 > 25,  # ADX menunjukkan tren kuat di M15 & H1
-        ("BUY" in candle_m15 or "STRONG_BUY" in candle_m15),  # Candlestick reversal di M15
-        ("BUY" in candle_h1 or "STRONG_BUY" in candle_h1)  # Candlestick reversal di H1
-    ]
-    
-    sell_conditions = [
-        safe_compare(ema10_m15, ema20_m15),
-        safe_compare(ema10_h1, ema20_h1),  # EMA 9 cross down EMA 21 di M15 & H1
-        rsi_m15 is not None and rsi_m15 > 70,
-        rsi_h1 is not None and rsi_h1 > 50,  # RSI M15 overbought, RSI H1 belum oversold
-        safe_compare(macd_m15, macd_signal_m15),
-        safe_compare(macd_h1, macd_signal_h1),  # MACD bearish crossover di M15 & H1
-        price >= bb_upper_m15,
-        price >= bb_upper_h1,  # Harga di upper Bollinger Band
-        adx_m15 is not None and adx_m15 > 25,
-        adx_h1 is not None and adx_h1 > 25,  # ADX menunjukkan tren kuat di M15 & H1
-        ("SELL" in candle_m15 or "STRONG_SELL" in candle_m15),  # Candlestick reversal di M15
-        ("SELL" in candle_h1 or "STRONG_SELL" in candle_h1)  # Candlestick reversal di H1
-    ]
+    safe_compare(ema10_m15, ema20_m15, '>'),  # EMA 10 > EMA 20 di M15
+    safe_compare(ema10_h1, ema20_h1, '>'),    # EMA 10 > EMA 20 di H1
+    rsi_m15 is not None and rsi_m15 < 30,     # RSI M15 oversold
+    rsi_h1 is not None and rsi_h1 < 50,       # RSI H1 belum overbought
+    safe_compare(macd_m15, macd_signal_m15, '>'),  # MACD M15 > Signal M15 (bullish crossover)
+    safe_compare(macd_h1, macd_signal_h1, '>'),  # MACD H1 > Signal H1 (bullish crossover)
+    price <= bb_lower_m15,                   # Harga di bawah lower BB M15
+    price <= bb_lower_h1,                    # Harga di bawah lower BB H1
+    adx_m15 is not None and adx_m15 > 25,     # ADX M15 > 25 (tren kuat)
+    adx_h1 is not None and adx_h1 > 25,       # ADX H1 > 25 (tren kuat)
+    ("BUY" in candle_m15 or "STRONG_BUY" in candle_m15),  # Candlestick reversal di M15
+    ("BUY" in candle_h1 or "STRONG_BUY" in candle_h1)   # Candlestick reversal di H1
+]
+
+sell_conditions = [
+    safe_compare(ema10_m15, ema20_m15, '<'),  # EMA 10 < EMA 20 di M15
+    safe_compare(ema10_h1, ema20_h1, '<'),    # EMA 10 < EMA 20 di H1
+    rsi_m15 is not None and rsi_m15 > 70,     # RSI M15 overbought
+    rsi_h1 is not None and rsi_h1 > 50,       # RSI H1 belum oversold
+    safe_compare(macd_m15, macd_signal_m15, '<'),  # MACD M15 < Signal M15 (bearish crossover)
+    safe_compare(macd_h1, macd_signal_h1, '<'),  # MACD H1 < Signal H1 (bearish crossover)
+    price >= bb_upper_m15,                   # Harga di atas upper BB M15
+    price >= bb_upper_h1,                    # Harga di atas upper BB H1
+    adx_m15 is not None and adx_m15 > 25,     # ADX M15 > 25 (tren kuat)
+    adx_h1 is not None and adx_h1 > 25,       # ADX H1 > 25 (tren kuat)
+    ("SELL" in candle_m15 or "STRONG_SELL" in candle_m15),  # Candlestick reversal di M15
+    ("SELL" in candle_h1 or "STRONG_SELL" in candle_h1)   # Candlestick reversal di H1
+]
     
     return sum(buy_conditions), sum(sell_conditions)
 def generate_signal(pair, data):
