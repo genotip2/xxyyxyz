@@ -72,9 +72,6 @@ def get_binance_top_pairs():
         print(f"❌ Error fetching data: {e}")  
         return []
 
-# Contoh penggunaan
-top_losers = get_binance_top_losers()
-print(top_losers)
 # ==============================
 # FUNGSI ANALISIS
 # ==============================
