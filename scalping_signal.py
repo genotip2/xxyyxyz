@@ -92,7 +92,7 @@ def analyze_pair(symbol):
                 'ema10_m15': analysis_m15.indicators.get('EMA10'),
                 'ema20_m15': analysis_m15.indicators.get('EMA20'),
                 'rsi_m15': analysis_m15.indicators.get('RSI'),
-                'macd_m15': analysis_m15.indicators.get('MACD.MACD'),
+                'macd_m15': analysis_m15.indicators.get('MACD.macd'),
                 'macd_signal_m15': analysis_m15.indicators.get('MACD.signal'),
                 'bb_lower_m15': analysis_m15.indicators.get('BB.lower'),
                 'bb_upper_m15': analysis_m15.indicators.get('BB.upper'),
