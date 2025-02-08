@@ -200,6 +200,7 @@ def calculate_scores(data):
         safe_compare(ema5_m5, ema10_m5, '>'),  # EMA 5 > EMA 10 di M5
         safe_compare(ema10_m15, ema20_m15, '>'),  # EMA 10 > EMA 20 di M15
         safe_compare(ema10_h1, ema20_h1, '>'),    # EMA 10 > EMA 20 di H1
+        rsi_m5 is not None and rsi_m5 < 30,       # RSI M5 oversold
         safe_compare(macd_m5, macd_signal_m5, '>'),  # MACD M5 > Signal M5 (bullish crossover)
         current_price <= bb_lower_m5,                   # Harga di bawah lower BB M5
         adx_m5 is not None and adx_m5 > 25,       # ADX M5 > 25 (tren kuat)
@@ -227,9 +228,9 @@ def generate_signal(pair, data):
     buy_score, sell_score = calculate_scores(data)
     display_pair = f"{pair[:-4]}/USDT"
 
-    print(f"{display_pair} - Price: {current_price:.8f} | Buy: {buy_score}/8 | Sell: {sell_score}/9")
+    print(f"{display_pair} - Price: {current_price:.8f} | Buy: {buy_score}/9 | Sell: {sell_score}/9")
 
-    buy_signal = buy_score >= BUY_SCORE_THRESHOLD and data['rsi_m5'] < 30 and pair not in ACTIVE_BUYS
+    buy_signal = buy_score >= BUY_SCORE_THRESHOLD and pair not in ACTIVE_BUYS
     sell_signal = sell_score >= SELL_SCORE_THRESHOLD and pair in ACTIVE_BUYS
     take_profit = pair in ACTIVE_BUYS and current_price >= ACTIVE_BUYS[pair]['price'] * (1 + PROFIT_TARGET_PERCENTAGE / 100)
     stop_loss = pair in ACTIVE_BUYS and current_price <= ACTIVE_BUYS[pair]['price'] * (1 - STOP_LOSS_PERCENTAGE / 100)
@@ -273,7 +274,7 @@ def send_telegram_alert(signal_type, pair, current_price, data, buy_score, sell_
     elif signal_type in ['TAKE PROFIT', 'STOP LOSS', 'SELL', 'EXPIRED']:
         entry = ACTIVE_BUYS.get(pair)
         if entry:
-            profit = ((current_price - entry['price'])/entry['price'])*100
+            profit = ((current_price - entry['price']) / entry['price']) * 100
             duration = str(datetime.now() - entry['time']).split('.')[0]
 
             message = f"{base_msg}💲 Entry: ${entry['price']:.8f}\n"
