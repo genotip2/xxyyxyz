@@ -82,6 +82,10 @@ def analyze_pair(symbol):
         # Print data yang diterima dari API untuk debugging
         print(f"Data dari API untuk {symbol}: {data}")
 
+        if isinstance(data, dict) and 'msg' in data:
+            print(f"⚠️ Error dari API untuk {symbol}: {data['msg']}")
+            return None
+
         if len(data) < MEAN_WINDOW:
             print(f"⚠️ Tidak cukup data untuk {symbol}")
             return None
