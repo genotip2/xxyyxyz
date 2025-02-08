@@ -26,7 +26,7 @@ else:
         loaded = json.load(f)
         ACTIVE_BUYS = {
             pair: {
-                'price': data['price'],
+                'price': data['current_price'],
                 'time': datetime.fromisoformat(data['time'])
             }
             for pair, data in loaded.items()
@@ -41,7 +41,7 @@ def save_active_buys_to_json():
         to_save = {}
         for pair, data in ACTIVE_BUYS.items():
             to_save[pair] = {
-                'price': data['price'],
+                'price': data['current_price'],
                 'time': data['time'].isoformat()
             }
 
@@ -228,7 +228,7 @@ def generate_signal(pair, data):
     buy_score, sell_score = calculate_scores(data)
     display_pair = f"{pair[:-4]}/USDT"
 
-    print(f"{display_pair} - Price: {current_price:.8f} | Buy: {buy_score}/8 | Sell: {sell_score}/9")
+    print(f"{display_pair} - Price: {current_price:.8f} | Buy: {buy_score}/9 | Sell: {sell_score}/9")
 
     buy_signal = buy_score >= BUY_SCORE_THRESHOLD and pair not in ACTIVE_BUYS
     sell_signal = sell_score >= SELL_SCORE_THRESHOLD and pair in ACTIVE_BUYS
@@ -265,7 +265,7 @@ def send_telegram_alert(signal_type, pair, current_price, data, buy_score, sell_
     base_msg = f"{emoji} **{signal_type}**\n"
     base_msg += f"💱 {display_pair}\n"
     base_msg += f"💲 Price: ${current_price:.8f}\n"
-    base_msg += f"📊 Score: Buy {buy_score}/8 | Sell {sell_score}/9\n"
+    base_msg += f"📊 Score: Buy {buy_score}/9 | Sell {sell_score}/9\n"
 
     if signal_type == 'BUY':
         message = f"{base_msg}🔍 RSI: M5 = {data['rsi_m5']:.2f} | M15 = {data['rsi_m15']:.2f}\n"
@@ -274,14 +274,14 @@ def send_telegram_alert(signal_type, pair, current_price, data, buy_score, sell_
     elif signal_type in ['TAKE PROFIT', 'STOP LOSS', 'SELL', 'EXPIRED']:
         entry = ACTIVE_BUYS.get(pair)
         if entry:
-            profit = ((current_price - entry['price'])/entry['price'])*100
+            profit = ((current_price - entry['price']) / entry['price']) * 100
             duration = str(datetime.now() - entry['time']).split('.')[0]
 
             message = f"{base_msg}💲 Entry: ${entry['price']:.8f}\n"
             message += f"💰 {'Profit' if profit > 0 else 'Loss'}: {profit:+.2f}%\n"
             message += f"🕒 Hold Duration: {duration}"
-            
-            if signal_type in ['TAKE PROFIT', 'STOP LOSS', 'SELL', 'EXPIRED']:
+
+            if signal_type in ['STOP LOSS', 'SELL', 'EXPIRED']:
                 del ACTIVE_BUYS[pair]
 
     print(f"📢 Mengirim alert: {message}")
