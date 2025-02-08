@@ -11,7 +11,7 @@ TELEGRAM_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
 TELEGRAM_CHAT_ID = os.getenv('TELEGRAM_CHAT_ID')
 ACTIVE_BUYS = {}
 ACTIVE_BUYS_FILE = 'active_buys.json'
-MEAN_WINDOW = 10  # Kurangi jendela waktu untuk menghindari masalah data tidak cukup
+MEAN_WINDOW = 10  # Jumlah periode untuk menghitung rata-rata
 STD_DEV_THRESHOLD = 2  # Ambang standar deviasi untuk beli
 PROFIT_TARGET_PERCENTAGE = 5  # 5% target profit
 STOP_LOSS_PERCENTAGE = 2  # 2% stop loss target
@@ -52,19 +52,15 @@ def save_active_buys_to_json():
     except Exception as e:
         print(f"❌ Gagal menyimpan: {str(e)}")
 
-def get_binance_top_pairs():
+def get_coingecko_top_pairs():
     """Ambil 50 pair teratas berdasarkan volume trading"""
-    url = "https://api.coingecko.com/api/v3/exchanges/binance/tickers"
-    params = {'include_exchange_logo': 'false', 'order': 'volume_desc'}
+    url = "https://api.coingecko.com/api/v3/coins/markets"
+    params = {'vs_currency': 'usd', 'order': 'market_cap_desc', 'per_page': 100, 'page': 1, 'sparkline': False}
 
     try:
         response = requests.get(url, params=params)
         data = response.json()
-        usdt_pairs = [t for t in data['tickers'] if t['target'] == 'USDT']
-        sorted_pairs = sorted(usdt_pairs,
-                            key=lambda x: x['converted_volume']['usd'],
-                            reverse=True)[:100]
-        return [f"{p['base']}USDT" for p in sorted_pairs]
+        return [f"{coin['symbol'].upper()}USDT" for coin in data]
 
     except Exception as e:
         print(f"❌ Error fetching data: {e}")
@@ -75,22 +71,19 @@ def get_binance_top_pairs():
 # ==============================
 def analyze_pair(symbol):
     try:
-        url = f"https://api.binance.com/api/v3/klines?symbol={symbol}&interval=1h&limit={MEAN_WINDOW}"
-        response = requests.get(url)
+        url = f"https://api.coingecko.com/api/v3/coins/{symbol}/market_chart"
+        params = {'vs_currency': 'usd', 'days': '1', 'interval': 'hourly'}
+        response = requests.get(url, params=params)
         data = response.json()
 
         # Print data yang diterima dari API untuk debugging
         print(f"Data dari API untuk {symbol}: {data}")
 
-        if isinstance(data, dict) and 'msg' in data:
-            print(f"⚠️ Error dari API untuk {symbol}: {data['msg']}")
-            return None
-
-        if len(data) < MEAN_WINDOW:
+        if 'prices' not in data:
             print(f"⚠️ Tidak cukup data untuk {symbol}")
             return None
 
-        closes = np.array([float(c[4]) for c in data])
+        closes = np.array([price[1] for price in data['prices']])
         mean = np.mean(closes)
         std_dev = np.std(closes)
         current_price = closes[-1]
@@ -187,12 +180,13 @@ def send_telegram_alert(signal_type, pair, current_price, data):
 # ==============================
 def main():
     """Program utama"""
-    pairs = get_binance_top_pairs()
+    pairs = get_coingecko_top_pairs()
     print(f"🔍 Memulai analisis {len(pairs)} pair - {datetime.now().strftime('%d/%m %H:%M')}")
 
     for pair in pairs:
         try:
-            data = analyze_pair(pair)
+            symbol = pair[:-4].lower()  # Konversi symbol ke huruf kecil untuk CoinGecko API
+            data = analyze_pair(symbol)
             if not data:
                 continue
 
