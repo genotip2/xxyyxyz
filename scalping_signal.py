@@ -200,7 +200,6 @@ def calculate_scores(data):
         safe_compare(ema5_m5, ema10_m5, '>'),  # EMA 5 > EMA 10 di M5
         safe_compare(ema10_m15, ema20_m15, '>'),  # EMA 10 > EMA 20 di M15
         safe_compare(ema10_h1, ema20_h1, '>'),    # EMA 10 > EMA 20 di H1
-        rsi_m5 is not None and rsi_m5 < 30,     # RSI M5 oversold
         safe_compare(macd_m5, macd_signal_m5, '>'),  # MACD M5 > Signal M5 (bullish crossover)
         current_price <= bb_lower_m5,                   # Harga di bawah lower BB M5
         adx_m5 is not None and adx_m5 > 25,       # ADX M5 > 25 (tren kuat)
@@ -228,7 +227,7 @@ def generate_signal(pair, data):
     buy_score, sell_score = calculate_scores(data)
     display_pair = f"{pair[:-4]}/USDT"
 
-    print(f"{display_pair} - Price: {current_price:.8f} | Buy: {buy_score}/9 | Sell: {sell_score}/9")
+    print(f"{display_pair} - Price: {current_price:.8f} | Buy: {buy_score}/8 | Sell: {sell_score}/9")
 
     buy_signal = buy_score >= BUY_SCORE_THRESHOLD and data['rsi_m5'] < 30 and pair not in ACTIVE_BUYS
     sell_signal = sell_score >= SELL_SCORE_THRESHOLD and pair in ACTIVE_BUYS
@@ -265,7 +264,7 @@ def send_telegram_alert(signal_type, pair, current_price, data, buy_score, sell_
     base_msg = f"{emoji} **{signal_type}**\n"
     base_msg += f"💱 {display_pair}\n"
     base_msg += f"💲 Price: ${current_price:.8f}\n"
-    base_msg += f"📊 Score: Buy {buy_score}/9 | Sell {sell_score}/9\n"
+    base_msg += f"📊 Score: Buy {buy_score}/8 | Sell {sell_score}/9\n"
 
     if signal_type == 'BUY':
         message = f"{base_msg}🔍 RSI: M5 = {data['rsi_m5']:.2f} | M15 = {data['rsi_m15']:.2f}\n"
