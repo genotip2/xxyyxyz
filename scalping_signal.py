@@ -1,8 +1,8 @@
 import os
 import requests
-from tradingview_ta import TA_Handler, Interval
 from datetime import datetime, timedelta
 import json
+import numpy as np
 
 # ==============================
 # KONFIGURASI
@@ -11,11 +11,11 @@ TELEGRAM_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
 TELEGRAM_CHAT_ID = os.getenv('TELEGRAM_CHAT_ID')
 ACTIVE_BUYS = {}
 ACTIVE_BUYS_FILE = 'active_buys.json'
-BUY_SCORE_THRESHOLD = 6
-SELL_SCORE_THRESHOLD = 4
-PROFIT_TARGET_PERCENTAGE = 5  # 5% profit target
+MEAN_WINDOW = 20  # Jumlah periode untuk menghitung rata-rata
+STD_DEV_THRESHOLD = 2  # Ambang standar deviasi untuk beli
+PROFIT_TARGET_PERCENTAGE = 5  # 5% target profit
 STOP_LOSS_PERCENTAGE = 2  # 2% stop loss target
-MAX_HOLD_DURATION_HOUR = 24  # Max hold duration in hours
+MAX_HOLD_DURATION_HOUR = 24  # Maksimal durasi pegangan dalam jam
 
 # Inisialisasi file JSON dengan handling datetime
 if not os.path.exists(ACTIVE_BUYS_FILE):
@@ -75,72 +75,19 @@ def get_binance_top_pairs():
 # ==============================
 def analyze_pair(symbol):
     try:
-        handler_m1 = TA_Handler(
-            symbol=symbol,
-            exchange="BINANCE",
-            screener="CRYPTO",
-            interval=Interval.INTERVAL_1_MINUTE
-        )
-        handler_m5 = TA_Handler(
-            symbol=symbol,
-            exchange="BINANCE",
-            screener="CRYPTO",
-            interval=Interval.INTERVAL_5_MINUTES
-        )
-        handler_m15 = TA_Handler(
-            symbol=symbol,
-            exchange="BINANCE",
-            screener="CRYPTO",
-            interval=Interval.INTERVAL_15_MINUTES
-        )
-        handler_h1 = TA_Handler(
-            symbol=symbol,
-            exchange="BINANCE",
-            screener="CRYPTO",
-            interval=Interval.INTERVAL_1_HOUR
-        )
+        url = f"https://api.binance.com/api/v3/klines?symbol={symbol}&interval=1h&limit={MEAN_WINDOW}"
+        response = requests.get(url)
+        data = response.json()
 
-        analysis_m1 = handler_m1.get_analysis()
-        analysis_m5 = handler_m5.get_analysis()
-        analysis_m15 = handler_m15.get_analysis()
-        analysis_h1 = handler_h1.get_analysis()
+        closes = np.array([float(c[4]) for c in data])
+        mean = np.mean(closes)
+        std_dev = np.std(closes)
+        current_price = closes[-1]
 
         return {
-            'current_price': analysis_m5.indicators.get('close'),
-            'ema5_m5': analysis_m5.indicators.get('EMA5'),
-            'ema10_m5': analysis_m5.indicators.get('EMA10'),
-            'rsi_m5': analysis_m5.indicators.get('RSI'),
-            'macd_m5': analysis_m5.indicators.get('MACD.macd'),
-            'macd_signal_m5': analysis_m5.indicators.get('MACD.signal'),
-            'bb_lower_m5': analysis_m5.indicators.get('BB.lower'),
-            'bb_upper_m5': analysis_m5.indicators.get('BB.upper'),
-            'adx_m5': analysis_m5.indicators.get('ADX'),
-            'obv_m5': analysis_m5.indicators.get('OBV'),
-            'candle_m5': analysis_m5.summary['RECOMMENDATION'],
-            'stoch_k_m5': analysis_m5.indicators.get('Stoch.K'),
-            'stoch_d_m5': analysis_m5.indicators.get('Stoch.D'),
-
-            'ema10_m15': analysis_m15.indicators.get('EMA10'),
-            'ema20_m15': analysis_m15.indicators.get('EMA20'),
-            'rsi_m15': analysis_m15.indicators.get('RSI'),
-            'macd_m15': analysis_m15.indicators.get('MACD.macd'),
-            'macd_signal_m15': analysis_m15.indicators.get('MACD.signal'),
-            'bb_lower_m15': analysis_m15.indicators.get('BB.lower'),
-            'bb_upper_m15': analysis_m15.indicators.get('BB.upper'),
-            'adx_m15': analysis_m15.indicators.get('ADX'),
-            'obv_m15': analysis_m15.indicators.get('OBV'),
-            'candle_m15': analysis_m15.summary['RECOMMENDATION'],
-
-            'ema10_h1': analysis_h1.indicators.get('EMA10'),
-            'ema20_h1': analysis_h1.indicators.get('EMA20'),
-            'rsi_h1': analysis_h1.indicators.get('RSI'),
-            'macd_h1': analysis_h1.indicators.get('MACD.macd'),
-            'macd_signal_h1': analysis_h1.indicators.get('MACD.signal'),
-            'bb_lower_h1': analysis_h1.indicators.get('BB.lower'),
-            'bb_upper_h1': analysis_h1.indicators.get('BB.upper'),
-            'adx_h1': analysis_h1.indicators.get('ADX'),
-            'obv_h1': analysis_h1.indicators.get('OBV'),
-            'candle_h1': analysis_h1.summary['RECOMMENDATION']
+            'current_price': current_price,
+            'mean': mean,
+            'std_dev': std_dev
         }
 
     except Exception as e:
@@ -150,88 +97,17 @@ def analyze_pair(symbol):
 # ==============================
 # FUNGSI TRADING
 # ==============================
-def safe_compare(val1, val2, operator='>'):
-    """Periksa apakah kedua nilai bukan None dan bandingkan dengan operator yang diberikan"""
-    if val1 is not None and val2 is not None:
-        if operator == '>':
-            return val1 > val2
-        elif operator == '<':
-            return val1 < val2
-    return False  # Kembalikan False jika ada nilai yang None atau operator yang tidak valid
-
-def calculate_scores(data):
-    current_price = data['current_price']
-    ema5_m5 = data['ema5_m5']
-    ema10_m5 = data['ema10_m5']
-    rsi_m5 = data['rsi_m5']
-    macd_m5 = data['macd_m5']
-    macd_signal_m5 = data['macd_signal_m5']
-    bb_lower_m5 = data['bb_lower_m5']
-    bb_upper_m5 = data['bb_upper_m5']
-    adx_m5 = data['adx_m5']
-    obv_m5 = data['obv_m5']
-    candle_m5 = data['candle_m5']
-    stoch_k_m5 = data['stoch_k_m5']
-    stoch_d_m5 = data['stoch_d_m5']
-
-    ema10_m15 = data['ema10_m15']
-    ema20_m15 = data['ema20_m15']
-    rsi_m15 = data['rsi_m15']
-    macd_m15 = data['macd_m15']
-    macd_signal_m15 = data['macd_signal_m15']
-    bb_lower_m15 = data['bb_lower_m15']
-    bb_upper_m15 = data['bb_upper_m15']
-    adx_m15 = data['adx_m15']
-    obv_m15 = data['obv_m15']
-    candle_m15 = data['candle_m15']
-
-    ema10_h1 = data['ema10_h1']
-    ema20_h1 = data['ema20_h1']
-    rsi_h1 = data['rsi_h1']
-    macd_h1 = data['macd_h1']
-    macd_signal_h1 = data['macd_signal_h1']
-    bb_lower_h1 = data['bb_lower_h1']
-    bb_upper_h1 = data['bb_upper_h1']
-    adx_h1 = data['adx_h1']
-    obv_h1 = data['obv_h1']
-    candle_h1 = data['candle_h1']
-
-    buy_conditions = [
-        safe_compare(ema5_m5, ema10_m5, '>'),  # EMA 5 > EMA 10 di M5
-        safe_compare(ema10_m15, ema20_m15, '>'),  # EMA 10 > EMA 20 di M15
-        safe_compare(ema10_h1, ema20_h1, '>'),    # EMA 10 > EMA 20 di H1
-        rsi_m5 is not None and rsi_m5 < 30,       # RSI M5 oversold
-        safe_compare(macd_m5, macd_signal_m5, '>'),  # MACD M5 > Signal M5 (bullish crossover)
-        current_price <= bb_lower_m5,                   # Harga di bawah lower BB M5
-        adx_m5 is not None and adx_m5 > 25,       # ADX M5 > 25 (tren kuat)
-        ("BUY" in candle_m5 if candle_m5 else False) or ("STRONG_BUY" in candle_m5 if candle_m5 else False),  # Candlestick reversal di M5
-        stoch_k_m5 is not None and stoch_k_m5 < 20 and stoch_d_m5 is not None and stoch_d_m5 < 20  # Stochastic oversold
-    ]
-
-    sell_conditions = [
-        safe_compare(ema5_m5, ema10_m5, '<'),  # EMA 5 < EMA 10 di M5
-        safe_compare(ema10_m15, ema20_m15, '<'),  # EMA 10 < EMA 20 di M15
-        safe_compare(ema10_h1, ema20_h1, '<'),    # EMA 10 < EMA 20 di H1
-        rsi_m5 is not None and rsi_m5 > 70,       # RSI M5 overbought
-        safe_compare(macd_m5, macd_signal_m5, '<'),  # MACD M5 < Signal M5 (bearish crossover)
-        current_price >= bb_upper_m5,                     # Harga di atas upper BB M5
-        adx_m5 is not None and adx_m5 > 25,       # ADX M5 > 25 (tren kuat)
-        ("SELL" in candle_m5 if candle_m5 else False) or ("STRONG_SELL" in candle_m5 if candle_m5 else False),  # Candlestick reversal di M5
-        stoch_k_m5 is not None and stoch_k_m5 > 80 and stoch_d_m5 is not None and stoch_d_m5 > 80  # Stochastic overbought
-    ]
-
-    return sum(buy_conditions), sum(sell_conditions)
-
 def generate_signal(pair, data):
     """Generate trading signal"""
     current_price = data['current_price']
-    buy_score, sell_score = calculate_scores(data)
+    mean = data['mean']
+    std_dev = data['std_dev']
     display_pair = f"{pair[:-4]}/USDT"
 
-    print(f"{display_pair} - Price: {current_price:.8f} | Buy: {buy_score}/9 | Sell: {sell_score}/9")
+    print(f"{display_pair} - Price: {current_price:.8f} | Mean: {mean:.8f} | Std Dev: {std_dev:.8f}")
 
-    buy_signal = buy_score >= BUY_SCORE_THRESHOLD and pair not in ACTIVE_BUYS
-    sell_signal = sell_score >= SELL_SCORE_THRESHOLD and pair in ACTIVE_BUYS
+    buy_signal = current_price < (mean - STD_DEV_THRESHOLD * std_dev) and pair not in ACTIVE_BUYS
+    sell_signal = current_price >= (mean + std_dev) and pair in ACTIVE_BUYS
     take_profit = pair in ACTIVE_BUYS and current_price >= ACTIVE_BUYS[pair]['price'] * (1 + PROFIT_TARGET_PERCENTAGE / 100)
     stop_loss = pair in ACTIVE_BUYS and current_price <= ACTIVE_BUYS[pair]['price'] * (1 - STOP_LOSS_PERCENTAGE / 100)
     expired = pair in ACTIVE_BUYS and (datetime.now() - ACTIVE_BUYS[pair]['time']) > timedelta(hours=MAX_HOLD_DURATION_HOUR)
@@ -249,7 +125,7 @@ def generate_signal(pair, data):
 
     return None, None
 
-def send_telegram_alert(signal_type, pair, current_price, data, buy_score, sell_score, buy_price=None):
+def send_telegram_alert(signal_type, pair, current_price, data):
     """Kirim notifikasi ke Telegram"""
     display_pair = f"{pair[:-4]}/USDT"
     message = ""
@@ -265,16 +141,14 @@ def send_telegram_alert(signal_type, pair, current_price, data, buy_score, sell_
     base_msg = f"{emoji} **{signal_type}**\n"
     base_msg += f"💱 {display_pair}\n"
     base_msg += f"💲 Price: ${current_price:.8f}\n"
-    base_msg += f"📊 Score: Buy {buy_score}/8 | Sell {sell_score}/9\n"
 
     if signal_type == 'BUY':
-        message = f"{base_msg}🔍 RSI: M5 = {data['rsi_m5']:.2f} | M15 = {data['rsi_m15']:.2f}\n"
+        message = f"{base_msg}🔍 Mean: {data['mean']:.8f} | Std Dev: {data['std_dev']:.8f}\n"
         ACTIVE_BUYS[pair] = {'price': current_price, 'time': datetime.now()}
 
     elif signal_type in ['TAKE PROFIT', 'STOP LOSS', 'SELL', 'EXPIRED']:
         entry = ACTIVE_BUYS.get(pair)
         if entry:
-            print(f"Current Price: {current_price}, Entry Price: {entry['price']}")
             profit = ((current_price - entry['price']) / entry['price']) * 100
             duration = str(datetime.now() - entry['time']).split('.')[0]
 
@@ -297,7 +171,6 @@ def send_telegram_alert(signal_type, pair, current_price, data, buy_score, sell_
         json={'chat_id': TELEGRAM_CHAT_ID, 'text': message, 'parse_mode': 'Markdown'}
     )
 
-
 # ==============================
 # FUNGSI UTAMA
 # ==============================
@@ -316,10 +189,9 @@ def main():
             print(f"\n📈 {display_pair}:")
 
             signal, current_price = generate_signal(pair, data)
-            buy_score, sell_score = calculate_scores(data)  # Tambahkan perhitungan skor
 
             if signal:
-                send_telegram_alert(signal_type=signal, pair=pair, current_price=current_price, data=data, buy_score=buy_score, sell_score=sell_score)
+                send_telegram_alert(signal_type=signal, pair=pair, current_price=current_price, data=data)
 
         except Exception as e:
             print(f"⚠️ Error di {pair}: {str(e)}")
