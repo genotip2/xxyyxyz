@@ -79,6 +79,9 @@ def analyze_pair(symbol):
         response = requests.get(url)
         data = response.json()
 
+        # Print data yang diterima dari API untuk debugging
+        print(f"Data dari API untuk {symbol}: {data}")
+
         if len(data) < MEAN_WINDOW:
             print(f"⚠️ Tidak cukup data untuk {symbol}")
             return None
