@@ -41,7 +41,7 @@ def save_active_buys_to_json():
         to_save = {}
         for pair, data in ACTIVE_BUYS.items():
             to_save[pair] = {
-                'price': data['price'],
+                'price': data['current_price'],
                 'time': data['time'].isoformat()
             }
 
