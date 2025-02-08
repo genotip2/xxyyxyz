@@ -79,6 +79,10 @@ def analyze_pair(symbol):
         response = requests.get(url)
         data = response.json()
 
+        if len(data) < MEAN_WINDOW:
+            print(f"⚠️ Tidak cukup data untuk {symbol}")
+            return None
+
         closes = np.array([float(c[4]) for c in data])
         mean = np.mean(closes)
         std_dev = np.std(closes)
