@@ -63,7 +63,7 @@ def get_binance_top_pairs():
         usdt_pairs = [t for t in data['tickers'] if t['target'] == 'USDT']
         sorted_pairs = sorted(usdt_pairs,
                             key=lambda x: x['converted_volume']['usd'],
-                            reverse=True)[:100]
+                            reverse=True)[:30]
         return [f"{p['base']}USDT" for p in sorted_pairs]
 
     except Exception as e:
