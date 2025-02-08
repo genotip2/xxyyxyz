@@ -10,7 +10,7 @@ import json
 TELEGRAM_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
 TELEGRAM_CHAT_ID = os.getenv('TELEGRAM_CHAT_ID')
 ACTIVE_BUYS = {}
-ACTIVE_BUYS_FILE = 'active_buys.json'
+FILE_PATH = 'active_buys.json'
 BUY_SCORE_THRESHOLD = 4
 SELL_SCORE_THRESHOLD = 4
 PROFIT_TARGET_PERCENTAGE = 5  # 5% profit target
@@ -18,15 +18,15 @@ STOP_LOSS_PERCENTAGE = 2  # 2% stop loss target
 MAX_HOLD_DURATION_HOUR = 24  # Max hold duration in hours
 
 # Inisialisasi file JSON dengan handling datetime
-if not os.path.exists(ACTIVE_BUYS_FILE):
-    with open(ACTIVE_BUYS_FILE, 'w') as f:
+if not os.path.exists(FILE_PATH):
+    with open(FILE_PATH, 'w') as f:
         json.dump({}, f)
 else:
-    with open(ACTIVE_BUYS_FILE, 'r') as f:
+    with open(FILE_PATH, 'r') as f:
         loaded = json.load(f)
         ACTIVE_BUYS = {
             pair: {
-                'price': data['current_price'],
+                'price': data['price'],
                 'time': datetime.fromisoformat(data['time'])
             }
             for pair, data in loaded.items()
@@ -41,11 +41,11 @@ def save_active_buys_to_json():
         to_save = {}
         for pair, data in ACTIVE_BUYS.items():
             to_save[pair] = {
-                'price': data['current_price'],
+                'price': data['price'],
                 'time': data['time'].isoformat()
             }
 
-        with open(ACTIVE_BUYS_FILE, 'w') as f:
+        with open(FILE_PATH, 'w') as f:
             json.dump(to_save, f, indent=4)
 
         print("✅ Berhasil menyimpan active_buys.json")
@@ -106,7 +106,7 @@ def analyze_pair(symbol):
         analysis_h1 = handler_h1.get_analysis()
 
         return {
-            'current_price': analysis_m5.indicators.get('close'),
+            'price': analysis_m5.indicators.get('close'),
             'ema5_m5': analysis_m5.indicators.get('EMA5'),
             'ema10_m5': analysis_m5.indicators.get('EMA10'),
             'rsi_m5': analysis_m5.indicators.get('RSI'),
@@ -160,7 +160,7 @@ def safe_compare(val1, val2, operator='>'):
     return False  # Kembalikan False jika ada nilai yang None atau operator yang tidak valid
 
 def calculate_scores(data):
-    current_price = data['current_price']
+    price = data['price']
     ema5_m5 = data['ema5_m5']
     ema10_m5 = data['ema10_m5']
     rsi_m5 = data['rsi_m5']
@@ -202,7 +202,7 @@ def calculate_scores(data):
         safe_compare(ema10_h1, ema20_h1, '>'),    # EMA 10 > EMA 20 di H1
         rsi_m5 is not None and rsi_m5 < 30,       # RSI M5 oversold
         safe_compare(macd_m5, macd_signal_m5, '>'),  # MACD M5 > Signal M5 (bullish crossover)
-        current_price <= bb_lower_m5,                   # Harga di bawah lower BB M5
+        price <= bb_lower_m5,                   # Harga di bawah lower BB M5
         adx_m5 is not None and adx_m5 > 25,       # ADX M5 > 25 (tren kuat)
         ("BUY" in candle_m5 if candle_m5 else False) or ("STRONG_BUY" in candle_m5 if candle_m5 else False),  # Candlestick reversal di M5
         stoch_k_m5 is not None and stoch_k_m5 < 20 and stoch_d_m5 is not None and stoch_d_m5 < 20  # Stochastic oversold
@@ -214,7 +214,7 @@ def calculate_scores(data):
         safe_compare(ema10_h1, ema20_h1, '<'),    # EMA 10 < EMA 20 di H1
         rsi_m5 is not None and rsi_m5 > 70,       # RSI M5 overbought
         safe_compare(macd_m5, macd_signal_m5, '<'),  # MACD M5 < Signal M5 (bearish crossover)
-        current_price >= bb_upper_m5,                     # Harga di atas upper BB M5
+        price >= bb_upper_m5,                     # Harga di atas upper BB M5
         adx_m5 is not None and adx_m5 > 25,       # ADX M5 > 25 (tren kuat)
         ("SELL" in candle_m5 if candle_m5 else False) or ("STRONG_SELL" in candle_m5 if candle_m5 else False),  # Candlestick reversal di M5
         stoch_k_m5 is not None and stoch_k_m5 > 80 and stoch_d_m5 is not None and stoch_d_m5 > 80  # Stochastic overbought
@@ -224,24 +224,24 @@ def calculate_scores(data):
 
 def generate_signal(pair, data):
     """Generate trading signal"""
-    current_price = data['current_price']
+    price = data['price']
     buy_score, sell_score = calculate_scores(data)
     display_pair = f"{pair[:-4]}/USDT"
 
-    print(f"{display_pair} - Price: {current_price:.8f} | Buy: {buy_score}/9 | Sell: {sell_score}/9")
+    print(f"{display_pair} - Price: {price:.8f} | Buy: {buy_score}/9 | Sell: {sell_score}/9")
 
     buy_signal = buy_score >= BUY_SCORE_THRESHOLD and pair not in ACTIVE_BUYS
     sell_signal = sell_score >= SELL_SCORE_THRESHOLD and pair in ACTIVE_BUYS
-    take_profit = pair in ACTIVE_BUYS and current_price >= ACTIVE_BUYS[pair]['price'] * (1 + PROFIT_TARGET_PERCENTAGE / 100)
-    stop_loss = pair in ACTIVE_BUYS and current_price <= ACTIVE_BUYS[pair]['price'] * (1 - STOP_LOSS_PERCENTAGE / 100)
+    take_profit = pair in ACTIVE_BUYS and price >= ACTIVE_BUYS[pair]['price'] * (1 + PROFIT_TARGET_PERCENTAGE / 100)
+    stop_loss = pair in ACTIVE_BUYS and price <= ACTIVE_BUYS[pair]['price'] * (1 - STOP_LOSS_PERCENTAGE / 100)
     expired = pair in ACTIVE_BUYS and (datetime.now() - ACTIVE_BUYS[pair]['time']) > timedelta(hours=MAX_HOLD_DURATION_HOUR)
 
     if buy_signal:
-        return 'BUY', current_price
+        return 'BUY', price
     elif take_profit:
-        return 'TAKE PROFIT', current_price
+        return 'TAKE PROFIT', price
     elif stop_loss:
-        return 'STOP LOSS', current_price
+        return 'STOP LOSS', price
     elif sell_signal:
         return 'SELL', ACTIVE_BUYS[pair]['price']
     elif expired:
@@ -281,7 +281,7 @@ def send_telegram_alert(signal_type, pair, current_price, data, buy_score, sell_
             message += f"💰 {'Profit' if profit > 0 else 'Loss'}: {profit:+.2f}%\n"
             message += f"🕒 Hold Duration: {duration}"
 
-            if signal_type in ['TAKE PROFIT', 'STOP LOSS', 'SELL', 'EXPIRED']:
+            if signal_type in ['STOP LOSS', 'SELL', 'EXPIRED']:
                 del ACTIVE_BUYS[pair]
 
     print(f"📢 Mengirim alert: {message}")
