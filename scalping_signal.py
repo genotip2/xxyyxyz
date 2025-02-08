@@ -11,7 +11,7 @@ TELEGRAM_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
 TELEGRAM_CHAT_ID = os.getenv('TELEGRAM_CHAT_ID')
 ACTIVE_BUYS = {}
 ACTIVE_BUYS_FILE = 'active_buys.json'
-BUY_SCORE_THRESHOLD = 4
+BUY_SCORE_THRESHOLD = 6
 SELL_SCORE_THRESHOLD = 4
 PROFIT_TARGET_PERCENTAGE = 5  # 5% profit target
 STOP_LOSS_PERCENTAGE = 2  # 2% stop loss target
@@ -274,6 +274,7 @@ def send_telegram_alert(signal_type, pair, current_price, data, buy_score, sell_
     elif signal_type in ['TAKE PROFIT', 'STOP LOSS', 'SELL', 'EXPIRED']:
         entry = ACTIVE_BUYS.get(pair)
         if entry:
+            print(f"Current Price: {current_price}, Entry Price: {entry['price']}")
             profit = ((current_price - entry['price']) / entry['price']) * 100
             duration = str(datetime.now() - entry['time']).split('.')[0]
 
@@ -295,6 +296,7 @@ def send_telegram_alert(signal_type, pair, current_price, data, buy_score, sell_
         f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage",
         json={'chat_id': TELEGRAM_CHAT_ID, 'text': message, 'parse_mode': 'Markdown'}
     )
+
 
 # ==============================
 # FUNGSI UTAMA
