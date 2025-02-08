@@ -281,7 +281,7 @@ def send_telegram_alert(signal_type, pair, current_price, data, buy_score, sell_
             message += f"💰 {'Profit' if profit > 0 else 'Loss'}: {profit:+.2f}%\n"
             message += f"🕒 Hold Duration: {duration}"
 
-            if signal_type in ['STOP LOSS', 'SELL', 'EXPIRED']:
+            if signal_type in ['TAKE PROFIT', 'STOP LOSS', 'SELL', 'EXPIRED']:
                 del ACTIVE_BUYS[pair]
 
     print(f"📢 Mengirim alert: {message}")
