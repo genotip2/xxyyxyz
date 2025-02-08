@@ -26,7 +26,7 @@ else:
         loaded = json.load(f)
         ACTIVE_BUYS = {
             pair: {
-                'price': data['current_price'],
+                'price': data['price'],
                 'time': datetime.fromisoformat(data['time'])
             }
             for pair, data in loaded.items()
@@ -41,7 +41,7 @@ def save_active_buys_to_json():
         to_save = {}
         for pair, data in ACTIVE_BUYS.items():
             to_save[pair] = {
-                'price': data['current_price'],
+                'price': data['price'],
                 'time': data['time'].isoformat()
             }
 
