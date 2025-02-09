@@ -16,6 +16,7 @@ SELL_SCORE_THRESHOLD = 4
 PROFIT_TARGET_PERCENTAGE = 5    # Target profit 5%
 STOP_LOSS_PERCENTAGE = 2        # Stop loss 2%
 MAX_HOLD_DURATION_HOUR = 24     # Durasi hold maksimum 24 jam
+PAIR_TO_ANALIZE = 100
 
 # Inisialisasi file JSON dengan handling datetime
 if not os.path.exists(ACTIVE_BUYS_FILE):
@@ -58,7 +59,7 @@ def get_binance_top_pairs():
         response = requests.get(url, params=params)
         data = response.json()
         usdt_pairs = [t for t in data['tickers'] if t['target'] == 'USDT']
-        sorted_pairs = sorted(usdt_pairs, key=lambda x: x['converted_volume']['usd'], reverse=True)[:50]
+        sorted_pairs = sorted(usdt_pairs, key=lambda x: x['converted_volume']['usd'], reverse=True)[:PAIR_TO_ANALIZE]
         return [f"{p['base']}USDT" for p in sorted_pairs]
     except Exception as e:
         print(f"❌ Error fetching data: {e}")
