@@ -10,16 +10,19 @@ import json
 TELEGRAM_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
 TELEGRAM_CHAT_ID = os.getenv('TELEGRAM_CHAT_ID')
 ACTIVE_BUYS = {}
+ACTIVE_BUYS_FILE = 'active_buys.json'
 BUY_SCORE_THRESHOLD = 7
 SELL_SCORE_THRESHOLD = 4
-FILE_PATH = 'active_buys.json'
+PROFIT_TARGET_PERCENTAGE = 5    # Target profit 5%
+STOP_LOSS_PERCENTAGE = 2        # Stop loss 2%
+MAX_HOLD_DURATION_HOUR = 24     # Durasi hold maksimum 24 jam
 
 # Inisialisasi file JSON dengan handling datetime
-if not os.path.exists(FILE_PATH):
-    with open(FILE_PATH, 'w') as f:
+if not os.path.exists(ACTIVE_BUYS_FILE):
+    with open(ACTIVE_BUYS_FILE, 'w') as f:
         json.dump({}, f)
 else:
-    with open(FILE_PATH, 'r') as f:
+    with open(ACTIVE_BUYS_FILE, 'r') as f:
         loaded = json.load(f)
         ACTIVE_BUYS = {
             pair: {
@@ -41,7 +44,7 @@ def save_active_buys_to_json():
                 'price': data['price'],
                 'time': data['time'].isoformat()
             }
-        with open(FILE_PATH, 'w') as f:
+        with open(ACTIVE_BUYS_FILE, 'w') as f:
             json.dump(to_save, f, indent=4)
         print("✅ Berhasil menyimpan active_buys.json")
     except Exception as e:
@@ -226,8 +229,10 @@ def generate_signal(pair, data):
 
     buy_signal = buy_score >= BUY_SCORE_THRESHOLD and pair not in ACTIVE_BUYS
     sell_signal = sell_score >= SELL_SCORE_THRESHOLD and pair in ACTIVE_BUYS
-    take_profit = pair in ACTIVE_BUYS and current_price > ACTIVE_BUYS[pair]['price'] * 1.05
-    stop_loss = pair in ACTIVE_BUYS and current_price < ACTIVE_BUYS[pair]['price'] * 0.98
+
+    # Gunakan konfigurasi untuk perhitungan take profit dan stop loss
+    take_profit = pair in ACTIVE_BUYS and current_price > ACTIVE_BUYS[pair]['price'] * (1 + PROFIT_TARGET_PERCENTAGE / 100)
+    stop_loss = pair in ACTIVE_BUYS and current_price < ACTIVE_BUYS[pair]['price'] * (1 - STOP_LOSS_PERCENTAGE / 100)
 
     if buy_signal:
         return 'BUY', current_price
@@ -236,8 +241,8 @@ def generate_signal(pair, data):
     elif stop_loss:
         return 'STOP LOSS', current_price
     elif sell_signal:
-        return 'SELL', ACTIVE_BUYS[pair]['price']
-    
+        return 'SELL', current_price
+
     return None, None
 
 def send_telegram_alert(signal_type, pair, current_price, data, buy_price=None):
@@ -250,7 +255,8 @@ def send_telegram_alert(signal_type, pair, current_price, data, buy_price=None):
         'BUY': '🚀', 
         'SELL': '⚠️', 
         'TAKE PROFIT': '✅', 
-        'STOP LOSS': '🛑'
+        'STOP LOSS': '🛑',
+        'EXPIRED': '⌛'
     }.get(signal_type, 'ℹ️')
 
     base_msg = f"{emoji} *{signal_type}*\n"
@@ -259,23 +265,37 @@ def send_telegram_alert(signal_type, pair, current_price, data, buy_price=None):
     base_msg += f"📊 *Score:* Buy {buy_score}/9 | Sell {sell_score}/9\n"
 
     if signal_type == 'BUY':
-        message = f"{base_msg}🔍 *RSI:*"
-        # Simpan harga entry dengan key 'price'
+        message = f"{base_msg}🔍 *RSI:* M5 = {data['rsi_m5']:.2f} | M15 = {data['rsi_m15']:.2f}\n"
+        message += f"{base_msg}🔍 *Stoch RSI:* {data['stoch_k_m5']:.2f}\n"
+        data['stoch_k_m5']
         ACTIVE_BUYS[pair] = {'price': current_price, 'time': datetime.now()}
 
     elif signal_type in ['TAKE PROFIT', 'STOP LOSS', 'SELL']:
         entry = ACTIVE_BUYS.get(pair)
         if entry:
-            profit = ((current_price - entry['price'])/entry['price'])*100
+            profit = ((current_price - entry['price']) / entry['price']) * 100
             duration = str(datetime.now() - entry['time']).split('.')[0]
             
-            message = f"{base_msg}▫️ *Entry*: ${entry['price']:.8f}\n"
-            message += f"💰 *{'Profit' if profit > 0 else 'Loss'}*: {profit:+.2f}%\n"
+            message = f"{base_msg}▫️ *Entry:* ${entry['price']:.8f}\n"
+            message += f"💰 *{'Profit' if profit > 0 else 'Loss'}:* {profit:+.2f}%\n"
             message += f"🕒 *Durasi:* {duration}"
             
-            # Hapus posisi aktif jika kondisi terpenuhi
-            del ACTIVE_BUYS[pair]
+            if pair in ACTIVE_BUYS:
+                del ACTIVE_BUYS[pair]
 
+    elif signal_type == 'EXPIRED':
+        entry = ACTIVE_BUYS.get(pair)
+        if entry:
+            profit = ((current_price - entry['price']) / entry['price']) * 100
+            duration = str(datetime.now() - entry['time']).split('.')[0]
+            
+            message = f"{base_msg}▫️ *Entry:* ${entry['price']:.8f}\n"
+            message += f"⌛ *Order Expired After:* {duration}\n"
+            message += f"💰 *{'Profit' if profit > 0 else 'Loss'}:* {profit:+.2f}%"
+            
+            if pair in ACTIVE_BUYS:
+                del ACTIVE_BUYS[pair]
+    
     print(f"📢 Mengirim alert: {message}")
 
     try:
@@ -309,14 +329,12 @@ def main():
             if signal:
                 send_telegram_alert(signal, pair, current_price, data, buy_price=current_price)
                 
-            # Auto close position jika sudah terlalu lama atau profit/loss mencapai batas tertentu
+            # Auto close posisi hanya berdasarkan durasi hold maksimum
             if pair in ACTIVE_BUYS:
-                position = ACTIVE_BUYS[pair]
-                duration = datetime.now() - position['time']
-                profit = (data['current_price'] - position['price']) / position['price'] * 100
-                
-                if duration > timedelta(hours=24) or abs(profit) > 8:
-                    send_telegram_alert('SELL', pair, data['current_price'], data, position['price'])
+                entry = ACTIVE_BUYS.get(pair)
+                duration = datetime.now() - entry['time']
+                if duration > timedelta(hours=MAX_HOLD_DURATION_HOUR):
+                    send_telegram_alert('EXPIRED', pair, data['current_price'], data, entry['price'])
                     
         except Exception as e:
             print(f"⚠️ Error di {pair}: {str(e)}")
