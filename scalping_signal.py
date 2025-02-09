@@ -254,9 +254,9 @@ def generate_signal(pair, data):
     if stop_loss:
         return 'STOP LOSS', current_price
     if hold_duration > timedelta(hours=MAX_HOLD_DURATION_HOUR) or abs(profit) > AUTO_CLOSE_PROFIT_THRESHOLD:
-        return 'SELL', entry_price
+        return 'SELL', current_price
     if sell_score >= SELL_SCORE_THRESHOLD:
-        return 'SELL', entry_price
+        return 'SELL', current_price
 
     return None, None
 
