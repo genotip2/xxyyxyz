@@ -16,7 +16,7 @@ SELL_SCORE_THRESHOLD = 4
 PROFIT_TARGET_PERCENTAGE = 5   # Target profit 5%
 STOP_LOSS_PERCENTAGE = 2       # Stop loss 2%
 MAX_HOLD_DURATION_HOUR = 24    # Durasi hold maksimum 24 jam
-AUTO_CLOSE_PROFIT_THRESHOLD = 8  # Auto close jika profit absolut > 8%
+AUTO_CLOSE_PROFIT_THRESHOLD = 8  # Auto close jika profit/loss absolut > 8%
 
 # Inisialisasi file JSON untuk active buys dengan konversi datetime
 if not os.path.exists(ACTIVE_BUYS_FILE):
@@ -153,9 +153,12 @@ def safe_compare(val1, val2, operator='>'):
             return val1 < val2
     return False
 
-def calculate_scores(data):
-    # Hitung skor beli dan jual berdasarkan indikator
-    current_price = data['current_price']
+def calculate_scores(data, current_price):
+    """
+    Hitung skor beli dan jual berdasarkan indikator, dengan menggunakan variabel current_price
+    sebagai harga saat ini.
+    """
+    # Data indikator
     ema5_m5 = data['ema5_m5']
     ema10_m5 = data['ema10_m5']
     rsi_m5 = data['rsi_m5']
@@ -224,10 +227,11 @@ def generate_signal(pair, data):
     """
     Hasilkan sinyal trading berdasarkan:
       - Jika belum ada posisi aktif: sinyal BUY bila skor beli mencapai threshold.
-      - Jika sudah ada posisi aktif: cek TAKE PROFIT, STOP LOSS, atau auto-close (SELL) jika hold > 24 jam atau profit/loss > 8%.
+      - Jika sudah ada posisi aktif: cek TAKE PROFIT, STOP LOSS, atau auto-close (SELL)
+        jika hold > 24 jam atau profit/loss > 8%.
     """
     current_price = data['current_price']
-    buy_score, sell_score = calculate_scores(data)
+    buy_score, sell_score = calculate_scores(data, current_price)
     display_pair = f"{pair[:-4]}/USDT"
     print(f"{display_pair} - Price: {current_price:.8f} | Buy: {buy_score}/9 | Sell: {sell_score}/9")
 
@@ -318,22 +322,25 @@ def main():
             if not data:
                 continue
 
+            # Ambil harga saat ini dari data analisis
+            current_price = data['current_price']
             display_pair = f"{pair[:-4]}/USDT"
             print(f"\n📈 {display_pair}:")
+
             signal, current_price = generate_signal(pair, data)
-            buy_score, sell_score = calculate_scores(data)
+            buy_score, sell_score = calculate_scores(data, current_price)
 
             if signal:
                 send_telegram_alert(signal, pair, current_price, data, buy_score, sell_score)
 
-            # Opsional: cek ulang kondisi auto close untuk posisi aktif (durasi > 24 jam atau profit/loss > 8%)
+            # Auto close posisi: gunakan variabel current_price untuk perhitungan profit
             if pair in ACTIVE_BUYS:
                 entry = ACTIVE_BUYS[pair]
                 hold_duration = datetime.now() - entry['time']
-                profit = ((data['current_price'] - entry['price']) / entry['price']) * 100
+                profit = ((current_price - entry['price']) / entry['price']) * 100
                 if (hold_duration > timedelta(hours=MAX_HOLD_DURATION_HOUR) or
                     abs(profit) > AUTO_CLOSE_PROFIT_THRESHOLD) and (signal is None):
-                    send_telegram_alert('SELL', pair, data['current_price'], data, buy_score, sell_score)
+                    send_telegram_alert('SELL', pair, current_price, data, buy_score, sell_score)
         except Exception as e:
             print(f"⚠️ Error di {pair}: {str(e)}")
             continue
