@@ -13,7 +13,7 @@ TELEGRAM_CHAT_ID = os.getenv('TELEGRAM_CHAT_ID')
 ACTIVE_BUYS = {}
 ACTIVE_BUYS_FILE = 'active_buys.json'
 BUY_SCORE_THRESHOLD = 5
-SELL_SCORE_THRESHOLD = 4
+SELL_SCORE_THRESHOLD = 5
 PROFIT_TARGET_PERCENTAGE = 5    # Target profit 5%
 STOP_LOSS_PERCENTAGE = 2        # Stop loss 2%
 MAX_HOLD_DURATION_HOUR = 24     # Durasi hold maksimum 24 jam
@@ -200,7 +200,7 @@ def calculate_scores(data):
         ((rsi_m5 is not None and rsi_m5 < 30), "RSI M5 < 30"),
         (safe_compare(macd_m5, macd_signal_m5, '>'), "MACD M5 > Signal M5"),
         ((bb_lower_m5 is not None and current_price <= bb_lower_m5), "Price <= BB Lower M5"),
-        ((adx_m5 is not None and adx_m5 > 25), "ADX M5 > 25"),
+        ((adx_m5 is not None and adx_m5 > 30), "ADX M5 > 25"),
         ((candle_m5 is not None and ("BUY" in candle_m5 or "STRONG_BUY" in candle_m5)), "Candle M5 mengindikasikan BUY"),
         ((stoch_k_m5 is not None and stoch_k_m5 < 20 and stoch_d_m5 is not None and stoch_d_m5 < 20), "Stoch RSI M5 < 20")
     ]
@@ -212,7 +212,7 @@ def calculate_scores(data):
         ((rsi_m5 is not None and rsi_m5 > 70), "RSI M5 > 70"),
         (safe_compare(macd_m5, macd_signal_m5, '<'), "MACD M5 < Signal M5"),
         ((bb_upper_m5 is not None and current_price >= bb_upper_m5), "Price >= BB Upper M5"),
-        ((adx_m5 is not None and adx_m5 > 25), "ADX M5 > 25"),
+        ((adx_m5 is not None and adx_m5 < 25), "ADX M5 > 25"),
         ((candle_m5 is not None and ("SELL" in candle_m5 or "STRONG_SELL" in candle_m5)), "Candle M5 mengindikasikan SELL"),
         ((stoch_k_m5 is not None and stoch_k_m5 > 80 and stoch_d_m5 is not None and stoch_d_m5 > 80), "Stoch RSI M5 > 80")
     ]
