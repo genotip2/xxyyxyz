@@ -124,6 +124,8 @@ def analyze_pair(symbol):
             'adx_m15': analysis_m15.indicators.get('ADX'),
             'obv_m15': analysis_m15.indicators.get('OBV'),
             'candle_m15': analysis_m15.summary.get('RECOMMENDATION'),
+            'stoch_k_m15': analysis_m15.indicators.get('Stoch.K'),
+            'stoch_d_m15': analysis_m15.indicators.get('Stoch.D'),
 
             'ema10_h1': analysis_h1.indicators.get('EMA10'),
             'ema20_h1': analysis_h1.indicators.get('EMA20'),
@@ -179,6 +181,8 @@ def calculate_scores(data):
     adx_m15 = data['adx_m15']
     obv_m15 = data['obv_m15']
     candle_m15 = data['candle_m15']
+    stoch_k_m15 = data['stoch_k_m15']
+    stoch_d_m15 = data['stoch_d_m15']
 
     ema10_h1 = data['ema10_h1']
     ema20_h1 = data['ema20_h1']
@@ -191,41 +195,25 @@ def calculate_scores(data):
     obv_h1 = data['obv_h1']
     candle_h1 = data['candle_h1']
 
-    # Bobot untuk setiap indikator
-    weights = {
-        'ema': 1,
-        'rsi': 1,
-        'macd': 1,
-        'bb': 1,
-        'adx': 1,
-        'obv': 1,
-        'candle': 1,
-        'stoch': 1,
-        'ichimoku': 1.5
-    }
-
     buy_conditions = [
-        (safe_compare(ema10_m15, ema20_m15, '>'), weights['ema']),
-        ((rsi_m5 is not None and rsi_m5 < 35), weights['rsi']),
-        (safe_compare(macd_m15, macd_signal_m15, '>'), weights['macd']),
-        ((current_price <= bb_lower_m5 if bb_lower_m5 is not None else False), weights['bb']),
-        (("BUY" in candle_m5 or "STRONG_BUY" in candle_m5) if candle_m5 else False, weights['candle']),
-        ((stoch_k_m5 is not None and stoch_k_m5 < 20 and stoch_d_m5 is not None and stoch_d_m5 < 20), weights['stoch'])
+        safe_compare(ema10_m15, ema20_m15, '>'),
+        (rsi_m5 is not None and rsi_m5 < 35),
+        safe_compare(macd_m15, macd_signal_m15, '>'),
+        (current_price <= bb_lower_m5 if bb_lower_m5 is not None else False),
+        (("BUY" in candle_m5 or "STRONG_BUY" in candle_m5) if candle_m5 else False),
+        (stoch_k_m5 is not None and stoch_k_m5 < 20 and stoch_d_m5 is not None and stoch_d_m5 < 20)
     ]
 
     sell_conditions = [
-        (safe_compare(ema10_m15, ema20_m15, '<'), weights['ema']),
-        ((rsi_m5 is not None and rsi_m5 > 65), weights['rsi']),
-        (safe_compare(macd_m15, macd_signal_m15, '<'), weights['macd']),
-        ((current_price >= bb_upper_m5 if bb_upper_m5 is not None else False), weights['bb']),
-        (("SELL" in candle_m5 or "STRONG_SELL" in candle_m5) if candle_m5 else False, weights['candle']),
-        ((stoch_k_m5 is not None and stoch_k_m5 > 80 and stoch_d_m5 is not None and stoch_d_m5 > 80), weights['stoch'])
+        safe_compare(ema10_m15, ema20_m15, '<'),
+        (rsi_m5 is not None and rsi_m5 > 65),
+        safe_compare(macd_m15, macd_signal_m15, '<'),
+        (current_price >= bb_upper_m5 if bb_upper_m5 is not None else False),
+        (("SELL" in candle_m5 or "STRONG_SELL" in candle_m5) if candle_m5 else False),
+        (stoch_k_m5 is not None and stoch_k_m5 > 80 and stoch_d_m5 is not None and stoch_d_m5 > 80)
     ]
 
-    buy_score = sum(weight for condition, weight in buy_conditions if condition)
-    sell_score = sum(weight for condition, weight in sell_conditions if condition)
-    
-    return buy_score, sell_score
+    return sum(buy_conditions), sum(sell_conditions)
 
 # ==============================
 # FUNGSI TRADING
@@ -276,8 +264,8 @@ def send_telegram_alert(signal_type, pair, current_price, data, buy_price=None):
     base_msg += f"📊 *Score:* Buy {buy_score}/6 | Sell {sell_score}/6\n"
 
     if signal_type == 'BUY':
-        message = f"{base_msg}🔍 *RSI:* M5 = {data['rsi_m5']:.2f} | M15 = {data['rsi_m15']:.2f}\n"
-        message += f"*Stoch RSI:* {data['stoch_k_m5']:.2f}\n"
+        message = f"{base_msg}🔍 *RSI:* {data['rsi_m15']:.2f}\n"
+        message += f"*Stoch RSI:* {data['stoch_k_m15']:.2f}\n"
         data['stoch_k_m5']
         ACTIVE_BUYS[pair] = {'price': current_price, 'time': datetime.now()}
 
