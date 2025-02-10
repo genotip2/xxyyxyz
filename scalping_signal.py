@@ -11,7 +11,7 @@ TELEGRAM_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
 TELEGRAM_CHAT_ID = os.getenv('TELEGRAM_CHAT_ID')
 ACTIVE_BUYS = {}
 ACTIVE_BUYS_FILE = 'active_buys.json'
-BUY_SCORE_THRESHOLD = 7
+BUY_SCORE_THRESHOLD = 5
 SELL_SCORE_THRESHOLD = 4
 PROFIT_TARGET_PERCENTAGE = 5    # Target profit 5%
 STOP_LOSS_PERCENTAGE = 2        # Stop loss 2%
@@ -191,31 +191,41 @@ def calculate_scores(data):
     obv_h1 = data['obv_h1']
     candle_h1 = data['candle_h1']
 
+    # Bobot untuk setiap indikator
+    weights = {
+        'ema': 1,
+        'rsi': 1,
+        'macd': 1,
+        'bb': 1,
+        'adx': 1,
+        'obv': 1,
+        'candle': 1,
+        'stoch': 1,
+        'ichimoku': 1.5
+    }
+
     buy_conditions = [
-        safe_compare(ema5_m5, ema10_m5, '>'),
-        safe_compare(ema10_m15, ema20_m15, '>'),
-        safe_compare(ema10_h1, ema20_h1, '>'),
-        (rsi_m5 is not None and rsi_m5 < 30),
-        safe_compare(macd_m5, macd_signal_m5, '>'),
-        (current_price <= bb_lower_m5 if bb_lower_m5 is not None else False),
-        (adx_m5 is not None and adx_m5 > 25),
-        (("BUY" in candle_m5 or "STRONG_BUY" in candle_m5) if candle_m5 else False),
-        (stoch_k_m5 is not None and stoch_k_m5 < 20 and stoch_d_m5 is not None and stoch_d_m5 < 20)
+        (safe_compare(ema10_m15, ema20_m15, '>'), weights['ema']),
+        ((rsi_m5 is not None and rsi_m5 < 35), weights['rsi']),
+        (safe_compare(macd_m15, macd_signal_m15, '>'), weights['macd']),
+        ((current_price <= bb_lower_m5 if bb_lower_m5 is not None else False), weights['bb']),
+        (("BUY" in candle_m5 or "STRONG_BUY" in candle_m5) if candle_m5 else False, weights['candle']),
+        ((stoch_k_m5 is not None and stoch_k_m5 < 20 and stoch_d_m5 is not None and stoch_d_m5 < 20), weights['stoch'])
     ]
 
     sell_conditions = [
-        safe_compare(ema5_m5, ema10_m5, '<'),
-        safe_compare(ema10_m15, ema20_m15, '<'),
-        safe_compare(ema10_h1, ema20_h1, '<'),
-        (rsi_m5 is not None and rsi_m5 > 70),
-        safe_compare(macd_m5, macd_signal_m5, '<'),
-        (current_price >= bb_upper_m5 if bb_upper_m5 is not None else False),
-        (adx_m5 is not None and adx_m5 > 25),
-        (("SELL" in candle_m5 or "STRONG_SELL" in candle_m5) if candle_m5 else False),
-        (stoch_k_m5 is not None and stoch_k_m5 > 80 and stoch_d_m5 is not None and stoch_d_m5 > 80)
+        (safe_compare(ema10_m15, ema20_m15, '<'), weights['ema']),
+        ((rsi_m5 is not None and rsi_m5 > 65), weights['rsi']),
+        (safe_compare(macd_m15, macd_signal_m15, '<'), weights['macd']),
+        ((current_price >= bb_upper_m5 if bb_upper_m5 is not None else False), weights['bb']),
+        (("SELL" in candle_m5 or "STRONG_SELL" in candle_m5) if candle_m5 else False, weights['candle']),
+        ((stoch_k_m5 is not None and stoch_k_m5 > 80 and stoch_d_m5 is not None and stoch_d_m5 > 80), weights['stoch'])
     ]
 
-    return sum(buy_conditions), sum(sell_conditions)
+    buy_score = sum(weight for condition, weight in buy_conditions if condition)
+    sell_score = sum(weight for condition, weight in sell_conditions if condition)
+    
+    return buy_score, sell_score
 
 # ==============================
 # FUNGSI TRADING
@@ -226,7 +236,7 @@ def generate_signal(pair, data):
     buy_score, sell_score = calculate_scores(data)
     display_pair = f"{pair[:-4]}/USDT"
 
-    print(f"{display_pair} - Price: {current_price:.8f} | Buy: {buy_score}/9 | Sell: {sell_score}/9")
+    print(f"{display_pair} - Price: {current_price:.8f} | Buy: {buy_score}/6 | Sell: {sell_score}/6")
 
     buy_signal = buy_score >= BUY_SCORE_THRESHOLD and pair not in ACTIVE_BUYS
     sell_signal = sell_score >= SELL_SCORE_THRESHOLD and pair in ACTIVE_BUYS
@@ -263,11 +273,11 @@ def send_telegram_alert(signal_type, pair, current_price, data, buy_price=None):
     base_msg = f"{emoji} *{signal_type}*\n"
     base_msg += f"💱 *{display_pair}*\n"
     base_msg += f"💲 *Price:* ${current_price:.8f}\n"
-    base_msg += f"📊 *Score:* Buy {buy_score}/9 | Sell {sell_score}/9\n"
+    base_msg += f"📊 *Score:* Buy {buy_score}/6 | Sell {sell_score}/6\n"
 
     if signal_type == 'BUY':
         message = f"{base_msg}🔍 *RSI:* M5 = {data['rsi_m5']:.2f} | M15 = {data['rsi_m15']:.2f}\n"
-        message += f"{base_msg}🔍 *Stoch RSI:* {data['stoch_k_m5']:.2f}\n"
+        message += f"*Stoch RSI:* {data['stoch_k_m5']:.2f}\n"
         data['stoch_k_m5']
         ACTIVE_BUYS[pair] = {'price': current_price, 'time': datetime.now()}
 
