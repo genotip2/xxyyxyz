@@ -200,7 +200,7 @@ def calculate_scores(data):
         ((rsi_m5 is not None and rsi_m5 < 30), "RSI M5 < 30"),
         (safe_compare(macd_m5, macd_signal_m5, '>'), "MACD M5 > Signal M5"),
         ((bb_lower_m5 is not None and current_price <= bb_lower_m5), "Price <= BB Lower M5"),
-        ((adx_m5 is not None and adx_m5 > 30), "ADX M5 > 25"),
+        ((adx_m5 is not None and adx_m5 > 30), "ADX M5 > 30"),
         ((candle_m5 is not None and ("BUY" in candle_m5 or "STRONG_BUY" in candle_m5)), "Candle M5 mengindikasikan BUY"),
         ((stoch_k_m5 is not None and stoch_k_m5 < 20 and stoch_d_m5 is not None and stoch_d_m5 < 20), "Stoch RSI M5 < 20")
     ]
