@@ -19,6 +19,7 @@ PROFIT_TARGET_PERCENTAGE = 5    # Target profit 5%
 STOP_LOSS_PERCENTAGE = 2        # Stop loss 2%
 MAX_HOLD_DURATION_HOUR = 24     # Durasi hold maksimum 24 jam
 PAIR_TO_ANALYZE = 100           # Jumlah pair yang akan dianalisis
+RSI_LIMIT = 60           # Batas atas RSI untuk entry
 
 # ==============================
 # FUNGSI UTITAS: LOAD & SAVE POSITION
@@ -113,7 +114,7 @@ def generate_signal(pair):
              serta posisi belum aktif.
       - EXIT (SELL/TAKE PROFIT/STOP LOSS/EXPIRED): Jika posisi aktif dan salah satu kondisi exit terpenuhi.
     """
-    # Analisis pada timeframe 1H sebagai acuan tren utama
+    # Analisis pada timeframe 1H (sebagai acuan tren utama)
     trend_analysis = analyze_pair_interval(pair, Interval.INTERVAL_1_HOUR)
     if trend_analysis is None:
         return None, None, "Analisis 1H gagal."
@@ -126,6 +127,7 @@ def generate_signal(pair):
         return None, None, "Analisis 15M gagal."
     entry_close = entry_analysis.indicators.get('close')
     entry_rsi = entry_analysis.indicators.get('RSI')
+    previous_rsi = entry_analysis.indicators.get('RSI[1]')
     entry_macd = entry_analysis.indicators.get('MACD.macd')
     entry_signal_line = entry_analysis.indicators.get('MACD.signal')
     
@@ -133,12 +135,13 @@ def generate_signal(pair):
         return None, None, "Harga close 15M tidak tersedia."
 
     # Kondisi pullback pada 15M: RSI < 40 dan MACD > Signal
-    pullback_entry = (entry_rsi is not None and entry_rsi < 60) and \
+    pullback_entry = (entry_rsi is not None and entry_rsi < RSI_LIMIT) and \
+                     (entry_rsi is not None and previous_rsi is not None and entry_rsi > previous_rsi) and \
                      (entry_macd is not None and entry_signal_line is not None and entry_macd > entry_signal_line)
     
     # Jika posisi belum aktif dan kondisi entry terpenuhi
     if pair not in ACTIVE_BUYS and trend_bullish and pullback_entry:
-        details = f"1H: {trend_rec}, 15M RSI: {entry_rsi:.2f}, MACD: {entry_macd:.2f} > {entry_signal_line:.2f}"
+        details = f"1H: {trend_rec}, 15M RSI: {entry_rsi:.2f}, MACD: Bullish"
         return "BUY", entry_close, details
 
     # Jika posisi sudah aktif, periksa kondisi exit
@@ -152,9 +155,9 @@ def generate_signal(pair):
         if profit <= -STOP_LOSS_PERCENTAGE:
             return "STOP LOSS", entry_close, f"Stop loss tercapai"
         if holding_duration > timedelta(hours=MAX_HOLD_DURATION_HOUR):
-            return "EXPIRED", entry_close, f"Durasi Hold Tercapai"
+            return "EXPIRED", entry_close, f"Durasi hold maksimal"
         if not trend_bullish:
-            return "SELL", entry_close, f"Trend 1H tidak bullish ({trend_rec})"
+            return "SELL", entry_close, f"Trend 1H Bearish ({trend_rec})"
     
     return None, entry_close, "Tidak ada sinyal."
 
@@ -181,7 +184,7 @@ def send_telegram_alert(signal_type, pair, current_price, details=""):
     message += f"💱 *Pair:* {display_pair}\n"
     message += f"💲 *Price:* ${current_price:.8f}\n"
     if details:
-        message += f"📝 *Details:* {details}\n"
+        message += f"📝 *Kondisi:* {details}\n"
 
     # Jika BUY, simpan entry
     if signal_type == "BUY":
@@ -193,12 +196,12 @@ def send_telegram_alert(signal_type, pair, current_price, details=""):
             profit = (current_price - entry_price) / entry_price * 100
             duration = datetime.now() - ACTIVE_BUYS[pair]['time']
             message += f"▫️ *Entry Price:* ${entry_price:.8f}\n"
-            message += f"💰 *Profit:* {profit:+.2f}%\n"
+            message += f"💰 *{'Profit' if profit > 0 else 'Loss'}:* {profit:+.2f}%\n"
             message += f"🕒 *Duration:* {str(duration).split('.')[0]}\n"
             # Hapus posisi setelah exit
             del ACTIVE_BUYS[pair]
 
-    print(f"📢 Mengirim alert: {message}")
+    print(f"📢 Mengirim alert:\n{message}")
     try:
         requests.post(
             f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage",
@@ -217,12 +220,16 @@ def main():
     print(f"🔍 Memulai analisis {len(pairs)} pair pada {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     
     for pair in pairs:
-        # Tampilkan pair yang sedang dianalisis di console
-        print(f"🔎 Sedang menganalisis pair: {pair}")
+        print(f"\n🔎 Sedang menganalisis pair: {pair}")
         try:
             signal, current_price, details = generate_signal(pair)
             if signal:
+                print(f"💡 Sinyal: {signal}, Harga: {current_price:.8f}")
+                print(f"📝 Details: {details}")
                 send_telegram_alert(signal, pair, current_price, details)
+            else:
+                # Hanya tampilkan notifikasi jika tidak ada sinyal
+                print("ℹ️ Tidak ada sinyal untuk pair ini.")
         except Exception as e:
             print(f"⚠️ Error di {pair}: {e}")
             continue
