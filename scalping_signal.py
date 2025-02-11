@@ -133,7 +133,7 @@ def generate_signal(pair):
         return None, None, "Harga close 15M tidak tersedia."
 
     # Kondisi pullback pada 15M: RSI < 40 dan MACD > Signal
-    pullback_entry = (entry_rsi is not None and entry_rsi < 40) and \
+    pullback_entry = (entry_rsi is not None and entry_rsi < 60) and \
                      (entry_macd is not None and entry_signal_line is not None and entry_macd > entry_signal_line)
     
     # Jika posisi belum aktif dan kondisi entry terpenuhi
@@ -148,11 +148,11 @@ def generate_signal(pair):
         holding_duration = datetime.now() - ACTIVE_BUYS[pair]['time']
 
         if profit >= PROFIT_TARGET_PERCENTAGE:
-            return "TAKE PROFIT", entry_close, f"Profit tercapai: {profit:.2f}%"
+            return "TAKE PROFIT", entry_close, f"Profit tercapai"
         if profit <= -STOP_LOSS_PERCENTAGE:
-            return "STOP LOSS", entry_close, f"Stop loss tercapai: {profit:.2f}%"
+            return "STOP LOSS", entry_close, f"Stop loss tercapai"
         if holding_duration > timedelta(hours=MAX_HOLD_DURATION_HOUR):
-            return "EXPIRED", entry_close, f"Durasi hold: {holding_duration}"
+            return "EXPIRED", entry_close, f"Durasi Hold Tercapai"
         if not trend_bullish:
             return "SELL", entry_close, f"Trend 1H tidak bullish ({trend_rec})"
     
