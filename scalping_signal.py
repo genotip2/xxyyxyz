@@ -138,7 +138,7 @@ def generate_signal(pair):
     
     # Jika posisi belum aktif dan kondisi entry terpenuhi
     if pair not in ACTIVE_BUYS and trend_bullish and pullback_entry:
-        details = f"1H: {trend_rec}, 15M RSI: {entry_rsi}, MACD: {entry_macd} > {entry_signal_line}"
+        details = f"1H: {trend_rec}, 15M RSI: {entry_rsi:.2f}, MACD: {entry_macd:.2f} > {entry_signal_line:.2f}"
         return "BUY", entry_close, details
 
     # Jika posisi sudah aktif, periksa kondisi exit
