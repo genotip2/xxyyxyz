@@ -19,7 +19,7 @@ PROFIT_TARGET_PERCENTAGE = 5    # Target profit 5%
 STOP_LOSS_PERCENTAGE = 2        # Stop loss 2%
 MAX_HOLD_DURATION_HOUR = 24     # Durasi hold maksimum 24 jam
 PAIR_TO_ANALYZE = 100           # Jumlah pair yang akan dianalisis
-RSI_LIMIT = 60           # Batas atas RSI untuk entry
+RSI_LIMIT = 50           # Batas atas RSI untuk entry
 
 # ==============================
 # FUNGSI UTITAS: LOAD & SAVE POSITION
