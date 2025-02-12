@@ -134,8 +134,8 @@
     "ZENUSDT": {
         "price": 12.75,
         "time": "2025-02-12T20:38:50.227368",
-        "tp1_hit": false,
-        "tp1_price": null
+        "tp1_hit": true,
+        "tp1_price": 13.6
     },
     "PENDLEUSDT": {
         "price": 3.53,
@@ -176,12 +176,6 @@
     "TRUMPUSDT": {
         "price": 15.39,
         "time": "2025-02-12T22:51:55.233523",
-        "tp1_hit": false,
-        "tp1_price": null
-    },
-    "WIFUSDT": {
-        "price": 0.611,
-        "time": "2025-02-12T22:51:56.418532",
         "tp1_hit": false,
         "tp1_price": null
     }
