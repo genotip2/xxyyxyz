@@ -155,7 +155,7 @@ def generate_signal(pair):
     # Kondisi pullback pada 15M: RSI < RSI_LIMIT, pembalikan (RSI naik dibanding periode sebelumnya), dan MACD > Signal
     pullback_entry = (entry_rsi is not None and entry_rsi < RSI_LIMIT) and \
                      (entry_rsi is not None and previous_rsi is not None and entry_rsi > previous_rsi) and \
-                     (entry_macd is not None and entry_signal_line is not None and entry_macd > entry_signal_line)
+                     (entry_macd is not None and entry_signal_line is not None and entry_macd > entry_signal_line) and \
                      (entry_ema10 is not None and entry_ema20 is not None and entry_ema10 > entry_ema20)
     
     # Jika posisi belum aktif dan kondisi entry terpenuhi, berikan sinyal BUY
