@@ -11,12 +11,6 @@
         "tp1_hit": false,
         "tp1_price": null
     },
-    "SUIUSDT": {
-        "price": 3.3529,
-        "time": "2025-02-12T18:26:39.575507",
-        "tp1_hit": false,
-        "tp1_price": null
-    },
     "DOGEUSDT": {
         "price": 0.25865,
         "time": "2025-02-12T18:26:40.342739",
@@ -44,8 +38,8 @@
     "AVAXUSDT": {
         "price": 25.57,
         "time": "2025-02-12T18:26:49.705332",
-        "tp1_hit": false,
-        "tp1_price": null
+        "tp1_hit": true,
+        "tp1_price": 27.05
     },
     "RUNEUSDT": {
         "price": 1.389,
@@ -62,8 +56,8 @@
     "UNIUSDT": {
         "price": 9.619,
         "time": "2025-02-12T18:26:53.760191",
-        "tp1_hit": false,
-        "tp1_price": null
+        "tp1_hit": true,
+        "tp1_price": 10.106
     },
     "LDOUSDT": {
         "price": 1.59,
@@ -98,8 +92,8 @@
     "ARBUSDT": {
         "price": 0.4803,
         "time": "2025-02-12T18:45:27.447400",
-        "tp1_hit": false,
-        "tp1_price": null
+        "tp1_hit": true,
+        "tp1_price": 0.5064
     },
     "FILUSDT": {
         "price": 3.378,
@@ -122,8 +116,8 @@
     "CRVUSDT": {
         "price": 0.5322,
         "time": "2025-02-12T19:15:32.595547",
-        "tp1_hit": false,
-        "tp1_price": null
+        "tp1_hit": true,
+        "tp1_price": 0.563
     },
     "BTCUSDT": {
         "price": 96824.85,
@@ -146,8 +140,8 @@
     "AAVEUSDT": {
         "price": 247.39,
         "time": "2025-02-12T19:37:32.174209",
-        "tp1_hit": false,
-        "tp1_price": null
+        "tp1_hit": true,
+        "tp1_price": 260.15
     },
     "APTUSDT": {
         "price": 6.04,
