@@ -47,12 +47,6 @@
         "tp1_hit": false,
         "tp1_price": null
     },
-    "TAOUSDT": {
-        "price": 402.8,
-        "time": "2025-02-12T18:26:47.948472",
-        "tp1_hit": false,
-        "tp1_price": null
-    },
     "AVAXUSDT": {
         "price": 25.57,
         "time": "2025-02-12T18:26:49.705332",
@@ -68,12 +62,6 @@
     "XLMUSDT": {
         "price": 0.3233,
         "time": "2025-02-12T18:26:52.185203",
-        "tp1_hit": false,
-        "tp1_price": null
-    },
-    "CRVUSDT": {
-        "price": 0.5341,
-        "time": "2025-02-12T18:26:52.919118",
         "tp1_hit": false,
         "tp1_price": null
     },
@@ -98,6 +86,30 @@
     "MEUSDT": {
         "price": 2.035,
         "time": "2025-02-12T18:26:57.415397",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "FDUSDUSDT": {
+        "price": 0.9991,
+        "time": "2025-02-12T18:45:19.612325",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "NEARUSDT": {
+        "price": 3.306,
+        "time": "2025-02-12T18:45:24.188741",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "ARBUSDT": {
+        "price": 0.4803,
+        "time": "2025-02-12T18:45:27.447400",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "FILUSDT": {
+        "price": 3.378,
+        "time": "2025-02-12T18:45:28.702397",
         "tp1_hit": false,
         "tp1_price": null
     }
