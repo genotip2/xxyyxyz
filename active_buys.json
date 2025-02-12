@@ -1,10 +1,4 @@
 {
-    "USDCUSDT": {
-        "price": 1.0001,
-        "time": "2025-02-12T14:17:57.693662",
-        "tp1_hit": false,
-        "tp1_price": null
-    },
     "SHIBUSDT": {
         "price": 1.614e-05,
         "time": "2025-02-12T15:20:37.197505",
@@ -83,12 +77,6 @@
         "tp1_hit": false,
         "tp1_price": null
     },
-    "BAKEUSDT": {
-        "price": 0.2854,
-        "time": "2025-02-12T16:55:06.429123",
-        "tp1_hit": false,
-        "tp1_price": null
-    },
     "SUSDT": {
         "price": 0.5213,
         "time": "2025-02-12T16:55:07.086562",
@@ -158,8 +146,8 @@
     "LISTAUSDT": {
         "price": 0.3021,
         "time": "2025-02-12T16:55:16.004007",
-        "tp1_hit": false,
-        "tp1_price": null
+        "tp1_hit": true,
+        "tp1_price": 0.3209
     },
     "OPUSDT": {
         "price": 1.084,
@@ -176,12 +164,6 @@
     "RENDERUSDT": {
         "price": 4.491,
         "time": "2025-02-12T16:55:19.443092",
-        "tp1_hit": false,
-        "tp1_price": null
-    },
-    "ORDIUSDT": {
-        "price": 11.29,
-        "time": "2025-02-12T16:55:20.210234",
         "tp1_hit": false,
         "tp1_price": null
     },
@@ -203,18 +185,6 @@
         "tp1_hit": false,
         "tp1_price": null
     },
-    "BOMEUSDT": {
-        "price": 0.002054,
-        "time": "2025-02-12T16:55:23.535792",
-        "tp1_hit": false,
-        "tp1_price": null
-    },
-    "BSWUSDT": {
-        "price": 0.0718,
-        "time": "2025-02-12T16:55:24.271083",
-        "tp1_hit": false,
-        "tp1_price": null
-    },
     "VETUSDT": {
         "price": 0.03373,
         "time": "2025-02-12T16:55:24.924306",
@@ -224,6 +194,114 @@
     "ACTUSDT": {
         "price": 0.1893,
         "time": "2025-02-12T16:55:25.659394",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "ETHUSDT": {
+        "price": 2651.74,
+        "time": "2025-02-12T17:17:07.856408",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "SUIUSDT": {
+        "price": 3.332,
+        "time": "2025-02-12T17:17:09.689586",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "PEPEUSDT": {
+        "price": 9.66e-06,
+        "time": "2025-02-12T17:17:10.380110",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "ADAUSDT": {
+        "price": 0.7832,
+        "time": "2025-02-12T17:17:11.108220",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "BNXUSDT": {
+        "price": 0.9885,
+        "time": "2025-02-12T17:17:11.934420",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "LTCUSDT": {
+        "price": 118.87,
+        "time": "2025-02-12T17:17:12.358869",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "AVAXUSDT": {
+        "price": 25.48,
+        "time": "2025-02-12T17:17:17.948999",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "APTUSDT": {
+        "price": 6.04,
+        "time": "2025-02-12T17:17:18.601980",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "LDOUSDT": {
+        "price": 1.58,
+        "time": "2025-02-12T17:17:20.469544",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "1000CHEEMSUSDT": {
+        "price": 0.000972,
+        "time": "2025-02-12T17:17:21.472287",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "MEUSDT": {
+        "price": 2.046,
+        "time": "2025-02-12T17:17:22.919439",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "PENDLEUSDT": {
+        "price": 3.533,
+        "time": "2025-02-12T17:17:23.560021",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "BONKUSDT": {
+        "price": 1.764e-05,
+        "time": "2025-02-12T17:17:24.109185",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "ZENUSDT": {
+        "price": 12.44,
+        "time": "2025-02-12T17:17:24.798723",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "JUPUSDT": {
+        "price": 0.8367,
+        "time": "2025-02-12T17:17:28.559414",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "WBTCUSDT": {
+        "price": 96754.32,
+        "time": "2025-02-12T17:17:29.224589",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "SEIUSDT": {
+        "price": 0.2294,
+        "time": "2025-02-12T17:17:29.858374",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "USTCUSDT": {
+        "price": 0.01868,
+        "time": "2025-02-12T17:17:30.590245",
         "tp1_hit": false,
         "tp1_price": null
     }
