@@ -124,5 +124,29 @@
         "time": "2025-02-12T19:15:32.595547",
         "tp1_hit": false,
         "tp1_price": null
+    },
+    "BTCUSDT": {
+        "price": 96824.85,
+        "time": "2025-02-12T19:37:24.468217",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "PEPEUSDT": {
+        "price": 9.74e-06,
+        "time": "2025-02-12T19:37:26.751521",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "LINKUSDT": {
+        "price": 18.7,
+        "time": "2025-02-12T19:37:28.822543",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "AAVEUSDT": {
+        "price": 247.39,
+        "time": "2025-02-12T19:37:32.174209",
+        "tp1_hit": false,
+        "tp1_price": null
     }
 }
