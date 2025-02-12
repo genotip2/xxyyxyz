@@ -34,5 +34,197 @@
         "time": "2025-02-12T15:51:54.070792",
         "tp1_hit": false,
         "tp1_price": null
+    },
+    "BTCUSDT": {
+        "price": 96427.54,
+        "time": "2025-02-12T16:54:58.354537",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "BNBUSDT": {
+        "price": 667.93,
+        "time": "2025-02-12T16:55:00.241851",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "DOGEUSDT": {
+        "price": 0.25715,
+        "time": "2025-02-12T16:55:00.896216",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "TSTUSDT": {
+        "price": 0.1915,
+        "time": "2025-02-12T16:55:01.803390",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "TRXUSDT": {
+        "price": 0.2449,
+        "time": "2025-02-12T16:55:03.015256",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "CAKEUSDT": {
+        "price": 2.441,
+        "time": "2025-02-12T16:55:03.717324",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "DOTUSDT": {
+        "price": 5.136,
+        "time": "2025-02-12T16:55:05.277716",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "NEARUSDT": {
+        "price": 3.289,
+        "time": "2025-02-12T16:55:05.788888",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "BAKEUSDT": {
+        "price": 0.2854,
+        "time": "2025-02-12T16:55:06.429123",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "SUSDT": {
+        "price": 0.5213,
+        "time": "2025-02-12T16:55:07.086562",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "BERAUSDT": {
+        "price": 5.663,
+        "time": "2025-02-12T16:55:08.135319",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "UNIUSDT": {
+        "price": 9.583,
+        "time": "2025-02-12T16:55:09.198847",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "XLMUSDT": {
+        "price": 0.3214,
+        "time": "2025-02-12T16:55:09.714335",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "ARBUSDT": {
+        "price": 0.4769,
+        "time": "2025-02-12T16:55:10.547278",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "FLOKIUSDT": {
+        "price": 9.284e-05,
+        "time": "2025-02-12T16:55:11.202150",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "FILUSDT": {
+        "price": 3.352,
+        "time": "2025-02-12T16:55:12.103462",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "ALGOUSDT": {
+        "price": 0.2918,
+        "time": "2025-02-12T16:55:12.986361",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "GALAUSDT": {
+        "price": 0.02312,
+        "time": "2025-02-12T16:55:13.711712",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "ARKMUSDT": {
+        "price": 0.692,
+        "time": "2025-02-12T16:55:14.225407",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "THEUSDT": {
+        "price": 0.6083,
+        "time": "2025-02-12T16:55:15.382338",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "LISTAUSDT": {
+        "price": 0.3021,
+        "time": "2025-02-12T16:55:16.004007",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "OPUSDT": {
+        "price": 1.084,
+        "time": "2025-02-12T16:55:17.309271",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "RPLUSDT": {
+        "price": 9.28,
+        "time": "2025-02-12T16:55:18.721607",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "RENDERUSDT": {
+        "price": 4.491,
+        "time": "2025-02-12T16:55:19.443092",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "ORDIUSDT": {
+        "price": 11.29,
+        "time": "2025-02-12T16:55:20.210234",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "ETCUSDT": {
+        "price": 20.61,
+        "time": "2025-02-12T16:55:20.920829",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "INJUSDT": {
+        "price": 14.27,
+        "time": "2025-02-12T16:55:21.833857",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "SANDUSDT": {
+        "price": 0.3935,
+        "time": "2025-02-12T16:55:22.710349",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "BOMEUSDT": {
+        "price": 0.002054,
+        "time": "2025-02-12T16:55:23.535792",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "BSWUSDT": {
+        "price": 0.0718,
+        "time": "2025-02-12T16:55:24.271083",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "VETUSDT": {
+        "price": 0.03373,
+        "time": "2025-02-12T16:55:24.924306",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "ACTUSDT": {
+        "price": 0.1893,
+        "time": "2025-02-12T16:55:25.659394",
+        "tp1_hit": false,
+        "tp1_price": null
     }
 }
