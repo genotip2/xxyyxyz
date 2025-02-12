@@ -184,5 +184,11 @@
         "time": "2025-02-12T21:37:31.014307",
         "tp1_hit": false,
         "tp1_price": null
+    },
+    "ENAUSDT": {
+        "price": 0.4381,
+        "time": "2025-02-12T21:51:32.594873",
+        "tp1_hit": false,
+        "tp1_price": null
     }
 }
