@@ -20,7 +20,8 @@ PROFIT_TARGET_PERCENTAGE_2 = 8    # Target profit TP2 8% (dihitung dari harga en
 STOP_LOSS_PERCENTAGE = 2          # Stop loss 2% (dihitung dari harga entry)
 EXIT_TRADE_TARGET = 2             # Exit Trade target 2% (dihitung dari harga TP1, digunakan setelah TP1 tercapai)
 MAX_HOLD_DURATION_HOUR = 24       # Durasi hold maksimum 24 jam
-PAIR_TO_ANALYZE = 30             # Jumlah pair yang akan dianalisis
+PAIR_TO_ANALYZE = 50             # Jumlah pair yang akan dianalisis
+RSI_LIMIT = 60           # Batas atas RSI untuk entry
 
 # ==============================
 # FUNGSI UTITAS: LOAD & SAVE POSITION
@@ -115,7 +116,7 @@ def generate_signal(pair):
     """
     Hasilkan sinyal trading dengan logika:
       - BUY: Jika tren 1H bullish (RECOMMENDATION 'BUY' atau 'STRONG_BUY')
-             dan terjadi pullback pada EMA 10 > EMA 20 dan MACD > Signal)
+             dan terjadi pullback pada RSI < RSI_LIMIT, EMA 10 > EMA 20 dan MACD > Signal)
              serta posisi belum aktif.
       - EXIT (SELL/TAKE PROFIT/STOP LOSS/EXIT TRADE/EXPIRED):
             Jika posisi aktif dan salah satu kondisi exit terpenuhi:
@@ -142,6 +143,7 @@ def generate_signal(pair):
         return None, None, "Analisis 15M gagal."
     entry_close = entry_analysis.indicators.get('close')
     entry_rsi = entry_analysis.indicators.get('RSI')
+    previous_rsi = entry_analysis.indicators.get('RSI[1]')
     entry_ema10 = entry_analysis.indicators.get('EMA10')
     entry_ema20 = entry_analysis.indicators.get('EMA20')
     entry_macd = entry_analysis.indicators.get('MACD.macd')
@@ -150,8 +152,9 @@ def generate_signal(pair):
     if entry_close is None:
         return None, None, "Harga close 15M tidak tersedia."
 
-    # Kondisi pullback pada EMA 10 > EMA 20, dan MACD > Signal
-    pullback_entry = (entry_ema10 is not None and entry_ema20 is not None and entry_ema10 > entry_ema20) and \
+    # Kondisi pullback pada RSI < RSI_LIMIT, EMA 10 > EMA 20, dan MACD > Signal
+    pullback_entry = (entry_rsi is not None and entry_rsi < RSI_LIMIT) and \
+                     (entry_ema10 is not None and entry_ema20 is not None and entry_ema10 > entry_ema20) and \
                      (entry_macd is not None and entry_signal_line is not None and entry_macd > entry_signal_line)
     
     # Jika posisi belum aktif dan kondisi entry terpenuhi, berikan sinyal BUY
