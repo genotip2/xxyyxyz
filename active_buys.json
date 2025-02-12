@@ -178,5 +178,11 @@
         "time": "2025-02-12T21:17:39.260706",
         "tp1_hit": false,
         "tp1_price": null
+    },
+    "RAYUSDT": {
+        "price": 5.2,
+        "time": "2025-02-12T21:37:31.014307",
+        "tp1_hit": false,
+        "tp1_price": null
     }
 }
