@@ -5,12 +5,6 @@
         "tp1_hit": false,
         "tp1_price": null
     },
-    "SUSDT": {
-        "price": 0.4796,
-        "time": "2025-02-12T14:18:01.173057",
-        "tp1_hit": false,
-        "tp1_price": null
-    },
     "SHIBUSDT": {
         "price": 1.614e-05,
         "time": "2025-02-12T15:20:37.197505",
@@ -26,6 +20,12 @@
     "SYNUSDT": {
         "price": 0.4835,
         "time": "2025-02-12T15:20:43.276376",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "GMTUSDT": {
+        "price": 0.0661,
+        "time": "2025-02-12T15:40:04.650960",
         "tp1_hit": false,
         "tp1_price": null
     }
