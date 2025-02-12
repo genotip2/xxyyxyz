@@ -15,11 +15,13 @@ ACTIVE_BUYS_FILE = 'active_buys.json'
 ACTIVE_BUYS = {}
 
 # Parameter trading
-PROFIT_TARGET_PERCENTAGE = 5    # Target profit 5%
-STOP_LOSS_PERCENTAGE = 2        # Stop loss 2%
-MAX_HOLD_DURATION_HOUR = 24     # Durasi hold maksimum 24 jam
-PAIR_TO_ANALYZE = 100           # Jumlah pair yang akan dianalisis
-RSI_LIMIT = 50           # Batas atas RSI untuk entry
+PROFIT_TARGET_PERCENTAGE_1 = 5    # Target profit TP1 5% (dihitung dari harga entry)
+PROFIT_TARGET_PERCENTAGE_2 = 8    # Target profit TP2 8% (dihitung dari harga entry)
+STOP_LOSS_PERCENTAGE = 2          # Stop loss 2% (dihitung dari harga entry)
+EXIT_TRADE_TARGET = 2             # Exit Trade target 2% (dihitung dari harga TP1, digunakan setelah TP1 tercapai)
+MAX_HOLD_DURATION_HOUR = 24       # Durasi hold maksimum 24 jam
+PAIR_TO_ANALYZE = 100             # Jumlah pair yang akan dianalisis
+RSI_LIMIT = 55                    # Batas atas RSI untuk entry
 
 # ==============================
 # FUNGSI UTITAS: LOAD & SAVE POSITION
@@ -35,7 +37,9 @@ def load_active_buys():
             ACTIVE_BUYS = {
                 pair: {
                     'price': d['price'],
-                    'time': datetime.fromisoformat(d['time'])
+                    'time': datetime.fromisoformat(d['time']),
+                    'tp1_hit': d.get('tp1_hit', False),
+                    'tp1_price': d.get('tp1_price', None)
                 }
                 for pair, d in data.items()
             }
@@ -52,7 +56,9 @@ def save_active_buys():
         for pair, d in ACTIVE_BUYS.items():
             data[pair] = {
                 'price': d['price'],
-                'time': d['time'].isoformat()
+                'time': d['time'].isoformat(),
+                'tp1_hit': d.get('tp1_hit', False),
+                'tp1_price': d.get('tp1_price', None)
             }
         with open(ACTIVE_BUYS_FILE, 'w') as f:
             json.dump(data, f, indent=4)
@@ -110,9 +116,19 @@ def generate_signal(pair):
     """
     Hasilkan sinyal trading dengan logika:
       - BUY: Jika tren 1H bullish (RECOMMENDATION 'BUY' atau 'STRONG_BUY')
-             dan terjadi pullback pada 15M (RSI < 40 dan MACD > Signal)
+             dan terjadi pullback pada 15M (RSI < RSI_LIMIT, terdapat pembalikan pada RSI, dan MACD > Signal)
              serta posisi belum aktif.
-      - EXIT (SELL/TAKE PROFIT/STOP LOSS/EXPIRED): Jika posisi aktif dan salah satu kondisi exit terpenuhi.
+      - EXIT (SELL/TAKE PROFIT/STOP LOSS/EXIT TRADE/EXPIRED):
+            Jika posisi aktif dan salah satu kondisi exit terpenuhi:
+              * Stop Loss: jika profit (dari entry) turun mencapai -STOP_LOSS_PERCENTAGE.
+              * TAKE PROFIT 1: Jika profit (dihitung dari entry) mencapai PROFIT_TARGET_PERCENTAGE_1,
+                               maka posisi diberi tanda TP1 dan harga TP1 dicatat (tetap tidak keluar).
+              * EXIT TRADE: Setelah TP1 tercapai, jika harga turun dari TP1 sebesar EXIT_TRADE_TARGET,
+                            maka kirim sinyal EXIT TRADE dengan informasi tambahan.
+              * TAKE PROFIT 2: Jika profit (dihitung dari entry) mencapai PROFIT_TARGET_PERCENTAGE_2,
+                               maka posisi exit.
+              * SELL: Jika tren 1H sudah tidak bullish.
+              * EXPIRED: Jika durasi hold melebihi MAX_HOLD_DURATION_HOUR.
     """
     # Analisis pada timeframe 1H (sebagai acuan tren utama)
     trend_analysis = analyze_pair_interval(pair, Interval.INTERVAL_1_HOUR)
@@ -134,28 +150,52 @@ def generate_signal(pair):
     if entry_close is None:
         return None, None, "Harga close 15M tidak tersedia."
 
-    # Kondisi pullback pada 15M: RSI < 40 dan MACD > Signal
+    # Kondisi pullback pada 15M: RSI < RSI_LIMIT, pembalikan (RSI naik dibanding periode sebelumnya), dan MACD > Signal
     pullback_entry = (entry_rsi is not None and entry_rsi < RSI_LIMIT) and \
                      (entry_rsi is not None and previous_rsi is not None and entry_rsi > previous_rsi) and \
                      (entry_macd is not None and entry_signal_line is not None and entry_macd > entry_signal_line)
     
-    # Jika posisi belum aktif dan kondisi entry terpenuhi
+    # Jika posisi belum aktif dan kondisi entry terpenuhi, berikan sinyal BUY
     if pair not in ACTIVE_BUYS and trend_bullish and pullback_entry:
         details = f"1H: {trend_rec}, 15M RSI: {entry_rsi:.2f}, MACD: Bullish"
         return "BUY", entry_close, details
 
-    # Jika posisi sudah aktif, periksa kondisi exit
+    # Jika posisi sudah aktif, periksa kondisi exit dan target profit
     if pair in ACTIVE_BUYS:
-        entry_price = ACTIVE_BUYS[pair]['price']
-        profit = (entry_close - entry_price) / entry_price * 100
-        holding_duration = datetime.now() - ACTIVE_BUYS[pair]['time']
-
-        if profit >= PROFIT_TARGET_PERCENTAGE:
-            return "TAKE PROFIT", entry_close, f"Profit tercapai"
-        if profit <= -STOP_LOSS_PERCENTAGE:
-            return "STOP LOSS", entry_close, f"Stop loss tercapai"
+        data = ACTIVE_BUYS[pair]
+        holding_duration = datetime.now() - data['time']
         if holding_duration > timedelta(hours=MAX_HOLD_DURATION_HOUR):
-            return "EXPIRED", entry_close, f"Durasi hold maksimal"
+            return "EXPIRED", entry_close, f"Durasi hold maksimal ({str(holding_duration).split('.')[0]})"
+        
+        entry_price = data['price']
+        profit_from_entry = (entry_close - entry_price) / entry_price * 100
+
+        # Cek stop loss berdasarkan harga entry (untuk antisipasi penurunan mendadak)
+        if profit_from_entry <= -STOP_LOSS_PERCENTAGE:
+            return "STOP LOSS", entry_close, "Stop loss tercapai (berdasarkan entry)"
+        
+        # Cek target TP2 (dihitung dari entry)
+        if profit_from_entry >= PROFIT_TARGET_PERCENTAGE_2:
+            return "TAKE PROFIT 2", entry_close, f"TP2 tercapai dengan profit {profit_from_entry:.2f}% (dari entry)"
+        
+        # Jika TP1 belum tercapai dan profit dari entry mencapai target TP1, beri sinyal TAKE PROFIT 1
+        if not data.get('tp1_hit', False) and profit_from_entry >= PROFIT_TARGET_PERCENTAGE_1:
+            ACTIVE_BUYS[pair]['tp1_hit'] = True
+            ACTIVE_BUYS[pair]['tp1_price'] = entry_close
+            return "TAKE PROFIT 1", entry_close, f"TP1 tercapai dengan profit {profit_from_entry:.2f}% (dari entry)"
+        
+        # Jika TP1 sudah tercapai, hitung exit trade (dihitung dari harga TP1)
+        if data.get('tp1_hit', False):
+            tp1_price = data.get('tp1_price')
+            exit_trade_profit = (entry_close - tp1_price) / tp1_price * 100
+            if exit_trade_profit <= -EXIT_TRADE_TARGET:
+                details = (f"Exit Trade: Harga turun 2% dari TP1\n"
+                           f"▫️ Entry Price: {entry_price:.8f}\n"
+                           f"▫️ TP1 Price: {tp1_price:.8f}\n"
+                           f"▫️ Profit (dari entry): {profit_from_entry:.2f}%")
+                return "EXIT TRADE", entry_close, details
+        
+        # Jika tren 1H sudah tidak bullish, keluarkan sinyal SELL
         if not trend_bullish:
             return "SELL", entry_close, f"Trend 1H Bearish ({trend_rec})"
     
@@ -169,13 +209,17 @@ def send_telegram_alert(signal_type, pair, current_price, details=""):
     """
     Mengirim notifikasi ke Telegram.
     Untuk sinyal BUY, posisi disimpan ke ACTIVE_BUYS.
-    Untuk sinyal exit (SELL, TAKE PROFIT, STOP LOSS, EXPIRED) posisi akan dihapus.
+    Untuk sinyal exit:
+      - TAKE PROFIT 1: Posisi tidak dihapus, hanya diberi tanda (tp1_hit) dan dicatat harga TP1.
+      - EXIT TRADE, TAKE PROFIT 2, SELL, STOP LOSS, EXPIRED: Posisi dihapus.
     """
     display_pair = f"{pair[:-4]}/USDT"
     emoji = {
         'BUY': '🚀',
         'SELL': '⚠️',
-        'TAKE PROFIT': '✅',
+        'TAKE PROFIT 1': '✅',
+        'TAKE PROFIT 2': '🎉',
+        'EXIT TRADE': '🚪',
         'STOP LOSS': '🛑',
         'EXPIRED': '⌛'
     }.get(signal_type, 'ℹ️')
@@ -186,19 +230,32 @@ def send_telegram_alert(signal_type, pair, current_price, details=""):
     if details:
         message += f"📝 *Kondisi:* {details}\n"
 
-    # Jika BUY, simpan entry
+    # Jika BUY, simpan entry baru
     if signal_type == "BUY":
-        ACTIVE_BUYS[pair] = {'price': current_price, 'time': datetime.now()}
-    else:
-        # Jika posisi aktif, tampilkan info entry dan hitung profit
+        ACTIVE_BUYS[pair] = {
+            'price': current_price,
+            'time': datetime.now(),
+            'tp1_hit': False,
+            'tp1_price': None
+        }
+    # Untuk TAKE PROFIT 1, tampilkan informasi entry tanpa menghapus posisi
+    elif signal_type == "TAKE PROFIT 1":
         if pair in ACTIVE_BUYS:
             entry_price = ACTIVE_BUYS[pair]['price']
             profit = (current_price - entry_price) / entry_price * 100
             duration = datetime.now() - ACTIVE_BUYS[pair]['time']
             message += f"▫️ *Entry Price:* ${entry_price:.8f}\n"
-            message += f"💰 *{'Profit' if profit > 0 else 'Loss'}:* {profit:+.2f}%\n"
+            message += f"💰 *Profit (dari entry):* {profit:+.2f}%\n"
             message += f"🕒 *Duration:* {str(duration).split('.')[0]}\n"
-            # Hapus posisi setelah exit
+    # Untuk sinyal exit (EXIT TRADE, TAKE PROFIT 2, SELL, STOP LOSS, EXPIRED), tampilkan detail entry dan hapus posisi
+    else:
+        if pair in ACTIVE_BUYS:
+            entry_price = ACTIVE_BUYS[pair]['price']
+            profit = (current_price - entry_price) / entry_price * 100
+            duration = datetime.now() - ACTIVE_BUYS[pair]['time']
+            message += f"▫️ *Entry Price:* ${entry_price:.8f}\n"
+            message += f"💰 *Profit (dari entry):* {profit:+.2f}%\n"
+            message += f"🕒 *Duration:* {str(duration).split('.')[0]}\n"
             del ACTIVE_BUYS[pair]
 
     print(f"📢 Mengirim alert:\n{message}")
@@ -228,7 +285,6 @@ def main():
                 print(f"📝 Details: {details}")
                 send_telegram_alert(signal, pair, current_price, details)
             else:
-                # Hanya tampilkan notifikasi jika tidak ada sinyal
                 print("ℹ️ Tidak ada sinyal untuk pair ini.")
         except Exception as e:
             print(f"⚠️ Error di {pair}: {e}")
@@ -240,7 +296,7 @@ def main():
         if holding_duration > timedelta(hours=MAX_HOLD_DURATION_HOUR):
             entry_analysis = analyze_pair_interval(pair, Interval.INTERVAL_15_MINUTES)
             current_price = entry_analysis.indicators.get('close') if entry_analysis else 0
-            send_telegram_alert("EXPIRED", pair, current_price, f"Durasi hold: {holding_duration}")
+            send_telegram_alert("EXPIRED", pair, current_price, f"Durasi hold: {str(holding_duration).split('.')[0]}")
 
     save_active_buys()
 
