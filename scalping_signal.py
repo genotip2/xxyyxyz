@@ -143,7 +143,6 @@ def generate_signal(pair):
         return None, None, "Analisis 15M gagal."
     entry_close = entry_analysis.indicators.get('close')
     entry_rsi = entry_analysis.indicators.get('RSI')
-    previous_rsi = entry_analysis.indicators.get('RSI[1]')
     entry_ema10 = entry_analysis.indicators.get('EMA10')
     entry_ema20 = entry_analysis.indicators.get('EMA20')
     entry_macd = entry_analysis.indicators.get('MACD.macd')
