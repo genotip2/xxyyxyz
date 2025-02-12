@@ -10,11 +10,5 @@
         "time": "2025-02-12T14:18:01.173057",
         "tp1_hit": false,
         "tp1_price": null
-    },
-    "BERAUSDT": {
-        "price": 5.626,
-        "time": "2025-02-12T14:40:31.290623",
-        "tp1_hit": false,
-        "tp1_price": null
     }
 }
