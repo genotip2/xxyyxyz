@@ -118,5 +118,35 @@
         "time": "2025-02-12T17:39:05.461047",
         "tp1_hit": false,
         "tp1_price": null
+    },
+    "FDUSDUSDT": {
+        "price": 0.9991,
+        "time": "2025-02-12T17:51:36.958119",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "SUIUSDT": {
+        "price": 3.4032,
+        "time": "2025-02-12T17:51:37.650732",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "HBARUSDT": {
+        "price": 0.22801,
+        "time": "2025-02-12T17:51:39.597986",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "APTUSDT": {
+        "price": 6.08,
+        "time": "2025-02-12T17:51:41.091262",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "RUNEUSDT": {
+        "price": 1.395,
+        "time": "2025-02-12T17:51:41.676928",
+        "tp1_hit": false,
+        "tp1_price": null
     }
 }
