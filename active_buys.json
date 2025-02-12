@@ -1,10 +1,4 @@
 {
-    "BTCUSDT": {
-        "price": 96890.14,
-        "time": "2025-02-12T18:26:36.812021",
-        "tp1_hit": false,
-        "tp1_price": null
-    },
     "ETHUSDT": {
         "price": 2656.18,
         "time": "2025-02-12T18:26:37.571550",
@@ -110,6 +104,24 @@
     "FILUSDT": {
         "price": 3.378,
         "time": "2025-02-12T18:45:28.702397",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "TAOUSDT": {
+        "price": 399.4,
+        "time": "2025-02-12T19:15:27.698109",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "BERAUSDT": {
+        "price": 5.791,
+        "time": "2025-02-12T19:15:30.936634",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "CRVUSDT": {
+        "price": 0.5322,
+        "time": "2025-02-12T19:15:32.595547",
         "tp1_hit": false,
         "tp1_price": null
     }
