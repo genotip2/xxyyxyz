@@ -35,12 +35,6 @@
         "tp1_hit": false,
         "tp1_price": null
     },
-    "AVAXUSDT": {
-        "price": 25.57,
-        "time": "2025-02-12T18:26:49.705332",
-        "tp1_hit": true,
-        "tp1_price": 27.05
-    },
     "RUNEUSDT": {
         "price": 1.389,
         "time": "2025-02-12T18:26:50.865966",
@@ -173,9 +167,21 @@
         "tp1_hit": false,
         "tp1_price": null
     },
-    "TRUMPUSDT": {
-        "price": 15.39,
-        "time": "2025-02-12T22:51:55.233523",
+    "TSTUSDT": {
+        "price": 0.189,
+        "time": "2025-02-12T23:51:46.777357",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "ENAUSDT": {
+        "price": 0.4485,
+        "time": "2025-02-12T23:51:48.481652",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "BONKUSDT": {
+        "price": 1.817e-05,
+        "time": "2025-02-12T23:51:52.300032",
         "tp1_hit": false,
         "tp1_price": null
     }
