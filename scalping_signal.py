@@ -189,7 +189,7 @@ def generate_signal(pair):
             exit_trade_profit = (entry_close - tp1_price) / tp1_price * 100
             if exit_trade_profit <= -EXIT_TRADE_TARGET:
                 details = (f"Exit Trade: Harga turun {exit_trade_profit:.2f}% dari TP1\n"
-                           f"▫️ TP1 Price: {tp1_price:.8f}\n"
+                           f"▫️ TP1 Price: {tp1_price:.8f}\n")
                 return "EXIT TRADE", entry_close, details
         
         # Jika tren 1H sudah tidak bullish, keluarkan sinyal SELL
