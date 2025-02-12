@@ -10,5 +10,23 @@
         "time": "2025-02-12T14:18:01.173057",
         "tp1_hit": false,
         "tp1_price": null
+    },
+    "SHIBUSDT": {
+        "price": 1.614e-05,
+        "time": "2025-02-12T15:20:37.197505",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "RUNEUSDT": {
+        "price": 1.365,
+        "time": "2025-02-12T15:20:37.948239",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "SYNUSDT": {
+        "price": 0.4835,
+        "time": "2025-02-12T15:20:43.276376",
+        "tp1_hit": false,
+        "tp1_price": null
     }
 }
