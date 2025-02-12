@@ -20,7 +20,7 @@ PROFIT_TARGET_PERCENTAGE_2 = 8    # Target profit TP2 8% (dihitung dari harga en
 STOP_LOSS_PERCENTAGE = 2          # Stop loss 2% (dihitung dari harga entry)
 EXIT_TRADE_TARGET = 2             # Exit Trade target 2% (dihitung dari harga TP1, digunakan setelah TP1 tercapai)
 MAX_HOLD_DURATION_HOUR = 24       # Durasi hold maksimum 24 jam
-PAIR_TO_ANALYZE = 100             # Jumlah pair yang akan dianalisis
+PAIR_TO_ANALYZE = 30             # Jumlah pair yang akan dianalisis
 
 # ==============================
 # FUNGSI UTITAS: LOAD & SAVE POSITION
