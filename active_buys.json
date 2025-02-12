@@ -166,5 +166,17 @@
         "time": "2025-02-12T20:38:51.527354",
         "tp1_hit": false,
         "tp1_price": null
+    },
+    "TIAUSDT": {
+        "price": 3.218,
+        "time": "2025-02-12T21:17:36.798219",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "COOKIEUSDT": {
+        "price": 0.2075,
+        "time": "2025-02-12T21:17:39.260706",
+        "tp1_hit": false,
+        "tp1_price": null
     }
 }
