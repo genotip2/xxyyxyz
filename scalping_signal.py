@@ -21,7 +21,7 @@ STOP_LOSS_PERCENTAGE = 2          # Stop loss 2% (dihitung dari harga entry)
 EXIT_TRADE_TARGET = 2             # Exit Trade target 2% (dihitung dari harga TP1, digunakan setelah TP1 tercapai)
 MAX_HOLD_DURATION_HOUR = 24       # Durasi hold maksimum 24 jam
 PAIR_TO_ANALYZE = 100             # Jumlah pair yang akan dianalisis
-RSI_LIMIT = 55                    # Batas atas RSI untuk entry
+RSI_LIMIT = 60                    # Batas atas RSI untuk entry
 
 # ==============================
 # FUNGSI UTITAS: LOAD & SAVE POSITION
@@ -144,6 +144,8 @@ def generate_signal(pair):
     entry_close = entry_analysis.indicators.get('close')
     entry_rsi = entry_analysis.indicators.get('RSI')
     previous_rsi = entry_analysis.indicators.get('RSI[1]')
+    entry_ema10 = entry_analysis.indicators.get('EMA10')
+    entry_ema20 = entry_analysis.indicators.get('EMA20')
     entry_macd = entry_analysis.indicators.get('MACD.macd')
     entry_signal_line = entry_analysis.indicators.get('MACD.signal')
     
@@ -154,6 +156,7 @@ def generate_signal(pair):
     pullback_entry = (entry_rsi is not None and entry_rsi < RSI_LIMIT) and \
                      (entry_rsi is not None and previous_rsi is not None and entry_rsi > previous_rsi) and \
                      (entry_macd is not None and entry_signal_line is not None and entry_macd > entry_signal_line)
+                     (entry_ema10 is not None and entry_ema20 is not None and entry_ema10 > entry_ema20)
     
     # Jika posisi belum aktif dan kondisi entry terpenuhi, berikan sinyal BUY
     if pair not in ACTIVE_BUYS and trend_bullish and pullback_entry:
