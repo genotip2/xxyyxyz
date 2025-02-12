@@ -1,0 +1,104 @@
+{
+    "BTCUSDT": {
+        "price": 96890.14,
+        "time": "2025-02-12T18:26:36.812021",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "ETHUSDT": {
+        "price": 2656.18,
+        "time": "2025-02-12T18:26:37.571550",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "XRPUSDT": {
+        "price": 2.436,
+        "time": "2025-02-12T18:26:38.476854",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "SUIUSDT": {
+        "price": 3.3529,
+        "time": "2025-02-12T18:26:39.575507",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "DOGEUSDT": {
+        "price": 0.25865,
+        "time": "2025-02-12T18:26:40.342739",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "ADAUSDT": {
+        "price": 0.7821,
+        "time": "2025-02-12T18:26:41.267347",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "LTCUSDT": {
+        "price": 119.97,
+        "time": "2025-02-12T18:26:45.513146",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "TRXUSDT": {
+        "price": 0.2441,
+        "time": "2025-02-12T18:26:46.445267",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "TAOUSDT": {
+        "price": 402.8,
+        "time": "2025-02-12T18:26:47.948472",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "AVAXUSDT": {
+        "price": 25.57,
+        "time": "2025-02-12T18:26:49.705332",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "RUNEUSDT": {
+        "price": 1.389,
+        "time": "2025-02-12T18:26:50.865966",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "XLMUSDT": {
+        "price": 0.3233,
+        "time": "2025-02-12T18:26:52.185203",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "CRVUSDT": {
+        "price": 0.5341,
+        "time": "2025-02-12T18:26:52.919118",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "UNIUSDT": {
+        "price": 9.619,
+        "time": "2025-02-12T18:26:53.760191",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "LDOUSDT": {
+        "price": 1.59,
+        "time": "2025-02-12T18:26:55.140669",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "ALGOUSDT": {
+        "price": 0.2932,
+        "time": "2025-02-12T18:26:56.544409",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "MEUSDT": {
+        "price": 2.035,
+        "time": "2025-02-12T18:26:57.415397",
+        "tp1_hit": false,
+        "tp1_price": null
+    }
+}
