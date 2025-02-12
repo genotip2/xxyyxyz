@@ -17,15 +17,21 @@
         "tp1_hit": false,
         "tp1_price": null
     },
-    "SYNUSDT": {
-        "price": 0.4835,
-        "time": "2025-02-12T15:20:43.276376",
-        "tp1_hit": false,
-        "tp1_price": null
-    },
     "GMTUSDT": {
         "price": 0.0661,
         "time": "2025-02-12T15:40:04.650960",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "ENSUSDT": {
+        "price": 25.87,
+        "time": "2025-02-12T15:51:53.315607",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "SCRUSDT": {
+        "price": 0.657,
+        "time": "2025-02-12T15:51:54.070792",
         "tp1_hit": false,
         "tp1_price": null
     }
