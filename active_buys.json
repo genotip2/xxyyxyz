@@ -28,5 +28,11 @@
         "time": "2025-02-13T19:30:40.150257",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "NEARUSDT": {
+        "price": 3.349,
+        "time": "2025-02-13T20:27:06.148160",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
