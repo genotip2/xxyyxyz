@@ -76,5 +76,17 @@
         "time": "2025-02-13T21:01:01.847945",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "DOTUSDT": {
+        "price": 5.166,
+        "time": "2025-02-13T21:24:02.425182",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "ETHFIUSDT": {
+        "price": 1.164,
+        "time": "2025-02-13T21:24:04.303864",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
