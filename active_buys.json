@@ -34,5 +34,35 @@
         "time": "2025-02-13T20:27:06.148160",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "ALGOUSDT": {
+        "price": 0.2956,
+        "time": "2025-02-13T20:34:56.781055",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "XLMUSDT": {
+        "price": 0.3314,
+        "time": "2025-02-13T20:34:57.551457",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "IOUSDT": {
+        "price": 1.417,
+        "time": "2025-02-13T20:34:59.570630",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "FILUSDT": {
+        "price": 3.41,
+        "time": "2025-02-13T20:35:00.445090",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "INJUSDT": {
+        "price": 15.06,
+        "time": "2025-02-13T20:35:01.312965",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
