@@ -83,12 +83,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "USDCUSDT": {
-        "price": 1,
-        "time": "2025-02-13T22:45:49.470113",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "GALAUSDT": {
         "price": 0.02328,
         "time": "2025-02-13T23:24:32.659960",
@@ -104,6 +98,12 @@
     "DOGEUSDT": {
         "price": 0.26145,
         "time": "2025-02-13T23:30:42.852895",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "SHIBUSDT": {
+        "price": 1.631e-05,
+        "time": "2025-02-13T23:45:38.595542",
         "trailing_stop_active": false,
         "highest_price": null
     }
