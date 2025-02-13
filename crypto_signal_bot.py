@@ -15,12 +15,13 @@ ACTIVE_BUYS_FILE = 'active_buys.json'
 ACTIVE_BUYS = {}
 
 # Parameter trading
-TAKE_PROFIT_PERCENTAGE = 5    # Target take profit 5% (dihitung dari harga entry)
-STOP_LOSS_PERCENTAGE = 2      # Stop loss 2% (dihitung dari harga entry)
-TRAILING_STOP_PERCENTAGE = 2  # Trailing stop 2% (dari harga tertinggi setelah take profit tercapai)
-MAX_HOLD_DURATION_HOUR = 24   # Durasi hold maksimum 24 jam
-PAIR_TO_ANALYZE = 50          # Jumlah pair yang akan dianalisis
-RSI_LIMIT = 60                # Batas atas RSI untuk entry
+TAKE_PROFIT_PERCENTAGE = 5          # Target take profit 5% (dihitung dari harga entry)
+STOP_LOSS_PERCENTAGE = 2             # Stop loss 2% (dihitung dari harga entry)
+TRAILING_STOP_PERCENTAGE = 2     # Trailing stop 2% (dari harga tertinggi setelah take profit tercapai)
+MAX_HOLD_DURATION_HOUR = 24    # Durasi hold maksimum 24 jam
+PAIR_TO_ANALYZE = 50                        # Jumlah pair yang akan dianalisis
+RSI_LIMIT = 60                                        # Batas atas RSI untuk entry
+MIN_RECOMMEND_MA = 0.7               # Minimal nilai recommend.ma pada timeframe 1H untuk dianggap bullish
 
 # ==============================
 # FUNGSI UTITAS: LOAD & SAVE POSITION
@@ -114,7 +115,7 @@ def analyze_pair_interval(pair, interval):
 def generate_signal(pair):
     """
     Hasilkan sinyal trading dengan logika:
-      - BUY: Jika tren 1H bullish (RECOMMENDATION 'BUY' atau 'STRONG_BUY')
+      - BUY: Jika tren 1H bullish (RECOMMENDATION 'BUY' atau 'STRONG_BUY' dan recommend.ma > MIN_RECOMMEND_MA)
              dan terjadi pullback pada RSI < RSI_LIMIT, EMA 10 > EMA 20 dan MACD > Signal,
              serta posisi belum aktif.
       - EXIT (SELL/TAKE PROFIT/STOP LOSS/EXPIRED/TRAILING STOP):
@@ -132,6 +133,14 @@ def generate_signal(pair):
         return None, None, "Analisis 1H gagal."
     trend_rec = trend_analysis.summary.get('RECOMMENDATION')
     trend_bullish = trend_rec in ['BUY', 'STRONG_BUY']
+    
+    # Tambahan: cek nilai recommend.ma harus lebih besar dari MIN_RECOMMEND_MA
+    trend_recommend_ma = trend_analysis.indicators.get('Recommend.MA')
+    if trend_recommend_ma is None:
+        return None, None, "Data recommend.ma tidak tersedia pada analisis 1H."
+    if trend_recommend_ma <= MIN_RECOMMEND_MA:
+        # Jika nilai recommend.ma kurang, anggap tidak bullish
+        trend_bullish = False
 
     # Analisis pada timeframe 15M untuk entry/pullback
     entry_analysis = analyze_pair_interval(pair, Interval.INTERVAL_15_MINUTES)
@@ -147,14 +156,15 @@ def generate_signal(pair):
     if entry_close is None:
         return None, None, "Harga close 15M tidak tersedia."
 
-    # Kondisi pullback pada RSI < RSI_LIMIT, EMA 10 > EMA 20, dan MACD > Signal
+    # Kondisi pullback: RSI < RSI_LIMIT, EMA 10 > EMA 20, dan MACD > Signal
     pullback_entry = (entry_rsi is not None and entry_rsi < RSI_LIMIT) and \
                      (entry_ema10 is not None and entry_ema20 is not None and entry_ema10 > entry_ema20) and \
                      (entry_macd is not None and entry_signal_line is not None and entry_macd > entry_signal_line)
     
     # Jika posisi belum aktif dan kondisi entry terpenuhi, berikan sinyal BUY
     if pair not in ACTIVE_BUYS and trend_bullish and pullback_entry:
-        details = f"1H: {trend_rec}, EMA 10 & EMA 20 Cross, MACD: Bullish, RSI M15: {entry_rsi:.2f}"
+        details = (f"1H: {trend_rec}, Recommend.MA: {trend_recommend_ma:.2f}, "
+                   f"EMA 10 & EMA 20 Cross, MACD: Bullish, RSI M15: {entry_rsi:.2f}")
         return "BUY", entry_close, details
 
     # Jika posisi sudah aktif, periksa kondisi exit dan target profit
@@ -169,7 +179,7 @@ def generate_signal(pair):
 
         # Cek stop loss berdasarkan harga entry
         if profit_from_entry <= -STOP_LOSS_PERCENTAGE:
-            return "STOP LOSS", entry_close, "Limit stop loss tercapai."
+            return "STOP LOSS", entry_close, "Harga turun ke stop loss target."
         
         # Jika take profit tercapai dan trailing stop belum aktif, aktifkan trailing stop
         if not data.get('trailing_stop_active', False) and profit_from_entry >= TAKE_PROFIT_PERCENTAGE:
@@ -186,7 +196,7 @@ def generate_signal(pair):
                     send_telegram_alert("NEW HIGH", pair, entry_close, f"New highest price (sebelumnya: {prev_high:.8f})")
             trailing_stop_price = ACTIVE_BUYS[pair]['highest_price'] * (1 - TRAILING_STOP_PERCENTAGE / 100)
             if entry_close < trailing_stop_price:
-                return "TRAILING STOP", entry_close, f"Harga turun ke trailing stop: {trailing_stop_price:.8f}"
+                return "TRAILING STOP", entry_close, f"Harga turun ke trailing stop target."
         
         # Jika tren 1H sudah tidak bullish, keluarkan sinyal SELL
         if not trend_bullish:
@@ -202,7 +212,8 @@ def send_telegram_alert(signal_type, pair, current_price, details=""):
     """
     Mengirim notifikasi ke Telegram.
     Untuk sinyal BUY, posisi disimpan ke ACTIVE_BUYS.
-    Untuk sinyal exit (SELL, TAKE PROFIT, STOP LOSS, EXPIRED, TRAILING STOP), posisi dihapus.
+    Untuk sinyal exit seperti SELL, STOP LOSS, EXPIRED, atau TRAILING STOP, posisi dihapus.
+    Sementara untuk sinyal TAKE PROFIT, hanya mengaktifkan trailing stop tanpa menghapus posisi.
     Untuk sinyal "NEW HIGH", posisi tidak dihapus.
     """
     display_pair = f"{pair[:-4]}/USDT"
@@ -230,8 +241,11 @@ def send_telegram_alert(signal_type, pair, current_price, details=""):
             'trailing_stop_active': False,
             'highest_price': None
         }
-    # Untuk sinyal exit (selain "NEW HIGH"), tampilkan detail entry dan hapus posisi
-    elif signal_type not in ["NEW HIGH"]:
+    # Untuk sinyal TAKE PROFIT, hanya mengirim alert (posisi tetap aktif dengan trailing stop)
+    elif signal_type == "TAKE PROFIT":
+        pass
+    # Untuk sinyal exit (SELL, STOP LOSS, EXPIRED, TRAILING STOP), tampilkan detail entry dan hapus posisi
+    elif signal_type in ["SELL", "STOP LOSS", "EXPIRED", "TRAILING STOP"]:
         if pair in ACTIVE_BUYS:
             entry_price = ACTIVE_BUYS[pair]['price']
             profit = (current_price - entry_price) / entry_price * 100
