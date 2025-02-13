@@ -106,5 +106,11 @@
         "time": "2025-02-13T21:45:53.030764",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "BIOUSDT": {
+        "price": 0.159,
+        "time": "2025-02-13T22:01:04.158686",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
