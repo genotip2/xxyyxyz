@@ -5,12 +5,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "TSTUSDT": {
-        "price": 0.191,
-        "time": "2025-02-13T04:24:51.818433",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "AIXBTUSDT": {
         "price": 0.2647,
         "time": "2025-02-13T04:24:55.735219",
@@ -20,6 +14,18 @@
     "LISTAUSDT": {
         "price": 0.3211,
         "time": "2025-02-13T04:38:13.107547",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "THEUSDT": {
+        "price": 0.8179,
+        "time": "2025-02-13T05:01:01.064936",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "BERAUSDT": {
+        "price": 6.156,
+        "time": "2025-02-13T05:01:03.227573",
         "trailing_stop_active": false,
         "highest_price": null
     }
