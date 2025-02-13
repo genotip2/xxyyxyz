@@ -29,17 +29,11 @@
         "tp1_hit": false,
         "tp1_price": null
     },
-    "TRXUSDT": {
-        "price": 0.2441,
-        "time": "2025-02-12T18:26:46.445267",
-        "tp1_hit": false,
-        "tp1_price": null
-    },
     "RUNEUSDT": {
         "price": 1.389,
         "time": "2025-02-12T18:26:50.865966",
-        "tp1_hit": false,
-        "tp1_price": null
+        "tp1_hit": true,
+        "tp1_price": 1.47
     },
     "XLMUSDT": {
         "price": 0.3233,
@@ -62,8 +56,8 @@
     "MEUSDT": {
         "price": 2.035,
         "time": "2025-02-12T18:26:57.415397",
-        "tp1_hit": false,
-        "tp1_price": null
+        "tp1_hit": true,
+        "tp1_price": 2.145
     },
     "FDUSDUSDT": {
         "price": 0.9991,
@@ -125,12 +119,6 @@
         "tp1_hit": false,
         "tp1_price": null
     },
-    "ZENUSDT": {
-        "price": 12.75,
-        "time": "2025-02-12T20:38:50.227368",
-        "tp1_hit": true,
-        "tp1_price": 13.6
-    },
     "PENDLEUSDT": {
         "price": 3.53,
         "time": "2025-02-12T20:38:51.527354",
@@ -170,12 +158,6 @@
     "TSTUSDT": {
         "price": 0.189,
         "time": "2025-02-12T23:51:46.777357",
-        "tp1_hit": false,
-        "tp1_price": null
-    },
-    "ENAUSDT": {
-        "price": 0.4485,
-        "time": "2025-02-12T23:51:48.481652",
         "tp1_hit": false,
         "tp1_price": null
     },
