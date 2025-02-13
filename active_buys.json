@@ -17,12 +17,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "INJUSDT": {
-        "price": 15.05,
-        "time": "2025-02-13T11:00:32.321732",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "CAKEUSDT": {
         "price": 3.002,
         "time": "2025-02-13T11:45:29.081856",
@@ -44,6 +38,12 @@
     "1000CATUSDT": {
         "price": 0.01619,
         "time": "2025-02-13T12:50:23.246783",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "DOTUSDT": {
+        "price": 5.156,
+        "time": "2025-02-13T13:15:23.885895",
         "trailing_stop_active": false,
         "highest_price": null
     }
