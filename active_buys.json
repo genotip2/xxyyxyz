@@ -5,12 +5,6 @@
         "trailing_stop_active": true,
         "highest_price": 0.8242
     },
-    "XRPUSDT": {
-        "price": 2.4521,
-        "time": "2025-02-13T19:00:40.759255",
-        "trailing_stop_active": true,
-        "highest_price": 2.5897
-    },
     "AAVEUSDT": {
         "price": 253.88,
         "time": "2025-02-13T19:20:39.083477",
@@ -83,12 +77,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "BNXUSDT": {
-        "price": 0.9133,
-        "time": "2025-02-13T21:30:47.410412",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "ARBUSDT": {
         "price": 0.4871,
         "time": "2025-02-13T21:45:53.030764",
@@ -98,12 +86,6 @@
     "BIOUSDT": {
         "price": 0.159,
         "time": "2025-02-13T22:01:04.158686",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "FLOKIUSDT": {
-        "price": 9.744e-05,
-        "time": "2025-02-13T22:28:10.631814",
         "trailing_stop_active": false,
         "highest_price": null
     },
