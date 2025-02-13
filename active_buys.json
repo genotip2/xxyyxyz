@@ -4,11 +4,5 @@
         "time": "2025-02-13T15:27:15.348929",
         "trailing_stop_active": false,
         "highest_price": null
-    },
-    "XRPUSDT": {
-        "price": 2.457,
-        "time": "2025-02-13T15:45:38.817083",
-        "trailing_stop_active": false,
-        "highest_price": null
     }
 }
