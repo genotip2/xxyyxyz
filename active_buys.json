@@ -1,0 +1,20 @@
+{
+    "XRPUSDT": {
+        "price": 2.4787,
+        "time": "2025-02-13T04:24:49.867082",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "TSTUSDT": {
+        "price": 0.191,
+        "time": "2025-02-13T04:24:51.818433",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "AIXBTUSDT": {
+        "price": 0.2647,
+        "time": "2025-02-13T04:24:55.735219",
+        "trailing_stop_active": false,
+        "highest_price": null
+    }
+}
