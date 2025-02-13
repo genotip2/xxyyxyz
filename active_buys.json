@@ -26,14 +26,8 @@
     "LTCUSDT": {
         "price": 119.97,
         "time": "2025-02-12T18:26:45.513146",
-        "tp1_hit": false,
-        "tp1_price": null
-    },
-    "RUNEUSDT": {
-        "price": 1.389,
-        "time": "2025-02-12T18:26:50.865966",
         "tp1_hit": true,
-        "tp1_price": 1.47
+        "tp1_price": 128.99
     },
     "XLMUSDT": {
         "price": 0.3233,
@@ -143,12 +137,6 @@
         "tp1_hit": false,
         "tp1_price": null
     },
-    "NEIROUSDT": {
-        "price": 0.00033761,
-        "time": "2025-02-12T22:17:47.743667",
-        "tp1_hit": true,
-        "tp1_price": 0.0003552
-    },
     "WBTCUSDT": {
         "price": 97295.07,
         "time": "2025-02-12T22:17:50.194212",
@@ -164,6 +152,12 @@
     "BONKUSDT": {
         "price": 1.817e-05,
         "time": "2025-02-12T23:51:52.300032",
+        "tp1_hit": false,
+        "tp1_price": null
+    },
+    "USDCUSDT": {
+        "price": 1,
+        "time": "2025-02-13T01:24:53.669974",
         "tp1_hit": false,
         "tp1_price": null
     }
