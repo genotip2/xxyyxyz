@@ -64,5 +64,11 @@
         "time": "2025-02-13T20:35:01.312965",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "OPUSDT": {
+        "price": 1.119,
+        "time": "2025-02-13T20:46:02.309898",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
