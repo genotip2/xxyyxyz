@@ -1,1 +1,8 @@
-{}
+{
+    "USDCUSDT": {
+        "price": 1,
+        "time": "2025-02-13T15:27:15.348929",
+        "trailing_stop_active": false,
+        "highest_price": null
+    }
+}
