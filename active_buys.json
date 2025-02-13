@@ -4,5 +4,17 @@
         "time": "2025-02-13T18:09:56.762880",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "XRPUSDT": {
+        "price": 2.4521,
+        "time": "2025-02-13T19:00:40.759255",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "DOTUSDT": {
+        "price": 5.167,
+        "time": "2025-02-13T19:00:43.291217",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
