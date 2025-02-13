@@ -1,14 +1,1 @@
-{
-    "ZENUSDT": {
-        "price": 14.96,
-        "time": "2025-02-13T11:45:31.370257",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "ALPACAUSDT": {
-        "price": 0.1642,
-        "time": "2025-02-13T14:00:54.623000",
-        "trailing_stop_active": false,
-        "highest_price": null
-    }
-}
+{}
