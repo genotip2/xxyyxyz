@@ -89,12 +89,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "SUIUSDT": {
-        "price": 3.5151,
-        "time": "2025-02-13T21:45:46.324571",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "ARBUSDT": {
         "price": 0.4871,
         "time": "2025-02-13T21:45:53.030764",
@@ -110,6 +104,12 @@
     "FLOKIUSDT": {
         "price": 9.744e-05,
         "time": "2025-02-13T22:28:10.631814",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "USDCUSDT": {
+        "price": 1,
+        "time": "2025-02-13T22:45:49.470113",
         "trailing_stop_active": false,
         "highest_price": null
     }
