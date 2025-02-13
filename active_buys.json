@@ -28,5 +28,17 @@
         "time": "2025-02-13T10:01:06.569652",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "XLMUSDT": {
+        "price": 0.329,
+        "time": "2025-02-13T10:31:22.926975",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "EIGENUSDT": {
+        "price": 1.708,
+        "time": "2025-02-13T10:31:23.805134",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
