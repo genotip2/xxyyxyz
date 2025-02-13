@@ -142,11 +142,5 @@
         "time": "2025-02-12T23:51:52.300032",
         "tp1_hit": false,
         "tp1_price": null
-    },
-    "USDCUSDT": {
-        "price": 1,
-        "time": "2025-02-13T01:24:53.669974",
-        "tp1_hit": false,
-        "tp1_price": null
     }
 }
