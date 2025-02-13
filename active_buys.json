@@ -5,12 +5,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "AAVEUSDT": {
-        "price": 253.86,
-        "time": "2025-02-13T10:01:06.569652",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "XLMUSDT": {
         "price": 0.329,
         "time": "2025-02-13T10:31:22.926975",
@@ -23,21 +17,9 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "DOTUSDT": {
-        "price": 5.168,
-        "time": "2025-02-13T10:45:41.287305",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "INJUSDT": {
         "price": 15.05,
         "time": "2025-02-13T11:00:32.321732",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "ADAUSDT": {
-        "price": 0.7831,
-        "time": "2025-02-13T11:30:41.629010",
         "trailing_stop_active": false,
         "highest_price": null
     },
@@ -56,6 +38,12 @@
     "LISTAUSDT": {
         "price": 0.3142,
         "time": "2025-02-13T12:13:05.322786",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "1000CATUSDT": {
+        "price": 0.01619,
+        "time": "2025-02-13T12:50:23.246783",
         "trailing_stop_active": false,
         "highest_price": null
     }
