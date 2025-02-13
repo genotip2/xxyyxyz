@@ -5,12 +5,6 @@
         "trailing_stop_active": true,
         "highest_price": 0.579
     },
-    "LDOUSDT": {
-        "price": 1.784,
-        "time": "2025-02-13T10:01:04.700655",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "APTUSDT": {
         "price": 6.16,
         "time": "2025-02-13T10:01:05.420583",
