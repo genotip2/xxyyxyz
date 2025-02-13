@@ -5,12 +5,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "THEUSDT": {
-        "price": 0.768,
-        "time": "2025-02-13T13:36:10.910726",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "ALPACAUSDT": {
         "price": 0.1642,
         "time": "2025-02-13T14:00:54.623000",
