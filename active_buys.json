@@ -74,8 +74,8 @@
     "BERAUSDT": {
         "price": 5.791,
         "time": "2025-02-12T19:15:30.936634",
-        "tp1_hit": false,
-        "tp1_price": null
+        "tp1_hit": true,
+        "tp1_price": 6.154
     },
     "CRVUSDT": {
         "price": 0.5322,
@@ -110,12 +110,6 @@
     "PENDLEUSDT": {
         "price": 3.53,
         "time": "2025-02-12T20:38:51.527354",
-        "tp1_hit": false,
-        "tp1_price": null
-    },
-    "TIAUSDT": {
-        "price": 3.218,
-        "time": "2025-02-12T21:17:36.798219",
         "tp1_hit": false,
         "tp1_price": null
     },
