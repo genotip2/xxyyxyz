@@ -11,12 +11,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "THEUSDT": {
-        "price": 0.8179,
-        "time": "2025-02-13T05:01:01.064936",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "BERAUSDT": {
         "price": 6.156,
         "time": "2025-02-13T05:01:03.227573",
