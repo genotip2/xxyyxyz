@@ -1,10 +1,4 @@
 {
-    "ADAUSDT": {
-        "price": 0.7848,
-        "time": "2025-02-13T18:09:56.762880",
-        "trailing_stop_active": true,
-        "highest_price": 0.8242
-    },
     "AAVEUSDT": {
         "price": 253.88,
         "time": "2025-02-13T19:20:39.083477",
@@ -92,6 +86,12 @@
     "USDCUSDT": {
         "price": 1,
         "time": "2025-02-13T22:45:49.470113",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "GALAUSDT": {
+        "price": 0.02328,
+        "time": "2025-02-13T23:24:32.659960",
         "trailing_stop_active": false,
         "highest_price": null
     }
