@@ -5,12 +5,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "CAKEUSDT": {
-        "price": 3.002,
-        "time": "2025-02-13T11:45:29.081856",
-        "trailing_stop_active": true,
-        "highest_price": 3.157
-    },
     "ZENUSDT": {
         "price": 14.96,
         "time": "2025-02-13T11:45:31.370257",
@@ -20,12 +14,6 @@
     "LISTAUSDT": {
         "price": 0.3142,
         "time": "2025-02-13T12:13:05.322786",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "1000CATUSDT": {
-        "price": 0.01619,
-        "time": "2025-02-13T12:50:23.246783",
         "trailing_stop_active": false,
         "highest_price": null
     },
@@ -50,6 +38,12 @@
     "XVSUSDT": {
         "price": 8.24,
         "time": "2025-02-13T13:45:46.086758",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "ALPACAUSDT": {
+        "price": 0.1642,
+        "time": "2025-02-13T14:00:54.623000",
         "trailing_stop_active": false,
         "highest_price": null
     }
