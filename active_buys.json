@@ -1,10 +1,4 @@
 {
-    "BNBUSDT": {
-        "price": 709.63,
-        "time": "2025-02-13T10:45:38.604766",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "ZENUSDT": {
         "price": 14.96,
         "time": "2025-02-13T11:45:31.370257",
@@ -17,27 +11,9 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "DOTUSDT": {
-        "price": 5.156,
-        "time": "2025-02-13T13:15:23.885895",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "ADAUSDT": {
-        "price": 0.787,
-        "time": "2025-02-13T13:36:09.955627",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "THEUSDT": {
         "price": 0.768,
         "time": "2025-02-13T13:36:10.910726",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "XVSUSDT": {
-        "price": 8.24,
-        "time": "2025-02-13T13:45:46.086758",
         "trailing_stop_active": false,
         "highest_price": null
     },
