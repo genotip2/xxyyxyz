@@ -1,16 +1,4 @@
 {
-    "APTUSDT": {
-        "price": 6.16,
-        "time": "2025-02-13T10:01:05.420583",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "XLMUSDT": {
-        "price": 0.329,
-        "time": "2025-02-13T10:31:22.926975",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "BNBUSDT": {
         "price": 709.63,
         "time": "2025-02-13T10:45:38.604766",
@@ -56,6 +44,12 @@
     "THEUSDT": {
         "price": 0.768,
         "time": "2025-02-13T13:36:10.910726",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "XVSUSDT": {
+        "price": 8.24,
+        "time": "2025-02-13T13:45:46.086758",
         "trailing_stop_active": false,
         "highest_price": null
     }
