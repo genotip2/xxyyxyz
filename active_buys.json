@@ -2,8 +2,8 @@
     "SUSDT": {
         "price": 0.5488,
         "time": "2025-02-13T10:01:03.097986",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 0.579
     },
     "LDOUSDT": {
         "price": 1.784,
@@ -44,6 +44,12 @@
     "DOTUSDT": {
         "price": 5.168,
         "time": "2025-02-13T10:45:41.287305",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "INJUSDT": {
+        "price": 15.05,
+        "time": "2025-02-13T11:00:32.321732",
         "trailing_stop_active": false,
         "highest_price": null
     }
