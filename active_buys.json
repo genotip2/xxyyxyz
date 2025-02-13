@@ -1,0 +1,32 @@
+{
+    "ENAUSDT": {
+        "price": 0.4622,
+        "time": "2025-02-13T10:01:01.671487",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "SUSDT": {
+        "price": 0.5488,
+        "time": "2025-02-13T10:01:03.097986",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "LDOUSDT": {
+        "price": 1.784,
+        "time": "2025-02-13T10:01:04.700655",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "APTUSDT": {
+        "price": 6.16,
+        "time": "2025-02-13T10:01:05.420583",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "AAVEUSDT": {
+        "price": 253.86,
+        "time": "2025-02-13T10:01:06.569652",
+        "trailing_stop_active": false,
+        "highest_price": null
+    }
+}
