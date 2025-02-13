@@ -1,10 +1,4 @@
 {
-    "SUSDT": {
-        "price": 0.5488,
-        "time": "2025-02-13T10:01:03.097986",
-        "trailing_stop_active": true,
-        "highest_price": 0.579
-    },
     "APTUSDT": {
         "price": 6.16,
         "time": "2025-02-13T10:01:05.420583",
@@ -56,6 +50,12 @@
     "ZENUSDT": {
         "price": 14.96,
         "time": "2025-02-13T11:45:31.370257",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "LISTAUSDT": {
+        "price": 0.3142,
+        "time": "2025-02-13T12:13:05.322786",
         "trailing_stop_active": false,
         "highest_price": null
     }
