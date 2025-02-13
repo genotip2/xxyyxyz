@@ -15,13 +15,16 @@ ACTIVE_BUYS_FILE = 'active_buys.json'
 ACTIVE_BUYS = {}
 
 # Parameter trading
-TAKE_PROFIT_PERCENTAGE = 5          # Target take profit 5% (dihitung dari harga entry)
-STOP_LOSS_PERCENTAGE = 2             # Stop loss 2% (dihitung dari harga entry)
-TRAILING_STOP_PERCENTAGE = 2     # Trailing stop 2% (dari harga tertinggi setelah take profit tercapai)
-MAX_HOLD_DURATION_HOUR = 24    # Durasi hold maksimum 24 jam
-PAIR_TO_ANALYZE = 50                        # Jumlah pair yang akan dianalisis
-RSI_LIMIT = 60                                        # Batas atas RSI untuk entry
-MIN_RECOMMEND_MA = 0.7               # Minimal nilai recommend.ma pada timeframe 1H untuk dianggap bullish
+TAKE_PROFIT_PERCENTAGE = 5    # Target take profit 5% (dihitung dari harga entry)
+STOP_LOSS_PERCENTAGE = 2      # Stop loss 2% (dihitung dari harga entry)
+TRAILING_STOP_PERCENTAGE = 2  # Trailing stop 2% (dari harga tertinggi setelah take profit tercapai)
+MAX_HOLD_DURATION_HOUR = 24   # Durasi hold maksimum 24 jam
+PAIR_TO_ANALYZE = 50          # Jumlah pair yang akan dianalisis
+RSI_LIMIT = 60                # Batas atas RSI untuk entry
+
+# Konfigurasi tambahan untuk Recommend.MA
+BULLISH_RECOMMEND_MA_THRESHOLD = 0.7  # Minimal nilai Recommend.MA untuk dianggap bullish
+BEARISH_RECOMMEND_MA_THRESHOLD = 0.3   # Jika nilai Recommend.MA di bawah threshold ini, dianggap bearish
 
 # ==============================
 # FUNGSI UTITAS: LOAD & SAVE POSITION
@@ -115,16 +118,15 @@ def analyze_pair_interval(pair, interval):
 def generate_signal(pair):
     """
     Hasilkan sinyal trading dengan logika:
-      - BUY: Jika tren 1H bullish (RECOMMENDATION 'BUY' atau 'STRONG_BUY' dan recommend.ma > MIN_RECOMMEND_MA)
-             dan terjadi pullback pada RSI < RSI_LIMIT, EMA 10 > EMA 20 dan MACD > Signal,
+      - BUY: Jika tren 1H bullish dan terjadi pullback pada timeframe 15M
+             (RSI < RSI_LIMIT, EMA 10 > EMA 20, dan MACD > Signal),
              serta posisi belum aktif.
       - EXIT (SELL/TAKE PROFIT/STOP LOSS/EXPIRED/TRAILING STOP):
             Jika posisi aktif dan salah satu kondisi exit terpenuhi:
-              * Stop Loss: jika profit (dari entry) turun mencapai -STOP_LOSS_PERCENTAGE.
-              * TAKE PROFIT: Jika profit mencapai TAKE_PROFIT_PERCENTAGE, aktifkan trailing stop.
-              * TRAILING STOP: Setelah trailing stop aktif, posisi akan keluar jika harga turun
-                dari harga tertinggi sebesar TRAILING_STOP_PERCENTAGE.
-              * SELL: Jika tren 1H sudah tidak bullish.
+              * Stop Loss: Profit turun mencapai -STOP_LOSS_PERCENTAGE.
+              * TAKE PROFIT: Profit mencapai TAKE_PROFIT_PERCENTAGE, lalu trailing stop diaktifkan.
+              * TRAILING STOP: Setelah trailing stop aktif, jika harga turun dari highest_price melebihi TRAILING_STOP_PERCENTAGE.
+              * SELL: Jika tren 1H sudah tidak bullish (berdasarkan kombinasi Recommendation dan Recommend.MA).
               * EXPIRED: Jika durasi hold melebihi MAX_HOLD_DURATION_HOUR.
     """
     # Analisis pada timeframe 1H (sebagai acuan tren utama)
@@ -132,15 +134,22 @@ def generate_signal(pair):
     if trend_analysis is None:
         return None, None, "Analisis 1H gagal."
     trend_rec = trend_analysis.summary.get('RECOMMENDATION')
-    trend_bullish = trend_rec in ['BUY', 'STRONG_BUY']
     
-    # Tambahan: cek nilai recommend.ma harus lebih besar dari MIN_RECOMMEND_MA
+    # Ambil nilai Recommend.MA dan tentukan kondisi bullish/bearish berdasarkan konfigurasi
     trend_recommend_ma = trend_analysis.indicators.get('Recommend.MA')
     if trend_recommend_ma is None:
-        return None, None, "Data recommend.ma tidak tersedia pada analisis 1H."
-    if trend_recommend_ma <= MIN_RECOMMEND_MA:
-        # Jika nilai recommend.ma kurang, anggap tidak bullish
+        return None, None, "Data Recommend.MA tidak tersedia pada analisis 1H."
+    
+    # Tentukan kondisi bullish dengan menggunakan konfigurasi terpisah:
+    # - Jika nilai Recommend.MA >= threshold bullish dan rekomendasi juga bullish, maka dianggap bullish.
+    # - Jika nilai Recommend.MA <= threshold bearish, langsung dianggap bearish.
+    if trend_recommend_ma >= BULLISH_RECOMMEND_MA_THRESHOLD:
+        trend_bullish = trend_rec in ['BUY', 'STRONG_BUY']
+    elif trend_recommend_ma <= BEARISH_RECOMMEND_MA_THRESHOLD:
         trend_bullish = False
+    else:
+        # Jika berada di zona netral, gunakan rekomendasi sebagai patokan.
+        trend_bullish = trend_rec in ['BUY', 'STRONG_BUY']
 
     # Analisis pada timeframe 15M untuk entry/pullback
     entry_analysis = analyze_pair_interval(pair, Interval.INTERVAL_15_MINUTES)
@@ -156,7 +165,7 @@ def generate_signal(pair):
     if entry_close is None:
         return None, None, "Harga close 15M tidak tersedia."
 
-    # Kondisi pullback: RSI < RSI_LIMIT, EMA 10 > EMA 20, dan MACD > Signal
+    # Kondisi pullback pada timeframe 15M: RSI < RSI_LIMIT, EMA 10 > EMA 20, dan MACD > Signal
     pullback_entry = (entry_rsi is not None and entry_rsi < RSI_LIMIT) and \
                      (entry_ema10 is not None and entry_ema20 is not None and entry_ema10 > entry_ema20) and \
                      (entry_macd is not None and entry_signal_line is not None and entry_macd > entry_signal_line)
@@ -179,7 +188,7 @@ def generate_signal(pair):
 
         # Cek stop loss berdasarkan harga entry
         if profit_from_entry <= -STOP_LOSS_PERCENTAGE:
-            return "STOP LOSS", entry_close, "Harga turun ke stop loss target."
+            return "STOP LOSS", entry_close, "Limit stop loss tercapai."
         
         # Jika take profit tercapai dan trailing stop belum aktif, aktifkan trailing stop
         if not data.get('trailing_stop_active', False) and profit_from_entry >= TAKE_PROFIT_PERCENTAGE:
@@ -196,11 +205,11 @@ def generate_signal(pair):
                     send_telegram_alert("NEW HIGH", pair, entry_close, f"New highest price (sebelumnya: {prev_high:.8f})")
             trailing_stop_price = ACTIVE_BUYS[pair]['highest_price'] * (1 - TRAILING_STOP_PERCENTAGE / 100)
             if entry_close < trailing_stop_price:
-                return "TRAILING STOP", entry_close, f"Harga turun ke trailing stop target."
+                return "TRAILING STOP", entry_close, f"Harga turun ke target trailing stop."
         
         # Jika tren 1H sudah tidak bullish, keluarkan sinyal SELL
         if not trend_bullish:
-            return "SELL", entry_close, f"Trend 1H Bearish ({trend_rec})"
+            return "SELL", entry_close, f"Trend 1H berubah bearish ({trend_rec}, Recommend.MA: {trend_recommend_ma:.2f})"
     
     return None, entry_close, "Tidak ada sinyal."
 
