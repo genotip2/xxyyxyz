@@ -94,5 +94,17 @@
         "time": "2025-02-13T23:24:32.659960",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "XRPUSDT": {
+        "price": 2.5235,
+        "time": "2025-02-13T23:30:41.758593",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "DOGEUSDT": {
+        "price": 0.26145,
+        "time": "2025-02-13T23:30:42.852895",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
