@@ -1,4 +1,4 @@
-name: Scalping Signal Bot
+name: Crypto Signal Bot
 
 on:
   schedule:
@@ -24,7 +24,7 @@ jobs:
       env:
         TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
         TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-      run: python scalping_signal.py
+      run: python crypto_signal_bot.py
 
     - name: Check for changes and commit
       run: |
