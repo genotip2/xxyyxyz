@@ -11,12 +11,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "DOTUSDT": {
-        "price": 5.167,
-        "time": "2025-02-13T19:00:43.291217",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "AAVEUSDT": {
         "price": 253.88,
         "time": "2025-02-13T19:20:39.083477",
@@ -26,6 +20,12 @@
     "JUPUSDT": {
         "price": 0.8438,
         "time": "2025-02-13T19:20:40.219915",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "LTCUSDT": {
+        "price": 125.21,
+        "time": "2025-02-13T19:30:40.150257",
         "trailing_stop_active": false,
         "highest_price": null
     }
