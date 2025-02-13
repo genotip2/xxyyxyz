@@ -1,1 +1,8 @@
-{}
+{
+    "ADAUSDT": {
+        "price": 0.7848,
+        "time": "2025-02-13T18:09:56.762880",
+        "trailing_stop_active": false,
+        "highest_price": null
+    }
+}
