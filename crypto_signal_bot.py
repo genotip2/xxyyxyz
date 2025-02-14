@@ -23,8 +23,12 @@ PAIR_TO_ANALYZE = 50          # Jumlah pair yang akan dianalisis
 RSI_LIMIT = 60                # Batas atas RSI untuk entry
 
 # Konfigurasi untuk Recommend.MA
-BULLISH_RECOMMEND_MA_THRESHOLD = 0.8   # Sinyal BUY hanya muncul jika Recommend.MA >= 0.7
+BULLISH_RECOMMEND_MA_THRESHOLD = 0.7   # Sinyal BUY hanya muncul jika Recommend.MA >= 0.7
 BEARISH_RECOMMEND_MA_THRESHOLD = 0.3    # Sinyal SELL akan dipicu jika Recommend.MA < 0.3
+
+# Konfigurasi Timeframe
+TIMEFRAME_TREND = Interval.INTERVAL_4_HOURS       # Timeframe untuk analisis tren utama
+TIMEFRAME_ENTRY = Interval.INTERVAL_1_HOUR     # Timeframe untuk analisis entry/pullback
 
 # ==============================
 # FUNGSI UTITAS: LOAD & SAVE POSITION
@@ -37,15 +41,15 @@ def load_active_buys():
         try:
             with open(ACTIVE_BUYS_FILE, 'r') as f:
                 data = json.load(f)
-            ACTIVE_BUYS = {
-                pair: {
-                    'price': d['price'],
-                    'time': datetime.fromisoformat(d['time']),
-                    'trailing_stop_active': d.get('trailing_stop_active', False),
-                    'highest_price': d.get('highest_price', None)
+                ACTIVE_BUYS = {
+                    pair: {
+                        'price': d['price'],
+                        'time': datetime.fromisoformat(d['time']),
+                        'trailing_stop_active': d.get('trailing_stop_active', False),
+                        'highest_price': d.get('highest_price', None)
+                    }
+                    for pair, d in data.items()
                 }
-                for pair, d in data.items()
-            }
             print("✅ Posisi aktif dimuat.")
         except Exception as e:
             print(f"❌ Gagal memuat posisi aktif: {e}")
@@ -91,7 +95,7 @@ def get_binance_top_pairs():
         return []
 
 # ==============================
-# FUNGSI ANALISIS: MULTI-TIMEFRAME (1H & 15M)
+# FUNGSI ANALISIS: MULTI-TIMEFRAME
 # ==============================
 
 def analyze_pair_interval(pair, interval):
@@ -118,59 +122,59 @@ def analyze_pair_interval(pair, interval):
 def generate_signal(pair):
     """
     Hasilkan sinyal trading dengan logika:
-      - BUY: Jika kondisi pada timeframe 1H terpenuhi:
-             * Recommend.MA >= BULLISH_RECOMMEND_MA_THRESHOLD, dan
-             * Rekomendasi TradingView adalah 'BUY' atau 'STRONG_BUY'
-             serta terjadi pullback pada timeframe 15M (RSI < RSI_LIMIT, EMA10 > EMA20, dan MACD > Signal)
-             dan posisi belum aktif.
-      - EXIT (SELL/TAKE PROFIT/STOP LOSS/EXPIRED/TRAILING STOP):
-            Jika posisi aktif dan salah satu kondisi exit terpenuhi:
-              * Stop Loss: jika profit turun mencapai -STOP_LOSS_PERCENTAGE.
-              * TAKE PROFIT: Jika profit mencapai TAKE_PROFIT_PERCENTAGE, aktifkan trailing stop.
-              * TRAILING STOP: Jika trailing stop aktif dan harga turun dari highest_price melebihi TRAILING_STOP_PERCENTAGE.
-              * SELL: Jika salah satu dari kondisi berikut terpenuhi:
-                    - Rekomendasi TradingView berubah menjadi bearish (tidak 'BUY'/'STRONG_BUY'), atau
-                    - Meskipun rekomendasi bullish, tetapi Recommend.MA < BEARISH_RECOMMEND_MA_THRESHOLD.
-              * EXPIRED: Jika durasi hold melebihi MAX_HOLD_DURATION_HOUR.
+    - BUY: Jika kondisi pada timeframe tren (TIMEFRAME_TREND) terpenuhi:
+      * Recommend.MA >= BULLISH_RECOMMEND_MA_THRESHOLD, dan
+      * Rekomendasi TradingView adalah 'BUY' atau 'STRONG_BUY'
+      serta terjadi pullback pada timeframe entry (TIMEFRAME_ENTRY) (RSI < RSI_LIMIT, EMA10 > EMA20, dan MACD > Signal)
+      dan posisi belum aktif.
+    - EXIT (SELL/TAKE PROFIT/STOP LOSS/EXPIRED/TRAILING STOP):
+      Jika posisi aktif dan salah satu kondisi exit terpenuhi:
+      * Stop Loss: jika profit turun mencapai -STOP_LOSS_PERCENTAGE.
+      * TAKE PROFIT: Jika profit mencapai TAKE_PROFIT_PERCENTAGE, aktifkan trailing stop.
+      * TRAILING STOP: Jika trailing stop aktif dan harga turun dari highest_price melebihi TRAILING_STOP_PERCENTAGE.
+      * SELL: Jika salah satu dari kondisi berikut terpenuhi:
+         - Rekomendasi TradingView berubah menjadi bearish (tidak 'BUY'/'STRONG_BUY'), atau
+         - Meskipun rekomendasi bullish, tetapi Recommend.MA < BEARISH_RECOMMEND_MA_THRESHOLD.
+      * EXPIRED: Jika durasi hold melebihi MAX_HOLD_DURATION_HOUR.
     """
-    # Analisis timeframe 1H sebagai acuan tren utama
-    trend_analysis = analyze_pair_interval(pair, Interval.INTERVAL_1_HOUR)
+    # Analisis timeframe tren utama
+    trend_analysis = analyze_pair_interval(pair, TIMEFRAME_TREND)
     if trend_analysis is None:
-        return None, None, "Analisis 1H gagal."
-    
+        return None, None, "Analisis tren gagal."
+
     trend_rec = trend_analysis.summary.get('RECOMMENDATION')
     trend_recommend_ma = trend_analysis.indicators.get('Recommend.MA')
     if trend_recommend_ma is None:
-        return None, None, "Data Recommend.MA tidak tersedia pada analisis 1H."
-    
+        return None, None, "Data Recommend.MA tidak tersedia pada analisis tren."
+
     # Sinyal BUY hanya muncul jika kedua syarat terpenuhi:
     # 1. Recommend.MA >= BULLISH_RECOMMEND_MA_THRESHOLD
     # 2. Rekomendasi TradingView adalah 'BUY' atau 'STRONG_BUY'
     bullish_condition = (trend_recommend_ma >= BULLISH_RECOMMEND_MA_THRESHOLD) and (trend_rec in ['BUY', 'STRONG_BUY'])
 
-    # Analisis timeframe 15M untuk entry/pullback
-    entry_analysis = analyze_pair_interval(pair, Interval.INTERVAL_15_MINUTES)
+    # Analisis timeframe entry untuk pullback
+    entry_analysis = analyze_pair_interval(pair, TIMEFRAME_ENTRY)
     if entry_analysis is None:
-        return None, None, "Analisis 15M gagal."
+        return None, None, "Analisis entry gagal."
     entry_close = entry_analysis.indicators.get('close')
     entry_rsi = entry_analysis.indicators.get('RSI')
     entry_ema10 = entry_analysis.indicators.get('EMA10')
     entry_ema20 = entry_analysis.indicators.get('EMA20')
     entry_macd = entry_analysis.indicators.get('MACD.macd')
     entry_signal_line = entry_analysis.indicators.get('MACD.signal')
-    
-    if entry_close is None:
-        return None, None, "Harga close 15M tidak tersedia."
 
-    # Kondisi pullback pada timeframe 15M: RSI < RSI_LIMIT, EMA10 > EMA20, dan MACD > Signal
+    if entry_close is None:
+        return None, None, "Harga close pada timeframe entry tidak tersedia."
+
+    # Kondisi pullback pada timeframe entry: RSI < RSI_LIMIT, EMA10 > EMA20, dan MACD > Signal
     pullback_entry = (entry_rsi is not None and entry_rsi < RSI_LIMIT) and \
                      (entry_ema10 is not None and entry_ema20 is not None and entry_ema10 > entry_ema20) and \
                      (entry_macd is not None and entry_signal_line is not None and entry_macd > entry_signal_line)
-    
+
     # Jika posisi belum aktif dan kondisi entry terpenuhi, berikan sinyal BUY
     if pair not in ACTIVE_BUYS and bullish_condition and pullback_entry:
-        details = (f"1H: {trend_rec}, Recommend.MA: {trend_recommend_ma:.2f}, "
-                   f"EMA10 & EMA20 Cross, MACD: Bullish, RSI M15: {entry_rsi:.2f}")
+        details = (f"Tren {trend_rec}, Recommend.MA: {trend_recommend_ma:.2f}, "
+                   f"EMA10 & EMA20 Cross, MACD: Bullish, RSI ({TIMEFRAME_ENTRY}): {entry_rsi:.2f}")
         return "BUY", entry_close, details
 
     # Jika posisi sudah aktif, periksa kondisi exit dan target profit
@@ -179,20 +183,20 @@ def generate_signal(pair):
         holding_duration = datetime.now() - data['time']
         if holding_duration > timedelta(hours=MAX_HOLD_DURATION_HOUR):
             return "EXPIRED", entry_close, "Durasi hold maksimal tercapai."
-        
+
         entry_price = data['price']
         profit_from_entry = (entry_close - entry_price) / entry_price * 100
 
         # Cek stop loss berdasarkan harga entry
         if profit_from_entry <= -STOP_LOSS_PERCENTAGE:
             return "STOP LOSS", entry_close, "Limit stop loss tercapai."
-        
+
         # Jika take profit tercapai dan trailing stop belum aktif, aktifkan trailing stop
         if not data.get('trailing_stop_active', False) and profit_from_entry >= TAKE_PROFIT_PERCENTAGE:
             ACTIVE_BUYS[pair]['trailing_stop_active'] = True
             ACTIVE_BUYS[pair]['highest_price'] = entry_close
             return "TAKE PROFIT", entry_close, "Target take profit tercapai, trailing stop diaktifkan."
-        
+
         # Jika trailing stop aktif, perbarui harga tertinggi dan cek kondisi trailing stop
         if data.get('trailing_stop_active', False):
             prev_high = data.get('highest_price')
@@ -203,14 +207,14 @@ def generate_signal(pair):
             trailing_stop_price = ACTIVE_BUYS[pair]['highest_price'] * (1 - TRAILING_STOP_PERCENTAGE / 100)
             if entry_close < trailing_stop_price:
                 return "TRAILING STOP", entry_close, f"Harga turun ke trailing stop: {trailing_stop_price:.8f}"
-        
+
         # Logika SELL:
         # Sinyal SELL dipicu jika salah satu kondisi terpenuhi:
         # 1. Rekomendasi TradingView tidak bullish (bukan 'BUY' atau 'STRONG_BUY')
         # 2. Atau, meskipun rekomendasi bullish, Recommend.MA < BEARISH_RECOMMEND_MA_THRESHOLD
         if (trend_rec not in ['BUY', 'STRONG_BUY']) or (trend_recommend_ma < BEARISH_RECOMMEND_MA_THRESHOLD):
-            return "SELL", entry_close, f"Trend 1H berubah bearish ({trend_rec}, Recommend.MA: {trend_recommend_ma:.2f})"
-    
+            return "SELL", entry_close, f"Tren berubah bearish ({trend_rec}, Recommend.MA: {trend_recommend_ma:.2f})"
+
     return None, entry_close, "Tidak ada sinyal."
 
 # ==============================
@@ -281,7 +285,7 @@ def main():
     load_active_buys()
     pairs = get_binance_top_pairs()
     print(f"🔍 Memulai analisis {len(pairs)} pair pada {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-    
+
     for pair in pairs:
         print(f"\n🔎 Sedang menganalisis pair: {pair}")
         try:
@@ -300,7 +304,7 @@ def main():
     for pair in list(ACTIVE_BUYS.keys()):
         holding_duration = datetime.now() - ACTIVE_BUYS[pair]['time']
         if holding_duration > timedelta(hours=MAX_HOLD_DURATION_HOUR):
-            entry_analysis = analyze_pair_interval(pair, Interval.INTERVAL_15_MINUTES)
+            entry_analysis = analyze_pair_interval(pair, TIMEFRAME_ENTRY)
             current_price = entry_analysis.indicators.get('close') if entry_analysis else 0
             send_telegram_alert("EXPIRED", pair, current_price, f"Durasi hold: {str(holding_duration).split('.')[0]}")
 
