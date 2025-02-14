@@ -100,5 +100,35 @@
         "time": "2025-02-14T02:04:15.678492",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "PEPEUSDT": {
+        "price": 9.82e-06,
+        "time": "2025-02-14T02:53:44.121140",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "THEUSDT": {
+        "price": 0.7623,
+        "time": "2025-02-14T02:53:44.909564",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "SHIBUSDT": {
+        "price": 1.639e-05,
+        "time": "2025-02-14T02:53:48.099666",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "ZENUSDT": {
+        "price": 15.15,
+        "time": "2025-02-14T02:53:48.707073",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "DOTUSDT": {
+        "price": 5.172,
+        "time": "2025-02-14T02:53:51.033322",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
