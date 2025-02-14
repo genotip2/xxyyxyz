@@ -71,12 +71,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "BIOUSDT": {
-        "price": 0.159,
-        "time": "2025-02-13T22:01:04.158686",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "GALAUSDT": {
         "price": 0.02328,
         "time": "2025-02-13T23:24:32.659960",
@@ -116,12 +110,6 @@
     "SHIBUSDT": {
         "price": 1.639e-05,
         "time": "2025-02-14T02:53:48.099666",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "ZENUSDT": {
-        "price": 15.15,
-        "time": "2025-02-14T02:53:48.707073",
         "trailing_stop_active": false,
         "highest_price": null
     },
