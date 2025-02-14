@@ -149,15 +149,27 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "FDUSDUSDT": {
-        "price": 0.9991,
-        "time": "2025-02-14T04:08:57.780350",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "ADAUSDT": {
         "price": 0.8115,
         "time": "2025-02-14T04:08:59.484959",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "SEIUSDT": {
+        "price": 0.2381,
+        "time": "2025-02-14T04:30:15.795730",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "FETUSDT": {
+        "price": 0.788,
+        "time": "2025-02-14T04:30:17.913954",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "BOMEUSDT": {
+        "price": 0.002221,
+        "time": "2025-02-14T04:30:19.247160",
         "trailing_stop_active": false,
         "highest_price": null
     }
