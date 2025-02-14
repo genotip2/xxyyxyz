@@ -8,8 +8,8 @@
     "JUPUSDT": {
         "price": 0.8438,
         "time": "2025-02-13T19:20:40.219915",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 0.896
     },
     "LTCUSDT": {
         "price": 125.21,
@@ -164,6 +164,12 @@
     "SUSDT": {
         "price": 0.5477,
         "time": "2025-02-14T04:40:15.565990",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "BNXUSDT": {
+        "price": 0.9537,
+        "time": "2025-02-14T05:28:26.304194",
         "trailing_stop_active": false,
         "highest_price": null
     }
