@@ -210,8 +210,8 @@ def generate_signal(pair):
 
         # Logika SELL:
         # Sinyal SELL dipicu jika salah satu kondisi terpenuhi:
-        # 1. Rekomendasi TradingView tidak bullish (bukan 'BUY' atau 'STRONG_BUY')
-        # 2. Atau, meskipun rekomendasi bullish, Recommend.MA < BEARISH_RECOMMEND_MA_THRESHOLD
+        # 1. Rekomendasi TradingView tidak bullish (bukan 'BUY' atau 'STRONG_BUY'), atau
+        # 2. Meskipun rekomendasi bullish, tetapi Recommend.MA < BEARISH_RECOMMEND_MA_THRESHOLD
         if (trend_rec not in ['BUY', 'STRONG_BUY']) or (trend_recommend_ma < BEARISH_RECOMMEND_MA_THRESHOLD):
             return "SELL", entry_close, f"Tren berubah bearish ({trend_rec}, Recommend.MA: {trend_recommend_ma:.2f})"
 
@@ -228,6 +228,10 @@ def send_telegram_alert(signal_type, pair, current_price, details=""):
     Untuk sinyal exit seperti SELL, STOP LOSS, EXPIRED, atau TRAILING STOP, posisi dihapus.
     Sementara untuk sinyal TAKE PROFIT, hanya mengaktifkan trailing stop tanpa menghapus posisi.
     Untuk sinyal "NEW HIGH", posisi tidak dihapus.
+    
+    **Modifikasi:**
+    Informasi tambahan mengenai *Entry Price*, *Profit/Loss*, dan *Duration* akan ditambahkan untuk semua jenis sinyal
+    kecuali sinyal BUY.
     """
     display_pair = f"{pair[:-4]}/USDT"
     emoji = {
@@ -246,7 +250,7 @@ def send_telegram_alert(signal_type, pair, current_price, details=""):
     if details:
         message += f"📝 *Kondisi:* {details}\n"
 
-    # Jika BUY, simpan entry baru
+    # Jika sinyal BUY, simpan entry baru tanpa menambahkan info tambahan
     if signal_type == "BUY":
         ACTIVE_BUYS[pair] = {
             'price': current_price,
@@ -254,11 +258,8 @@ def send_telegram_alert(signal_type, pair, current_price, details=""):
             'trailing_stop_active': False,
             'highest_price': None
         }
-    # Untuk sinyal TAKE PROFIT, hanya mengirim alert (posisi tetap aktif dengan trailing stop)
-    elif signal_type == "TAKE PROFIT":
-        pass
-    # Untuk sinyal exit (SELL, STOP LOSS, EXPIRED, TRAILING STOP), tampilkan detail entry dan hapus posisi
-    elif signal_type in ["SELL", "STOP LOSS", "EXPIRED", "TRAILING STOP"]:
+    else:
+        # Tambahkan info tambahan untuk semua jenis sinyal kecuali BUY
         if pair in ACTIVE_BUYS:
             entry_price = ACTIVE_BUYS[pair]['price']
             profit = (current_price - entry_price) / entry_price * 100
@@ -266,7 +267,10 @@ def send_telegram_alert(signal_type, pair, current_price, details=""):
             message += f"▫️ *Entry Price:* ${entry_price:.8f}\n"
             message += f"💰 *{'Profit' if profit > 0 else 'Loss'}:* {profit:+.2f}%\n"
             message += f"🕒 *Duration:* {str(duration).split('.')[0]}\n"
-            del ACTIVE_BUYS[pair]
+        # Untuk sinyal exit, hapus posisi setelah menambahkan info
+        if signal_type in ["SELL", "STOP LOSS", "EXPIRED", "TRAILING STOP"]:
+            if pair in ACTIVE_BUYS:
+                del ACTIVE_BUYS[pair]
 
     print(f"📢 Mengirim alert:\n{message}")
     try:
