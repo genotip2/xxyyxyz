@@ -148,5 +148,17 @@
         "time": "2025-02-14T03:30:30.780459",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "FDUSDUSDT": {
+        "price": 0.9991,
+        "time": "2025-02-14T04:08:57.780350",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "ADAUSDT": {
+        "price": 0.8115,
+        "time": "2025-02-14T04:08:59.484959",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
