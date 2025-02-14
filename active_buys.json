@@ -137,12 +137,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "FLOKIUSDT": {
-        "price": 9.728e-05,
-        "time": "2025-02-14T03:11:42.459923",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "SUIUSDT": {
         "price": 3.4852,
         "time": "2025-02-14T03:30:30.780459",
