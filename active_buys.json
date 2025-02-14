@@ -65,12 +65,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "ETHFIUSDT": {
-        "price": 1.164,
-        "time": "2025-02-13T21:24:04.303864",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "ARBUSDT": {
         "price": 0.4871,
         "time": "2025-02-13T21:45:53.030764",
@@ -101,9 +95,9 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "SHIBUSDT": {
-        "price": 1.631e-05,
-        "time": "2025-02-13T23:45:38.595542",
+    "LDOUSDT": {
+        "price": 1.711,
+        "time": "2025-02-14T02:04:15.678492",
         "trailing_stop_active": false,
         "highest_price": null
     }
