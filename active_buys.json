@@ -23,12 +23,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "ALGOUSDT": {
-        "price": 0.2956,
-        "time": "2025-02-13T20:34:56.781055",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "XLMUSDT": {
         "price": 0.3314,
         "time": "2025-02-13T20:34:57.551457",
@@ -68,12 +62,6 @@
     "ARBUSDT": {
         "price": 0.4871,
         "time": "2025-02-13T21:45:53.030764",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "GALAUSDT": {
-        "price": 0.02328,
-        "time": "2025-02-13T23:24:32.659960",
         "trailing_stop_active": false,
         "highest_price": null
     },
@@ -158,6 +146,12 @@
     "BNXUSDT": {
         "price": 0.9537,
         "time": "2025-02-14T05:28:26.304194",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "FDUSDUSDT": {
+        "price": 0.9991,
+        "time": "2025-02-14T05:45:34.264329",
         "trailing_stop_active": false,
         "highest_price": null
     }
