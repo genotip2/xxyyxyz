@@ -130,5 +130,17 @@
         "time": "2025-02-14T02:53:51.033322",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "AVAXUSDT": {
+        "price": 25.75,
+        "time": "2025-02-14T03:11:40.753749",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "FLOKIUSDT": {
+        "price": 9.728e-05,
+        "time": "2025-02-14T03:11:42.459923",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
