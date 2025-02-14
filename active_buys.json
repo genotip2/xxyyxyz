@@ -1,19 +1,7 @@
 {
-    "BNXUSDT": {
-        "price": 0.9493,
-        "time": "2025-02-14T06:47:40.783729",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "LTCUSDT": {
         "price": 126.12,
         "time": "2025-02-14T06:47:41.478269",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "THEUSDT": {
-        "price": 0.7664,
-        "time": "2025-02-14T07:23:23.450793",
         "trailing_stop_active": false,
         "highest_price": null
     },
