@@ -16,5 +16,11 @@
         "time": "2025-02-15T12:59:20.634311",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "XVSUSDT": {
+        "price": 8.51,
+        "time": "2025-02-15T14:31:08.720854",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
