@@ -1,1 +1,8 @@
-{}
+{
+    "BTCUSDT": {
+        "price": 97571.78,
+        "time": "2025-02-15T20:30:37.854717",
+        "trailing_stop_active": false,
+        "highest_price": null
+    }
+}
