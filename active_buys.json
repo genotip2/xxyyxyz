@@ -16,5 +16,17 @@
         "time": "2025-02-15T19:00:44.228050",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "CAKEUSDT": {
+        "price": 2.643,
+        "time": "2025-02-15T19:30:37.191949",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "FTTUSDT": {
+        "price": 2.2535,
+        "time": "2025-02-15T19:30:43.640592",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
