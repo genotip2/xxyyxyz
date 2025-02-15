@@ -10,5 +10,11 @@
         "time": "2025-02-15T09:25:41.637562",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "BURGERUSDT": {
+        "price": 0.4521,
+        "time": "2025-02-15T12:59:20.634311",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
