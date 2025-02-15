@@ -1,10 +1,4 @@
 {
-    "SUSDT": {
-        "price": 0.5507,
-        "time": "2025-02-14T14:00:53.929722",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "LTCUSDT": {
         "price": 128.73,
         "time": "2025-02-15T07:30:25.949740",
