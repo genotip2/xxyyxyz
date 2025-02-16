@@ -40,5 +40,11 @@
         "time": "2025-02-16T05:36:22.763019",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "TUSDUSDT": {
+        "price": 0.9985,
+        "time": "2025-02-16T05:45:29.939305",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
