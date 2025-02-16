@@ -21,7 +21,7 @@
         "price": 0.3587,
         "time": "2025-02-16T14:32:38.984864",
         "trailing_stop_active": true,
-        "highest_price": 0.3821
+        "highest_price": 0.3845
     },
     "POLYXUSDT": {
         "price": 0.1895,
@@ -50,12 +50,6 @@
     "CAKEUSDT": {
         "price": 2.865,
         "time": "2025-02-16T20:00:56.890571",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "SPELLUSDT": {
-        "price": 0.000987,
-        "time": "2025-02-16T20:25:33.966598",
         "trailing_stop_active": false,
         "highest_price": null
     },
