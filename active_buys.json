@@ -1,1 +1,26 @@
-{}
+{
+    "STPTUSDT": {
+        "price": 0.10142,
+        "time": "2025-02-16T05:02:23.173729",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "RONINUSDT": {
+        "price": 1.252,
+        "time": "2025-02-16T05:02:25.998854",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "LTCUSDT": {
+        "price": 136.49,
+        "time": "2025-02-16T05:02:27.574509",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "STRAXUSDT": {
+        "price": 0.06101,
+        "time": "2025-02-16T05:02:36.983143",
+        "trailing_stop_active": false,
+        "highest_price": null
+    }
+}
