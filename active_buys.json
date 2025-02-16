@@ -5,12 +5,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "SLFUSDT": {
-        "price": 0.2214,
-        "time": "2025-02-16T11:00:40.079689",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "ARKUSDT": {
         "price": 0.3987,
         "time": "2025-02-16T14:01:12.921233",
@@ -21,7 +15,7 @@
         "price": 0.3587,
         "time": "2025-02-16T14:32:38.984864",
         "trailing_stop_active": true,
-        "highest_price": 0.3952
+        "highest_price": 0.401
     },
     "POLYXUSDT": {
         "price": 0.1895,
