@@ -17,12 +17,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "COOKIEUSDT": {
-        "price": 0.2147,
-        "time": "2025-02-16T12:13:41.922501",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "STGUSDT": {
         "price": 0.287,
         "time": "2025-02-16T12:48:01.911021",
@@ -68,6 +62,24 @@
     "BARUSDT": {
         "price": 2.034,
         "time": "2025-02-16T14:25:47.289183",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "GLMUSDT": {
+        "price": 0.3587,
+        "time": "2025-02-16T14:32:38.984864",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "POLYXUSDT": {
+        "price": 0.1895,
+        "time": "2025-02-16T14:32:51.111915",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "POWRUSDT": {
+        "price": 0.2217,
+        "time": "2025-02-16T14:32:51.918020",
         "trailing_stop_active": false,
         "highest_price": null
     }
