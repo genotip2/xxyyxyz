@@ -17,12 +17,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "ACHUSDT": {
-        "price": 0.02872,
-        "time": "2025-02-16T13:11:15.413615",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "MAGICUSDT": {
         "price": 0.2577,
         "time": "2025-02-16T13:11:21.975251",
@@ -41,21 +35,9 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "ATMUSDT": {
-        "price": 1.658,
-        "time": "2025-02-16T14:01:15.814070",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "OMUSDT": {
         "price": 7.5698,
         "time": "2025-02-16T14:25:41.583515",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "BARUSDT": {
-        "price": 2.034,
-        "time": "2025-02-16T14:25:47.289183",
         "trailing_stop_active": false,
         "highest_price": null
     },
@@ -92,6 +74,12 @@
     "SXPUSDT": {
         "price": 0.2485,
         "time": "2025-02-16T14:45:46.168830",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "ELFUSDT": {
+        "price": 0.3043,
+        "time": "2025-02-16T15:24:10.651422",
         "trailing_stop_active": false,
         "highest_price": null
     }
