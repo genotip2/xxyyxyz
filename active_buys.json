@@ -46,5 +46,17 @@
         "time": "2025-02-16T05:45:29.939305",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "OSMOUSDT": {
+        "price": 0.332,
+        "time": "2025-02-16T06:00:57.337065",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "WINUSDT": {
+        "price": 8.153e-05,
+        "time": "2025-02-16T06:01:06.463944",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
