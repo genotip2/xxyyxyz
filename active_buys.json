@@ -53,12 +53,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "BARUSDT": {
-        "price": 1.947,
-        "time": "2025-02-16T15:30:32.215297",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "ACHUSDT": {
         "price": 0.028,
         "time": "2025-02-16T18:01:21.397497",
@@ -68,8 +62,8 @@
     "SPELLUSDT": {
         "price": 0.0009486,
         "time": "2025-02-16T18:01:22.712415",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 0.0010196
     },
     "TRXUSDT": {
         "price": 0.2427,
