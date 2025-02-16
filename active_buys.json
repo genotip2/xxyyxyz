@@ -22,5 +22,11 @@
         "time": "2025-02-16T11:20:27.677211",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "ETHUSDT": {
+        "price": 2709.4,
+        "time": "2025-02-16T11:30:40.869550",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
