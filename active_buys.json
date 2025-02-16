@@ -2,8 +2,8 @@
     "GLMUSDT": {
         "price": 0.3527,
         "time": "2025-02-16T10:50:20.354675",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 0.4004
     },
     "USDCUSDT": {
         "price": 0.9999,
@@ -26,6 +26,24 @@
     "ETHUSDT": {
         "price": 2709.4,
         "time": "2025-02-16T11:30:40.869550",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "IDUSDT": {
+        "price": 0.3272,
+        "time": "2025-02-16T12:13:36.544075",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "COOKIEUSDT": {
+        "price": 0.2147,
+        "time": "2025-02-16T12:13:41.922501",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "SXPUSDT": {
+        "price": 0.254,
+        "time": "2025-02-16T12:13:44.696350",
         "trailing_stop_active": false,
         "highest_price": null
     }
