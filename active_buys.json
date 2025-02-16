@@ -98,6 +98,12 @@
     "BARUSDT": {
         "price": 1.828,
         "time": "2025-02-16T13:31:34.313087",
+        "trailing_stop_active": true,
+        "highest_price": 2.378
+    },
+    "GLMUSDT": {
+        "price": 0.3693,
+        "time": "2025-02-16T13:45:48.378838",
         "trailing_stop_active": false,
         "highest_price": null
     }
