@@ -23,12 +23,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "SXPUSDT": {
-        "price": 0.254,
-        "time": "2025-02-16T12:13:44.696350",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "STGUSDT": {
         "price": 0.287,
         "time": "2025-02-16T12:48:01.911021",
@@ -47,33 +41,9 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "STORJUSDT": {
-        "price": 0.3834,
-        "time": "2025-02-16T13:25:59.801495",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "TONUSDT": {
-        "price": 3.803,
-        "time": "2025-02-16T13:26:01.715307",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "IDUSDT": {
         "price": 0.3167,
         "time": "2025-02-16T13:31:26.749651",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "GLMUSDT": {
-        "price": 0.3693,
-        "time": "2025-02-16T13:45:48.378838",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "CITYUSDT": {
-        "price": 1.519,
-        "time": "2025-02-16T14:01:09.524606",
         "trailing_stop_active": false,
         "highest_price": null
     },
@@ -86,6 +56,18 @@
     "ATMUSDT": {
         "price": 1.658,
         "time": "2025-02-16T14:01:15.814070",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "OMUSDT": {
+        "price": 7.5698,
+        "time": "2025-02-16T14:25:41.583515",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "BARUSDT": {
+        "price": 2.034,
+        "time": "2025-02-16T14:25:47.289183",
         "trailing_stop_active": false,
         "highest_price": null
     }
