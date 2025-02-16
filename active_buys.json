@@ -4,5 +4,17 @@
         "time": "2025-02-16T10:50:20.354675",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "USDCUSDT": {
+        "price": 0.9999,
+        "time": "2025-02-16T11:00:28.077623",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "SLFUSDT": {
+        "price": 0.2214,
+        "time": "2025-02-16T11:00:40.079689",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
