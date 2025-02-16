@@ -23,7 +23,7 @@ MAX_HOLD_DURATION_HOUR = 24   # Durasi hold maksimum 24 jam
 # Untuk filter relative volume
 RELATIVE_VOLUME_THRESHOLD = 1.5   # Rasio volume minimal dibanding median
 MIN_VOLUME_USD = 100000           # Minimum volume absolut (USD)
-PAIR_TO_ANALYZE = 77              # Jumlah pair yang akan dianalisis (terbatas oleh API)
+PAIR_TO_ANALYZE = 100              # Jumlah pair yang akan dianalisis (terbatas oleh API)
 
 # Konfigurasi Timeframe
 TIMEFRAME_TREND = Interval.INTERVAL_4_HOURS       # Timeframe untuk analisis tren utama (4H)
