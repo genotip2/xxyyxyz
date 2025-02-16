@@ -1,7 +1,6 @@
 import os
 import requests
 import json
-import time
 from datetime import datetime, timedelta
 from tradingview_ta import TA_Handler, Interval
 
@@ -19,15 +18,11 @@ TAKE_PROFIT_PERCENTAGE = 6    # Target take profit 6% (dihitung dari harga entry
 STOP_LOSS_PERCENTAGE = 3      # Stop loss 3% (dihitung dari harga entry)
 TRAILING_STOP_PERCENTAGE = 3  # Trailing stop 3% (dari harga tertinggi setelah take profit tercapai)
 MAX_HOLD_DURATION_HOUR = 24   # Durasi hold maksimum 24 jam
-PAIR_TO_ANALYZE = 100         # Jumlah pair yang akan dianalisis
 
-# (Konfigurasi Recommend.MA masih disertakan meskipun tidak digunakan pada logika scoring baru)
-BULLISH_RECOMMEND_MA_THRESHOLD = 0.7
-BEARISH_RECOMMEND_MA_THRESHOLD = 0.3
-
-# Konfigurasi Timeframe
-TIMEFRAME_TREND = Interval.INTERVAL_4_HOURS       # Timeframe untuk analisis tren utama (4H)
-TIMEFRAME_ENTRY = Interval.INTERVAL_1_HOUR          # Timeframe untuk analisis entry/pullback (1H)
+# Untuk filter relative volume
+RELATIVE_VOLUME_THRESHOLD = 1.5   # Rasio volume minimal dibanding median
+MIN_VOLUME_USD = 100000           # Minimum volume absolut (USD)
+PAIR_TO_ANALYZE = 100              # Jumlah pair yang akan dianalisis (terbatas oleh API)
 
 # Konfigurasi Score Threshold
 BUY_SCORE_THRESHOLD = 6
@@ -76,100 +71,71 @@ def save_active_buys():
         print(f"❌ Gagal menyimpan posisi aktif: {e}")
 
 # ==============================
-# FUNGSI MENDAPATKAN PAIR DARI BINANCE (SEMUA DATA)
+# FUNGSI MENDAPATKAN PAIR BERDASARKAN RELATIVE VOLUME
 # ==============================
 def get_binance_top_pairs():
     """
-    Mengambil data ticker dari CoinGecko untuk Binance dengan iterasi pada semua halaman,
-    dan menyaring koin yang diperdagangkan dengan pair USDT.
-    
-    Mengembalikan daftar unik pair dalam format "SYMBOLUSDT".
+    Ambil pasangan (pair) dari Binance melalui CoinGecko dengan menyaring berdasarkan relative volume.
+    Data diambil dari semua halaman dan kemudian difilter berdasarkan:
+      1. Ticker dengan target USDT.
+      2. Rasio volume (USD) tiap ticker dibandingkan dengan median volume.
+      3. Hanya ticker dengan rasio >= RELATIVE_VOLUME_THRESHOLD dan volume minimal MIN_VOLUME_USD yang dipilih.
+    Kembalikan daftar pair (dalam format "BASEUSDT") maksimal sebanyak PAIR_TO_ANALYZE.
     """
-    pairs = set()
+    base_url = "https://api.coingecko.com/api/v3/exchanges/binance/tickers"
+    all_tickers = []
     page = 1
 
+    # Ambil data dari semua halaman hingga tidak ada ticker lagi
     while True:
-        url = "https://api.coingecko.com/api/v3/exchanges/binance/tickers"
-        params = {
-            'include_exchange_logo': 'false',
-            'page': page
-        }
-        
+        params = {'include_exchange_logo': 'false', 'page': page}
         try:
-            response = requests.get(url, params=params)
-            response.raise_for_status()
+            response = requests.get(base_url, params=params)
             data = response.json()
+            tickers = data.get('tickers', [])
+            if not tickers:
+                break  # Hentikan loop jika tidak ada data lagi
+            all_tickers.extend(tickers)
+            page += 1
         except Exception as e:
-            print(f"❌ Gagal mengambil data ticker di halaman {page}: {e}")
+            print(f"❌ Gagal mengambil halaman {page}: {e}")
             break
 
-        tickers = data.get("tickers", [])
-        # Hentikan iterasi jika tidak ada lagi ticker
-        if not tickers:
-            break
-        
-        # Filter ticker dengan target USDT dan terdapat field coin_id
-        filtered_tickers = [
-            ticker for ticker in tickers
-            if ticker.get("target") == "USDT" and ticker.get("coin_id")
-        ]
-        
-        # Jika halaman ini tidak mengandung ticker yang sesuai, hentikan iterasi
-        if not filtered_tickers:
-            break
+    # Filter ticker yang memiliki target USDT
+    tickers_usdt = [t for t in all_tickers if t.get('target') == 'USDT']
 
-        for ticker in filtered_tickers:
-            base = ticker.get("base")
-            if base:
-                pairs.add(f"{base.upper()}USDT")
-        
-        print(f"Halaman {page} diproses, total pair unik saat ini: {len(pairs)}")
-        page += 1
-        time.sleep(1)  # Delay agar tidak melebihi rate limit
-        
-    return list(pairs)
+    # Ambil list volume USD dari tiap ticker (pastikan field ada)
+    volumes = []
+    for t in tickers_usdt:
+        conv = t.get('converted_volume', {})
+        vol_usd = conv.get('usd')
+        if vol_usd is not None:
+            volumes.append(vol_usd)
 
-# ==============================
-# FUNGSI MENDAPATKAN RANKING MARKET CAP
-# ==============================
-def get_coin_marketcap_rankings():
-    """
-    Mengambil data market cap (ranking) dari CoinGecko dan mengembalikan dictionary
-    dengan key: symbol (dalam huruf kapital) dan value: market_cap_rank.
-    """
-    rankings = {}
-    page = 1
-    while True:
-        url = "https://api.coingecko.com/api/v3/coins/markets"
-        params = {
-            'vs_currency': 'usd',
-            'order': 'market_cap_desc',
-            'per_page': 250,
-            'page': page,
-            'sparkline': 'false'
-        }
-        try:
-            response = requests.get(url, params=params)
-            response.raise_for_status()
-            coins = response.json()
-        except Exception as e:
-            print(f"❌ Gagal mengambil data market cap di halaman {page}: {e}")
-            break
+    if not volumes:
+        print("❌ Tidak ada data volume yang tersedia.")
+        return []
 
-        if not coins:
-            break
+    volumes_sorted = sorted(volumes)
+    median_volume = volumes_sorted[len(volumes_sorted) // 2]
 
-        for coin in coins:
-            symbol = coin.get('symbol', '').upper()
-            rank = coin.get('market_cap_rank')
-            if symbol and rank is not None:
-                # Jika ada duplikasi symbol, ambil ranking terbaik (angka terendah)
-                if symbol not in rankings or rank < rankings[symbol]:
-                    rankings[symbol] = rank
-        page += 1
-        time.sleep(1)  # Delay untuk menghindari rate limit
+    # Filter ticker berdasarkan relative volume dan minimum absolute volume
+    filtered = []
+    for t in tickers_usdt:
+        conv = t.get('converted_volume', {})
+        vol_usd = conv.get('usd')
+        if vol_usd is None:
+            continue
+        relative_ratio = vol_usd / median_volume if median_volume else 0
+        if relative_ratio >= RELATIVE_VOLUME_THRESHOLD and vol_usd >= MIN_VOLUME_USD:
+            filtered.append((t, relative_ratio))
 
-    return rankings
+    # Urutkan berdasarkan relative volume ratio tertinggi
+    filtered.sort(key=lambda x: x[1], reverse=True)
+    pairs = [f"{t['base']}USDT" for t, _ in filtered]
+
+    print(f"🔍 Ditemukan {len(pairs)} pair setelah filter relative volume dari {page - 1} halaman.")
+    return pairs[:PAIR_TO_ANALYZE]
 
 # ==============================
 # FUNGSI ANALISIS: MULTI-TIMEFRAME
@@ -302,7 +268,7 @@ def is_best_entry_from_data(data):
     if rsi_entry is None or rsi_entry >= 70:
         return False, f"RSI entry terlalu tinggi (RSI: {rsi_entry})."
 
-    # Kondisi 4: Harga mendekati BB.lower (maksimum 1% di atas BB.lower)
+    # Kondisi 4: Harga mendekati BB.lower (maksimal 1% di atas BB.lower)
     price = data.get('current_price')
     bb_lower = data.get('bb_lower_entry')
     if price is None or bb_lower is None or price > bb_lower * 1.01:
@@ -329,12 +295,12 @@ def generate_signal(pair):
       
     Mengembalikan tuple: (signal, current_price, details, buy_score, sell_score)
     """
-    # Analisis timeframe tren (menggunakan TIMEFRAME_TREND, yaitu 4H)
+    # Analisis timeframe tren (4H)
     trend_analysis = analyze_pair_interval(pair, TIMEFRAME_TREND)
     if trend_analysis is None:
         return None, None, "Analisis tren gagal.", None, None
 
-    # Analisis timeframe entry (menggunakan TIMEFRAME_ENTRY, yaitu 1H)
+    # Analisis timeframe entry (1H)
     entry_analysis = analyze_pair_interval(pair, TIMEFRAME_ENTRY)
     if entry_analysis is None:
         return None, None, "Analisis entry gagal.", None, None
@@ -492,25 +458,10 @@ def send_telegram_alert(signal_type, pair, current_price, details="", buy_score=
 # ==============================
 def main():
     load_active_buys()
+    pairs = get_binance_top_pairs()
+    print(f"🔍 Memulai analisis {len(pairs)} pair pada {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
 
-    # Ambil semua pair dari Binance (berdasarkan filter USDT)
-    all_pairs = get_binance_top_pairs()
-    print(f"🔍 Total pair dari Binance (mentah): {len(all_pairs)}")
-
-    # Ambil ranking market cap dari CoinGecko
-    print("🔍 Mengambil ranking market cap dari CoinGecko...")
-    rankings = get_coin_marketcap_rankings()
-
-    # Urutkan pair berdasarkan ranking.
-    # Ambil symbol dasar (misal, "BTC" dari "BTCUSDT") untuk pencocokan.
-    sorted_pairs = sorted(all_pairs, key=lambda pair: rankings.get(pair[:-4], 9999))
-    print("✅ Pair telah diurutkan berdasarkan ranking market cap.")
-
-    # Batasi jumlah pair yang akan dianalisa sesuai konfigurasi PAIR_TO_ANALYZE
-    pairs_to_analyze = sorted_pairs[:PAIR_TO_ANALYZE]
-    print(f"🔍 Pair yang akan dianalisa: {len(pairs_to_analyze)} (dibatasi dari {len(all_pairs)})")
-
-    for pair in pairs_to_analyze:
+    for pair in pairs:
         print(f"\n🔎 Sedang menganalisis pair: {pair}")
         try:
             signal, current_price, details, buy_score, sell_score = generate_signal(pair)
