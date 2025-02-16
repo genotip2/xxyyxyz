@@ -70,5 +70,11 @@
         "time": "2025-02-16T20:25:33.966598",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "BARUSDT": {
+        "price": 1.85,
+        "time": "2025-02-16T20:31:29.478738",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
