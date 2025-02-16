@@ -17,12 +17,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "ETHUSDT": {
-        "price": 2709.4,
-        "time": "2025-02-16T11:30:40.869550",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "COOKIEUSDT": {
         "price": 0.2147,
         "time": "2025-02-16T12:13:41.922501",
@@ -35,33 +29,9 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "CVCUSDT": {
-        "price": 0.1264,
-        "time": "2025-02-16T12:48:00.207573",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "AUDIOUSDT": {
-        "price": 0.1069,
-        "time": "2025-02-16T12:48:00.873397",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "STGUSDT": {
         "price": 0.287,
         "time": "2025-02-16T12:48:01.911021",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "POWRUSDT": {
-        "price": 0.2304,
-        "time": "2025-02-16T12:48:02.890431",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "POLYXUSDT": {
-        "price": 0.1938,
-        "time": "2025-02-16T12:48:04.007864",
         "trailing_stop_active": false,
         "highest_price": null
     },
@@ -95,15 +65,27 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "BARUSDT": {
-        "price": 1.828,
-        "time": "2025-02-16T13:31:34.313087",
-        "trailing_stop_active": true,
-        "highest_price": 2.378
-    },
     "GLMUSDT": {
         "price": 0.3693,
         "time": "2025-02-16T13:45:48.378838",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "CITYUSDT": {
+        "price": 1.519,
+        "time": "2025-02-16T14:01:09.524606",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "ARKUSDT": {
+        "price": 0.3987,
+        "time": "2025-02-16T14:01:12.921233",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "ATMUSDT": {
+        "price": 1.658,
+        "time": "2025-02-16T14:01:15.814070",
         "trailing_stop_active": false,
         "highest_price": null
     }
