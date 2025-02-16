@@ -16,5 +16,11 @@
         "time": "2025-02-16T11:00:40.079689",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "ELFUSDT": {
+        "price": 0.3114,
+        "time": "2025-02-16T11:20:27.677211",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
