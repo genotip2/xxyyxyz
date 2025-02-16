@@ -11,18 +11,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "STGUSDT": {
-        "price": 0.287,
-        "time": "2025-02-16T12:48:01.911021",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "MAGICUSDT": {
-        "price": 0.2577,
-        "time": "2025-02-16T13:11:21.975251",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "ARKUSDT": {
         "price": 0.3987,
         "time": "2025-02-16T14:01:12.921233",
@@ -53,21 +41,9 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "COOKIEUSDT": {
-        "price": 0.2094,
-        "time": "2025-02-16T14:45:42.316978",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "CITYUSDT": {
         "price": 1.394,
         "time": "2025-02-16T14:45:44.028761",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "SXPUSDT": {
-        "price": 0.2485,
-        "time": "2025-02-16T14:45:46.168830",
         "trailing_stop_active": false,
         "highest_price": null
     },
