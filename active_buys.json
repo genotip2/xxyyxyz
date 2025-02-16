@@ -1,1 +1,8 @@
-{}
+{
+    "GLMUSDT": {
+        "price": 0.3527,
+        "time": "2025-02-16T10:50:20.354675",
+        "trailing_stop_active": false,
+        "highest_price": null
+    }
+}
