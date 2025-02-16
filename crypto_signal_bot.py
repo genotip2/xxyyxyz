@@ -7,6 +7,7 @@ from tradingview_ta import TA_Handler, Interval
 # ==============================
 # KONFIGURASI
 # ==============================
+
 TELEGRAM_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
 TELEGRAM_CHAT_ID = os.getenv('TELEGRAM_CHAT_ID')
 
@@ -22,15 +23,20 @@ MAX_HOLD_DURATION_HOUR = 24   # Durasi hold maksimum 24 jam
 # Untuk filter relative volume
 RELATIVE_VOLUME_THRESHOLD = 1.5   # Rasio volume minimal dibanding median
 MIN_VOLUME_USD = 100000           # Minimum volume absolut (USD)
-PAIR_TO_ANALYZE = 100              # Jumlah pair yang akan dianalisis (terbatas oleh API)
+PAIR_TO_ANALYZE = 77              # Jumlah pair yang akan dianalisis (terbatas oleh API)
+
+# Konfigurasi Timeframe
+TIMEFRAME_TREND = Interval.INTERVAL_4_HOURS       # Timeframe untuk analisis tren utama (4H)
+TIMEFRAME_ENTRY = Interval.INTERVAL_1_HOUR          # Timeframe untuk analisis entry/pullback (1H)
 
 # Konfigurasi Score Threshold
 BUY_SCORE_THRESHOLD = 6
 SELL_SCORE_THRESHOLD = 4
 
 # ==============================
-# FUNGSI UTITAS: LOAD & SAVE POSITION
+# FUNGSI UTILITY: LOAD & SAVE POSITION
 # ==============================
+
 def load_active_buys():
     """Muat posisi aktif dari file JSON."""
     global ACTIVE_BUYS
@@ -73,40 +79,44 @@ def save_active_buys():
 # ==============================
 # FUNGSI MENDAPATKAN PAIR BERDASARKAN RELATIVE VOLUME
 # ==============================
+
 def get_binance_top_pairs():
     """
-    Ambil pasangan (pair) dari Binance melalui CoinGecko dengan menyaring berdasarkan relative volume.
-    Data diambil dari semua halaman dan kemudian difilter berdasarkan:
-      1. Ticker dengan target USDT.
-      2. Rasio volume (USD) tiap ticker dibandingkan dengan median volume.
-      3. Hanya ticker dengan rasio >= RELATIVE_VOLUME_THRESHOLD dan volume minimal MIN_VOLUME_USD yang dipilih.
-    Kembalikan daftar pair (dalam format "BASEUSDT") maksimal sebanyak PAIR_TO_ANALYZE.
+    Ambil pasangan (pair) dari Binance melalui CoinGecko dengan menyaring berdasarkan relative volume dari semua halaman.
+    Langkah-langkah:
+    
+    1. Ambil semua ticker dengan target USDT dari semua halaman.
+    2. Hitung median volume (dalam USD) dari semua ticker.
+    3. Hitung rasio volume tiap ticker terhadap median.
+    4. Filter ticker yang memiliki rasio >= RELATIVE_VOLUME_THRESHOLD dan volume minimal MIN_VOLUME_USD.
+    5. Buat daftar pair (dalam format "BASEUSDT") yang telah difilter.
+    6. Gabungkan dengan pair dari ACTIVE_BUYS, dengan pair dari ACTIVE_BUYS ditempatkan di paling atas.
+    7. Pastikan setiap pair hanya muncul sekali.
+    8. Batasi hasil akhir ke PAIR_TO_ANALYZE.
     """
-    base_url = "https://api.coingecko.com/api/v3/exchanges/binance/tickers"
+    url = "https://api.coingecko.com/api/v3/exchanges/binance/tickers"
     all_tickers = []
     page = 1
 
-    # Ambil data dari semua halaman hingga tidak ada ticker lagi
+    # Ambil ticker dari semua halaman
     while True:
         params = {'include_exchange_logo': 'false', 'page': page}
         try:
-            response = requests.get(base_url, params=params)
+            response = requests.get(url, params=params)
             data = response.json()
-            tickers = data.get('tickers', [])
-            if not tickers:
-                break  # Hentikan loop jika tidak ada data lagi
-            all_tickers.extend(tickers)
+            tickers_page = data.get('tickers', [])
+            if not tickers_page:
+                break
+            # Hanya ambil ticker dengan target USDT
+            all_tickers.extend([t for t in tickers_page if t.get('target') == 'USDT'])
             page += 1
         except Exception as e:
             print(f"❌ Gagal mengambil halaman {page}: {e}")
             break
 
-    # Filter ticker yang memiliki target USDT
-    tickers_usdt = [t for t in all_tickers if t.get('target') == 'USDT']
-
-    # Ambil list volume USD dari tiap ticker (pastikan field ada)
+    # Hitung median volume
     volumes = []
-    for t in tickers_usdt:
+    for t in all_tickers:
         conv = t.get('converted_volume', {})
         vol_usd = conv.get('usd')
         if vol_usd is not None:
@@ -114,32 +124,44 @@ def get_binance_top_pairs():
 
     if not volumes:
         print("❌ Tidak ada data volume yang tersedia.")
-        return []
+        filtered_pairs = []
+    else:
+        volumes_sorted = sorted(volumes)
+        median_volume = volumes_sorted[len(volumes_sorted) // 2]
+        # Filter ticker berdasarkan relative volume dan minimum absolute volume
+        filtered = []
+        for t in all_tickers:
+            conv = t.get('converted_volume', {})
+            vol_usd = conv.get('usd')
+            if vol_usd is None:
+                continue
+            relative_ratio = vol_usd / median_volume if median_volume else 0
+            if relative_ratio >= RELATIVE_VOLUME_THRESHOLD and vol_usd >= MIN_VOLUME_USD:
+                filtered.append((t, relative_ratio))
+        # Urutkan berdasarkan relative volume ratio tertinggi
+        filtered.sort(key=lambda x: x[1], reverse=True)
+        filtered_pairs = [f"{t['base']}USDT" for t, _ in filtered]
 
-    volumes_sorted = sorted(volumes)
-    median_volume = volumes_sorted[len(volumes_sorted) // 2]
+    # Gabungkan dengan pair dari ACTIVE_BUYS, pastikan tidak duplikat
+    active_pairs = list(ACTIVE_BUYS.keys())
+    final_pairs = []
+    # Utamakan pair dari ACTIVE_BUYS (agar tidak terpotong oleh limit)
+    for pair in active_pairs:
+        if pair not in final_pairs:
+            final_pairs.append(pair)
+    for pair in filtered_pairs:
+        if pair not in final_pairs:
+            final_pairs.append(pair)
 
-    # Filter ticker berdasarkan relative volume dan minimum absolute volume
-    filtered = []
-    for t in tickers_usdt:
-        conv = t.get('converted_volume', {})
-        vol_usd = conv.get('usd')
-        if vol_usd is None:
-            continue
-        relative_ratio = vol_usd / median_volume if median_volume else 0
-        if relative_ratio >= RELATIVE_VOLUME_THRESHOLD and vol_usd >= MIN_VOLUME_USD:
-            filtered.append((t, relative_ratio))
-
-    # Urutkan berdasarkan relative volume ratio tertinggi
-    filtered.sort(key=lambda x: x[1], reverse=True)
-    pairs = [f"{t['base']}USDT" for t, _ in filtered]
-
-    print(f"🔍 Ditemukan {len(pairs)} pair setelah filter relative volume dari {page - 1} halaman.")
-    return pairs[:PAIR_TO_ANALYZE]
+    # Batasi ke PAIR_TO_ANALYZE
+    limited_pairs = final_pairs[:PAIR_TO_ANALYZE]
+    print(f"🔍 Total pair setelah penggabungan: {len(final_pairs)}. Akan dianalisis {len(limited_pairs)} pair (limit: {PAIR_TO_ANALYZE}).")
+    return limited_pairs
 
 # ==============================
 # FUNGSI ANALISIS: MULTI-TIMEFRAME
 # ==============================
+
 def analyze_pair_interval(pair, interval):
     """
     Lakukan analisis teknikal untuk pair pada timeframe tertentu menggunakan tradingview_ta.
@@ -160,6 +182,7 @@ def analyze_pair_interval(pair, interval):
 # ==============================
 # FUNGSI PEMBANTU UNTUK SCORING
 # ==============================
+
 def safe_compare(a, b, op):
     """Bandingkan dua nilai secara aman; kembalikan False jika salah satunya bernilai None."""
     if a is None or b is None:
@@ -180,30 +203,30 @@ def calculate_scores(data):
     current_price = data.get('current_price')
 
     # Data timeframe entry (sesuai konfigurasi TIMEFRAME_ENTRY)
-    ema10_entry = data.get('ema10_entry')  
-    ema20_entry = data.get('ema20_entry')  
-    rsi_entry = data.get('rsi_entry')  
-    macd_entry = data.get('macd_entry')  
-    macd_signal_entry = data.get('macd_signal_entry')  
-    bb_lower_entry = data.get('bb_lower_entry')  
-    bb_upper_entry = data.get('bb_upper_entry')  
-    adx_entry = data.get('adx_entry')  
-    obv_entry = data.get('obv_entry')  
-    candle_entry = data.get('candle_entry')  
+    ema10_entry = data.get('ema10_entry')
+    ema20_entry = data.get('ema20_entry')
+    rsi_entry = data.get('rsi_entry')
+    macd_entry = data.get('macd_entry')
+    macd_signal_entry = data.get('macd_signal_entry')
+    bb_lower_entry = data.get('bb_lower_entry')
+    bb_upper_entry = data.get('bb_upper_entry')
+    adx_entry = data.get('adx_entry')
+    obv_entry = data.get('obv_entry')
+    candle_entry = data.get('candle_entry')
     stoch_k_entry = data.get('stoch_k_entry')
     stoch_d_entry = data.get('stoch_d_entry')
 
     # Data timeframe tren (sesuai konfigurasi TIMEFRAME_TREND)
-    ema10_trend = data.get('ema10_trend')  
-    ema20_trend = data.get('ema20_trend')  
-    rsi_trend = data.get('rsi_trend')  
-    macd_trend = data.get('macd_trend')  
-    macd_signal_trend = data.get('macd_signal_trend')  
-    bb_lower_trend = data.get('bb_lower_trend')  
-    bb_upper_trend = data.get('bb_upper_trend')  
-    adx_trend = data.get('adx_trend')  
-    obv_trend = data.get('obv_trend')  
-    candle_trend = data.get('candle_trend')  
+    ema10_trend = data.get('ema10_trend')
+    ema20_trend = data.get('ema20_trend')
+    rsi_trend = data.get('rsi_trend')
+    macd_trend = data.get('macd_trend')
+    macd_signal_trend = data.get('macd_signal_trend')
+    bb_lower_trend = data.get('bb_lower_trend')
+    bb_upper_trend = data.get('bb_upper_trend')
+    adx_trend = data.get('adx_trend')
+    obv_trend = data.get('obv_trend')
+    candle_trend = data.get('candle_trend')
 
     # Kondisi beli: tiap tuple berisi (kondisi_boolean, deskripsi indikator)
     buy_conditions = [
@@ -240,15 +263,18 @@ def calculate_scores(data):
 # ==============================
 # EVALUASI BEST ENTRY
 # ==============================
+
 def is_best_entry_from_data(data):
     """
     Evaluasi apakah kondisi entri terbaik terpenuhi berdasarkan data indikator dari timeframe entry dan trend.
     Kondisi Best Entry:
-      - EMA10 entry > EMA20 entry
-      - EMA10 trend > EMA20 trend
-      - RSI entry < 70
-      - Harga saat ini mendekati Bollinger Bands bawah (tidak lebih dari 1% di atas BB.lower)
-      - Rekomendasi candlestick mengandung "BUY"
+    
+    - EMA10 entry > EMA20 entry
+    - EMA10 trend > EMA20 trend
+    - RSI entry < 70
+    - Harga saat ini mendekati Bollinger Bands bawah (tidak lebih dari 1% di atas BB.lower)
+    - Rekomendasi candlestick mengandung "BUY"
+    
     Mengembalikan tuple: (boolean, pesan evaluasi)
     """
     # Kondisi 1: EMA entry
@@ -284,15 +310,18 @@ def is_best_entry_from_data(data):
 # ==============================
 # GENERATE SINYAL TRADING DENGAN SCORING DAN BEST ENTRY
 # ==============================
+
 def generate_signal(pair):
     """
     Hasilkan sinyal trading berdasarkan skor indikator.
-    - Jika posisi belum aktif: sinyal BUY dihasilkan apabila:
-         * Kondisi Best Entry terpenuhi, atau
-         * buy_score minimal BUY_SCORE_THRESHOLD dan lebih tinggi dari sell_score.
-    - Jika posisi sudah aktif: cek exit berdasarkan stop loss, take profit, trailing stop, durasi hold,
-      atau jika sell_score minimal SELL_SCORE_THRESHOLD dan melebihi buy_score.
-      
+    
+    Jika posisi belum aktif: sinyal BUY dihasilkan apabila:
+      - Kondisi Best Entry terpenuhi, atau
+      - buy_score minimal BUY_SCORE_THRESHOLD dan lebih tinggi dari sell_score.
+    
+    Jika posisi sudah aktif: cek exit berdasarkan stop loss, take profit, trailing stop, durasi hold,
+    atau jika sell_score minimal SELL_SCORE_THRESHOLD dan melebihi buy_score.
+    
     Mengembalikan tuple: (signal, current_price, details, buy_score, sell_score)
     """
     # Analisis timeframe tren (4H)
@@ -336,13 +365,12 @@ def generate_signal(pair):
         'obv_trend': trend_analysis.indicators.get('OBV'),
         'candle_trend': trend_analysis.summary.get('RECOMMENDATION')
     }
-    
+
     # Hitung score
     buy_score, sell_score, buy_met, sell_met = calculate_scores(data)
 
     # Jika posisi belum aktif, evaluasi entri BUY
     if pair not in ACTIVE_BUYS:
-        # Evaluasi Best Entry
         best_entry_ok, best_entry_msg = is_best_entry_from_data(data)
         if best_entry_ok:
             details = f"BEST ENTRY: {best_entry_msg} | {', '.join(buy_met)}"
@@ -350,9 +378,8 @@ def generate_signal(pair):
         elif buy_score >= BUY_SCORE_THRESHOLD and buy_score > sell_score:
             details = f"{', '.join(buy_met)}"
             return "BUY", current_price, details, buy_score, sell_score
-
-    # Jika posisi sudah aktif, cek kondisi exit/management posisi
     else:
+        # Jika posisi sudah aktif, cek kondisi exit/management posisi
         data_active = ACTIVE_BUYS[pair]
         holding_duration = datetime.now() - data_active['time']
         if holding_duration > timedelta(hours=MAX_HOLD_DURATION_HOUR):
@@ -393,6 +420,7 @@ def generate_signal(pair):
 # ==============================
 # KIRIM ALERT TELEGRAM
 # ==============================
+
 def send_telegram_alert(signal_type, pair, current_price, details="", buy_score=None, sell_score=None):
     """
     Mengirim notifikasi ke Telegram.
@@ -414,13 +442,13 @@ def send_telegram_alert(signal_type, pair, current_price, details="", buy_score=
         'NEW HIGH': '📈'
     }.get(signal_type, 'ℹ️')
 
-    message = f"{emoji} *{signal_type}*\n"
-    message += f"💱 *Pair:* {display_pair}\n"
-    message += f"💲 *Price:* ${current_price:.8f}\n"
+    message = f"{emoji} {signal_type}\n"
+    message += f"💱 Pair: {display_pair}\n"
+    message += f"💲 Price: ${current_price:.8f}\n"
     if buy_score is not None and sell_score is not None:
-        message += f"📊 *Score:* Buy {buy_score}/8 | Sell {sell_score}/7\n"
+        message += f"📊 Score: Buy {buy_score}/8 | Sell {sell_score}/7\n"
     if details:
-        message += f"📝 *Kondisi:* {details}\n"
+        message += f"📝 Kondisi: {details}\n"
 
     # Jika sinyal BUY, simpan entry baru tanpa menambahkan info tambahan
     if signal_type == "BUY":
@@ -436,9 +464,9 @@ def send_telegram_alert(signal_type, pair, current_price, details="", buy_score=
             entry_price = ACTIVE_BUYS[pair]['price']
             profit = (current_price - entry_price) / entry_price * 100
             duration = datetime.now() - ACTIVE_BUYS[pair]['time']
-            message += f"▫️ *Entry Price:* ${entry_price:.8f}\n"
-            message += f"💰 *{'Profit' if profit > 0 else 'Loss'}:* {profit:+.2f}%\n"
-            message += f"🕒 *Duration:* {str(duration).split('.')[0]}\n"
+            message += f"▫️ Entry Price: ${entry_price:.8f}\n"
+            message += f"💰 {'Profit' if profit > 0 else 'Loss'}: {profit:+.2f}%\n"
+            message += f"🕒 Duration: {str(duration).split('.')[0]}\n"
         # Untuk sinyal exit, hapus posisi setelah menambahkan info
         if signal_type in ["SELL", "STOP LOSS", "EXPIRED", "TRAILING STOP"]:
             if pair in ACTIVE_BUYS:
@@ -456,6 +484,7 @@ def send_telegram_alert(signal_type, pair, current_price, details="", buy_score=
 # ==============================
 # PROGRAM UTAMA
 # ==============================
+
 def main():
     load_active_buys()
     pairs = get_binance_top_pairs()
