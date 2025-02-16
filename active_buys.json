@@ -1,10 +1,4 @@
 {
-    "GLMUSDT": {
-        "price": 0.3527,
-        "time": "2025-02-16T10:50:20.354675",
-        "trailing_stop_active": true,
-        "highest_price": 0.4004
-    },
     "USDCUSDT": {
         "price": 0.9999,
         "time": "2025-02-16T11:00:28.077623",
@@ -44,6 +38,36 @@
     "SXPUSDT": {
         "price": 0.254,
         "time": "2025-02-16T12:13:44.696350",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "CVCUSDT": {
+        "price": 0.1264,
+        "time": "2025-02-16T12:48:00.207573",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "AUDIOUSDT": {
+        "price": 0.1069,
+        "time": "2025-02-16T12:48:00.873397",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "STGUSDT": {
+        "price": 0.287,
+        "time": "2025-02-16T12:48:01.911021",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "POWRUSDT": {
+        "price": 0.2304,
+        "time": "2025-02-16T12:48:02.890431",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "POLYXUSDT": {
+        "price": 0.1938,
+        "time": "2025-02-16T12:48:04.007864",
         "trailing_stop_active": false,
         "highest_price": null
     }
