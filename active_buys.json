@@ -35,12 +35,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "SPELLUSDT": {
-        "price": 0.0009481,
-        "time": "2025-02-16T22:00:59.605135",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "STORJUSDT": {
         "price": 0.3623,
         "time": "2025-02-16T22:01:02.651082",
