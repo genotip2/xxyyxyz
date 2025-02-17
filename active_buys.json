@@ -15,7 +15,7 @@
         "price": 0.2217,
         "time": "2025-02-16T14:32:51.918020",
         "trailing_stop_active": true,
-        "highest_price": 0.2359
+        "highest_price": 0.237
     },
     "ELFUSDT": {
         "price": 0.3043,
@@ -29,16 +29,10 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "BARUSDT": {
-        "price": 1.85,
-        "time": "2025-02-16T20:31:29.478738",
+    "IDUSDT": {
+        "price": 0.3306,
+        "time": "2025-02-17T05:45:29.908891",
         "trailing_stop_active": false,
         "highest_price": null
-    },
-    "STORJUSDT": {
-        "price": 0.3623,
-        "time": "2025-02-16T22:01:02.651082",
-        "trailing_stop_active": true,
-        "highest_price": 0.4609
     }
 }
