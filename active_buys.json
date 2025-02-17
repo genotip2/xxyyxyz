@@ -35,12 +35,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "ETHUSDT": {
-        "price": 2801.81,
-        "time": "2025-02-17T15:33:38.510332",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "API3USDT": {
         "price": 1.023,
         "time": "2025-02-17T16:32:14.455054",
