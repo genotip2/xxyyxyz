@@ -11,12 +11,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "GLMUSDT": {
-        "price": 0.3587,
-        "time": "2025-02-16T14:32:38.984864",
-        "trailing_stop_active": true,
-        "highest_price": 0.4021
-    },
     "POLYXUSDT": {
         "price": 0.1895,
         "time": "2025-02-16T14:32:51.111915",
@@ -62,6 +56,12 @@
     "STORJUSDT": {
         "price": 0.3623,
         "time": "2025-02-16T22:01:02.651082",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "ACHUSDT": {
+        "price": 0.02722,
+        "time": "2025-02-17T00:37:19.523811",
         "trailing_stop_active": false,
         "highest_price": null
     }
