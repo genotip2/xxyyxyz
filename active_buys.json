@@ -10,5 +10,23 @@
         "time": "2025-02-17T19:20:26.647584",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "API3USDT": {
+        "price": 1.029,
+        "time": "2025-02-17T19:22:41.327174",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "XVSUSDT": {
+        "price": 8.84,
+        "time": "2025-02-17T19:22:44.093014",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "CVCUSDT": {
+        "price": 0.132,
+        "time": "2025-02-17T19:22:44.752565",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
