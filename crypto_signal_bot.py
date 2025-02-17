@@ -23,7 +23,7 @@ MAX_HOLD_DURATION_HOUR = 48   # Durasi hold maksimum 24 jam
 # Untuk filter relative volume
 RELATIVE_VOLUME_THRESHOLD = 1.5   # Rasio volume minimal dibanding median
 MIN_VOLUME_USD = 100000           # Minimum volume absolut (USD)
-PAIR_TO_ANALYZE = 50              # Jumlah pair yang akan dianalisis (terbatas oleh API)
+PAIR_TO_ANALYZE = 100              # Jumlah pair yang akan dianalisis (terbatas oleh API)
 
 # Konfigurasi Timeframe
 TIMEFRAME_TREND = Interval.INTERVAL_4_HOURS       # Timeframe untuk analisis tren utama (4H)
@@ -417,10 +417,22 @@ def generate_signal(pair):
 
     return None, current_price, "Tidak ada sinyal.", buy_score, sell_score
 
-# ==============================
-# KIRIM ALERT TELEGRAM
-# ==============================
+##############################
+# FUNGSI PEMBANTU UNTUK MENGHADIRKAN LINK BINANCE
+##############################
+def get_binance_url(pair):
+    """
+    Membangun URL Binance untuk pair.
+    Misalnya, jika pair = "BTCUSDT", maka URL yang dihasilkan adalah:
+    https://www.binance.com/en/trade/BTC_USDT
+    """
+    base = pair[:-4]
+    quote = pair[-4:]
+    return f"https://www.binance.com/en/trade/{base}_{quote}"
 
+##############################
+# KIRIM ALERT TELEGRAM
+##############################
 def send_telegram_alert(signal_type, pair, current_price, details="", buy_score=None, sell_score=None):
     """
     Mengirim notifikasi ke Telegram.
@@ -428,7 +440,6 @@ def send_telegram_alert(signal_type, pair, current_price, details="", buy_score=
     Untuk sinyal exit seperti SELL, STOP LOSS, EXPIRED, atau TRAILING STOP, posisi dihapus.
     Sementara untuk sinyal TAKE PROFIT, hanya mengaktifkan trailing stop tanpa menghapus posisi.
     Untuk sinyal "NEW HIGH", posisi tidak dihapus.
-    
     Informasi tambahan mengenai Entry Price, Profit/Loss, dan Duration akan ditambahkan untuk semua jenis sinyal kecuali BUY.
     """
     display_pair = f"{pair[:-4]}/USDT"
@@ -441,16 +452,17 @@ def send_telegram_alert(signal_type, pair, current_price, details="", buy_score=
         'TRAILING STOP': '📉',
         'NEW HIGH': '📈'
     }.get(signal_type, 'ℹ️')
+    
+    binance_url = get_binance_url(pair)
 
-    message = f"{emoji} {signal_type}\n"
-    message += f"💱 Pair: {display_pair}\n"
-    message += f"💲 Price: ${current_price:.8f}\n"
+    message = f"{emoji} *{signal_type}*\n"
+    message += f"💱 *Pair:* [{display_pair}]({binance_url})\n"
+    message += f"💲 *Price:* ${current_price:.8f}\n"
     if buy_score is not None and sell_score is not None:
-        message += f"📊 Score: Buy {buy_score}/8 | Sell {sell_score}/7\n"
+        message += f"📊 *Score:* Buy {buy_score}/8 | Sell {sell_score}/7\n"
     if details:
-        message += f"📝 Kondisi: {details}\n"
+        message += f"📝 *Kondisi:* {details}\n"
 
-    # Jika sinyal BUY, simpan entry baru tanpa menambahkan info tambahan
     if signal_type == "BUY":
         ACTIVE_BUYS[pair] = {
             'price': current_price,
@@ -459,15 +471,13 @@ def send_telegram_alert(signal_type, pair, current_price, details="", buy_score=
             'highest_price': None
         }
     else:
-        # Tambahkan info tambahan untuk semua jenis sinyal kecuali BUY
         if pair in ACTIVE_BUYS:
             entry_price = ACTIVE_BUYS[pair]['price']
             profit = (current_price - entry_price) / entry_price * 100
             duration = datetime.now() - ACTIVE_BUYS[pair]['time']
-            message += f"▫️ Entry Price: ${entry_price:.8f}\n"
-            message += f"💰 {'Profit' if profit > 0 else 'Loss'}: {profit:+.2f}%\n"
-            message += f"🕒 Duration: {str(duration).split('.')[0]}\n"
-        # Untuk sinyal exit, hapus posisi setelah menambahkan info
+            message += f"▫️ *Entry Price:* ${entry_price:.8f}\n"
+            message += f"💰 *{'Profit' if profit > 0 else 'Loss'}:* {profit:+.2f}%\n"
+            message += f"🕒 *Duration:* {str(duration).split('.')[0]}\n"
         if signal_type in ["SELL", "STOP LOSS", "EXPIRED", "TRAILING STOP"]:
             if pair in ACTIVE_BUYS:
                 del ACTIVE_BUYS[pair]
@@ -476,8 +486,13 @@ def send_telegram_alert(signal_type, pair, current_price, details="", buy_score=
     try:
         requests.post(
             f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage",
-            json={'chat_id': TELEGRAM_CHAT_ID, 'text': message, 'parse_mode': 'Markdown'}
-        )
+            json={
+                'chat_id': TELEGRAM_CHAT_ID,
+                'text': message,
+                'parse_mode': 'Markdown',
+                'disable_web_page_preview': True  # Menonaktifkan preview link
+        }
+    )
     except Exception as e:
         print(f"❌ Gagal mengirim alert Telegram: {e}")
 
