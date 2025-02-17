@@ -50,8 +50,8 @@
     "STORJUSDT": {
         "price": 0.3623,
         "time": "2025-02-16T22:01:02.651082",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 0.392
     },
     "ACHUSDT": {
         "price": 0.02722,
