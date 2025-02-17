@@ -35,12 +35,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "EIGENUSDT": {
-        "price": 1.849,
-        "time": "2025-02-17T14:00:38.119291",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "ETHUSDT": {
         "price": 2801.81,
         "time": "2025-02-17T15:33:38.510332",
@@ -68,6 +62,12 @@
     "CVCUSDT": {
         "price": 0.1302,
         "time": "2025-02-17T17:45:40.436428",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "BERAUSDT": {
+        "price": 6.175,
+        "time": "2025-02-17T18:09:30.745127",
         "trailing_stop_active": false,
         "highest_price": null
     }
