@@ -18,7 +18,7 @@ ACTIVE_BUYS = {}
 TAKE_PROFIT_PERCENTAGE = 6    # Target take profit 6% (dihitung dari harga entry)
 STOP_LOSS_PERCENTAGE = 3      # Stop loss 3% (dihitung dari harga entry)
 TRAILING_STOP_PERCENTAGE = 3  # Trailing stop 3% (dari harga tertinggi setelah take profit tercapai)
-MAX_HOLD_DURATION_HOUR = 24   # Durasi hold maksimum 24 jam
+MAX_HOLD_DURATION_HOUR = 48   # Durasi hold maksimum 24 jam
 
 # Untuk filter relative volume
 RELATIVE_VOLUME_THRESHOLD = 1.5   # Rasio volume minimal dibanding median
