@@ -1,0 +1,38 @@
+{
+    "USDCUSDT": {
+        "price": 0.9999,
+        "time": "2025-02-17T19:45:04.561686",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "STORJUSDT": {
+        "price": 0.3839,
+        "time": "2025-02-17T19:45:09.026711",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "BERAUSDT": {
+        "price": 6.089,
+        "time": "2025-02-17T19:45:09.819884",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "API3USDT": {
+        "price": 1.036,
+        "time": "2025-02-17T19:45:14.626076",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "XVSUSDT": {
+        "price": 8.87,
+        "time": "2025-02-17T19:45:22.386952",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "CVCUSDT": {
+        "price": 0.1287,
+        "time": "2025-02-17T19:45:23.534581",
+        "trailing_stop_active": false,
+        "highest_price": null
+    }
+}
