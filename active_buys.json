@@ -29,12 +29,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "BNBUSDT": {
-        "price": 673.73,
-        "time": "2025-02-17T13:16:17.279509",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "AGLDUSDT": {
         "price": 1.294,
         "time": "2025-02-17T13:16:20.829537",
@@ -56,6 +50,24 @@
     "ETHUSDT": {
         "price": 2801.81,
         "time": "2025-02-17T15:33:38.510332",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "API3USDT": {
+        "price": 1.023,
+        "time": "2025-02-17T16:32:14.455054",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "BURGERUSDT": {
+        "price": 0.4898,
+        "time": "2025-02-17T16:32:15.535728",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "ZECUSDT": {
+        "price": 35.94,
+        "time": "2025-02-17T16:32:21.064164",
         "trailing_stop_active": false,
         "highest_price": null
     }
