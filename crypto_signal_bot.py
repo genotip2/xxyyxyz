@@ -494,7 +494,7 @@ def send_telegram_alert(signal_type, pair, current_price, details="", buy_score=
     tradingview_url = get_tradingview_url(pair)  # Link TradingView
 
     message = f"{emoji} *{signal_type}*\n"
-    message += f"💱 *Pair:* [{display_pair}]({binance_url}) ==> [Lihat di TradingView]({tradingview_url})\n"
+    message += f"💱 *Pair:* [{display_pair}]({binance_url}) ==> [TradingView]({tradingview_url})\n"
     message += f"💲 *Price:* ${current_price:.8f}\n"
     if buy_score is not None and sell_score is not None:
         message += f"📊 *Score:* Buy {buy_score}/8 | Sell {sell_score}/7\n"
