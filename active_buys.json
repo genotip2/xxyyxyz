@@ -29,12 +29,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "BNBUSDT": {
-        "price": 671.43,
-        "time": "2025-02-17T09:00:53.387254",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "USTCUSDT": {
         "price": 0.01968,
         "time": "2025-02-17T09:28:28.409012",
@@ -44,6 +38,12 @@
     "ARKUSDT": {
         "price": 0.5194,
         "time": "2025-02-17T09:45:52.098693",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "SUSDT": {
+        "price": 0.5679,
+        "time": "2025-02-17T10:32:31.371259",
         "trailing_stop_active": false,
         "highest_price": null
     }
