@@ -23,12 +23,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "XVSUSDT": {
-        "price": 8.87,
-        "time": "2025-02-17T19:45:22.386952",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "CVCUSDT": {
         "price": 0.1287,
         "time": "2025-02-17T19:45:23.534581",
