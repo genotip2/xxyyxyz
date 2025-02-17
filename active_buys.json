@@ -16,5 +16,11 @@
         "time": "2025-02-16T19:00:52.250271",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "STORJUSDT": {
+        "price": 0.3942,
+        "time": "2025-02-17T08:33:25.532443",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
