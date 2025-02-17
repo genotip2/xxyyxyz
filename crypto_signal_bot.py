@@ -23,8 +23,8 @@ PAIR_TO_ANALYZE = 100         # Dari cache, hanya analisis sejumlah pair tertent
 
 # Konfigurasi order analisis.
 # Untuk cache yang diurutkan berdasarkan ranking CMC secara ascending (ranking 1 = terbaik),
-# "largest" mengambil dari awal (ranking terbaik), "smallest" mengambil dari akhir.
-ANALYSIS_ORDER = "largest"
+# "top" mengambil dari awal (ranking terbaik), "bottom" mengambil dari akhir.
+ANALYSIS_ORDER = "top"
 
 # Parameter trading
 TAKE_PROFIT_PERCENTAGE = 6    # Target take profit 6% (dihitung dari harga entry)
@@ -489,17 +489,17 @@ def send_telegram_alert(signal_type, pair, current_price, details="", buy_score=
         'TRAILING STOP': '📉',
         'NEW HIGH': '📈'
     }.get(signal_type, 'ℹ️')
-
+    
     binance_url = get_binance_url(pair)   # Link Binance
     tradingview_url = get_tradingview_url(pair)  # Link TradingView
 
-    message = f"{emoji} {signal_type}\n"
-    message += f"💱 Pair: {display_pair} Lihat di TradingView\n"
-    message += f"💲 Price: ${current_price:.8f}\n"
+    message = f"{emoji} *{signal_type}*\n"
+    message += f"💱 *Pair:* [{display_pair}]({binance_url}) [Lihat di TradingView]({tradingview_url})\n"
+    message += f"💲 *Price:* ${current_price:.8f}\n"
     if buy_score is not None and sell_score is not None:
-        message += f"📊 Score: Buy {buy_score}/8 | Sell {sell_score}/7\n"
+        message += f"📊 *Score:* Buy {buy_score}/8 | Sell {sell_score}/7\n"
     if details:
-        message += f"📝 Kondisi: {details}\n"
+        message += f"📝 *Kondisi:* {details}\n"
 
     if signal_type == "BUY":
         ACTIVE_BUYS[pair] = {
@@ -513,9 +513,9 @@ def send_telegram_alert(signal_type, pair, current_price, details="", buy_score=
             entry_price = ACTIVE_BUYS[pair]['price']
             profit = (current_price - entry_price) / entry_price * 100
             duration = datetime.now() - ACTIVE_BUYS[pair]['time']
-            message += f"▫️ Entry Price: ${entry_price:.8f}\n"
-            message += f"💰 {'Profit' if profit > 0 else 'Loss'}: {profit:+.2f}%\n"
-            message += f"🕒 Duration: {str(duration).split('.')[0]}\n"
+            message += f"▫️ *Entry Price:* ${entry_price:.8f}\n"
+            message += f"💰 *{'Profit' if profit > 0 else 'Loss'}:* {profit:+.2f}%\n"
+            message += f"🕒 *Duration:* {str(duration).split('.')[0]}\n"
         if signal_type in ["SELL", "STOP LOSS", "EXPIRED", "TRAILING STOP"]:
             if pair in ACTIVE_BUYS:
                 del ACTIVE_BUYS[pair]
@@ -529,8 +529,8 @@ def send_telegram_alert(signal_type, pair, current_price, details="", buy_score=
                 'text': message,
                 'parse_mode': 'Markdown',
                 'disable_web_page_preview': True  # Menonaktifkan preview link
-            }
-        )
+        }
+    )
     except Exception as e:
         print(f"❌ Gagal mengirim alert Telegram: {e}")
 
@@ -545,11 +545,11 @@ def main():
 
     # Sesuaikan order analisis berdasarkan konfigurasi ANALYSIS_ORDER.
     # Karena cache disimpan berdasarkan ranking CMC secara ascending (ranking terbaik di awal),
-    # "largest" mengambil dari awal, sedangkan "smallest" dari akhir.
+    # "top" mengambil dari awal, sedangkan "bottom" dari akhir.
     if PAIR_TO_ANALYZE > 0 and PAIR_TO_ANALYZE < len(pairs):
-        if ANALYSIS_ORDER.lower() == "largest":
+        if ANALYSIS_ORDER.lower() == "top":
             pairs = pairs[:PAIR_TO_ANALYZE]
-        elif ANALYSIS_ORDER.lower() == "smallest":
+        elif ANALYSIS_ORDER.lower() == "bottom":
             pairs = pairs[-PAIR_TO_ANALYZE:]
 
     print(f"🔍 Memulai analisis {len(pairs)} pair pada {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
