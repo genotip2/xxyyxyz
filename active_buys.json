@@ -34,5 +34,11 @@
         "time": "2025-02-17T09:00:53.387254",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "USTCUSDT": {
+        "price": 0.01968,
+        "time": "2025-02-17T09:28:28.409012",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
