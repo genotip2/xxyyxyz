@@ -58,5 +58,11 @@
         "time": "2025-02-17T13:45:46.363471",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "EIGENUSDT": {
+        "price": 1.849,
+        "time": "2025-02-17T14:00:38.119291",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
