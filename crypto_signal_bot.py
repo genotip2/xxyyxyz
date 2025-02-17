@@ -19,7 +19,7 @@ CACHE_EXPIRED_DAYS = 30  # Cache dianggap kadaluarsa jika lebih dari 30 hari
 
 # Konfigurasi jumlah pair untuk cache dan analisis
 TOP_PAIRS_CACHED = 100       # Jumlah pair teratas (berdasarkan ranking CMC) yang akan disimpan ke cache
-PAIR_TO_ANALYZE = 50         # Dari cache, hanya analisis sejumlah pair tertentu
+PAIR_TO_ANALYZE = 100         # Dari cache, hanya analisis sejumlah pair tertentu
 
 # Konfigurasi order analisis.
 # Untuk cache yang diurutkan berdasarkan ranking CMC secara ascending (ranking 1 = terbaik),
