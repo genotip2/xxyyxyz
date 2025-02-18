@@ -8,8 +8,8 @@
     "ACHUSDT": {
         "price": 0.03291,
         "time": "2025-02-18T05:39:08.660704",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 0.03502
     },
     "MKRUSDT": {
         "price": 1113,
