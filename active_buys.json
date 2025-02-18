@@ -5,12 +5,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "BERAUSDT": {
-        "price": 6.089,
-        "time": "2025-02-17T19:45:09.819884",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "CVCUSDT": {
         "price": 0.1287,
         "time": "2025-02-17T19:45:23.534581",
