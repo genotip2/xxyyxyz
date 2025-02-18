@@ -14,18 +14,12 @@
     "CVCUSDT": {
         "price": 0.1287,
         "time": "2025-02-17T19:45:23.534581",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 0.1367
     },
     "SUSDT": {
         "price": 0.6,
         "time": "2025-02-17T21:23:13.802921",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "CKBUSDT": {
-        "price": 0.006638,
-        "time": "2025-02-17T23:00:53.388960",
         "trailing_stop_active": false,
         "highest_price": null
     },
@@ -39,7 +33,7 @@
         "price": 0.03146,
         "time": "2025-02-18T03:11:00.684908",
         "trailing_stop_active": true,
-        "highest_price": 0.03417
+        "highest_price": 0.03427
     },
     "STORJUSDT": {
         "price": 0.3938,
