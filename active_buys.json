@@ -5,12 +5,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "SUSDT": {
-        "price": 0.6,
-        "time": "2025-02-17T21:23:13.802921",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "ACHUSDT": {
         "price": 0.03291,
         "time": "2025-02-18T05:39:08.660704",
