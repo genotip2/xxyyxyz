@@ -5,21 +5,9 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "CVCUSDT": {
-        "price": 0.1287,
-        "time": "2025-02-17T19:45:23.534581",
-        "trailing_stop_active": true,
-        "highest_price": 0.1437
-    },
     "SUSDT": {
         "price": 0.6,
         "time": "2025-02-17T21:23:13.802921",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "STORJUSDT": {
-        "price": 0.3938,
-        "time": "2025-02-18T04:29:50.161314",
         "trailing_stop_active": false,
         "highest_price": null
     },
