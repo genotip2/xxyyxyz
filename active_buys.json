@@ -40,5 +40,11 @@
         "time": "2025-02-18T02:04:26.861037",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "ACHUSDT": {
+        "price": 0.03146,
+        "time": "2025-02-18T03:11:00.684908",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
