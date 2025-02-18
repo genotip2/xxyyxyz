@@ -8,8 +8,8 @@
     "STORJUSDT": {
         "price": 0.3839,
         "time": "2025-02-17T19:45:09.026711",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 0.4105
     },
     "BERAUSDT": {
         "price": 6.089,
@@ -32,6 +32,12 @@
     "CKBUSDT": {
         "price": 0.006638,
         "time": "2025-02-17T23:00:53.388960",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "ARKUSDT": {
+        "price": 0.4593,
+        "time": "2025-02-18T00:34:47.983743",
         "trailing_stop_active": false,
         "highest_price": null
     }
