@@ -35,9 +35,9 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "ARKUSDT": {
-        "price": 0.4593,
-        "time": "2025-02-18T00:34:47.983743",
+    "SXPUSDT": {
+        "price": 0.2569,
+        "time": "2025-02-18T02:04:26.861037",
         "trailing_stop_active": false,
         "highest_price": null
     }
