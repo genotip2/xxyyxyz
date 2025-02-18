@@ -32,14 +32,14 @@
     "SXPUSDT": {
         "price": 0.2569,
         "time": "2025-02-18T02:04:26.861037",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 0.2738
     },
     "ACHUSDT": {
         "price": 0.03146,
         "time": "2025-02-18T03:11:00.684908",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 0.0341
     },
     "STORJUSDT": {
         "price": 0.3938,
