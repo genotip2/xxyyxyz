@@ -39,6 +39,12 @@
         "price": 0.6821,
         "time": "2025-02-19T14:29:05.123036",
         "trailing_stop_active": true,
-        "highest_price": 0.7234
+        "highest_price": 0.7259
+    },
+    "TAOUSDT": {
+        "price": 422.6,
+        "time": "2025-02-19T17:00:45.537003",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
