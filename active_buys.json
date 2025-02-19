@@ -46,5 +46,11 @@
         "time": "2025-02-19T17:27:10.533646",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "OMUSDT": {
+        "price": 7.5807,
+        "time": "2025-02-19T18:10:08.461233",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
