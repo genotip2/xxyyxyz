@@ -1,10 +1,4 @@
 {
-    "USDCUSDT": {
-        "price": 0.9999,
-        "time": "2025-02-17T19:45:04.561686",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "FDUSDUSDT": {
         "price": 0.999,
         "time": "2025-02-18T21:30:42.248092",
