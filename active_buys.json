@@ -20,8 +20,8 @@
     "BERAUSDT": {
         "price": 6.365,
         "time": "2025-02-19T02:05:34.348784",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 6.762
     },
     "ARKUSDT": {
         "price": 0.4913,
