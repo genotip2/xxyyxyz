@@ -40,5 +40,11 @@
         "time": "2025-02-19T14:00:54.631633",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "SUSDT": {
+        "price": 0.6821,
+        "time": "2025-02-19T14:29:05.123036",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
