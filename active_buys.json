@@ -11,12 +11,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "ACHUSDT": {
-        "price": 0.035,
-        "time": "2025-02-19T11:00:52.833252",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "BERAUSDT": {
         "price": 6.542,
         "time": "2025-02-19T12:13:09.675108",
@@ -50,6 +44,18 @@
     "OMUSDT": {
         "price": 7.5807,
         "time": "2025-02-19T18:10:08.461233",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "TRXUSDT": {
+        "price": 0.2432,
+        "time": "2025-02-19T19:00:39.496423",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "ORDIUSDT": {
+        "price": 12.68,
+        "time": "2025-02-19T19:00:45.178129",
         "trailing_stop_active": false,
         "highest_price": null
     }
