@@ -17,12 +17,6 @@
         "trailing_stop_active": true,
         "highest_price": 449.9
     },
-    "TRXUSDT": {
-        "price": 0.2432,
-        "time": "2025-02-19T19:00:39.496423",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "ORDIUSDT": {
         "price": 12.68,
         "time": "2025-02-19T19:00:45.178129",
@@ -62,6 +56,12 @@
     "APTUSDT": {
         "price": 6.72,
         "time": "2025-02-20T05:37:40.790117",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "SEIUSDT": {
+        "price": 0.2439,
+        "time": "2025-02-20T06:10:22.875067",
         "trailing_stop_active": false,
         "highest_price": null
     }
