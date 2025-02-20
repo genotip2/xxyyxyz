@@ -63,7 +63,7 @@
         "price": 0.6759,
         "time": "2025-02-20T17:00:59.312271",
         "trailing_stop_active": true,
-        "highest_price": 0.7234
+        "highest_price": 0.7307
     },
     "ATOMUSDT": {
         "price": 4.934,
@@ -86,8 +86,8 @@
     "BERAUSDT": {
         "price": 8.226,
         "time": "2025-02-20T20:36:36.856565",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 8.742
     },
     "SUSDT": {
         "price": 0.8481,
