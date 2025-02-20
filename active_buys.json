@@ -3,7 +3,7 @@
         "price": 1146,
         "time": "2025-02-19T00:35:15.731266",
         "trailing_stop_active": true,
-        "highest_price": 1240
+        "highest_price": 1247
     },
     "XRPUSDT": {
         "price": 2.6864,
@@ -26,12 +26,6 @@
     "INJUSDT": {
         "price": 15.75,
         "time": "2025-02-20T09:00:49.223529",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "GLMUSDT": {
-        "price": 0.3314,
-        "time": "2025-02-20T10:45:46.881079",
         "trailing_stop_active": false,
         "highest_price": null
     },
@@ -80,6 +74,12 @@
     "WBTCUSDT": {
         "price": 96857.54,
         "time": "2025-02-20T15:07:47.618530",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "COOKIEUSDT": {
+        "price": 0.2027,
+        "time": "2025-02-20T15:29:05.152515",
         "trailing_stop_active": false,
         "highest_price": null
     }
