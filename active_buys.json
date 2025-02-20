@@ -100,5 +100,11 @@
         "time": "2025-02-20T23:00:50.387339",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "MKRUSDT": {
+        "price": 1438,
+        "time": "2025-02-20T23:25:32.644769",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
