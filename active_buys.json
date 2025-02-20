@@ -53,12 +53,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "COOKIEUSDT": {
-        "price": 0.2108,
-        "time": "2025-02-20T14:01:12.603344",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "ARUSDT": {
         "price": 9.67,
         "time": "2025-02-20T14:01:13.248175",
@@ -68,6 +62,24 @@
     "TIAUSDT": {
         "price": 3.585,
         "time": "2025-02-20T14:29:23.802308",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "ETHUSDT": {
+        "price": 2733.49,
+        "time": "2025-02-20T15:07:38.801742",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "BTCUSDT": {
+        "price": 97092.44,
+        "time": "2025-02-20T15:07:39.548865",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "WBTCUSDT": {
+        "price": 96857.54,
+        "time": "2025-02-20T15:07:47.618530",
         "trailing_stop_active": false,
         "highest_price": null
     }
