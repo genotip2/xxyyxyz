@@ -21,7 +21,7 @@
         "price": 0.2439,
         "time": "2025-02-20T06:10:22.875067",
         "trailing_stop_active": true,
-        "highest_price": 0.2624
+        "highest_price": 0.2625
     },
     "INJUSDT": {
         "price": 15.75,
