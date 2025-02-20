@@ -11,12 +11,6 @@
         "trailing_stop_active": true,
         "highest_price": 7.558
     },
-    "APTUSDT": {
-        "price": 6.41,
-        "time": "2025-02-19T14:00:54.631633",
-        "trailing_stop_active": true,
-        "highest_price": 6.96
-    },
     "TAOUSDT": {
         "price": 422.6,
         "time": "2025-02-19T17:00:45.537003",
