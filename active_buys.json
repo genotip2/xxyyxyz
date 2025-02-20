@@ -9,7 +9,7 @@
         "price": 6.542,
         "time": "2025-02-19T12:13:09.675108",
         "trailing_stop_active": true,
-        "highest_price": 7.178
+        "highest_price": 7.212
     },
     "APTUSDT": {
         "price": 6.41,
@@ -50,6 +50,12 @@
     "COOKIEUSDT": {
         "price": 0.1977,
         "time": "2025-02-20T02:06:12.043573",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "ARKUSDT": {
+        "price": 0.5021,
+        "time": "2025-02-20T03:32:17.114868",
         "trailing_stop_active": false,
         "highest_price": null
     }
