@@ -3,7 +3,7 @@
         "price": 1146,
         "time": "2025-02-19T00:35:15.731266",
         "trailing_stop_active": true,
-        "highest_price": 1247
+        "highest_price": 1258
     },
     "XRPUSDT": {
         "price": 2.6864,
@@ -32,8 +32,8 @@
     "SUSDT": {
         "price": 0.7737,
         "time": "2025-02-20T11:00:42.826870",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 0.8203
     },
     "BERAUSDT": {
         "price": 7.778,
@@ -74,6 +74,12 @@
     "COOKIEUSDT": {
         "price": 0.2027,
         "time": "2025-02-20T15:29:05.152515",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "TIAUSDT": {
+        "price": 3.498,
+        "time": "2025-02-20T16:34:15.990569",
         "trailing_stop_active": false,
         "highest_price": null
     }
