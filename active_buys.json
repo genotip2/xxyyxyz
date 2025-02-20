@@ -53,12 +53,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "TIAUSDT": {
-        "price": 3.585,
-        "time": "2025-02-20T14:29:23.802308",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "ETHUSDT": {
         "price": 2733.49,
         "time": "2025-02-20T15:07:38.801742",
