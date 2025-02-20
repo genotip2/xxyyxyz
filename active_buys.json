@@ -15,7 +15,7 @@
         "price": 422.6,
         "time": "2025-02-19T17:00:45.537003",
         "trailing_stop_active": true,
-        "highest_price": 454.5
+        "highest_price": 455.7
     },
     "XRPUSDT": {
         "price": 2.6864,
@@ -56,6 +56,12 @@
     "TIAUSDT": {
         "price": 3.336,
         "time": "2025-02-20T08:48:18.318764",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "INJUSDT": {
+        "price": 15.75,
+        "time": "2025-02-20T09:00:49.223529",
         "trailing_stop_active": false,
         "highest_price": null
     }
