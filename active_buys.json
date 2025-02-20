@@ -9,7 +9,7 @@
         "price": 6.542,
         "time": "2025-02-19T12:13:09.675108",
         "trailing_stop_active": true,
-        "highest_price": 7.615
+        "highest_price": 7.641
     },
     "TAOUSDT": {
         "price": 422.6,
@@ -50,6 +50,12 @@
     "SEIUSDT": {
         "price": 0.2439,
         "time": "2025-02-20T06:10:22.875067",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "TIAUSDT": {
+        "price": 3.336,
+        "time": "2025-02-20T08:48:18.318764",
         "trailing_stop_active": false,
         "highest_price": null
     }
