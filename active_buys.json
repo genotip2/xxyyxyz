@@ -11,12 +11,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "COOKIEUSDT": {
-        "price": 0.1977,
-        "time": "2025-02-20T02:06:12.043573",
-        "trailing_stop_active": true,
-        "highest_price": 0.2171
-    },
     "XLMUSDT": {
         "price": 0.3408,
         "time": "2025-02-20T04:01:03.957297",
