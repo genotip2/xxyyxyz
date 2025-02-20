@@ -9,7 +9,7 @@
         "price": 6.542,
         "time": "2025-02-19T12:13:09.675108",
         "trailing_stop_active": true,
-        "highest_price": 7.315
+        "highest_price": 7.475
     },
     "APTUSDT": {
         "price": 6.41,
@@ -50,6 +50,18 @@
     "ARKUSDT": {
         "price": 0.5021,
         "time": "2025-02-20T03:32:17.114868",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "GLMUSDT": {
+        "price": 0.3343,
+        "time": "2025-02-20T04:00:56.370403",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "XLMUSDT": {
+        "price": 0.3408,
+        "time": "2025-02-20T04:01:03.957297",
         "trailing_stop_active": false,
         "highest_price": null
     }
