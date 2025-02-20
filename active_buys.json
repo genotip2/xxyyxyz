@@ -1,10 +1,4 @@
 {
-    "MKRUSDT": {
-        "price": 1146,
-        "time": "2025-02-19T00:35:15.731266",
-        "trailing_stop_active": true,
-        "highest_price": 1461
-    },
     "XRPUSDT": {
         "price": 2.6864,
         "time": "2025-02-20T02:05:58.129561",
@@ -21,7 +15,7 @@
         "price": 0.2439,
         "time": "2025-02-20T06:10:22.875067",
         "trailing_stop_active": true,
-        "highest_price": 0.2678
+        "highest_price": 0.2693
     },
     "INJUSDT": {
         "price": 15.75,
@@ -40,12 +34,6 @@
         "time": "2025-02-20T14:01:06.607348",
         "trailing_stop_active": false,
         "highest_price": null
-    },
-    "ARUSDT": {
-        "price": 9.67,
-        "time": "2025-02-20T14:01:13.248175",
-        "trailing_stop_active": true,
-        "highest_price": 10.37
     },
     "ETHUSDT": {
         "price": 2733.49,
