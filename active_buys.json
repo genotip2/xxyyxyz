@@ -3,7 +3,7 @@
         "price": 1146,
         "time": "2025-02-19T00:35:15.731266",
         "trailing_stop_active": true,
-        "highest_price": 1447
+        "highest_price": 1455
     },
     "XRPUSDT": {
         "price": 2.6864,
@@ -86,6 +86,12 @@
     "ATOMUSDT": {
         "price": 4.934,
         "time": "2025-02-20T18:10:13.627433",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "IOUSDT": {
+        "price": 1.428,
+        "time": "2025-02-20T19:01:08.595292",
         "trailing_stop_active": false,
         "highest_price": null
     }
