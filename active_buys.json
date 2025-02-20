@@ -9,7 +9,7 @@
         "price": 6.542,
         "time": "2025-02-19T12:13:09.675108",
         "trailing_stop_active": true,
-        "highest_price": 7.591
+        "highest_price": 7.615
     },
     "TAOUSDT": {
         "price": 422.6,
@@ -44,12 +44,6 @@
     "XLMUSDT": {
         "price": 0.3408,
         "time": "2025-02-20T04:01:03.957297",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "APTUSDT": {
-        "price": 6.72,
-        "time": "2025-02-20T05:37:40.790117",
         "trailing_stop_active": false,
         "highest_price": null
     },
