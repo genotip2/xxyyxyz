@@ -50,8 +50,8 @@
     "TIAUSDT": {
         "price": 3.336,
         "time": "2025-02-20T08:48:18.318764",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 3.596
     },
     "INJUSDT": {
         "price": 15.75,
@@ -62,6 +62,12 @@
     "GLMUSDT": {
         "price": 0.3314,
         "time": "2025-02-20T10:45:46.881079",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "SUSDT": {
+        "price": 0.7737,
+        "time": "2025-02-20T11:00:42.826870",
         "trailing_stop_active": false,
         "highest_price": null
     }
