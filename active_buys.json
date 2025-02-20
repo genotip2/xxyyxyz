@@ -1,10 +1,4 @@
 {
-    "FDUSDUSDT": {
-        "price": 0.999,
-        "time": "2025-02-18T21:30:42.248092",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "MKRUSDT": {
         "price": 1146,
         "time": "2025-02-19T00:35:15.731266",
@@ -22,12 +16,6 @@
         "time": "2025-02-19T14:00:54.631633",
         "trailing_stop_active": false,
         "highest_price": null
-    },
-    "SUSDT": {
-        "price": 0.6821,
-        "time": "2025-02-19T14:29:05.123036",
-        "trailing_stop_active": true,
-        "highest_price": 0.733
     },
     "TAOUSDT": {
         "price": 422.6,
