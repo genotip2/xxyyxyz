@@ -5,12 +5,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "BERAUSDT": {
-        "price": 6.542,
-        "time": "2025-02-19T12:13:09.675108",
-        "trailing_stop_active": true,
-        "highest_price": 8.282
-    },
     "TAOUSDT": {
         "price": 422.6,
         "time": "2025-02-19T17:00:45.537003",
@@ -26,8 +20,8 @@
     "COOKIEUSDT": {
         "price": 0.1977,
         "time": "2025-02-20T02:06:12.043573",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 0.213
     },
     "ARKUSDT": {
         "price": 0.5021,
