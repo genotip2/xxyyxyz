@@ -3,7 +3,7 @@
         "price": 1146,
         "time": "2025-02-19T00:35:15.731266",
         "trailing_stop_active": true,
-        "highest_price": 1441
+        "highest_price": 1447
     },
     "XRPUSDT": {
         "price": 2.6864,
@@ -34,12 +34,6 @@
         "time": "2025-02-20T11:00:42.826870",
         "trailing_stop_active": true,
         "highest_price": 0.8689
-    },
-    "BERAUSDT": {
-        "price": 7.778,
-        "time": "2025-02-20T13:15:45.495120",
-        "trailing_stop_active": true,
-        "highest_price": 8.258
     },
     "EIGENUSDT": {
         "price": 1.96,
