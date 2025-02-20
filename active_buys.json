@@ -15,7 +15,7 @@
         "price": 0.2439,
         "time": "2025-02-20T06:10:22.875067",
         "trailing_stop_active": true,
-        "highest_price": 0.2693
+        "highest_price": 0.2725
     },
     "INJUSDT": {
         "price": 15.75,
@@ -80,6 +80,12 @@
     "IOUSDT": {
         "price": 1.428,
         "time": "2025-02-20T19:01:08.595292",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "ARUSDT": {
+        "price": 9.94,
+        "time": "2025-02-20T20:27:47.306746",
         "trailing_stop_active": false,
         "highest_price": null
     }
