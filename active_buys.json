@@ -17,12 +17,6 @@
         "trailing_stop_active": true,
         "highest_price": 454.1
     },
-    "ORDIUSDT": {
-        "price": 12.68,
-        "time": "2025-02-19T19:00:45.178129",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "XRPUSDT": {
         "price": 2.6864,
         "time": "2025-02-20T02:05:58.129561",
