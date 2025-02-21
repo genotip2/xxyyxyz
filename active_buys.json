@@ -31,7 +31,7 @@
         "price": 453.5,
         "time": "2025-02-20T06:44:08.835434",
         "trailing_stop_active": true,
-        "highest_price": 483.6,
+        "highest_price": 485.2,
         "exit_flag": null
     },
     "APTUSDT": {
@@ -80,7 +80,7 @@
         "price": 1.151,
         "time": "2025-02-20T06:44:20.277657",
         "trailing_stop_active": true,
-        "highest_price": 1.244,
+        "highest_price": 1.247,
         "exit_flag": null
     },
     "ETHFIUSDT": {
@@ -220,7 +220,7 @@
         "price": 2.942,
         "time": "2025-02-20T06:44:43.211120",
         "trailing_stop_active": true,
-        "highest_price": 3.121,
+        "highest_price": 3.125,
         "exit_flag": null
     },
     "PYTHUSDT": {
@@ -597,6 +597,13 @@
     "ETCUSDT": {
         "price": 21.03,
         "time": "2025-02-21T07:24:04.334662",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "DOGEUSDT": {
+        "price": 0.25429,
+        "time": "2025-02-21T07:30:28.715369",
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
