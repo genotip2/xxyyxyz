@@ -115,7 +115,7 @@
         "price": 1.844,
         "time": "2025-02-20T06:44:25.946530",
         "trailing_stop_active": true,
-        "highest_price": 1.996,
+        "highest_price": 2.002,
         "exit_flag": null
     },
     "FETUSDT": {
@@ -338,8 +338,8 @@
     "APEUSDT": {
         "price": 0.681,
         "time": "2025-02-20T10:31:56.598657",
-        "trailing_stop_active": false,
-        "highest_price": null,
+        "trailing_stop_active": true,
+        "highest_price": 0.722,
         "exit_flag": null
     },
     "JTOUSDT": {
