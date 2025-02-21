@@ -143,7 +143,7 @@
         "price": 15.34,
         "time": "2025-02-20T06:44:30.391860",
         "trailing_stop_active": true,
-        "highest_price": 16.56,
+        "highest_price": 16.6,
         "exit_flag": null
     },
     "WBTCUSDT": {
@@ -646,6 +646,13 @@
     "QTUMUSDT": {
         "price": 3.278,
         "time": "2025-02-21T11:01:13.227879",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "FDUSDUSDT": {
+        "price": 0.9989,
+        "time": "2025-02-21T11:30:38.788442",
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
