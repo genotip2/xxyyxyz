@@ -73,14 +73,14 @@
         "price": 3.197,
         "time": "2025-02-20T06:44:19.464823",
         "trailing_stop_active": true,
-        "highest_price": 3.509,
+        "highest_price": 3.519,
         "exit_flag": null
     },
     "WLDUSDT": {
         "price": 1.151,
         "time": "2025-02-20T06:44:20.277657",
         "trailing_stop_active": true,
-        "highest_price": 1.224,
+        "highest_price": 1.226,
         "exit_flag": null
     },
     "ETHFIUSDT": {
