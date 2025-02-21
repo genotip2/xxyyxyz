@@ -6,13 +6,6 @@
         "highest_price": null,
         "exit_flag": null
     },
-    "ETHUSDT": {
-        "price": 2729.04,
-        "time": "2025-02-20T06:44:04.357088",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": null
-    },
     "SOLUSDT": {
         "price": 171.67,
         "time": "2025-02-20T06:44:05.380462",
@@ -89,13 +82,6 @@
         "trailing_stop_active": true,
         "highest_price": 5.327,
         "exit_flag": "TRAILING STOP"
-    },
-    "OPUSDT": {
-        "price": 1.148,
-        "time": "2025-02-20T06:44:24.133004",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": null
     },
     "ARBUSDT": {
         "price": 0.4793,
@@ -375,7 +361,7 @@
         "time": "2025-02-20T18:11:36.268837",
         "trailing_stop_active": false,
         "highest_price": null,
-        "exit_flag": null
+        "exit_flag": "STOP LOSS"
     },
     "ORDIUSDT": {
         "price": 12.54,
@@ -515,14 +501,7 @@
         "time": "2025-02-21T04:00:41.495991",
         "trailing_stop_active": false,
         "highest_price": null,
-        "exit_flag": null
-    },
-    "ETCUSDT": {
-        "price": 21.03,
-        "time": "2025-02-21T07:24:04.334662",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": null
+        "exit_flag": "STOP LOSS"
     },
     "TONUSDT": {
         "price": 3.606,
@@ -543,7 +522,7 @@
         "time": "2025-02-21T09:26:50.196214",
         "trailing_stop_active": false,
         "highest_price": null,
-        "exit_flag": null
+        "exit_flag": "STOP LOSS"
     },
     "SPELLUSDT": {
         "price": 0.0009192,
