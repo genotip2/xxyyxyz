@@ -202,13 +202,6 @@
         "highest_price": null,
         "exit_flag": null
     },
-    "ZKUSDT": {
-        "price": 0.1078,
-        "time": "2025-02-20T06:44:41.527993",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": null
-    },
     "VETUSDT": {
         "price": 0.03233,
         "time": "2025-02-20T06:44:42.290418",
