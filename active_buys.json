@@ -66,7 +66,7 @@
         "price": 24.04,
         "time": "2025-02-20T06:44:17.792348",
         "trailing_stop_active": true,
-        "highest_price": 26.31,
+        "highest_price": 26.43,
         "exit_flag": null
     },
     "NEARUSDT": {
@@ -192,7 +192,7 @@
         "price": 3.424,
         "time": "2025-02-20T06:44:39.320914",
         "trailing_stop_active": true,
-        "highest_price": 3.709,
+        "highest_price": 3.718,
         "exit_flag": null
     },
     "SANDUSDT": {
@@ -241,7 +241,7 @@
         "price": 6.92,
         "time": "2025-02-20T06:44:45.763823",
         "trailing_stop_active": true,
-        "highest_price": 7.431,
+        "highest_price": 7.444,
         "exit_flag": null
     },
     "SOLVUSDT": {
@@ -430,7 +430,7 @@
         "price": 12.54,
         "time": "2025-02-20T18:11:39.547321",
         "trailing_stop_active": true,
-        "highest_price": 13.41,
+        "highest_price": 13.43,
         "exit_flag": null
     },
     "SHIBUSDT": {
@@ -556,7 +556,7 @@
         "price": 0.2131,
         "time": "2025-02-20T23:32:51.030078",
         "trailing_stop_active": true,
-        "highest_price": 0.2308,
+        "highest_price": 0.2312,
         "exit_flag": null
     },
     "LDOUSDT": {
