@@ -20,13 +20,6 @@
         "highest_price": null,
         "exit_flag": null
     },
-    "ADAUSDT": {
-        "price": 0.7813,
-        "time": "2025-02-20T06:44:08.063791",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": null
-    },
     "TAOUSDT": {
         "price": 453.5,
         "time": "2025-02-20T06:44:08.835434",
@@ -149,13 +142,6 @@
     "WBTCUSDT": {
         "price": 96793.58,
         "time": "2025-02-20T06:44:31.144720",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": null
-    },
-    "FILUSDT": {
-        "price": 3.458,
-        "time": "2025-02-20T06:44:32.176741",
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
@@ -349,13 +335,6 @@
         "highest_price": 1.283,
         "exit_flag": "TRAILING STOP"
     },
-    "CRVUSDT": {
-        "price": 0.5239,
-        "time": "2025-02-20T11:07:24.331567",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": null
-    },
     "PENGUUSDT": {
         "price": 0.008423,
         "time": "2025-02-20T11:07:28.773412",
@@ -419,13 +398,6 @@
         "highest_price": null,
         "exit_flag": null
     },
-    "POLUSDT": {
-        "price": 0.3047,
-        "time": "2025-02-20T18:11:42.572037",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": null
-    },
     "AMBUSDT": {
         "price": 0.00193,
         "time": "2025-02-20T18:11:43.276269",
@@ -467,13 +439,6 @@
         "trailing_stop_active": true,
         "highest_price": 0.72,
         "exit_flag": "TRAILING STOP"
-    },
-    "XVGUSDT": {
-        "price": 0.00683,
-        "time": "2025-02-20T19:21:20.545836",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": null
     },
     "BCHUSDT": {
         "price": 325,
@@ -573,13 +538,6 @@
         "highest_price": null,
         "exit_flag": null
     },
-    "DOGEUSDT": {
-        "price": 0.25429,
-        "time": "2025-02-21T07:30:28.715369",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": null
-    },
     "TONUSDT": {
         "price": 3.606,
         "time": "2025-02-21T09:00:46.985546",
@@ -606,7 +564,7 @@
         "time": "2025-02-21T10:07:34.979880",
         "trailing_stop_active": false,
         "highest_price": null,
-        "exit_flag": null
+        "exit_flag": "STOP LOSS"
     },
     "TRUMPUSDT": {
         "price": 17.02,
@@ -614,13 +572,6 @@
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": "STOP LOSS"
-    },
-    "QTUMUSDT": {
-        "price": 3.278,
-        "time": "2025-02-21T11:01:13.227879",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": null
     },
     "GNOUSDT": {
         "price": 186.2,
