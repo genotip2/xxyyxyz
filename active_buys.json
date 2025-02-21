@@ -405,13 +405,6 @@
         "highest_price": 0.02453,
         "exit_flag": "TRAILING STOP"
     },
-    "TRXUSDT": {
-        "price": 0.2432,
-        "time": "2025-02-20T17:07:26.228737",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": null
-    },
     "LINKUSDT": {
         "price": 18.26,
         "time": "2025-02-20T18:11:36.268837",
