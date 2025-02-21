@@ -419,13 +419,6 @@
         "highest_price": null,
         "exit_flag": "STOP LOSS"
     },
-    "TONUSDT": {
-        "price": 3.606,
-        "time": "2025-02-21T09:00:46.985546",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": null
-    },
     "UNIUSDT": {
         "price": 9.458,
         "time": "2025-02-21T09:26:39.428154",
@@ -460,5 +453,12 @@
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": "STOP LOSS"
+    },
+    "USDCUSDT": {
+        "price": 1.0001,
+        "time": "2025-02-21T20:00:45.608611",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
     }
 }
