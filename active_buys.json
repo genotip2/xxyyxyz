@@ -88,7 +88,7 @@
         "time": "2025-02-20T06:44:21.291634",
         "trailing_stop_active": true,
         "highest_price": 1.252,
-        "exit_flag": null
+        "exit_flag": "TRAILING STOP"
     },
     "DOTUSDT": {
         "price": 4.969,
@@ -116,7 +116,7 @@
         "time": "2025-02-20T06:44:25.946530",
         "trailing_stop_active": true,
         "highest_price": 2.078,
-        "exit_flag": null
+        "exit_flag": "TRAILING STOP"
     },
     "FETUSDT": {
         "price": 0.732,
@@ -193,7 +193,7 @@
         "time": "2025-02-20T06:44:39.320914",
         "trailing_stop_active": true,
         "highest_price": 3.718,
-        "exit_flag": null
+        "exit_flag": "TRAILING STOP"
     },
     "SANDUSDT": {
         "price": 0.3696,
@@ -319,7 +319,7 @@
         "time": "2025-02-20T09:36:42.453279",
         "trailing_stop_active": true,
         "highest_price": 4.873,
-        "exit_flag": null
+        "exit_flag": "TRAILING STOP"
     },
     "RENDERUSDT": {
         "price": 4.28,
