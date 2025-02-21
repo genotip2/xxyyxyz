@@ -73,14 +73,14 @@
         "price": 3.197,
         "time": "2025-02-20T06:44:19.464823",
         "trailing_stop_active": true,
-        "highest_price": 3.556,
+        "highest_price": 3.56,
         "exit_flag": null
     },
     "WLDUSDT": {
         "price": 1.151,
         "time": "2025-02-20T06:44:20.277657",
         "trailing_stop_active": true,
-        "highest_price": 1.247,
+        "highest_price": 1.248,
         "exit_flag": null
     },
     "ETHFIUSDT": {
@@ -220,7 +220,7 @@
         "price": 2.942,
         "time": "2025-02-20T06:44:43.211120",
         "trailing_stop_active": true,
-        "highest_price": 3.125,
+        "highest_price": 3.128,
         "exit_flag": null
     },
     "PYTHUSDT": {
@@ -283,7 +283,7 @@
         "price": 0.742,
         "time": "2025-02-20T07:45:59.010659",
         "trailing_stop_active": true,
-        "highest_price": 0.801,
+        "highest_price": 0.8086,
         "exit_flag": null
     },
     "IOUSDT": {
