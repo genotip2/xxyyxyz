@@ -66,7 +66,7 @@
         "price": 24.04,
         "time": "2025-02-20T06:44:17.792348",
         "trailing_stop_active": true,
-        "highest_price": 26.43,
+        "highest_price": 26.46,
         "exit_flag": null
     },
     "NEARUSDT": {
@@ -80,7 +80,7 @@
         "price": 1.151,
         "time": "2025-02-20T06:44:20.277657",
         "trailing_stop_active": true,
-        "highest_price": 1.304,
+        "highest_price": 1.313,
         "exit_flag": null
     },
     "ETHFIUSDT": {
@@ -94,7 +94,7 @@
         "price": 4.969,
         "time": "2025-02-20T06:44:22.071741",
         "trailing_stop_active": true,
-        "highest_price": 5.318,
+        "highest_price": 5.325,
         "exit_flag": null
     },
     "OPUSDT": {
@@ -241,7 +241,7 @@
         "price": 6.92,
         "time": "2025-02-20T06:44:45.763823",
         "trailing_stop_active": true,
-        "highest_price": 7.444,
+        "highest_price": 7.448,
         "exit_flag": null
     },
     "SOLVUSDT": {
@@ -332,7 +332,7 @@
         "price": 1.579e-05,
         "time": "2025-02-20T10:31:53.498378",
         "trailing_stop_active": true,
-        "highest_price": 1.689e-05,
+        "highest_price": 1.693e-05,
         "exit_flag": null
     },
     "APEUSDT": {
@@ -430,7 +430,7 @@
         "price": 12.54,
         "time": "2025-02-20T18:11:39.547321",
         "trailing_stop_active": true,
-        "highest_price": 13.43,
+        "highest_price": 14.17,
         "exit_flag": null
     },
     "SHIBUSDT": {
@@ -549,7 +549,7 @@
         "price": 0.142,
         "time": "2025-02-20T22:38:00.869138",
         "trailing_stop_active": true,
-        "highest_price": 0.1561,
+        "highest_price": 0.1562,
         "exit_flag": null
     },
     "USUALUSDT": {
@@ -653,6 +653,20 @@
     "XLMUSDT": {
         "price": 0.3453,
         "time": "2025-02-21T13:14:49.993018",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "XRPUSDT": {
+        "price": 2.6995,
+        "time": "2025-02-21T14:00:50.939411",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "GNOUSDT": {
+        "price": 186.2,
+        "time": "2025-02-21T14:00:57.111481",
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
