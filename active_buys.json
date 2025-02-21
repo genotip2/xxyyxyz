@@ -65,8 +65,8 @@
     "AVAXUSDT": {
         "price": 24.04,
         "time": "2025-02-20T06:44:17.792348",
-        "trailing_stop_active": false,
-        "highest_price": null,
+        "trailing_stop_active": true,
+        "highest_price": 25.53,
         "exit_flag": null
     },
     "NEARUSDT": {
@@ -80,7 +80,7 @@
         "price": 1.151,
         "time": "2025-02-20T06:44:20.277657",
         "trailing_stop_active": true,
-        "highest_price": 1.248,
+        "highest_price": 1.258,
         "exit_flag": null
     },
     "ETHFIUSDT": {
@@ -283,7 +283,7 @@
         "price": 0.742,
         "time": "2025-02-20T07:45:59.010659",
         "trailing_stop_active": true,
-        "highest_price": 0.8086,
+        "highest_price": 0.8094,
         "exit_flag": null
     },
     "IOUSDT": {
@@ -339,7 +339,7 @@
         "price": 0.681,
         "time": "2025-02-20T10:31:56.598657",
         "trailing_stop_active": true,
-        "highest_price": 0.733,
+        "highest_price": 0.734,
         "exit_flag": null
     },
     "JTOUSDT": {
@@ -408,8 +408,8 @@
     "GALAUSDT": {
         "price": 0.02249,
         "time": "2025-02-20T14:08:17.886924",
-        "trailing_stop_active": false,
-        "highest_price": null,
+        "trailing_stop_active": true,
+        "highest_price": 0.02389,
         "exit_flag": null
     },
     "TRXUSDT": {
@@ -611,6 +611,13 @@
     "CHZUSDT": {
         "price": 0.0541,
         "time": "2025-02-21T08:10:09.854474",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "TONUSDT": {
+        "price": 3.606,
+        "time": "2025-02-21T09:00:46.985546",
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
