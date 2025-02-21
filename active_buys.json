@@ -122,7 +122,7 @@
         "price": 1.844,
         "time": "2025-02-20T06:44:25.946530",
         "trailing_stop_active": true,
-        "highest_price": 1.985,
+        "highest_price": 1.995,
         "exit_flag": null
     },
     "FETUSDT": {
@@ -583,6 +583,13 @@
     "XVSUSDT": {
         "price": 9,
         "time": "2025-02-21T00:35:55.102234",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "LTCUSDT": {
+        "price": 137.07,
+        "time": "2025-02-21T03:14:01.405845",
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
