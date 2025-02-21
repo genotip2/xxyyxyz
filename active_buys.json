@@ -94,7 +94,7 @@
         "price": 4.969,
         "time": "2025-02-20T06:44:22.071741",
         "trailing_stop_active": true,
-        "highest_price": 5.325,
+        "highest_price": 5.327,
         "exit_flag": null
     },
     "OPUSDT": {
@@ -431,7 +431,7 @@
         "time": "2025-02-20T18:11:39.547321",
         "trailing_stop_active": true,
         "highest_price": 14.17,
-        "exit_flag": null
+        "exit_flag": "TRAILING STOP"
     },
     "SHIBUSDT": {
         "price": 1.551e-05,
@@ -549,7 +549,7 @@
         "price": 0.142,
         "time": "2025-02-20T22:38:00.869138",
         "trailing_stop_active": true,
-        "highest_price": 0.1562,
+        "highest_price": 0.1566,
         "exit_flag": null
     },
     "USUALUSDT": {
