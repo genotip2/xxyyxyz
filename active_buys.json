@@ -66,7 +66,7 @@
         "price": 24.04,
         "time": "2025-02-20T06:44:17.792348",
         "trailing_stop_active": true,
-        "highest_price": 26.16,
+        "highest_price": 26.31,
         "exit_flag": null
     },
     "NEARUSDT": {
@@ -94,7 +94,7 @@
         "price": 4.969,
         "time": "2025-02-20T06:44:22.071741",
         "trailing_stop_active": true,
-        "highest_price": 5.284,
+        "highest_price": 5.318,
         "exit_flag": null
     },
     "OPUSDT": {
@@ -143,7 +143,7 @@
         "price": 15.34,
         "time": "2025-02-20T06:44:30.391860",
         "trailing_stop_active": true,
-        "highest_price": 16.72,
+        "highest_price": 16.79,
         "exit_flag": null
     },
     "WBTCUSDT": {
@@ -192,7 +192,7 @@
         "price": 3.424,
         "time": "2025-02-20T06:44:39.320914",
         "trailing_stop_active": true,
-        "highest_price": 3.697,
+        "highest_price": 3.709,
         "exit_flag": null
     },
     "SANDUSDT": {
@@ -241,7 +241,7 @@
         "price": 6.92,
         "time": "2025-02-20T06:44:45.763823",
         "trailing_stop_active": true,
-        "highest_price": 7.419,
+        "highest_price": 7.431,
         "exit_flag": null
     },
     "SOLVUSDT": {
@@ -311,7 +311,7 @@
         "price": 0.2628,
         "time": "2025-02-20T09:08:56.313421",
         "trailing_stop_active": true,
-        "highest_price": 0.2869,
+        "highest_price": 0.289,
         "exit_flag": null
     },
     "RAYUSDT": {
@@ -325,14 +325,14 @@
         "price": 4.28,
         "time": "2025-02-20T09:36:47.417953",
         "trailing_stop_active": true,
-        "highest_price": 4.619,
+        "highest_price": 4.624,
         "exit_flag": null
     },
     "BONKUSDT": {
         "price": 1.579e-05,
         "time": "2025-02-20T10:31:53.498378",
         "trailing_stop_active": true,
-        "highest_price": 1.683e-05,
+        "highest_price": 1.689e-05,
         "exit_flag": null
     },
     "APEUSDT": {
@@ -556,7 +556,7 @@
         "price": 0.2131,
         "time": "2025-02-20T23:32:51.030078",
         "trailing_stop_active": true,
-        "highest_price": 0.2298,
+        "highest_price": 0.2308,
         "exit_flag": null
     },
     "LDOUSDT": {
