@@ -1,18 +1,4 @@
 {
-    "BTCUSDT": {
-        "price": 96999.01,
-        "time": "2025-02-20T06:44:03.416454",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": null
-    },
-    "SOLUSDT": {
-        "price": 171.67,
-        "time": "2025-02-20T06:44:05.380462",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": null
-    },
     "TAOUSDT": {
         "price": 453.5,
         "time": "2025-02-20T06:44:08.835434",
@@ -125,13 +111,6 @@
         "highest_price": 16.79,
         "exit_flag": "TRAILING STOP"
     },
-    "WBTCUSDT": {
-        "price": 96793.58,
-        "time": "2025-02-20T06:44:31.144720",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": null
-    },
     "LAYERUSDT": {
         "price": 0.6548,
         "time": "2025-02-20T06:44:35.041942",
@@ -167,20 +146,6 @@
         "highest_price": 3.718,
         "exit_flag": "TRAILING STOP"
     },
-    "SANDUSDT": {
-        "price": 0.3696,
-        "time": "2025-02-20T06:44:40.065199",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": null
-    },
-    "VETUSDT": {
-        "price": 0.03233,
-        "time": "2025-02-20T06:44:42.290418",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": null
-    },
     "ZROUSDT": {
         "price": 2.942,
         "time": "2025-02-20T06:44:43.211120",
@@ -195,13 +160,6 @@
         "highest_price": 0.2634,
         "exit_flag": "TRAILING STOP"
     },
-    "ATOMUSDT": {
-        "price": 4.819,
-        "time": "2025-02-20T06:44:45.018598",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": null
-    },
     "ICPUSDT": {
         "price": 6.92,
         "time": "2025-02-20T06:44:45.763823",
@@ -215,13 +173,6 @@
         "trailing_stop_active": true,
         "highest_price": 0.0346,
         "exit_flag": "TRAILING STOP"
-    },
-    "JASMYUSDT": {
-        "price": 0.02142,
-        "time": "2025-02-20T06:44:48.297760",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": null
     },
     "MANTAUSDT": {
         "price": 0.388,
@@ -370,26 +321,12 @@
         "highest_price": 14.17,
         "exit_flag": "TRAILING STOP"
     },
-    "SHIBUSDT": {
-        "price": 1.551e-05,
-        "time": "2025-02-20T18:11:40.617849",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": null
-    },
     "AMBUSDT": {
         "price": 0.00193,
         "time": "2025-02-20T18:11:43.276269",
         "trailing_stop_active": true,
         "highest_price": 0.00214,
         "exit_flag": "TRAILING STOP"
-    },
-    "PEPEUSDT": {
-        "price": 9.57e-06,
-        "time": "2025-02-20T18:34:58.448862",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": null
     },
     "BOMEUSDT": {
         "price": 0.001967,
@@ -405,26 +342,12 @@
         "highest_price": 0.742,
         "exit_flag": "TRAILING STOP"
     },
-    "BNBUSDT": {
-        "price": 656.56,
-        "time": "2025-02-20T19:21:07.439440",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": null
-    },
     "WIFUSDT": {
         "price": 0.631,
         "time": "2025-02-20T19:21:10.859246",
         "trailing_stop_active": true,
         "highest_price": 0.72,
         "exit_flag": "TRAILING STOP"
-    },
-    "BCHUSDT": {
-        "price": 325,
-        "time": "2025-02-20T19:21:22.552625",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": null
     },
     "BNXUSDT": {
         "price": 0.9403,
@@ -446,13 +369,6 @@
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": "STOP LOSS"
-    },
-    "FLOKIUSDT": {
-        "price": 9.662e-05,
-        "time": "2025-02-20T21:07:32.924118",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": null
     },
     "OMUSDT": {
         "price": 8.2128,
