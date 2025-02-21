@@ -67,14 +67,14 @@
         "time": "2025-02-20T06:44:17.792348",
         "trailing_stop_active": true,
         "highest_price": 26.46,
-        "exit_flag": null
+        "exit_flag": "TRAILING STOP"
     },
     "NEARUSDT": {
         "price": 3.197,
         "time": "2025-02-20T06:44:19.464823",
         "trailing_stop_active": true,
         "highest_price": 3.633,
-        "exit_flag": null
+        "exit_flag": "TRAILING STOP"
     },
     "WLDUSDT": {
         "price": 1.151,
@@ -109,7 +109,7 @@
         "time": "2025-02-20T06:44:25.067847",
         "trailing_stop_active": true,
         "highest_price": 0.5099,
-        "exit_flag": null
+        "exit_flag": "TRAILING STOP"
     },
     "EIGENUSDT": {
         "price": 1.844,
@@ -144,7 +144,7 @@
         "time": "2025-02-20T06:44:30.391860",
         "trailing_stop_active": true,
         "highest_price": 16.79,
-        "exit_flag": null
+        "exit_flag": "TRAILING STOP"
     },
     "WBTCUSDT": {
         "price": 96793.58,
@@ -333,7 +333,7 @@
         "time": "2025-02-20T10:31:53.498378",
         "trailing_stop_active": true,
         "highest_price": 1.693e-05,
-        "exit_flag": null
+        "exit_flag": "TRAILING STOP"
     },
     "APEUSDT": {
         "price": 0.681,
@@ -389,7 +389,7 @@
         "time": "2025-02-20T11:07:35.523464",
         "trailing_stop_active": true,
         "highest_price": 0.0745,
-        "exit_flag": null
+        "exit_flag": "TRAILING STOP"
     },
     "AUCTIONUSDT": {
         "price": 13.19,
@@ -410,7 +410,7 @@
         "time": "2025-02-20T14:08:17.886924",
         "trailing_stop_active": true,
         "highest_price": 0.02453,
-        "exit_flag": null
+        "exit_flag": "TRAILING STOP"
     },
     "TRXUSDT": {
         "price": 0.2432,
@@ -466,7 +466,7 @@
         "time": "2025-02-20T18:35:08.858927",
         "trailing_stop_active": true,
         "highest_price": 0.002165,
-        "exit_flag": null
+        "exit_flag": "TRAILING STOP"
     },
     "ARKMUSDT": {
         "price": 0.654,
@@ -550,7 +550,7 @@
         "time": "2025-02-20T22:38:00.869138",
         "trailing_stop_active": true,
         "highest_price": 0.1568,
-        "exit_flag": null
+        "exit_flag": "TRAILING STOP"
     },
     "USUALUSDT": {
         "price": 0.2131,
