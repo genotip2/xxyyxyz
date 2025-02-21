@@ -293,13 +293,6 @@
         "highest_price": 1.446,
         "exit_flag": "TRAILING STOP"
     },
-    "AAVEUSDT": {
-        "price": 254.56,
-        "time": "2025-02-20T08:11:38.020815",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": null
-    },
     "MKRUSDT": {
         "price": 1215,
         "time": "2025-02-20T09:08:52.799780",
@@ -564,7 +557,7 @@
         "time": "2025-02-21T00:35:41.470181",
         "trailing_stop_active": false,
         "highest_price": null,
-        "exit_flag": null
+        "exit_flag": "STOP LOSS"
     },
     "XVSUSDT": {
         "price": 9,
@@ -597,13 +590,6 @@
     "DOGEUSDT": {
         "price": 0.25429,
         "time": "2025-02-21T07:30:28.715369",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": null
-    },
-    "CHZUSDT": {
-        "price": 0.0541,
-        "time": "2025-02-21T08:10:09.854474",
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
