@@ -81,7 +81,7 @@
         "time": "2025-02-20T06:44:20.277657",
         "trailing_stop_active": true,
         "highest_price": 1.313,
-        "exit_flag": null
+        "exit_flag": "TRAILING STOP"
     },
     "ETHFIUSDT": {
         "price": 1.138,
@@ -95,7 +95,7 @@
         "time": "2025-02-20T06:44:22.071741",
         "trailing_stop_active": true,
         "highest_price": 5.327,
-        "exit_flag": null
+        "exit_flag": "TRAILING STOP"
     },
     "OPUSDT": {
         "price": 1.148,
@@ -242,7 +242,7 @@
         "time": "2025-02-20T06:44:45.763823",
         "trailing_stop_active": true,
         "highest_price": 7.448,
-        "exit_flag": null
+        "exit_flag": "TRAILING STOP"
     },
     "SOLVUSDT": {
         "price": 0.0316,
@@ -340,7 +340,7 @@
         "time": "2025-02-20T10:31:56.598657",
         "trailing_stop_active": true,
         "highest_price": 0.753,
-        "exit_flag": null
+        "exit_flag": "TRAILING STOP"
     },
     "JTOUSDT": {
         "price": 2.666,
@@ -620,7 +620,7 @@
         "time": "2025-02-21T09:26:39.428154",
         "trailing_stop_active": false,
         "highest_price": null,
-        "exit_flag": null
+        "exit_flag": "STOP LOSS"
     },
     "BURGERUSDT": {
         "price": 0.3402,
@@ -641,7 +641,7 @@
         "time": "2025-02-21T10:30:41.614569",
         "trailing_stop_active": false,
         "highest_price": null,
-        "exit_flag": null
+        "exit_flag": "STOP LOSS"
     },
     "QTUMUSDT": {
         "price": 3.278,
@@ -655,6 +655,6 @@
         "time": "2025-02-21T14:00:57.111481",
         "trailing_stop_active": false,
         "highest_price": null,
-        "exit_flag": null
+        "exit_flag": "STOP LOSS"
     }
 }
