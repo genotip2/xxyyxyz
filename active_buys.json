@@ -339,14 +339,14 @@
         "price": 0.681,
         "time": "2025-02-20T10:31:56.598657",
         "trailing_stop_active": true,
-        "highest_price": 0.731,
+        "highest_price": 0.732,
         "exit_flag": null
     },
     "JTOUSDT": {
         "price": 2.666,
         "time": "2025-02-20T10:46:13.573201",
-        "trailing_stop_active": false,
-        "highest_price": null,
+        "trailing_stop_active": true,
+        "highest_price": 3.321,
         "exit_flag": null
     },
     "SUSDT": {
