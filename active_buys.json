@@ -73,7 +73,7 @@
         "price": 3.197,
         "time": "2025-02-20T06:44:19.464823",
         "trailing_stop_active": true,
-        "highest_price": 3.488,
+        "highest_price": 3.489,
         "exit_flag": null
     },
     "WLDUSDT": {
@@ -283,7 +283,7 @@
         "price": 0.742,
         "time": "2025-02-20T07:45:59.010659",
         "trailing_stop_active": true,
-        "highest_price": 0.7943,
+        "highest_price": 0.7971,
         "exit_flag": null
     },
     "IOUSDT": {
@@ -318,7 +318,7 @@
         "price": 4.345,
         "time": "2025-02-20T09:36:42.453279",
         "trailing_stop_active": true,
-        "highest_price": 4.622,
+        "highest_price": 4.632,
         "exit_flag": null
     },
     "RENDERUSDT": {
@@ -472,7 +472,7 @@
         "price": 0.654,
         "time": "2025-02-20T19:06:42.436193",
         "trailing_stop_active": true,
-        "highest_price": 0.736,
+        "highest_price": 0.742,
         "exit_flag": null
     },
     "BNBUSDT": {
