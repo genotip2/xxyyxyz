@@ -283,7 +283,7 @@
         "price": 0.742,
         "time": "2025-02-20T07:45:59.010659",
         "trailing_stop_active": true,
-        "highest_price": 0.8309,
+        "highest_price": 0.8321,
         "exit_flag": null
     },
     "IOUSDT": {
@@ -388,7 +388,7 @@
         "price": 0.0684,
         "time": "2025-02-20T11:07:35.523464",
         "trailing_stop_active": true,
-        "highest_price": 0.0731,
+        "highest_price": 0.0732,
         "exit_flag": null
     },
     "AUCTIONUSDT": {
@@ -632,6 +632,13 @@
     "BURGERUSDT": {
         "price": 0.3402,
         "time": "2025-02-21T09:26:50.196214",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "SPELLUSDT": {
+        "price": 0.0009192,
+        "time": "2025-02-21T10:07:34.979880",
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
