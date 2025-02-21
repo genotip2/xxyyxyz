@@ -30,8 +30,8 @@
     "TAOUSDT": {
         "price": 453.5,
         "time": "2025-02-20T06:44:08.835434",
-        "trailing_stop_active": false,
-        "highest_price": null,
+        "trailing_stop_active": true,
+        "highest_price": 483.6,
         "exit_flag": null
     },
     "APTUSDT": {
@@ -73,14 +73,14 @@
         "price": 3.197,
         "time": "2025-02-20T06:44:19.464823",
         "trailing_stop_active": true,
-        "highest_price": 3.519,
+        "highest_price": 3.552,
         "exit_flag": null
     },
     "WLDUSDT": {
         "price": 1.151,
         "time": "2025-02-20T06:44:20.277657",
         "trailing_stop_active": true,
-        "highest_price": 1.226,
+        "highest_price": 1.244,
         "exit_flag": null
     },
     "ETHFIUSDT": {
@@ -192,7 +192,7 @@
         "price": 3.424,
         "time": "2025-02-20T06:44:39.320914",
         "trailing_stop_active": true,
-        "highest_price": 3.634,
+        "highest_price": 3.641,
         "exit_flag": null
     },
     "SANDUSDT": {
@@ -219,8 +219,8 @@
     "ZROUSDT": {
         "price": 2.942,
         "time": "2025-02-20T06:44:43.211120",
-        "trailing_stop_active": false,
-        "highest_price": null,
+        "trailing_stop_active": true,
+        "highest_price": 3.121,
         "exit_flag": null
     },
     "PYTHUSDT": {
@@ -590,6 +590,13 @@
     "CAKEUSDT": {
         "price": 2.557,
         "time": "2025-02-21T04:00:41.495991",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "ETCUSDT": {
+        "price": 21.03,
+        "time": "2025-02-21T07:24:04.334662",
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
