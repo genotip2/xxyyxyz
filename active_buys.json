@@ -20,13 +20,6 @@
         "highest_price": null,
         "exit_flag": null
     },
-    "XRPUSDT": {
-        "price": 2.6936,
-        "time": "2025-02-20T06:44:06.157958",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": null
-    },
     "ADAUSDT": {
         "price": 0.7813,
         "time": "2025-02-20T06:44:08.063791",
@@ -137,7 +130,7 @@
         "time": "2025-02-20T06:44:27.294440",
         "trailing_stop_active": true,
         "highest_price": 0.787,
-        "exit_flag": null
+        "exit_flag": "TRAILING STOP"
     },
     "TIAUSDT": {
         "price": 3.203,
@@ -531,13 +524,6 @@
         "highest_price": 1.1523,
         "exit_flag": "TRAILING STOP"
     },
-    "QTUMUSDT": {
-        "price": 3.271,
-        "time": "2025-02-20T19:31:38.089901",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": null
-    },
     "ENAUSDT": {
         "price": 0.4197,
         "time": "2025-02-20T20:09:07.198987",
@@ -590,13 +576,6 @@
     "FDUSDUSDT": {
         "price": 0.9989,
         "time": "2025-02-21T00:35:34.087007",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": null
-    },
-    "TRUMPUSDT": {
-        "price": 16.94,
-        "time": "2025-02-21T00:35:35.263245",
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
