@@ -97,13 +97,6 @@
         "highest_price": null,
         "exit_flag": null
     },
-    "XLMUSDT": {
-        "price": 0.3423,
-        "time": "2025-02-20T06:44:22.972201",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": null
-    },
     "OPUSDT": {
         "price": 1.148,
         "time": "2025-02-20T06:44:24.133004",
@@ -122,7 +115,7 @@
         "price": 1.844,
         "time": "2025-02-20T06:44:25.946530",
         "trailing_stop_active": true,
-        "highest_price": 1.995,
+        "highest_price": 1.996,
         "exit_flag": null
     },
     "FETUSDT": {
