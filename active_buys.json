@@ -286,13 +286,6 @@
         "highest_price": 0.0745,
         "exit_flag": "TRAILING STOP"
     },
-    "AUCTIONUSDT": {
-        "price": 13.19,
-        "time": "2025-02-20T11:46:19.898085",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": null
-    },
     "LOKAUSDT": {
         "price": 0.1311,
         "time": "2025-02-20T12:15:34.910748",
