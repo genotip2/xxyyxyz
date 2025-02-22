@@ -481,5 +481,12 @@
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
+    },
+    "SOLUSDT": {
+        "price": 173.98,
+        "time": "2025-02-22T13:17:05.127451",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
     }
 }
