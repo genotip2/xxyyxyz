@@ -72,8 +72,8 @@
     "NEIROUSDT": {
         "price": 0.00039369,
         "time": "2025-02-22T16:00:46.464186",
-        "trailing_stop_active": false,
-        "highest_price": null,
+        "trailing_stop_active": true,
+        "highest_price": 0.00044155,
         "exit_flag": null
     },
     "FETUSDT": {
@@ -338,8 +338,8 @@
     "1000CHEEMSUSDT": {
         "price": 0.00094,
         "time": "2025-02-22T16:01:01.716143",
-        "trailing_stop_active": false,
-        "highest_price": null,
+        "trailing_stop_active": true,
+        "highest_price": 0.001002,
         "exit_flag": null
     },
     "MINAUSDT": {

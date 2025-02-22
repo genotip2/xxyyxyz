@@ -1,1 +1,16 @@
-{}
+{
+    "TSTUSDT": {
+        "price": 0.1199,
+        "time": "2025-02-22T16:29:08.477020",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "IOUSDT": {
+        "price": 1.419,
+        "time": "2025-02-22T16:29:13.434452",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    }
+}
