@@ -12,5 +12,26 @@
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
+    },
+    "ARBUSDT": {
+        "price": 0.4838,
+        "time": "2025-02-22T16:39:03.483656",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "CVXUSDT": {
+        "price": 2.741,
+        "time": "2025-02-22T16:39:17.608324",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "VELODROMEUSDT": {
+        "price": 0.073,
+        "time": "2025-02-22T16:39:31.943666",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
     }
 }

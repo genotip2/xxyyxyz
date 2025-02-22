@@ -73,7 +73,7 @@
         "price": 0.00039369,
         "time": "2025-02-22T16:00:46.464186",
         "trailing_stop_active": true,
-        "highest_price": 0.00044155,
+        "highest_price": 0.00044349,
         "exit_flag": null
     },
     "FETUSDT": {
@@ -339,7 +339,7 @@
         "price": 0.00094,
         "time": "2025-02-22T16:01:01.716143",
         "trailing_stop_active": true,
-        "highest_price": 0.001002,
+        "highest_price": 0.001019,
         "exit_flag": null
     },
     "MINAUSDT": {
