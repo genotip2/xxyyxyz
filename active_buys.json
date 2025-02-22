@@ -33,5 +33,12 @@
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
+    },
+    "SUSHIUSDT": {
+        "price": 0.902,
+        "time": "2025-02-22T21:45:46.196539",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
     }
 }
