@@ -54,5 +54,26 @@
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
+    },
+    "DYDXUSDT": {
+        "price": 0.8048,
+        "time": "2025-02-22T17:34:19.546550",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "EOSUSDT": {
+        "price": 0.6444,
+        "time": "2025-02-22T17:34:27.102462",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "ALTUSDT": {
+        "price": 0.04899,
+        "time": "2025-02-22T17:34:40.392039",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
     }
 }
