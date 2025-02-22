@@ -474,5 +474,12 @@
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
+    },
+    "NOTUSDT": {
+        "price": 0.002971,
+        "time": "2025-02-22T08:38:17.954484",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
     }
 }
