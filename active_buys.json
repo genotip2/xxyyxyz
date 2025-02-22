@@ -453,5 +453,12 @@
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
+    },
+    "AUCTIONUSDT": {
+        "price": 13.97,
+        "time": "2025-02-22T02:02:35.162085",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
     }
 }
