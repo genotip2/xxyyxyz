@@ -68,5 +68,19 @@
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
+    },
+    "FILUSDT": {
+        "price": 3.442,
+        "time": "2025-02-22T23:22:28.571239",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "SSVUSDT": {
+        "price": 12.32,
+        "time": "2025-02-22T23:22:38.763923",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
     }
 }
