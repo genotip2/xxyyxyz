@@ -19,5 +19,12 @@
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
+    },
+    "USUALUSDT": {
+        "price": 0.2348,
+        "time": "2025-02-22T21:00:58.859335",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
     }
 }
