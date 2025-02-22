@@ -1,1 +1,23 @@
-{}
+{
+    "MEMEUSDT": {
+        "price": 0.00439,
+        "time": "2025-02-22T20:01:06.216906",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "XAIUSDT": {
+        "price": 0.1022,
+        "time": "2025-02-22T20:01:12.269682",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "MBOXUSDT": {
+        "price": 0.1256,
+        "time": "2025-02-22T20:01:15.248121",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    }
+}
