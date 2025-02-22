@@ -33,5 +33,19 @@
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
+    },
+    "ENAUSDT": {
+        "price": 0.4709,
+        "time": "2025-02-22T17:00:49.818310",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "ATOMUSDT": {
+        "price": 4.891,
+        "time": "2025-02-22T17:00:56.017406",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
     }
 }
