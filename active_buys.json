@@ -61,5 +61,12 @@
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
+    },
+    "VANAUSDT": {
+        "price": 6.349,
+        "time": "2025-02-22T23:00:55.382257",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
     }
 }
