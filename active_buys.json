@@ -82,5 +82,12 @@
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
+    },
+    "1000CATUSDT": {
+        "price": 0.01238,
+        "time": "2025-02-22T23:30:47.514933",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
     }
 }
