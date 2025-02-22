@@ -4,7 +4,7 @@
         "time": "2025-02-22T16:29:08.477020",
         "trailing_stop_active": false,
         "highest_price": null,
-        "exit_flag": null
+        "exit_flag": "STOP LOSS"
     },
     "IOUSDT": {
         "price": 1.419,
@@ -44,6 +44,13 @@
     "ATOMUSDT": {
         "price": 4.891,
         "time": "2025-02-22T17:00:56.017406",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "TRBUSDT": {
+        "price": 37.21,
+        "time": "2025-02-22T17:26:45.769870",
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
