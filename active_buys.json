@@ -75,5 +75,12 @@
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
+    },
+    "STXUSDT": {
+        "price": 0.931,
+        "time": "2025-02-22T18:00:55.876885",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
     }
 }
