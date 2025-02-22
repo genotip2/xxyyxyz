@@ -54,5 +54,12 @@
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
+    },
+    "YGGUSDT": {
+        "price": 0.2644,
+        "time": "2025-02-22T22:34:36.093809",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
     }
 }
