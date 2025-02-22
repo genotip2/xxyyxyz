@@ -40,5 +40,19 @@
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
+    },
+    "PENGUUSDT": {
+        "price": 0.009234,
+        "time": "2025-02-22T22:26:43.951403",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "TONUSDT": {
+        "price": 3.713,
+        "time": "2025-02-22T22:26:47.275380",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
     }
 }
