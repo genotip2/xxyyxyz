@@ -488,5 +488,12 @@
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
+    },
+    "SHIBUSDT": {
+        "price": 1.539e-05,
+        "time": "2025-02-22T14:32:54.632849",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
     }
 }
