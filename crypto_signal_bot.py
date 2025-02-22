@@ -12,17 +12,20 @@ CMC_API_KEY = os.getenv('CMC_API_KEY')  # API key untuk CoinMarketCap
 ACTIVE_BUYS_FILE = 'active_buys.json'
 ACTIVE_BUYS = {}
 
+# Tambahan file untuk unused signals
+UNUSED_SIGNAL_FILE = 'unused_signal.json'
+UNUSED_SIGNALS = {}
+
 # File cache untuk menyimpan daftar pair top berdasarkan ranking CMC
 CACHE_FILE = 'pairs_cache.json'
 CACHE_EXPIRED_DAYS = 30  # Cache dianggap kadaluarsa jika lebih dari 30 hari
 
-# File untuk menyimpan sinyal BUY yang tidak langsung diproses
-UNUSED_SIGNALS_FILE = 'unused_signal.json'
-UNUSED_SIGNALS = {}
+# Flag untuk mengetahui apakah cache telah diperbarui (misalnya file tidak ada atau sudah kadaluarsa)
+CACHE_UPDATED = False
 
 # Konfigurasi jumlah pair untuk cache dan analisis
-TOP_PAIRS_CACHED = 200       # Jumlah pair teratas (berdasarkan ranking CMC) yang akan disimpan ke cache
-PAIR_TO_ANALYZE = 200         # Dari cache, hanya analisis sejumlah pair tertentu
+TOP_PAIRS_CACHED = 100       # Jumlah pair teratas (berdasarkan ranking CMC) yang akan disimpan ke cache
+PAIR_TO_ANALYZE = 100         # Dari cache, hanya analisis sejumlah pair tertentu
 
 # Konfigurasi order analisis.
 ANALYSIS_ORDER = "top"       # "top" mengambil dari awal, "bottom" dari akhir.
@@ -81,52 +84,45 @@ def save_active_buys():
     except Exception as e:
         print(f"❌ Gagal menyimpan posisi aktif: {e}")
 
-##############################
-# FUNGSI UTILITY: LOAD & SAVE UNUSED SIGNALS
-##############################
 def load_unused_signals():
-    """Muat sinyal yang belum digunakan dari file JSON."""
+    """Muat unused signals dari file JSON."""
     global UNUSED_SIGNALS
-    if os.path.exists(UNUSED_SIGNALS_FILE):
+    if os.path.exists(UNUSED_SIGNAL_FILE):
         try:
-            with open(UNUSED_SIGNALS_FILE, 'r') as f:
+            with open(UNUSED_SIGNAL_FILE, 'r') as f:
                 data = json.load(f)
+                # Konversi string waktu kembali ke datetime
                 UNUSED_SIGNALS = {
                     pair: {
                         'price': d['price'],
-                        'time': datetime.fromisoformat(d['time']),
-                        'trailing_stop_active': d.get('trailing_stop_active', False),
-                        'highest_price': d.get('highest_price', None),
-                        'exit_flag': d.get('exit_flag', None)
+                        'time': datetime.fromisoformat(d['time'])
                     }
                     for pair, d in data.items()
                 }
-            print("✅ Sinyal unused dimuat.")
+            print("✅ Unused signals dimuat.")
         except Exception as e:
-            print(f"❌ Gagal memuat sinyal unused: {e}")
+            print(f"❌ Gagal memuat unused signals: {e}")
+            UNUSED_SIGNALS = {}
     else:
         UNUSED_SIGNALS = {}
 
 def save_unused_signals():
-    """Simpan sinyal unused ke file JSON."""
+    """Simpan unused signals ke file JSON."""
     try:
         data = {}
         for pair, d in UNUSED_SIGNALS.items():
             data[pair] = {
                 'price': d['price'],
-                'time': d['time'].isoformat(),
-                'trailing_stop_active': d.get('trailing_stop_active', False),
-                'highest_price': d.get('highest_price', None),
-                'exit_flag': d.get('exit_flag', None)
+                'time': d['time'].isoformat()
             }
-        with open(UNUSED_SIGNALS_FILE, 'w') as f:
+        with open(UNUSED_SIGNAL_FILE, 'w') as f:
             json.dump(data, f, indent=4)
-        print("✅ Sinyal unused disimpan.")
+        print("✅ Unused signals disimpan.")
     except Exception as e:
-        print(f"❌ Gagal menyimpan sinyal unused: {e}")
+        print(f"❌ Gagal menyimpan unused signals: {e}")
 
 ##############################
-# FUNGSI MEMPERBARUI DAN MEMUAT CACHE PAIR
+# FUNGSI MEMPERBARUI CACHE PAIR & MENGAMBIL RANKING CMC
 ##############################
 def get_cmc_rankings(symbols):
     """
@@ -216,8 +212,8 @@ def get_pairs_from_cache():
     """
     Memuat daftar pair dari file cache.
     Jika file cache tidak ada atau sudah kadaluarsa, maka file cache akan diperbarui terlebih dahulu.
-    Mengembalikan tuple (pairs, cache_updated_flag).
     """
+    global CACHE_UPDATED
     now = datetime.now()
     update_cache = False
 
@@ -236,16 +232,19 @@ def get_pairs_from_cache():
             update_cache = True
 
     if update_cache:
+        CACHE_UPDATED = True
         update_pairs_cache()
+    else:
+        CACHE_UPDATED = False
 
     try:
         with open(CACHE_FILE, 'r') as f:
             pairs = json.load(f)
         print(f"✅ Cache pair dimuat. Jumlah pair: {len(pairs)}")
-        return pairs, update_cache
+        return pairs
     except Exception as e:
         print(f"❌ Gagal memuat file cache pair: {e}")
-        return [], update_cache
+        return []
 
 ##############################
 # FUNGSI ANALISIS: MULTI-TIMEFRAME
@@ -268,7 +267,7 @@ def analyze_pair_interval(pair, interval):
         return None
 
 ##############################
-# FUNGSI BEST ENTRY
+# FUNGSI BEST ENTRY & BEST EXIT
 ##############################
 def is_best_entry_from_data(data):
     """
@@ -295,9 +294,6 @@ def is_best_entry_from_data(data):
 
     return True, "Best Entry Condition terpenuhi."
 
-##############################
-# FUNGSI BEST EXIT
-##############################
 def is_best_exit_from_data(data):
     """
     Evaluasi apakah kondisi best exit terpenuhi.
@@ -324,8 +320,7 @@ def is_best_exit_from_data(data):
 def generate_signal(pair):
     """
     Hasilkan sinyal trading berdasarkan evaluasi best entry atau best exit.
-    Fungsi ini mengembalikan tuple (signal, current_price, details, entry_analysis)
-    untuk menghindari pemanggilan ulang analisis di fungsi notifikasi.
+    Mengembalikan tuple (signal, current_price, details, entry_analysis).
     """
     # Analisis timeframe tren dan entry
     trend_analysis = analyze_pair_interval(pair, TIMEFRAME_TREND)
@@ -352,54 +347,76 @@ def generate_signal(pair):
         'macd_signal_trend': trend_analysis.indicators.get('MACD.signal')
     }
 
-    # Jika pair belum aktif (baik di ACTIVE_BUYS maupun di UNUSED_SIGNALS), evaluasi kondisi best entry
-    if pair not in ACTIVE_BUYS and pair not in UNUSED_SIGNALS:
+    # Jika pair sudah tercatat di UNUSED_SIGNALS, hanya evaluasi best exit
+    if pair in UNUSED_SIGNALS:
+        best_exit_ok, best_exit_msg = is_best_exit_from_data(data)
+        if best_exit_ok:
+            print(f"✅ Pair {pair} dihapus dari unused signals karena best exit terpenuhi (tanpa notifikasi).")
+            del UNUSED_SIGNALS[pair]
+            return None, current_price, "Best exit terpenuhi, pair dihapus dari unused signals.", entry_analysis
+        else:
+            return None, current_price, "Tidak ada sinyal (unused signal mode).", entry_analysis
+
+    # Jika pair belum aktif di ACTIVE_BUYS, evaluasi best entry
+    if pair not in ACTIVE_BUYS:
         best_entry_ok, best_entry_msg = is_best_entry_from_data(data)
         if best_entry_ok:
-            details = f"BEST ENTRY: {best_entry_msg}"
-            return "BUY", current_price, details, entry_analysis
+            if CACHE_UPDATED:
+                UNUSED_SIGNALS[pair] = {
+                    'price': current_price,
+                    'time': datetime.now()
+                }
+                print(f"ℹ️ Sinyal BUY untuk {pair} dicatat di UNUSED_SIGNALS (tanpa notifikasi) karena cache diperbarui.")
+                return None, current_price, "Buy signal dicatat ke unused_signal.", entry_analysis
+            else:
+                return "BUY", current_price, f"BEST ENTRY: {best_entry_msg}", entry_analysis
         else:
             return None, current_price, f"Tidak memenuhi best entry: {best_entry_msg}", entry_analysis
     else:
-        # Sudah ada posisi, cek exit atau update posisi
-        data_active = ACTIVE_BUYS.get(pair) or UNUSED_SIGNALS.get(pair)
-        # Jika sudah ada exit_flag, jangan kirim sinyal baru
+        # Pair sudah aktif di ACTIVE_BUYS
+        data_active = ACTIVE_BUYS[pair]
+        holding_duration = datetime.now() - data_active['time']
+        
+        # Evaluasi best exit terlebih dahulu
+        best_exit_ok, best_exit_msg = is_best_exit_from_data(data)
+        if best_exit_ok:
+            if data_active.get('exit_flag') is not None:
+                # Jika exit flag sudah aktif, langsung hapus pair tanpa notifikasi
+                del ACTIVE_BUYS[pair]
+                print(f"✅ Pair {pair} dihapus dari active buys karena exit flag aktif dan best exit terpenuhi.")
+                return None, current_price, "Pair dihapus dari active buys karena exit flag aktif.", entry_analysis
+            else:
+                return "SELL", current_price, f"BEST EXIT: {best_exit_msg}", entry_analysis
+
+        # Selanjutnya, periksa kondisi EXPIRED
+        if holding_duration > timedelta(hours=MAX_HOLD_DURATION_HOUR):
+            if data_active.get('exit_flag') is not None:
+                del ACTIVE_BUYS[pair]
+                print(f"✅ Pair {pair} dihapus dari active buys karena exit flag aktif dan kondisi EXPIRED terpenuhi.")
+                return None, current_price, "Pair dihapus dari active buys (exit flag & expired).", entry_analysis
+            else:
+                return "EXPIRED", current_price, f"Durasi hold: {str(holding_duration).split('.')[0]}", entry_analysis
+
+        # Jika exit flag sudah aktif (untuk menghindari notifikasi ganda)
         if data_active.get('exit_flag') is not None:
             return None, current_price, "Sinyal exit sudah ditandai, menunggu sinyal SELL/EXPIRED.", entry_analysis
 
-        # Pengecekan expired: jika durasi hold melebihi batas, kembalikan sinyal EXPIRED
-        holding_duration = datetime.now() - data_active['time']
-        if holding_duration > timedelta(hours=MAX_HOLD_DURATION_HOUR):
-            return "EXPIRED", current_price, f"Durasi hold: {str(holding_duration).split('.')[0]}", entry_analysis
-
-        # Evaluasi kondisi best exit
-        best_exit_ok, best_exit_msg = is_best_exit_from_data(data)
-        if best_exit_ok:
-            return "SELL", current_price, f"BEST EXIT: {best_exit_msg}", entry_analysis
-
+        # Evaluasi kondisi lainnya (stop loss dan trailing stop)
         entry_price = data_active['price']
         profit_from_entry = (current_price - entry_price) / entry_price * 100
 
-        # Stop loss
         if profit_from_entry <= -STOP_LOSS_PERCENTAGE:
             return "STOP LOSS", current_price, "Stop loss tercapai.", entry_analysis
 
-        # Aktifkan trailing stop jika take profit tercapai
         if not data_active.get('trailing_stop_active', False) and profit_from_entry >= TAKE_PROFIT_PERCENTAGE:
-            if pair in ACTIVE_BUYS:
-                ACTIVE_BUYS[pair]['trailing_stop_active'] = True
-                ACTIVE_BUYS[pair]['highest_price'] = current_price
-            else:
-                UNUSED_SIGNALS[pair]['trailing_stop_active'] = True
-                UNUSED_SIGNALS[pair]['highest_price'] = current_price
+            ACTIVE_BUYS[pair]['trailing_stop_active'] = True
+            ACTIVE_BUYS[pair]['highest_price'] = current_price
             return "TAKE PROFIT", current_price, "Target take profit tercapai, trailing stop diaktifkan.", entry_analysis
 
-        # Proses trailing stop
         if data_active.get('trailing_stop_active', False):
             prev_high = data_active.get('highest_price')
             if prev_high is None or current_price > prev_high:
-                data_active['highest_price'] = current_price
-                # Notifikasi new high (opsional)
+                ACTIVE_BUYS[pair]['highest_price'] = current_price
                 send_telegram_alert(
                     "NEW HIGH",
                     pair,
@@ -407,7 +424,7 @@ def generate_signal(pair):
                     f"New highest price (sebelumnya: {prev_high:.8f})" if prev_high else "New highest price set.",
                     entry_analysis
                 )
-            trailing_stop_price = data_active['highest_price'] * (1 - TRAILING_STOP_PERCENTAGE / 100)
+            trailing_stop_price = ACTIVE_BUYS[pair]['highest_price'] * (1 - TRAILING_STOP_PERCENTAGE / 100)
             if current_price < trailing_stop_price:
                 return "TRAILING STOP", current_price, f"Harga turun ke trailing stop: {trailing_stop_price:.8f}", entry_analysis
 
@@ -442,13 +459,11 @@ def send_telegram_alert(signal_type, pair, current_price, details="", entry_anal
     binance_url = get_binance_url(pair)
     tradingview_url = get_tradingview_url(pair)
     
-    # Penanganan khusus untuk sinyal SELL dan EXPIRED pada ACTIVE_BUYS
+    # Penanganan khusus untuk sinyal SELL dan EXPIRED
     if signal_type in ["SELL", "EXPIRED"]:
         if pair in ACTIVE_BUYS:
-            if ACTIVE_BUYS[pair].get("exit_flag") is not None:
-                del ACTIVE_BUYS[pair]
-                print(f"✅ Posisi {pair} ditutup tanpa notifikasi (exit flag sudah ada) dengan sinyal {signal_type}.")
-                return
+            del ACTIVE_BUYS[pair]
+            print(f"✅ Posisi {pair} ditutup dari active buys dengan sinyal {signal_type}.")
     if signal_type == "BUY":
         ACTIVE_BUYS[pair] = {
             'price': current_price,
@@ -465,7 +480,6 @@ def send_telegram_alert(signal_type, pair, current_price, details="", entry_anal
     message += f"💱 *Pair:* [{display_pair}]({binance_url}) ==> [TradingView]({tradingview_url})\n"
     message += f"💲 *Price:* ${current_price:.8f}\n"
     
-    # Gunakan entry_analysis yang sudah ada untuk mengambil indikator tambahan
     if entry_analysis is None:
         entry_analysis = analyze_pair_interval(pair, TIMEFRAME_ENTRY)
     if entry_analysis:
@@ -497,10 +511,6 @@ def send_telegram_alert(signal_type, pair, current_price, details="", entry_anal
         )
     except Exception as e:
         print(f"❌ Gagal mengirim alert Telegram: {e}")
-    
-    if signal_type in ["SELL", "EXPIRED"]:
-        if pair in ACTIVE_BUYS:
-            del ACTIVE_BUYS[pair]
 
 ##############################
 # PROGRAM UTAMA
@@ -509,8 +519,8 @@ def main():
     load_active_buys()
     load_unused_signals()
 
-    # Ambil daftar pair dari file cache beserta flag cache update
-    pairs, cache_updated = get_pairs_from_cache()
+    # Ambil daftar pair dari file cache
+    pairs = get_pairs_from_cache()
 
     # Sesuaikan order analisis berdasarkan konfigurasi ANALYSIS_ORDER.
     if PAIR_TO_ANALYZE > 0 and PAIR_TO_ANALYZE < len(pairs):
@@ -526,30 +536,9 @@ def main():
         try:
             signal, current_price, details, entry_analysis = generate_signal(pair)
             if signal:
-                # Jika pair sudah tercatat di unused_signal, hanya sinyal SELL yang diterapkan (tanpa notifikasi)
-                if pair in UNUSED_SIGNALS:
-                    if signal == "SELL":
-                        print(f"💡 Sinyal SELL diterima untuk {pair} dari unused_signal. Memproses tanpa notifikasi.")
-                        del UNUSED_SIGNALS[pair]
-                        save_unused_signals()
-                    else:
-                        print(f"ℹ️ Pair {pair} berada di unused_signal, sinyal {signal} diabaikan kecuali SELL.")
-                else:
-                    # Jika terjadi update cache dan sinyal BUY muncul, catat ke unused_signal tanpa notifikasi
-                    if signal == "BUY" and cache_updated:
-                        UNUSED_SIGNALS[pair] = {
-                            'price': current_price,
-                            'time': datetime.now(),
-                            'trailing_stop_active': False,
-                            'highest_price': None,
-                            'exit_flag': None
-                        }
-                        print(f"💡 Sinyal BUY untuk {pair} dicatat ke unused_signal (tidak mengirim notifikasi).")
-                        save_unused_signals()
-                    else:
-                        print(f"💡 Sinyal: {signal}, Harga: {current_price:.8f}")
-                        print(f"📝 Details: {details}")
-                        send_telegram_alert(signal, pair, current_price, details, entry_analysis)
+                print(f"💡 Sinyal: {signal}, Harga: {current_price:.8f}")
+                print(f"📝 Details: {details}")
+                send_telegram_alert(signal, pair, current_price, details, entry_analysis)
             else:
                 print("ℹ️ Tidak ada sinyal untuk pair ini.")
         except Exception as e:
