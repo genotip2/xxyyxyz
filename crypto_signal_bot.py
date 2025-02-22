@@ -16,9 +16,13 @@ ACTIVE_BUYS = {}
 CACHE_FILE = 'pairs_cache.json'
 CACHE_EXPIRED_DAYS = 30  # Cache dianggap kadaluarsa jika lebih dari 30 hari
 
+# File untuk menyimpan sinyal BUY yang tidak langsung diproses
+UNUSED_SIGNALS_FILE = 'unused_signal.json'
+UNUSED_SIGNALS = {}
+
 # Konfigurasi jumlah pair untuk cache dan analisis
-TOP_PAIRS_CACHED = 100       # Jumlah pair teratas (berdasarkan ranking CMC) yang akan disimpan ke cache
-PAIR_TO_ANALYZE = 100         # Dari cache, hanya analisis sejumlah pair tertentu
+TOP_PAIRS_CACHED = 200       # Jumlah pair teratas (berdasarkan ranking CMC) yang akan disimpan ke cache
+PAIR_TO_ANALYZE = 200         # Dari cache, hanya analisis sejumlah pair tertentu
 
 # Konfigurasi order analisis.
 ANALYSIS_ORDER = "top"       # "top" mengambil dari awal, "bottom" dari akhir.
@@ -76,6 +80,50 @@ def save_active_buys():
         print("✅ Posisi aktif disimpan.")
     except Exception as e:
         print(f"❌ Gagal menyimpan posisi aktif: {e}")
+
+##############################
+# FUNGSI UTILITY: LOAD & SAVE UNUSED SIGNALS
+##############################
+def load_unused_signals():
+    """Muat sinyal yang belum digunakan dari file JSON."""
+    global UNUSED_SIGNALS
+    if os.path.exists(UNUSED_SIGNALS_FILE):
+        try:
+            with open(UNUSED_SIGNALS_FILE, 'r') as f:
+                data = json.load(f)
+                UNUSED_SIGNALS = {
+                    pair: {
+                        'price': d['price'],
+                        'time': datetime.fromisoformat(d['time']),
+                        'trailing_stop_active': d.get('trailing_stop_active', False),
+                        'highest_price': d.get('highest_price', None),
+                        'exit_flag': d.get('exit_flag', None)
+                    }
+                    for pair, d in data.items()
+                }
+            print("✅ Sinyal unused dimuat.")
+        except Exception as e:
+            print(f"❌ Gagal memuat sinyal unused: {e}")
+    else:
+        UNUSED_SIGNALS = {}
+
+def save_unused_signals():
+    """Simpan sinyal unused ke file JSON."""
+    try:
+        data = {}
+        for pair, d in UNUSED_SIGNALS.items():
+            data[pair] = {
+                'price': d['price'],
+                'time': d['time'].isoformat(),
+                'trailing_stop_active': d.get('trailing_stop_active', False),
+                'highest_price': d.get('highest_price', None),
+                'exit_flag': d.get('exit_flag', None)
+            }
+        with open(UNUSED_SIGNALS_FILE, 'w') as f:
+            json.dump(data, f, indent=4)
+        print("✅ Sinyal unused disimpan.")
+    except Exception as e:
+        print(f"❌ Gagal menyimpan sinyal unused: {e}")
 
 ##############################
 # FUNGSI MEMPERBARUI DAN MEMUAT CACHE PAIR
@@ -168,6 +216,7 @@ def get_pairs_from_cache():
     """
     Memuat daftar pair dari file cache.
     Jika file cache tidak ada atau sudah kadaluarsa, maka file cache akan diperbarui terlebih dahulu.
+    Mengembalikan tuple (pairs, cache_updated_flag).
     """
     now = datetime.now()
     update_cache = False
@@ -193,10 +242,10 @@ def get_pairs_from_cache():
         with open(CACHE_FILE, 'r') as f:
             pairs = json.load(f)
         print(f"✅ Cache pair dimuat. Jumlah pair: {len(pairs)}")
-        return pairs
+        return pairs, update_cache
     except Exception as e:
         print(f"❌ Gagal memuat file cache pair: {e}")
-        return []
+        return [], update_cache
 
 ##############################
 # FUNGSI ANALISIS: MULTI-TIMEFRAME
@@ -241,7 +290,7 @@ def is_best_entry_from_data(data):
 
     macd_trend = data.get('macd_trend')
     macd_signal_trend = data.get('macd_signal_trend')
-    if macd_trend is None or macd_signal_trend is None or macd_trend <= macd_signal_trend:
+    if macd_trend is None or macd_signal_trend is None or macd_trend <= macd_signal_trend or macd_trend <= 0:
         return False, "MACD trend tidak memenuhi (MACD trend <= signal trend)."
 
     return True, "Best Entry Condition terpenuhi."
@@ -303,8 +352,8 @@ def generate_signal(pair):
         'macd_signal_trend': trend_analysis.indicators.get('MACD.signal')
     }
 
-    # Jika pair belum aktif, evaluasi kondisi best entry
-    if pair not in ACTIVE_BUYS:
+    # Jika pair belum aktif (baik di ACTIVE_BUYS maupun di UNUSED_SIGNALS), evaluasi kondisi best entry
+    if pair not in ACTIVE_BUYS and pair not in UNUSED_SIGNALS:
         best_entry_ok, best_entry_msg = is_best_entry_from_data(data)
         if best_entry_ok:
             details = f"BEST ENTRY: {best_entry_msg}"
@@ -312,7 +361,8 @@ def generate_signal(pair):
         else:
             return None, current_price, f"Tidak memenuhi best entry: {best_entry_msg}", entry_analysis
     else:
-        data_active = ACTIVE_BUYS[pair]
+        # Sudah ada posisi, cek exit atau update posisi
+        data_active = ACTIVE_BUYS.get(pair) or UNUSED_SIGNALS.get(pair)
         # Jika sudah ada exit_flag, jangan kirim sinyal baru
         if data_active.get('exit_flag') is not None:
             return None, current_price, "Sinyal exit sudah ditandai, menunggu sinyal SELL/EXPIRED.", entry_analysis
@@ -336,15 +386,19 @@ def generate_signal(pair):
 
         # Aktifkan trailing stop jika take profit tercapai
         if not data_active.get('trailing_stop_active', False) and profit_from_entry >= TAKE_PROFIT_PERCENTAGE:
-            ACTIVE_BUYS[pair]['trailing_stop_active'] = True
-            ACTIVE_BUYS[pair]['highest_price'] = current_price
+            if pair in ACTIVE_BUYS:
+                ACTIVE_BUYS[pair]['trailing_stop_active'] = True
+                ACTIVE_BUYS[pair]['highest_price'] = current_price
+            else:
+                UNUSED_SIGNALS[pair]['trailing_stop_active'] = True
+                UNUSED_SIGNALS[pair]['highest_price'] = current_price
             return "TAKE PROFIT", current_price, "Target take profit tercapai, trailing stop diaktifkan.", entry_analysis
 
         # Proses trailing stop
         if data_active.get('trailing_stop_active', False):
             prev_high = data_active.get('highest_price')
             if prev_high is None or current_price > prev_high:
-                ACTIVE_BUYS[pair]['highest_price'] = current_price
+                data_active['highest_price'] = current_price
                 # Notifikasi new high (opsional)
                 send_telegram_alert(
                     "NEW HIGH",
@@ -353,7 +407,7 @@ def generate_signal(pair):
                     f"New highest price (sebelumnya: {prev_high:.8f})" if prev_high else "New highest price set.",
                     entry_analysis
                 )
-            trailing_stop_price = ACTIVE_BUYS[pair]['highest_price'] * (1 - TRAILING_STOP_PERCENTAGE / 100)
+            trailing_stop_price = data_active['highest_price'] * (1 - TRAILING_STOP_PERCENTAGE / 100)
             if current_price < trailing_stop_price:
                 return "TRAILING STOP", current_price, f"Harga turun ke trailing stop: {trailing_stop_price:.8f}", entry_analysis
 
@@ -388,7 +442,7 @@ def send_telegram_alert(signal_type, pair, current_price, details="", entry_anal
     binance_url = get_binance_url(pair)
     tradingview_url = get_tradingview_url(pair)
     
-    # Penanganan khusus untuk sinyal SELL dan EXPIRED
+    # Penanganan khusus untuk sinyal SELL dan EXPIRED pada ACTIVE_BUYS
     if signal_type in ["SELL", "EXPIRED"]:
         if pair in ACTIVE_BUYS:
             if ACTIVE_BUYS[pair].get("exit_flag") is not None:
@@ -453,9 +507,10 @@ def send_telegram_alert(signal_type, pair, current_price, details="", entry_anal
 ##############################
 def main():
     load_active_buys()
+    load_unused_signals()
 
-    # Ambil daftar pair dari file cache
-    pairs = get_pairs_from_cache()
+    # Ambil daftar pair dari file cache beserta flag cache update
+    pairs, cache_updated = get_pairs_from_cache()
 
     # Sesuaikan order analisis berdasarkan konfigurasi ANALYSIS_ORDER.
     if PAIR_TO_ANALYZE > 0 and PAIR_TO_ANALYZE < len(pairs):
@@ -471,9 +526,30 @@ def main():
         try:
             signal, current_price, details, entry_analysis = generate_signal(pair)
             if signal:
-                print(f"💡 Sinyal: {signal}, Harga: {current_price:.8f}")
-                print(f"📝 Details: {details}")
-                send_telegram_alert(signal, pair, current_price, details, entry_analysis)
+                # Jika pair sudah tercatat di unused_signal, hanya sinyal SELL yang diterapkan (tanpa notifikasi)
+                if pair in UNUSED_SIGNALS:
+                    if signal == "SELL":
+                        print(f"💡 Sinyal SELL diterima untuk {pair} dari unused_signal. Memproses tanpa notifikasi.")
+                        del UNUSED_SIGNALS[pair]
+                        save_unused_signals()
+                    else:
+                        print(f"ℹ️ Pair {pair} berada di unused_signal, sinyal {signal} diabaikan kecuali SELL.")
+                else:
+                    # Jika terjadi update cache dan sinyal BUY muncul, catat ke unused_signal tanpa notifikasi
+                    if signal == "BUY" and cache_updated:
+                        UNUSED_SIGNALS[pair] = {
+                            'price': current_price,
+                            'time': datetime.now(),
+                            'trailing_stop_active': False,
+                            'highest_price': None,
+                            'exit_flag': None
+                        }
+                        print(f"💡 Sinyal BUY untuk {pair} dicatat ke unused_signal (tidak mengirim notifikasi).")
+                        save_unused_signals()
+                    else:
+                        print(f"💡 Sinyal: {signal}, Harga: {current_price:.8f}")
+                        print(f"📝 Details: {details}")
+                        send_telegram_alert(signal, pair, current_price, details, entry_analysis)
             else:
                 print("ℹ️ Tidak ada sinyal untuk pair ini.")
         except Exception as e:
@@ -481,6 +557,7 @@ def main():
             continue
 
     save_active_buys()
+    save_unused_signals()
 
 if __name__ == "__main__":
     main()
