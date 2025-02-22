@@ -495,5 +495,12 @@
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
+    },
+    "PEPEUSDT": {
+        "price": 9.56e-06,
+        "time": "2025-02-22T15:23:49.070973",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
     }
 }
