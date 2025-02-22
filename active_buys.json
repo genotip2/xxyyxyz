@@ -460,5 +460,19 @@
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": "STOP LOSS"
+    },
+    "BNBUSDT": {
+        "price": 655.91,
+        "time": "2025-02-22T07:01:03.492211",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "TONUSDT": {
+        "price": 3.625,
+        "time": "2025-02-22T07:01:07.595824",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
     }
 }
