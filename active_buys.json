@@ -286,13 +286,6 @@
         "highest_price": null,
         "exit_flag": null
     },
-    "SCUSDT": {
-        "price": 0.004163,
-        "time": "2025-02-23T09:01:21.954533",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": null
-    },
     "STORJUSDT": {
         "price": 0.386,
         "time": "2025-02-23T09:26:24.049102",
