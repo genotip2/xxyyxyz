@@ -144,7 +144,7 @@
         "time": "2025-02-23T07:45:47.418220",
         "trailing_stop_active": false,
         "highest_price": null,
-        "exit_flag": null
+        "exit_flag": "STOP LOSS"
     },
     "PAXGUSDT": {
         "price": 2967,
@@ -191,13 +191,6 @@
     "STORJUSDT": {
         "price": 0.386,
         "time": "2025-02-23T09:26:24.049102",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": null
-    },
-    "REQUSDT": {
-        "price": 0.1061,
-        "time": "2025-02-23T11:30:53.606717",
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
