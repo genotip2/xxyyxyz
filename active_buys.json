@@ -6,13 +6,6 @@
         "highest_price": null,
         "exit_flag": null
     },
-    "MBOXUSDT": {
-        "price": 0.1256,
-        "time": "2025-02-22T20:01:15.248121",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": "STOP LOSS"
-    },
     "TONUSDT": {
         "price": 3.713,
         "time": "2025-02-22T22:26:47.275380",
@@ -40,20 +33,6 @@
         "trailing_stop_active": true,
         "highest_price": 8.9652,
         "exit_flag": "TRAILING STOP"
-    },
-    "IOTAUSDT": {
-        "price": 0.2299,
-        "time": "2025-02-23T00:38:42.592075",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": null
-    },
-    "DODOUSDT": {
-        "price": 0.096,
-        "time": "2025-02-23T00:38:54.517869",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": null
     },
     "OPUSDT": {
         "price": 1.153,
@@ -177,6 +156,13 @@
     "BARUSDT": {
         "price": 1.772,
         "time": "2025-02-23T14:00:47.989747",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "REQUSDT": {
+        "price": 0.104,
+        "time": "2025-02-23T14:26:36.677268",
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
