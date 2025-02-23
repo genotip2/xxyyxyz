@@ -24,8 +24,8 @@ CACHE_EXPIRED_DAYS = 30  # Cache dianggap kadaluarsa jika lebih dari 30 hari
 CACHE_UPDATED = False
 
 # Konfigurasi jumlah pair untuk cache dan analisis
-TOP_PAIRS_CACHED = 200       # Jumlah pair teratas (berdasarkan ranking CMC) yang akan disimpan ke cache
-PAIR_TO_ANALYZE = 200         # Dari cache, hanya analisis sejumlah pair tertentu
+TOP_PAIRS_CACHED = 100       # Jumlah pair teratas (berdasarkan ranking CMC) yang akan disimpan ke cache
+PAIR_TO_ANALYZE = 100         # Dari cache, hanya analisis sejumlah pair tertentu
 
 # Konfigurasi order analisis.
 ANALYSIS_ORDER = "top"       # "top" mengambil dari awal, "bottom" dari akhir.
@@ -455,15 +455,11 @@ def send_telegram_alert(signal_type, pair, current_price, details="", entry_anal
         'TRAILING STOP': '📉',
         'NEW HIGH': '📈'
     }.get(signal_type, 'ℹ️')
-    
+
     binance_url = get_binance_url(pair)
     tradingview_url = get_tradingview_url(pair)
-    
-    # Penanganan khusus untuk sinyal SELL dan EXPIRED
-    if signal_type in ["SELL", "EXPIRED"]:
-        if pair in ACTIVE_BUYS:
-            del ACTIVE_BUYS[pair]
-            print(f"✅ Posisi {pair} ditutup dari active buys dengan sinyal {signal_type}.")
+
+    # Untuk sinyal BUY, tambahkan data ke ACTIVE_BUYS
     if signal_type == "BUY":
         ACTIVE_BUYS[pair] = {
             'price': current_price,
@@ -472,14 +468,27 @@ def send_telegram_alert(signal_type, pair, current_price, details="", entry_anal
             'highest_price': None,
             'exit_flag': None
         }
-    if signal_type in ["STOP LOSS", "TRAILING STOP"]:
-        if pair in ACTIVE_BUYS:
-            ACTIVE_BUYS[pair]['exit_flag'] = signal_type
+
+    # Jika sinyal bukan BUY dan pair ada di ACTIVE_BUYS,
+    # ambil dulu data entry agar dapat ditampilkan di pesan.
+    if signal_type != "BUY" and pair in ACTIVE_BUYS:
+        entry_data = ACTIVE_BUYS[pair]
+        entry_price = entry_data['price']
+        profit = (current_price - entry_price) / entry_price * 100
+        duration = datetime.now() - entry_data['time']
+        message_entry = (
+            f"▫️ *Entry Price:* ${entry_price:.8f}\n"
+            f"💰 *{'Profit' if profit > 0 else 'Loss'}:* {profit:+.2f}%\n"
+            f"🕒 *Duration:* {str(duration).split('.')[0]}\n"
+        )
+    else:
+        message_entry = ""
 
     message = f"{emoji} *{signal_type}*\n"
     message += f"💱 *Pair:* [{display_pair}]({binance_url}) ==> [TradingView]({tradingview_url})\n"
     message += f"💲 *Price:* ${current_price:.8f}\n"
-    
+    message += message_entry
+
     if entry_analysis is None:
         entry_analysis = analyze_pair_interval(pair, TIMEFRAME_ENTRY)
     if entry_analysis:
@@ -490,14 +499,12 @@ def send_telegram_alert(signal_type, pair, current_price, details="", entry_anal
             indicator_info = f"*RSI:* {rsi_value:.2f}, *ADX:* {adx_value:.2f}, *Stoch K:* {stoch_k_value:.2f}"
             message += f"📊 {indicator_info}\n"
 
-    if signal_type != "BUY" and pair in ACTIVE_BUYS:
-        entry_price = ACTIVE_BUYS[pair]['price']
-        profit = (current_price - entry_price) / entry_price * 100
-        duration = datetime.now() - ACTIVE_BUYS[pair]['time']
-        message += f"▫️ *Entry Price:* ${entry_price:.8f}\n"
-        message += f"💰 *{'Profit' if profit > 0 else 'Loss'}:* {profit:+.2f}%\n"
-        message += f"🕒 *Duration:* {str(duration).split('.')[0]}\n"
-    
+    # Setelah menambahkan informasi entry, baru hapus data untuk sinyal SELL/EXPIRED
+    if signal_type in ["SELL", "EXPIRED"]:
+        if pair in ACTIVE_BUYS:
+            del ACTIVE_BUYS[pair]
+            print(f"✅ Posisi {pair} ditutup dari active buys dengan sinyal {signal_type}.")
+
     print(f"📢 Mengirim alert:\n{message}")
     try:
         requests.post(
@@ -511,7 +518,6 @@ def send_telegram_alert(signal_type, pair, current_price, details="", entry_anal
         )
     except Exception as e:
         print(f"❌ Gagal mengirim alert Telegram: {e}")
-
 ##############################
 # PROGRAM UTAMA
 ##############################
