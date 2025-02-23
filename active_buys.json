@@ -89,5 +89,12 @@
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
+    },
+    "INJUSDT": {
+        "price": 15.93,
+        "time": "2025-02-23T17:32:22.978024",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
     }
 }
