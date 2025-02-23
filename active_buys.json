@@ -159,5 +159,33 @@
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": "STOP LOSS"
+    },
+    "ARBUSDT": {
+        "price": 0.4857,
+        "time": "2025-02-23T07:23:05.486246",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "GALAUSDT": {
+        "price": 0.02325,
+        "time": "2025-02-23T07:23:06.872170",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "PENDLEUSDT": {
+        "price": 3.521,
+        "time": "2025-02-23T07:23:07.618886",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "BCHUSDT": {
+        "price": 329.9,
+        "time": "2025-02-23T07:23:10.429737",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
     }
 }
