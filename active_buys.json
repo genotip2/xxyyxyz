@@ -1,11 +1,4 @@
 {
-    "MEMEUSDT": {
-        "price": 0.00439,
-        "time": "2025-02-22T20:01:06.216906",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": null
-    },
     "TONUSDT": {
         "price": 3.713,
         "time": "2025-02-22T22:26:47.275380",
@@ -62,13 +55,6 @@
         "highest_price": null,
         "exit_flag": null
     },
-    "PENDLEUSDT": {
-        "price": 3.521,
-        "time": "2025-02-23T07:23:07.618886",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": null
-    },
     "BCHUSDT": {
         "price": 329.9,
         "time": "2025-02-23T07:23:10.429737",
@@ -96,20 +82,6 @@
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": "STOP LOSS"
-    },
-    "SHIBUSDT": {
-        "price": 1.573e-05,
-        "time": "2025-02-23T08:08:41.284370",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": null
-    },
-    "ETHFIUSDT": {
-        "price": 1.187,
-        "time": "2025-02-23T08:08:41.996266",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": null
     },
     "ZROUSDT": {
         "price": 3.016,
