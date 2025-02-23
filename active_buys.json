@@ -145,5 +145,12 @@
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
+    },
+    "MKRUSDT": {
+        "price": 1581,
+        "time": "2025-02-23T02:59:07.757553",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
     }
 }
