@@ -55,13 +55,6 @@
         "highest_price": 0.3661,
         "exit_flag": "TRAILING STOP"
     },
-    "STMXUSDT": {
-        "price": 0.005902,
-        "time": "2025-02-23T06:46:29.116824",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": "STOP LOSS"
-    },
     "ARBUSDT": {
         "price": 0.4857,
         "time": "2025-02-23T07:23:05.486246",
