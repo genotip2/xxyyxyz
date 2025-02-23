@@ -292,5 +292,12 @@
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
+    },
+    "STORJUSDT": {
+        "price": 0.386,
+        "time": "2025-02-23T09:26:24.049102",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
     }
 }
