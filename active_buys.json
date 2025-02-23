@@ -215,5 +215,75 @@
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
+    },
+    "ENAUSDT": {
+        "price": 0.4673,
+        "time": "2025-02-23T08:08:38.689481",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "SHIBUSDT": {
+        "price": 1.573e-05,
+        "time": "2025-02-23T08:08:41.284370",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "ETHFIUSDT": {
+        "price": 1.187,
+        "time": "2025-02-23T08:08:41.996266",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "DYDXUSDT": {
+        "price": 0.8059,
+        "time": "2025-02-23T08:08:44.438662",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "ZROUSDT": {
+        "price": 3.016,
+        "time": "2025-02-23T08:08:45.055785",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "ROSEUSDT": {
+        "price": 0.04331,
+        "time": "2025-02-23T08:08:47.032869",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "GRTUSDT": {
+        "price": 0.1401,
+        "time": "2025-02-23T08:08:49.071712",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "LUNAUSDT": {
+        "price": 0.2589,
+        "time": "2025-02-23T08:08:52.087767",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "MAGICUSDT": {
+        "price": 0.2518,
+        "time": "2025-02-23T08:08:53.535074",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "LQTYUSDT": {
+        "price": 0.966,
+        "time": "2025-02-23T08:08:54.348166",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
     }
 }
