@@ -95,7 +95,7 @@
         "time": "2025-02-22T23:45:34.523926",
         "trailing_stop_active": true,
         "highest_price": 8.9652,
-        "exit_flag": null
+        "exit_flag": "TRAILING STOP"
     },
     "IOTAUSDT": {
         "price": 0.2299,
@@ -121,6 +121,27 @@
     "DODOUSDT": {
         "price": 0.096,
         "time": "2025-02-23T00:38:54.517869",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "OPUSDT": {
+        "price": 1.153,
+        "time": "2025-02-23T02:11:32.880397",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "BELUSDT": {
+        "price": 0.9165,
+        "time": "2025-02-23T02:11:36.843980",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "COTIUSDT": {
+        "price": 0.08371,
+        "time": "2025-02-23T02:11:40.993589",
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
