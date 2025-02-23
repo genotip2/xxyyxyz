@@ -75,5 +75,12 @@
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
+    },
+    "REQUSDT": {
+        "price": 0.1056,
+        "time": "2025-02-23T21:23:32.692039",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
     }
 }
