@@ -13,13 +13,6 @@
         "highest_price": null,
         "exit_flag": "STOP LOSS"
     },
-    "USUALUSDT": {
-        "price": 0.2348,
-        "time": "2025-02-22T21:00:58.859335",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": "STOP LOSS"
-    },
     "TONUSDT": {
         "price": 3.713,
         "time": "2025-02-22T22:26:47.275380",
