@@ -27,13 +27,6 @@
         "highest_price": null,
         "exit_flag": "STOP LOSS"
     },
-    "FLOKIUSDT": {
-        "price": 9.779e-05,
-        "time": "2025-02-22T21:23:07.636511",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": null
-    },
     "TONUSDT": {
         "price": 3.713,
         "time": "2025-02-22T22:26:47.275380",
