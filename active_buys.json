@@ -285,5 +285,12 @@
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
+    },
+    "SCUSDT": {
+        "price": 0.004148,
+        "time": "2025-02-23T11:21:16.861805",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
     }
 }
