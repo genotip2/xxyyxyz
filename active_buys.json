@@ -207,7 +207,7 @@
         "time": "2025-02-23T08:08:38.689481",
         "trailing_stop_active": false,
         "highest_price": null,
-        "exit_flag": null
+        "exit_flag": "STOP LOSS"
     },
     "SHIBUSDT": {
         "price": 1.573e-05,
@@ -275,13 +275,6 @@
     "STORJUSDT": {
         "price": 0.386,
         "time": "2025-02-23T09:26:24.049102",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": null
-    },
-    "SCUSDT": {
-        "price": 0.004148,
-        "time": "2025-02-23T11:21:16.861805",
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
