@@ -187,5 +187,33 @@
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
+    },
+    "PEPEUSDT": {
+        "price": 9.8e-06,
+        "time": "2025-02-23T07:45:34.212322",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "ARKUSDT": {
+        "price": 0.492,
+        "time": "2025-02-23T07:45:47.418220",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "SUSHIUSDT": {
+        "price": 0.906,
+        "time": "2025-02-23T07:45:52.415645",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "PAXGUSDT": {
+        "price": 2967,
+        "time": "2025-02-23T07:46:01.825096",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
     }
 }
