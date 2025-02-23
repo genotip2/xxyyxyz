@@ -46,7 +46,7 @@
         "time": "2025-02-22T22:26:43.951403",
         "trailing_stop_active": false,
         "highest_price": null,
-        "exit_flag": null
+        "exit_flag": "STOP LOSS"
     },
     "TONUSDT": {
         "price": 3.713,
@@ -88,11 +88,39 @@
         "time": "2025-02-22T23:30:47.514933",
         "trailing_stop_active": false,
         "highest_price": null,
-        "exit_flag": null
+        "exit_flag": "STOP LOSS"
     },
     "OMUSDT": {
         "price": 8.2082,
         "time": "2025-02-22T23:45:34.523926",
+        "trailing_stop_active": true,
+        "highest_price": 8.9652,
+        "exit_flag": null
+    },
+    "IOTAUSDT": {
+        "price": 0.2299,
+        "time": "2025-02-23T00:38:42.592075",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "PHAUSDT": {
+        "price": 0.1693,
+        "time": "2025-02-23T00:38:46.744612",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "LPTUSDT": {
+        "price": 7.558,
+        "time": "2025-02-23T00:38:53.079502",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "DODOUSDT": {
+        "price": 0.096,
+        "time": "2025-02-23T00:38:54.517869",
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
