@@ -20,13 +20,6 @@
         "highest_price": null,
         "exit_flag": null
     },
-    "SSVUSDT": {
-        "price": 12.32,
-        "time": "2025-02-22T23:22:38.763923",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": null
-    },
     "OMUSDT": {
         "price": 8.2082,
         "time": "2025-02-22T23:45:34.523926",
