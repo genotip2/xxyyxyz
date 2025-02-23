@@ -34,13 +34,6 @@
         "highest_price": null,
         "exit_flag": null
     },
-    "SUSHIUSDT": {
-        "price": 0.902,
-        "time": "2025-02-22T21:45:46.196539",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": null
-    },
     "PENGUUSDT": {
         "price": 0.009234,
         "time": "2025-02-22T22:26:43.951403",
@@ -159,5 +152,12 @@
         "trailing_stop_active": true,
         "highest_price": 0.3661,
         "exit_flag": "TRAILING STOP"
+    },
+    "LUMIAUSDT": {
+        "price": 0.528,
+        "time": "2025-02-23T05:01:11.720111",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
     }
 }
