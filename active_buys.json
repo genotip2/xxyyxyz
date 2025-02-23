@@ -20,13 +20,6 @@
         "highest_price": null,
         "exit_flag": null
     },
-    "VANAUSDT": {
-        "price": 6.349,
-        "time": "2025-02-22T23:00:55.382257",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": null
-    },
     "FILUSDT": {
         "price": 3.442,
         "time": "2025-02-22T23:22:28.571239",
@@ -177,6 +170,13 @@
     "TRXUSDT": {
         "price": 0.2423,
         "time": "2025-02-23T12:11:16.410091",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "BARUSDT": {
+        "price": 1.772,
+        "time": "2025-02-23T14:00:47.989747",
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
