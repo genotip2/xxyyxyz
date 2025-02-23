@@ -158,6 +158,6 @@
         "time": "2025-02-23T03:21:16.823149",
         "trailing_stop_active": true,
         "highest_price": 0.3661,
-        "exit_flag": null
+        "exit_flag": "TRAILING STOP"
     }
 }
