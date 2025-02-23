@@ -62,13 +62,6 @@
         "highest_price": 0.3661,
         "exit_flag": "TRAILING STOP"
     },
-    "TROYUSDT": {
-        "price": 0.001696,
-        "time": "2025-02-23T05:36:12.176928",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": "STOP LOSS"
-    },
     "STMXUSDT": {
         "price": 0.005902,
         "time": "2025-02-23T06:46:29.116824",
