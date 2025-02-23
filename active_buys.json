@@ -34,13 +34,6 @@
         "highest_price": null,
         "exit_flag": null
     },
-    "PENGUUSDT": {
-        "price": 0.009234,
-        "time": "2025-02-22T22:26:43.951403",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": "STOP LOSS"
-    },
     "TONUSDT": {
         "price": 3.713,
         "time": "2025-02-22T22:26:47.275380",
@@ -93,13 +86,6 @@
     "IOTAUSDT": {
         "price": 0.2299,
         "time": "2025-02-23T00:38:42.592075",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": null
-    },
-    "PHAUSDT": {
-        "price": 0.1693,
-        "time": "2025-02-23T00:38:46.744612",
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
@@ -165,6 +151,6 @@
         "time": "2025-02-23T05:36:12.176928",
         "trailing_stop_active": false,
         "highest_price": null,
-        "exit_flag": null
+        "exit_flag": "STOP LOSS"
     }
 }
