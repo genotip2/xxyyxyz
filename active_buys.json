@@ -6,13 +6,6 @@
         "highest_price": null,
         "exit_flag": null
     },
-    "XAIUSDT": {
-        "price": 0.1022,
-        "time": "2025-02-22T20:01:12.269682",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": null
-    },
     "MBOXUSDT": {
         "price": 0.1256,
         "time": "2025-02-22T20:01:15.248121",
@@ -30,13 +23,6 @@
     "TONUSDT": {
         "price": 3.713,
         "time": "2025-02-22T22:26:47.275380",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": null
-    },
-    "YGGUSDT": {
-        "price": 0.2644,
-        "time": "2025-02-22T22:34:36.093809",
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
@@ -62,13 +48,6 @@
         "highest_price": null,
         "exit_flag": null
     },
-    "1000CATUSDT": {
-        "price": 0.01238,
-        "time": "2025-02-22T23:30:47.514933",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": "STOP LOSS"
-    },
     "OMUSDT": {
         "price": 8.2082,
         "time": "2025-02-22T23:45:34.523926",
@@ -79,13 +58,6 @@
     "IOTAUSDT": {
         "price": 0.2299,
         "time": "2025-02-23T00:38:42.592075",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": null
-    },
-    "LPTUSDT": {
-        "price": 7.558,
-        "time": "2025-02-23T00:38:53.079502",
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
@@ -107,13 +79,6 @@
     "BELUSDT": {
         "price": 0.9165,
         "time": "2025-02-23T02:11:36.843980",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": null
-    },
-    "COTIUSDT": {
-        "price": 0.08371,
-        "time": "2025-02-23T02:11:40.993589",
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
@@ -174,23 +139,9 @@
         "highest_price": null,
         "exit_flag": null
     },
-    "PEPEUSDT": {
-        "price": 9.8e-06,
-        "time": "2025-02-23T07:45:34.212322",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": "STOP LOSS"
-    },
     "ARKUSDT": {
         "price": 0.492,
         "time": "2025-02-23T07:45:47.418220",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": null
-    },
-    "SUSHIUSDT": {
-        "price": 0.906,
-        "time": "2025-02-23T07:45:52.415645",
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
@@ -223,13 +174,6 @@
         "highest_price": null,
         "exit_flag": null
     },
-    "DYDXUSDT": {
-        "price": 0.8059,
-        "time": "2025-02-23T08:08:44.438662",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": null
-    },
     "ZROUSDT": {
         "price": 3.016,
         "time": "2025-02-23T08:08:45.055785",
@@ -237,37 +181,9 @@
         "highest_price": null,
         "exit_flag": null
     },
-    "ROSEUSDT": {
-        "price": 0.04331,
-        "time": "2025-02-23T08:08:47.032869",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": null
-    },
-    "GRTUSDT": {
-        "price": 0.1401,
-        "time": "2025-02-23T08:08:49.071712",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": null
-    },
     "LUNAUSDT": {
         "price": 0.2589,
         "time": "2025-02-23T08:08:52.087767",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": null
-    },
-    "MAGICUSDT": {
-        "price": 0.2518,
-        "time": "2025-02-23T08:08:53.535074",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": null
-    },
-    "LQTYUSDT": {
-        "price": 0.966,
-        "time": "2025-02-23T08:08:54.348166",
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
@@ -282,6 +198,13 @@
     "REQUSDT": {
         "price": 0.1061,
         "time": "2025-02-23T11:30:53.606717",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "TRXUSDT": {
+        "price": 0.2423,
+        "time": "2025-02-23T12:11:16.410091",
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
