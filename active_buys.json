@@ -137,7 +137,7 @@
         "time": "2025-02-23T05:01:11.720111",
         "trailing_stop_active": false,
         "highest_price": null,
-        "exit_flag": null
+        "exit_flag": "STOP LOSS"
     },
     "TROYUSDT": {
         "price": 0.001696,
@@ -156,13 +156,6 @@
     "ARBUSDT": {
         "price": 0.4857,
         "time": "2025-02-23T07:23:05.486246",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": null
-    },
-    "GALAUSDT": {
-        "price": 0.02325,
-        "time": "2025-02-23T07:23:06.872170",
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
@@ -186,7 +179,7 @@
         "time": "2025-02-23T07:45:34.212322",
         "trailing_stop_active": false,
         "highest_price": null,
-        "exit_flag": null
+        "exit_flag": "STOP LOSS"
     },
     "ARKUSDT": {
         "price": 0.492,
@@ -289,6 +282,13 @@
     "SCUSDT": {
         "price": 0.004148,
         "time": "2025-02-23T11:21:16.861805",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "REQUSDT": {
+        "price": 0.1061,
+        "time": "2025-02-23T11:30:53.606717",
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
