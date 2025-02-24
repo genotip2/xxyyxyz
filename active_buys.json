@@ -18,6 +18,6 @@
         "time": "2025-02-24T20:09:01.733399",
         "trailing_stop_active": false,
         "highest_price": null,
-        "exit_flag": null
+        "exit_flag": "STOP LOSS"
     }
 }
