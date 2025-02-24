@@ -30,8 +30,8 @@
     "TRXUSDT": {
         "price": 0.2423,
         "time": "2025-02-23T12:11:16.410091",
-        "trailing_stop_active": false,
-        "highest_price": null,
+        "trailing_stop_active": true,
+        "highest_price": 0.2463,
         "exit_flag": null
     },
     "BARUSDT": {
