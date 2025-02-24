@@ -1,24 +1,10 @@
 {
-    "TONUSDT": {
-        "price": 3.713,
-        "time": "2025-02-22T22:26:47.275380",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": null
-    },
     "OMUSDT": {
         "price": 8.2082,
         "time": "2025-02-22T23:45:34.523926",
         "trailing_stop_active": true,
         "highest_price": 8.9652,
         "exit_flag": "TRAILING STOP"
-    },
-    "OPUSDT": {
-        "price": 1.153,
-        "time": "2025-02-23T02:11:32.880397",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": null
     },
     "GLMUSDT": {
         "price": 0.3234,
@@ -58,13 +44,6 @@
     "AUCTIONUSDT": {
         "price": 13.64,
         "time": "2025-02-23T16:45:47.567339",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": null
-    },
-    "INJUSDT": {
-        "price": 15.93,
-        "time": "2025-02-23T17:32:22.978024",
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
