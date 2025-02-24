@@ -10,12 +10,19 @@
         "price": 7.195,
         "time": "2025-02-24T15:01:34.248443",
         "trailing_stop_active": true,
-        "highest_price": 8.242,
+        "highest_price": 8.358,
         "exit_flag": null
     },
     "HBARUSDT": {
         "price": 0.21667,
         "time": "2025-02-24T16:34:20.503071",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "METISUSDT": {
+        "price": 27.39,
+        "time": "2025-02-24T20:09:01.733399",
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
