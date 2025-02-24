@@ -19,5 +19,12 @@
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
+    },
+    "MBOXUSDT": {
+        "price": 0.1224,
+        "time": "2025-02-24T17:01:26.397143",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
     }
 }
