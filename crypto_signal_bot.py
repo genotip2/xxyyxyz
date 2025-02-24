@@ -31,9 +31,9 @@ PAIR_TO_ANALYZE = 100         # Dari cache, hanya analisis sejumlah pair tertent
 ANALYSIS_ORDER = "top"       # "top" mengambil dari awal, "bottom" dari akhir.
 
 # Parameter trading
-TAKE_PROFIT_PERCENTAGE = 6    # Target take profit 6%
+TAKE_PROFIT_PERCENTAGE = 1    # Target take profit 6%
 STOP_LOSS_PERCENTAGE = 3      # Stop loss 3%
-TRAILING_STOP_PERCENTAGE = 3  # Trailing stop 3%
+TRAILING_STOP_PERCENTAGE = 1  # Trailing stop 3%
 MAX_HOLD_DURATION_HOUR = 48   # Durasi hold maksimum 48 jam
 
 # Konfigurasi Timeframe
