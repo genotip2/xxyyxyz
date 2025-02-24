@@ -45,14 +45,14 @@
         "price": 13.64,
         "time": "2025-02-23T16:45:47.567339",
         "trailing_stop_active": true,
-        "highest_price": 14.25,
+        "highest_price": 14.43,
         "exit_flag": null
     },
     "REQUSDT": {
         "price": 0.1056,
         "time": "2025-02-23T21:23:32.692039",
-        "trailing_stop_active": false,
-        "highest_price": null,
+        "trailing_stop_active": true,
+        "highest_price": 0.11,
         "exit_flag": null
     },
     "RUNEUSDT": {
