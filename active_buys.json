@@ -26,5 +26,12 @@
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
+    },
+    "HBARUSDT": {
+        "price": 0.22543,
+        "time": "2025-02-24T13:16:30.972981",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
     }
 }
