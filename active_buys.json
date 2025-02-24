@@ -89,5 +89,12 @@
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
+    },
+    "ANIMEUSDT": {
+        "price": 0.029,
+        "time": "2025-02-24T00:36:49.754976",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
     }
 }
