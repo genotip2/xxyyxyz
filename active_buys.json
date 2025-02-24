@@ -6,13 +6,6 @@
         "highest_price": null,
         "exit_flag": null
     },
-    "PROMUSDT": {
-        "price": 6.763,
-        "time": "2025-02-24T12:14:25.173965",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": null
-    },
     "CGPTUSDT": {
         "price": 0.1419,
         "time": "2025-02-24T12:52:10.120795",
@@ -23,6 +16,13 @@
     "HBARUSDT": {
         "price": 0.22543,
         "time": "2025-02-24T13:16:30.972981",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "MBOXUSDT": {
+        "price": 0.1266,
+        "time": "2025-02-24T14:46:14.506460",
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
