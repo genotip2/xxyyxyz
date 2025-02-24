@@ -6,13 +6,6 @@
         "highest_price": null,
         "exit_flag": null
     },
-    "MBOXUSDT": {
-        "price": 0.1266,
-        "time": "2025-02-24T14:46:14.506460",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": null
-    },
     "VANAUSDT": {
         "price": 7.195,
         "time": "2025-02-24T15:01:34.248443",
