@@ -290,7 +290,7 @@ def is_best_entry_from_data(data):
 
     macd_trend = data.get('macd_trend')
     macd_signal_trend = data.get('macd_signal_trend')
-    if macd_trend is None or macd_signal_trend is None or macd_trend <= macd_signal_trend or macd_trend <= 0:
+    if macd_trend is None or macd_signal_trend is None or macd_trend <= macd_signal_trend:
         return False, "MACD trend tidak memenuhi (MACD trend <= signal trend)."
 
     macd_konfirmasi = data.get('macd_konfirmasi')
