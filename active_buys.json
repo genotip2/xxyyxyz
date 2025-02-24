@@ -9,8 +9,8 @@
     "VANAUSDT": {
         "price": 7.195,
         "time": "2025-02-24T15:01:34.248443",
-        "trailing_stop_active": false,
-        "highest_price": null,
+        "trailing_stop_active": true,
+        "highest_price": 7.643,
         "exit_flag": null
     },
     "HBARUSDT": {
