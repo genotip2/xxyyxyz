@@ -513,11 +513,11 @@ def send_telegram_alert(signal_type, pair, current_price, details="", entry_anal
             message += f"📊 {indicator_info}\n"
 
     # Setelah menambahkan informasi entry, baru hapus data untuk sinyal SELL/EXPIRED
-    if signal_type in ["SELL", "EXPIRED"]:
-        if pair in ACTIVE_BUYS:
-            del ACTIVE_BUYS[pair]
-            print(f"✅ Posisi {pair} ditutup dari active buys dengan sinyal {signal_type}.")
-
+    if signal_type in ["SELL", "EXPIRED", "STOP LOSS", "TRAILING STOP"]:
+    if pair in ACTIVE_BUYS:
+        del ACTIVE_BUYS[pair]
+        print(f"✅ Posisi {pair} ditutup dari active buys dengan sinyal {signal_type}.")
+        
     print(f"📢 Mengirim alert:\n{message}")
     try:
         requests.post(
