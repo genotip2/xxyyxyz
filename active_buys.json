@@ -1,1 +1,9 @@
-{}
+{
+    "AUCTIONUSDT": {
+        "price": 14.25,
+        "time": "2025-02-24T09:28:42.541169",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    }
+}
