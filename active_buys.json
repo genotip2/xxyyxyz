@@ -31,7 +31,7 @@
         "price": 0.2423,
         "time": "2025-02-23T12:11:16.410091",
         "trailing_stop_active": true,
-        "highest_price": 0.2463,
+        "highest_price": 0.2467,
         "exit_flag": null
     },
     "BARUSDT": {
@@ -59,7 +59,7 @@
         "price": 1.365,
         "time": "2025-02-23T22:00:47.620073",
         "trailing_stop_active": true,
-        "highest_price": 1.437,
+        "highest_price": 1.447,
         "exit_flag": null
     },
     "ANIMEUSDT": {
