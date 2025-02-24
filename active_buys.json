@@ -18,7 +18,7 @@
         "time": "2025-02-24T16:34:20.503071",
         "trailing_stop_active": false,
         "highest_price": null,
-        "exit_flag": null
+        "exit_flag": "STOP LOSS"
     },
     "METISUSDT": {
         "price": 27.39,
