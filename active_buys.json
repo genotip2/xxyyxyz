@@ -23,8 +23,8 @@
     "CGPTUSDT": {
         "price": 0.1419,
         "time": "2025-02-24T12:52:10.120795",
-        "trailing_stop_active": false,
-        "highest_price": null,
+        "trailing_stop_active": true,
+        "highest_price": 0.1509,
         "exit_flag": null
     },
     "HBARUSDT": {
