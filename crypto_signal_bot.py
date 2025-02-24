@@ -24,21 +24,22 @@ CACHE_EXPIRED_DAYS = 30  # Cache dianggap kadaluarsa jika lebih dari 30 hari
 CACHE_UPDATED = False
 
 # Konfigurasi jumlah pair untuk cache dan analisis
-TOP_PAIRS_CACHED = 100       # Jumlah pair teratas (berdasarkan ranking CMC) yang akan disimpan ke cache
-PAIR_TO_ANALYZE = 100         # Dari cache, hanya analisis sejumlah pair tertentu
+TOP_PAIRS_CACHED = 200       # Jumlah pair teratas (berdasarkan ranking CMC) yang akan disimpan ke cache
+PAIR_TO_ANALYZE = 200         # Dari cache, hanya analisis sejumlah pair tertentu
 
 # Konfigurasi order analisis.
 ANALYSIS_ORDER = "top"       # "top" mengambil dari awal, "bottom" dari akhir.
 
 # Parameter trading
-TAKE_PROFIT_PERCENTAGE = 1    # Target take profit 6%
+TAKE_PROFIT_PERCENTAGE = 6    # Target take profit 6%
 STOP_LOSS_PERCENTAGE = 3      # Stop loss 3%
-TRAILING_STOP_PERCENTAGE = 2  # Trailing stop 3%
-MAX_HOLD_DURATION_HOUR = 48   # Durasi hold maksimum 48 jam
+TRAILING_STOP_PERCENTAGE = 3  # Trailing stop 3%
+MAX_HOLD_DURATION_DAYS = 2    # Durasi hold maksimum 2 hari
 
 # Konfigurasi Timeframe
-TIMEFRAME_TREND = Interval.INTERVAL_4_HOURS       # Timeframe untuk analisis tren utama (4H)
 TIMEFRAME_ENTRY = Interval.INTERVAL_1_HOUR          # Timeframe untuk analisis entry/pullback (1H)
+TIMEFRAME_TREND = Interval.INTERVAL_4_HOURS       # Timeframe untuk analisis tren utama (4H)
+TIMEFRAME_KONFIRMASI = Interval.INTERVAL_1_DAY       # Timeframe konfirmasi (1 Day)
 
 ##############################
 # FUNGSI UTILITY: LOAD & SAVE POSITION
@@ -292,6 +293,11 @@ def is_best_entry_from_data(data):
     if macd_trend is None or macd_signal_trend is None or macd_trend <= macd_signal_trend or macd_trend <= 0:
         return False, "MACD trend tidak memenuhi (MACD trend <= signal trend)."
 
+    macd_konfirmasi = data.get('macd_konfirmasi')
+    signal_konfirmasi = data.get('signal_konfirmasi')
+    if macd_konfirmasi is None or signal_konfirmasi is None or macd_konfirmasi <= signal_konfirmasi:
+        return False, "MACD konfirmasi tidak memenuhi (tidak > signal konfirmasi)."
+
     return True, "Best Entry Condition terpenuhi."
 
 def is_best_exit_from_data(data):
@@ -331,6 +337,11 @@ def generate_signal(pair):
     if entry_analysis is None:
         return None, None, "Analisis entry gagal.", None
 
+    # Analisis timeframe konfirmasi
+    konfirmasi_analysis = analyze_pair_interval(pair, TIMEFRAME_KONFIRMASI)
+    if konfirmasi_analysis is None:
+        return None, None, "Analisis konfirmasi gagal.", None
+
     current_price = entry_analysis.indicators.get('close')
     if current_price is None:
         return None, None, "Harga close tidak tersedia pada timeframe entry.", entry_analysis
@@ -344,7 +355,9 @@ def generate_signal(pair):
         'macd_signal_entry': entry_analysis.indicators.get('MACD.signal'),
         'candle_entry': entry_analysis.summary.get('RECOMMENDATION'),
         'macd_trend': trend_analysis.indicators.get('MACD.macd'),
-        'macd_signal_trend': trend_analysis.indicators.get('MACD.signal')
+        'macd_signal_trend': trend_analysis.indicators.get('MACD.signal'),
+        'macd_konfirmasi': konfirmasi_analysis.indicators.get('MACD.macd'),
+        'signal_konfirmasi': konfirmasi_analysis.indicators.get('MACD.signal')
     }
 
     # Jika pair sudah tercatat di UNUSED_SIGNALS, hanya evaluasi best exit
@@ -388,14 +401,14 @@ def generate_signal(pair):
             else:
                 return "SELL", current_price, f"BEST EXIT: {best_exit_msg}", entry_analysis
 
-        # Selanjutnya, periksa kondisi EXPIRED
-        if holding_duration > timedelta(hours=MAX_HOLD_DURATION_HOUR):
+        # Selanjutnya, periksa kondisi EXPIRED (dalam satuan days)
+        if holding_duration > timedelta(days=MAX_HOLD_DURATION_DAYS):
             if data_active.get('exit_flag') is not None:
                 del ACTIVE_BUYS[pair]
                 print(f"✅ Pair {pair} dihapus dari active buys karena exit flag aktif dan kondisi EXPIRED terpenuhi.")
                 return None, current_price, "Pair dihapus dari active buys (exit flag & expired).", entry_analysis
             else:
-                return "EXPIRED", current_price, f"Durasi hold: {str(holding_duration).split('.')[0]}", entry_analysis
+                return "EXPIRED", current_price, f"Durasi hold: {holding_duration.days} hari", entry_analysis
 
         # Jika exit flag sudah aktif (untuk menghindari notifikasi ganda)
         if data_active.get('exit_flag') is not None:
@@ -518,6 +531,7 @@ def send_telegram_alert(signal_type, pair, current_price, details="", entry_anal
         )
     except Exception as e:
         print(f"❌ Gagal mengirim alert Telegram: {e}")
+
 ##############################
 # PROGRAM UTAMA
 ##############################
