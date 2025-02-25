@@ -3,14 +3,14 @@
         "price": 14.25,
         "time": "2025-02-24T09:28:42.541169",
         "trailing_stop_active": true,
-        "highest_price": 15.67,
+        "highest_price": 15.84,
         "exit_flag": null
     },
     "VANAUSDT": {
         "price": 7.195,
         "time": "2025-02-24T15:01:34.248443",
         "trailing_stop_active": true,
-        "highest_price": 8.421,
+        "highest_price": 9.432,
         "exit_flag": "TRAILING STOP"
     },
     "ACTUSDT": {
