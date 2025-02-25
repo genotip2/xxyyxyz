@@ -75,5 +75,12 @@
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
+    },
+    "AGLDUSDT": {
+        "price": 1.514,
+        "time": "2025-02-25T22:29:26.962929",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
     }
 }
