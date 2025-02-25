@@ -19,5 +19,33 @@
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
+    },
+    "PNUTUSDT": {
+        "price": 0.1826,
+        "time": "2025-02-25T20:08:24.195383",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "TIAUSDT": {
+        "price": 3.718,
+        "time": "2025-02-25T20:08:32.076720",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "PENGUUSDT": {
+        "price": 0.008391,
+        "time": "2025-02-25T20:08:33.795268",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "SOLVUSDT": {
+        "price": 0.0347,
+        "time": "2025-02-25T20:08:41.245282",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
     }
 }
