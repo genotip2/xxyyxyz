@@ -6,23 +6,9 @@
         "highest_price": 15.84,
         "exit_flag": null
     },
-    "VANAUSDT": {
-        "price": 7.195,
-        "time": "2025-02-24T15:01:34.248443",
-        "trailing_stop_active": true,
-        "highest_price": 9.432,
-        "exit_flag": "TRAILING STOP"
-    },
     "ACTUSDT": {
         "price": 0.1941,
         "time": "2025-02-25T08:10:33.349007",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": null
-    },
-    "COWUSDT": {
-        "price": 0.462,
-        "time": "2025-02-25T08:48:57.001705",
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
