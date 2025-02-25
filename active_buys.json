@@ -12,5 +12,12 @@
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
+    },
+    "OGUSDT": {
+        "price": 3.69,
+        "time": "2025-02-25T17:01:15.697487",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
     }
 }
