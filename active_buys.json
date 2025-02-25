@@ -3,7 +3,7 @@
         "price": 93.7,
         "time": "2025-02-25T12:14:04.935790",
         "trailing_stop_active": true,
-        "highest_price": 100.7,
+        "highest_price": 100.8,
         "exit_flag": null
     },
     "OGUSDT": {
@@ -58,6 +58,13 @@
     "PEOPLEUSDT": {
         "price": 0.02038,
         "time": "2025-02-25T20:28:40.740141",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "MKRUSDT": {
+        "price": 1640,
+        "time": "2025-02-25T21:24:43.853112",
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
