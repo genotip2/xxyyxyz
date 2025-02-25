@@ -1,11 +1,4 @@
 {
-    "AUCTIONUSDT": {
-        "price": 14.25,
-        "time": "2025-02-24T09:28:42.541169",
-        "trailing_stop_active": true,
-        "highest_price": 16.03,
-        "exit_flag": null
-    },
     "1000SATSUSDT": {
         "price": 0.0001261,
         "time": "2025-02-25T12:13:43.760312",
