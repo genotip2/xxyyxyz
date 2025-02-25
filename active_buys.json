@@ -2,8 +2,8 @@
     "QNTUSDT": {
         "price": 93.7,
         "time": "2025-02-25T12:14:04.935790",
-        "trailing_stop_active": false,
-        "highest_price": null,
+        "trailing_stop_active": true,
+        "highest_price": 100.7,
         "exit_flag": null
     },
     "OGUSDT": {
@@ -44,6 +44,20 @@
     "SOLVUSDT": {
         "price": 0.0347,
         "time": "2025-02-25T20:08:41.245282",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "THEUSDT": {
+        "price": 0.5639,
+        "time": "2025-02-25T20:28:27.810568",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "PEOPLEUSDT": {
+        "price": 0.02038,
+        "time": "2025-02-25T20:28:40.740141",
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
