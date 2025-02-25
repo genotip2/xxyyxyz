@@ -1,11 +1,4 @@
 {
-    "1000SATSUSDT": {
-        "price": 0.0001261,
-        "time": "2025-02-25T12:13:43.760312",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": null
-    },
     "QNTUSDT": {
         "price": 93.7,
         "time": "2025-02-25T12:14:04.935790",
@@ -16,6 +9,13 @@
     "OGUSDT": {
         "price": 3.69,
         "time": "2025-02-25T17:01:15.697487",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "IMXUSDT": {
+        "price": 0.673,
+        "time": "2025-02-25T19:21:45.470902",
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
