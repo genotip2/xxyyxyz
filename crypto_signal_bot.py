@@ -1,8 +1,11 @@
 import os
 import requests
 import json
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone  # Tambahkan timezone
 from tradingview_ta import TA_Handler, Interval
+
+# Definisikan zona waktu UTC+7
+UTC7 = timezone(timedelta(hours=7))
 
 # KONFIGURASI
 
@@ -221,7 +224,7 @@ def get_pairs_from_cache():
     Jika file cache tidak ada atau sudah kadaluarsa, maka file cache akan diperbarui terlebih dahulu.
     """
     global CACHE_UPDATED
-    now = datetime.now()
+    now = datetime.now(UTC7)
     update_cache = False
 
     if not os.path.exists(CACHE_FILE):    
@@ -230,7 +233,7 @@ def get_pairs_from_cache():
     else:    
         try:    
             mtime = os.path.getmtime(CACHE_FILE)    
-            mod_time = datetime.fromtimestamp(mtime)    
+            mod_time = datetime.fromtimestamp(mtime, UTC7)
             if now - mod_time > timedelta(days=CACHE_EXPIRED_DAYS):    
                 update_cache = True    
                 print("ℹ️ File cache pair kadaluarsa. Memperbarui cache...")    
@@ -378,7 +381,7 @@ def generate_signal(pair):
             if CACHE_UPDATED:  
                 UNUSED_SIGNALS[pair] = {  
                     'price': current_price,  
-                    'time': datetime.now()  
+                    'time': datetime.now(UTC7)  
                 }  
                 print(f"ℹ️ Sinyal BUY untuk {pair} dicatat di UNUSED_SIGNALS (tanpa notifikasi) karena cache diperbarui.")  
                 return None, current_price, "Buy signal dicatat ke unused_signal.", entry_analysis  
@@ -389,7 +392,7 @@ def generate_signal(pair):
     else:  
         # Pair sudah aktif di ACTIVE_BUYS    
         data_active = ACTIVE_BUYS[pair]  
-        holding_duration = datetime.now() - data_active['time']  
+        holding_duration = datetime.now(UTC7) - data_active['time']  
 
         # Evaluasi best exit terlebih dahulu    
         best_exit_ok, best_exit_msg = is_best_exit_from_data(data)  
@@ -472,7 +475,7 @@ def send_telegram_alert(signal_type, pair, current_price, details="", entry_anal
     if signal_type == "BUY":  
         ACTIVE_BUYS[pair] = {  
             'price': current_price,  
-            'time': datetime.now(),  
+            'time': datetime.now(UTC7),  
             'trailing_stop_active': False,  
             'highest_price': None,  
         }  
@@ -486,7 +489,7 @@ def send_telegram_alert(signal_type, pair, current_price, details="", entry_anal
         entry_data = ACTIVE_BUYS[pair]  
         entry_price = entry_data['price']  
         profit = (current_price - entry_price) / entry_price * 100  
-        duration = datetime.now() - entry_data['time']  
+        duration = datetime.now(UTC7) - entry_data['time']  
         message_entry = (  
             f"▫️ *Entry Price:* ${entry_price:.8f}\n"  
             f"💰 *{'Profit' if profit > 0 else 'Loss'}:* {profit:+.2f}%\n"  
@@ -543,7 +546,7 @@ def main():
         elif ANALYSIS_ORDER.lower() == "bottom":  
             pairs = pairs[-PAIR_TO_ANALYZE:]  
 
-    print(f"🔍 Memulai analisis {len(pairs)} pair pada {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")  
+    print(f"🔍 Memulai analisis {len(pairs)} pair pada {datetime.now(UTC7).strftime('%Y-%m-%d %H:%M:%S')}")  
 
     for pair in pairs:  
         print(f"\n🔎 Sedang menganalisis pair: {pair}")  
