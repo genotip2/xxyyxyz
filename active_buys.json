@@ -167,12 +167,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "REZUSDT": {
-        "price": 0.01848,
-        "time": "2025-02-27T04:01:16.568558+07:00",
-        "trailing_stop_active": true,
-        "highest_price": 0.02194
-    },
     "SCRUSDT": {
         "price": 0.589,
         "time": "2025-02-27T04:01:19.066741+07:00",
