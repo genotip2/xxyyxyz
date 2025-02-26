@@ -65,7 +65,6 @@ def load_active_buys():
                     'time': datetime.fromisoformat(d['time']),
                     'trailing_stop_active': d.get('trailing_stop_active', False),
                     'highest_price': d.get('highest_price', None),
-                    'exit_flag': d.get('exit_flag', None)
                 }
                 for pair, d in data.items()
             }
@@ -85,7 +84,6 @@ def save_active_buys():
                 'time': d['time'].isoformat(),
                 'trailing_stop_active': d.get('trailing_stop_active', False),
                 'highest_price': d.get('highest_price', None),
-                'exit_flag': d.get('exit_flag', None)
             }
         with open(ACTIVE_BUYS_FILE, 'w') as f:
             json.dump(data, f, indent=4)
@@ -286,20 +284,20 @@ def is_best_entry_from_data(data):
     if candle_entry is None or (("BUY" not in candle_entry.upper()) and ("STRONG_BUY" not in candle_entry.upper())):
         return False, "Rekomendasi candle tidak mendukung (tidak ada BUY/STRONG_BUY)."
 
-    macd_entry = data.get('macd_entry')
-    macd_signal_entry = data.get('macd_signal_entry')
-    if macd_entry is None or macd_signal_entry is None or macd_entry <= macd_signal_entry:
-        return False, "MACD entry tidak memenuhi (tidak > signal atau tidak > 0)."
+    macd_entry = data.get('macd_entry')    
+    macd_signal_entry = data.get('macd_signal_entry')    
+    if macd_entry is None or macd_signal_entry is None or macd_entry <= macd_signal_entry:    
+        return False, "MACD entry tidak memenuhi (tidak > signal atau tidak > 0)."    
 
-    macd_trend = data.get('macd_trend')
-    macd_signal_trend = data.get('macd_signal_trend')
-    if macd_trend is None or macd_signal_trend is None or macd_trend <= macd_signal_trend:
-        return False, "MACD trend tidak memenuhi (MACD trend <= signal trend)."
+    macd_trend = data.get('macd_trend')    
+    macd_signal_trend = data.get('macd_signal_trend')    
+    if macd_trend is None or macd_signal_trend is None or macd_trend <= macd_signal_trend:    
+        return False, "MACD trend tidak memenuhi (MACD trend <= signal trend)."    
 
-    macd_konfirmasi = data.get('macd_konfirmasi')
-    signal_konfirmasi = data.get('signal_konfirmasi')
-    if macd_konfirmasi is None or signal_konfirmasi is None or macd_konfirmasi <= signal_konfirmasi:
-        return False, "MACD konfirmasi tidak memenuhi (tidak > signal konfirmasi)."
+    macd_konfirmasi = data.get('macd_konfirmasi')    
+    signal_konfirmasi = data.get('signal_konfirmasi')    
+    if macd_konfirmasi is None or signal_konfirmasi is None or macd_konfirmasi <= signal_konfirmasi:  
+        return False, "MACD konfirmasi tidak memenuhi (tidak > signal konfirmasi)."    
 
     return True, "Best Entry Condition terpenuhi."
 
@@ -311,15 +309,15 @@ def is_best_exit_from_data(data):
     if candle_entry is None or (("SELL" not in candle_entry.upper()) and ("STRONG_SELL" not in candle_entry.upper())):
         return False, "Rekomendasi candle tidak mendukung exit (tidak ada SELL/STRONG_SELL)."
 
-    ema10_entry = data.get('ema10_entry')
-    ema20_entry = data.get('ema20_entry')
-    if ema10_entry is None or ema20_entry is None or ema10_entry >= ema20_entry:
-        return False, "EMA entry tidak mendukung exit (EMA10 >= EMA20)."
+    ema10_entry = data.get('ema10_entry')    
+    ema20_entry = data.get('ema20_entry')    
+    if ema10_entry is None or ema20_entry is None or ema10_entry >= ema20_entry:    
+        return False, "EMA entry tidak mendukung exit (EMA10 >= EMA20)."    
 
-    macd_entry = data.get('macd_entry')
-    macd_signal_entry = data.get('macd_signal_entry')
-    if macd_entry is None or macd_signal_entry is None or macd_entry >= macd_signal_entry:
-        return False, "MACD entry tidak mendukung exit (tidak < signal)."
+    macd_entry = data.get('macd_entry')    
+    macd_signal_entry = data.get('macd_signal_entry')    
+    if macd_entry is None or macd_signal_entry is None or macd_entry >= macd_signal_entry:    
+        return False, "MACD entry tidak mendukung exit (tidak < signal)."    
 
     return True, "Best Exit Condition terpenuhi."
 
@@ -336,115 +334,108 @@ def generate_signal(pair):
     if trend_analysis is None:
         return None, None, "Analisis tren gagal.", None
 
-    entry_analysis = analyze_pair_interval(pair, TIMEFRAME_ENTRY)
-    if entry_analysis is None:
-        return None, None, "Analisis entry gagal.", None
+    entry_analysis = analyze_pair_interval(pair, TIMEFRAME_ENTRY)  
+    if entry_analysis is None:  
+        return None, None, "Analisis entry gagal.", None  
 
-    # Analisis timeframe konfirmasi
-    konfirmasi_analysis = analyze_pair_interval(pair, TIMEFRAME_KONFIRMASI)
-    if konfirmasi_analysis is None:
-        return None, None, "Analisis konfirmasi gagal.", None
+    # Analisis timeframe konfirmasi    
+    konfirmasi_analysis = analyze_pair_interval(pair, TIMEFRAME_KONFIRMASI)  
+    if konfirmasi_analysis is None:  
+        return None, None, "Analisis konfirmasi gagal.", None  
 
-    current_price = entry_analysis.indicators.get('close')
-    if current_price is None:
-        return None, None, "Harga close tidak tersedia pada timeframe entry.", entry_analysis
+    current_price = entry_analysis.indicators.get('close')  
+    if current_price is None:  
+        return None, None, "Harga close tidak tersedia pada timeframe entry.", entry_analysis  
 
-    # Kumpulkan data indikator
-    data = {
-        'current_price': current_price,
-        'ema10_entry': entry_analysis.indicators.get('EMA10'),
-        'ema20_entry': entry_analysis.indicators.get('EMA20'),
-        'macd_entry': entry_analysis.indicators.get('MACD.macd'),
-        'macd_signal_entry': entry_analysis.indicators.get('MACD.signal'),
-        'candle_entry': entry_analysis.summary.get('RECOMMENDATION'),
-        'macd_trend': trend_analysis.indicators.get('MACD.macd'),
-        'macd_signal_trend': trend_analysis.indicators.get('MACD.signal'),
-        'macd_konfirmasi': konfirmasi_analysis.indicators.get('MACD.macd'),
-        'signal_konfirmasi': konfirmasi_analysis.indicators.get('MACD.signal')
-    }
+    # Kumpulkan data indikator    
+    data = {  
+        'current_price': current_price,  
+        'ema10_entry': entry_analysis.indicators.get('EMA10'),  
+        'ema20_entry': entry_analysis.indicators.get('EMA20'),  
+        'macd_entry': entry_analysis.indicators.get('MACD.macd'),  
+        'macd_signal_entry': entry_analysis.indicators.get('MACD.signal'),  
+        'candle_entry': entry_analysis.summary.get('RECOMMENDATION'),  
+        'macd_trend': trend_analysis.indicators.get('MACD.macd'),  
+        'macd_signal_trend': trend_analysis.indicators.get('MACD.signal'),  
+        'macd_konfirmasi': konfirmasi_analysis.indicators.get('MACD.macd'),  
+        'signal_konfirmasi': konfirmasi_analysis.indicators.get('MACD.signal')  
+    }  
 
-    # Jika pair sudah tercatat di UNUSED_SIGNALS, hanya evaluasi best exit
-    if pair in UNUSED_SIGNALS:
-        best_exit_ok, best_exit_msg = is_best_exit_from_data(data)
-        if best_exit_ok:
-            print(f"✅ Pair {pair} dihapus dari unused signals karena best exit terpenuhi (tanpa notifikasi).")
-            del UNUSED_SIGNALS[pair]
-            return None, current_price, "Best exit terpenuhi, pair dihapus dari unused signals.", entry_analysis
-        else:
-            return None, current_price, "Tidak ada sinyal (unused signal mode).", entry_analysis
+    # Jika pair sudah tercatat di UNUSED_SIGNALS, hanya evaluasi best exit    
+    if pair in UNUSED_SIGNALS:  
+        best_exit_ok, best_exit_msg = is_best_exit_from_data(data)  
+        if best_exit_ok:  
+            print(f"✅ Pair {pair} dihapus dari unused signals karena best exit terpenuhi (tanpa notifikasi).")  
+            del UNUSED_SIGNALS[pair]  
+            return None, current_price, "Best exit terpenuhi, pair dihapus dari unused signals.", entry_analysis  
+        else:  
+            return None, current_price, "Tidak ada sinyal (unused signal mode).", entry_analysis  
 
-    # Jika pair belum aktif di ACTIVE_BUYS, evaluasi best entry
-    if pair not in ACTIVE_BUYS:
-        best_entry_ok, best_entry_msg = is_best_entry_from_data(data)
-        if best_entry_ok:
-            if CACHE_UPDATED:
-                UNUSED_SIGNALS[pair] = {
-                    'price': current_price,
-                    'time': datetime.now()
-                }
-                print(f"ℹ️ Sinyal BUY untuk {pair} dicatat di UNUSED_SIGNALS (tanpa notifikasi) karena cache diperbarui.")
-                return None, current_price, "Buy signal dicatat ke unused_signal.", entry_analysis
-            else:
-                return "BUY", current_price, f"BEST ENTRY: {best_entry_msg}", entry_analysis
-        else:
-            return None, current_price, f"Tidak memenuhi best entry: {best_entry_msg}", entry_analysis
-    else:
-        # Pair sudah aktif di ACTIVE_BUYS
-        data_active = ACTIVE_BUYS[pair]
-        holding_duration = datetime.now() - data_active['time']
+    # Jika pair belum aktif di ACTIVE_BUYS, evaluasi best entry    
+    if pair not in ACTIVE_BUYS:  
+        best_entry_ok, best_entry_msg = is_best_entry_from_data(data)  
+        if best_entry_ok:  
+            if CACHE_UPDATED:  
+                UNUSED_SIGNALS[pair] = {  
+                    'price': current_price,  
+                    'time': datetime.now()  
+                }  
+                print(f"ℹ️ Sinyal BUY untuk {pair} dicatat di UNUSED_SIGNALS (tanpa notifikasi) karena cache diperbarui.")  
+                return None, current_price, "Buy signal dicatat ke unused_signal.", entry_analysis  
+            else:  
+                return "BUY", current_price, f"BEST ENTRY: {best_entry_msg}", entry_analysis  
+        else:  
+            return None, current_price, f"Tidak memenuhi best entry: {best_entry_msg}", entry_analysis  
+    else:  
+        # Pair sudah aktif di ACTIVE_BUYS    
+        data_active = ACTIVE_BUYS[pair]  
+        holding_duration = datetime.now() - data_active['time']  
 
-        # Evaluasi best exit terlebih dahulu
-        best_exit_ok, best_exit_msg = is_best_exit_from_data(data)
-        if best_exit_ok:
+        # Evaluasi best exit terlebih dahulu    
+        best_exit_ok, best_exit_msg = is_best_exit_from_data(data)  
+        if best_exit_ok:  
             # Hapus pair dari ACTIVE_BUYS dan kirim notifikasi SELL
-            del ACTIVE_BUYS[pair]
             print(f"✅ Pair {pair} dihapus dari active buys karena best exit terpenuhi.")
             return "SELL", current_price, f"BEST EXIT: {best_exit_msg}", entry_analysis
 
         entry_price = data_active['price']
         profit_from_entry = (current_price - entry_price) / entry_price * 100
 
-        # Cek kondisi EXPIRED (durasi hold melebihi MAX_HOLD_DURATION_DAYS)
-        if holding_duration > timedelta(days=MAX_HOLD_DURATION_DAYS):
-            ACTIVE_BUYS[pair]['exit_flag'] = "EXPIRED"
+        # Cek kondisi EXPIRED (durasi hold melebihi MAX_HOLD_DURATION_DAYS)    
+        if holding_duration > timedelta(days=MAX_HOLD_DURATION_DAYS):  
             UNUSED_SIGNALS[pair] = ACTIVE_BUYS[pair]
-            del ACTIVE_BUYS[pair]
             print(f"✅ Pair {pair} dipindahkan ke unused signals karena expired (hold {holding_duration.days} hari).")
-            return "EXPIRED", current_price, f"Durasi hold: {holding_duration.days} hari", entry_analysis
+            return "EXPIRED", current_price, f"Durasi hold: {holding_duration.days} hari", entry_analysis  
 
-        # Cek stop loss
-        if profit_from_entry <= -STOP_LOSS_PERCENTAGE:
-            ACTIVE_BUYS[pair]['exit_flag'] = "STOP LOSS"
+        # Cek stop loss    
+        if profit_from_entry <= -STOP_LOSS_PERCENTAGE:  
             UNUSED_SIGNALS[pair] = ACTIVE_BUYS[pair]
-            del ACTIVE_BUYS[pair]
             print(f"✅ Pair {pair} dipindahkan ke unused signals karena stop loss tercapai.")
-            return "STOP LOSS", current_price, "Stop loss tercapai.", entry_analysis
+            return "STOP LOSS", current_price, "Stop loss tercapai.", entry_analysis  
 
-        # Cek aktivasi trailing stop ketika target take profit tercapai
-        if not data_active.get('trailing_stop_active', False) and profit_from_entry >= TAKE_PROFIT_PERCENTAGE:
-            ACTIVE_BUYS[pair]['trailing_stop_active'] = True
-            ACTIVE_BUYS[pair]['highest_price'] = current_price
-            return "TAKE PROFIT", current_price, "Target take profit tercapai, trailing stop diaktifkan.", entry_analysis
+        # Cek aktivasi trailing stop ketika target take profit tercapai    
+        if not data_active.get('trailing_stop_active', False) and profit_from_entry >= TAKE_PROFIT_PERCENTAGE:  
+            ACTIVE_BUYS[pair]['trailing_stop_active'] = True  
+            ACTIVE_BUYS[pair]['highest_price'] = current_price  
+            return "TAKE PROFIT", current_price, "Target take profit tercapai, trailing stop diaktifkan.", entry_analysis  
 
-        # Jika trailing stop sudah aktif
-        if data_active.get('trailing_stop_active', False):
-            prev_high = data_active.get('highest_price')
-            if prev_high is None or current_price > prev_high:
-                ACTIVE_BUYS[pair]['highest_price'] = current_price
+        # Jika trailing stop sudah aktif    
+        if data_active.get('trailing_stop_active', False):  
+            prev_high = data_active.get('highest_price')  
+            if prev_high is None or current_price > prev_high:  
+                ACTIVE_BUYS[pair]['highest_price'] = current_price  
                 send_telegram_alert(
-                    "NEW HIGH",
-                    pair,
-                    current_price,
-                    f"New highest price (sebelumnya: {prev_high:.8f})" if prev_high else "New highest price set.",
-                    entry_analysis
-                )
-            trailing_stop_price = ACTIVE_BUYS[pair]['highest_price'] * (1 - TRAILING_STOP_PERCENTAGE / 100)
-            if current_price < trailing_stop_price:
-                ACTIVE_BUYS[pair]['exit_flag'] = "TRAILING STOP"
+                    "NEW HIGH",  
+                    pair,  
+                    current_price,  
+                    f"New highest price (sebelumnya: {prev_high:.8f})" if prev_high else "New highest price set.",  
+                    entry_analysis  
+                )  
+            trailing_stop_price = ACTIVE_BUYS[pair]['highest_price'] * (1 - TRAILING_STOP_PERCENTAGE / 100)  
+            if current_price < trailing_stop_price:  
                 UNUSED_SIGNALS[pair] = ACTIVE_BUYS[pair]
-                del ACTIVE_BUYS[pair]
                 print(f"✅ Pair {pair} dipindahkan ke unused signals karena trailing stop tercapai.")
-                return "TRAILING STOP", current_price, f"Harga turun ke trailing stop: {trailing_stop_price:.8f}", entry_analysis
+                return "TRAILING STOP", current_price, f"Harga turun ke trailing stop: {trailing_stop_price:.8f}", entry_analysis  
 
         return None, current_price, "Tidak ada sinyal.", entry_analysis
 
@@ -474,70 +465,66 @@ def send_telegram_alert(signal_type, pair, current_price, details="", entry_anal
         'NEW HIGH': '📈'
     }.get(signal_type, 'ℹ️')
 
-    binance_url = get_binance_url(pair)
-    tradingview_url = get_tradingview_url(pair)
+    binance_url = get_binance_url(pair)  
+    tradingview_url = get_tradingview_url(pair)  
 
-    # Untuk sinyal BUY, tambahkan data ke ACTIVE_BUYS
-    if signal_type == "BUY":
-        ACTIVE_BUYS[pair] = {
-            'price': current_price,
-            'time': datetime.now(),
-            'trailing_stop_active': False,
-            'highest_price': None,
-            'exit_flag': None
-        }
+    # Untuk sinyal BUY, tambahkan data ke ACTIVE_BUYS    
+    if signal_type == "BUY":  
+        ACTIVE_BUYS[pair] = {  
+            'price': current_price,  
+            'time': datetime.now(),  
+            'trailing_stop_active': False,  
+            'highest_price': None,  
+        }  
 
-    message = f"{emoji} *{signal_type}*\n"
-    message += f"💱 *Pair:* [{display_pair}]({binance_url}) ==> [TradingView]({tradingview_url})\n"
-    message += f"💲 *Price:* ${current_price:.8f}\n"
+    message = f"{emoji} *{signal_type}*\n"  
+    message += f"💱 *Pair:* [{display_pair}]({binance_url}) ==> [TradingView]({tradingview_url})\n"  
+    message += f"💲 *Price:* ${current_price:.8f}\n"  
 
-    # Jika sinyal bukan BUY, cari data entry di ACTIVE_BUYS atau UNUSED_SIGNALS
-    if signal_type != "BUY":
-        entry_data = None
-        if pair in ACTIVE_BUYS:
-            entry_data = ACTIVE_BUYS[pair]
-        elif pair in UNUSED_SIGNALS:
-            entry_data = UNUSED_SIGNALS[pair]
+    # Jika sinyal bukan BUY dan pair ada di ACTIVE_BUYS, ambil data entry untuk pesan  
+    if signal_type != "BUY" and pair in ACTIVE_BUYS:  
+        entry_data = ACTIVE_BUYS[pair]  
+        entry_price = entry_data['price']  
+        profit = (current_price - entry_price) / entry_price * 100  
+        duration = datetime.now() - entry_data['time']  
+        message_entry = (  
+            f"▫️ *Entry Price:* ${entry_price:.8f}\n"  
+            f"💰 *{'Profit' if profit > 0 else 'Loss'}:* {profit:+.2f}%\n"  
+            f"🕒 *Duration:* {str(duration).split('.')[0]}\n"  
+        )  
+    else:  
+        message_entry = ""  
+    message += message_entry  
 
-        if entry_data:
-            entry_price = entry_data['price']
-            profit = (current_price - entry_price) / entry_price * 100
-            duration = datetime.now() - entry_data['time']
-            message_entry = (
-                f"▫️ *Entry Price:* ${entry_price:.8f}\n"
-                f"💰 *{'Profit' if profit > 0 else 'Loss'}:* {profit:+.2f}%\n"
-                f"🕒 *Duration:* {str(duration).split('.')[0]}\n"
-            )
-        else:
-            message_entry = ""
-    else:
-        message_entry = ""
+    if entry_analysis is None:  
+        entry_analysis = analyze_pair_interval(pair, TIMEFRAME_ENTRY)  
+    if entry_analysis:  
+        rsi_value = entry_analysis.indicators.get('RSI')  
+        adx_value = entry_analysis.indicators.get('ADX')  
+        stoch_k_value = entry_analysis.indicators.get('Stoch.K')  
+        if rsi_value is not None and adx_value is not None and stoch_k_value is not None:  
+            indicator_info = f"*RSI:* {rsi_value:.2f}, *ADX:* {adx_value:.2f}, *Stoch K:* {stoch_k_value:.2f}"  
+            message += f"📊 {indicator_info}\n"  
 
-    message += message_entry
-
-    if entry_analysis is None:
-        entry_analysis = analyze_pair_interval(pair, TIMEFRAME_ENTRY)
-    if entry_analysis:
-        rsi_value = entry_analysis.indicators.get('RSI')
-        adx_value = entry_analysis.indicators.get('ADX')
-        stoch_k_value = entry_analysis.indicators.get('Stoch.K')
-        if rsi_value is not None and adx_value is not None and stoch_k_value is not None:
-            indicator_info = f"*RSI:* {rsi_value:.2f}, *ADX:* {adx_value:.2f}, *Stoch K:* {stoch_k_value:.2f}"
-            message += f"📊 {indicator_info}\n"
-
-    print(f"📢 Mengirim alert:\n{message}")
-    try:
-        requests.post(
-            f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage",
-            json={
-                'chat_id': TELEGRAM_CHAT_ID,
-                'text': message,
-                'parse_mode': 'Markdown',
-                'disable_web_page_preview': True
-            }
-        )
-    except Exception as e:
+    print(f"📢 Mengirim alert:\n{message}")  
+    try:  
+        requests.post(  
+            f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage",  
+            json={  
+                'chat_id': TELEGRAM_CHAT_ID,  
+                'text': message,  
+                'parse_mode': 'Markdown',  
+                'disable_web_page_preview': True  
+            }  
+        )  
+    except Exception as e:  
         print(f"❌ Gagal mengirim alert Telegram: {e}")
+
+    # Untuk sinyal SELL, EXPIRED, STOP LOSS, atau TRAILING STOP, pastikan pair dihapus dari ACTIVE_BUYS  
+    if signal_type in ["SELL", "EXPIRED", "STOP LOSS", "TRAILING STOP"]:
+        if pair in ACTIVE_BUYS:
+            del ACTIVE_BUYS[pair]
+            print(f"✅ Posisi {pair} ditutup dari active buys dengan sinyal {signal_type}.")
 
 ##############################
 # PROGRAM UTAMA
@@ -546,33 +533,33 @@ def main():
     load_active_buys()
     load_unused_signals()
 
-    # Ambil daftar pair dari file cache
-    pairs = get_pairs_from_cache()
+    # Ambil daftar pair dari file cache    
+    pairs = get_pairs_from_cache()  
 
-    # Sesuaikan order analisis berdasarkan konfigurasi ANALYSIS_ORDER
-    if PAIR_TO_ANALYZE > 0 and PAIR_TO_ANALYZE < len(pairs):
-        if ANALYSIS_ORDER.lower() == "top":
-            pairs = pairs[:PAIR_TO_ANALYZE]
-        elif ANALYSIS_ORDER.lower() == "bottom":
-            pairs = pairs[-PAIR_TO_ANALYZE:]
+    # Sesuaikan order analisis berdasarkan konfigurasi ANALYSIS_ORDER    
+    if PAIR_TO_ANALYZE > 0 and PAIR_TO_ANALYZE < len(pairs):  
+        if ANALYSIS_ORDER.lower() == "top":  
+            pairs = pairs[:PAIR_TO_ANALYZE]  
+        elif ANALYSIS_ORDER.lower() == "bottom":  
+            pairs = pairs[-PAIR_TO_ANALYZE:]  
 
-    print(f"🔍 Memulai analisis {len(pairs)} pair pada {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    print(f"🔍 Memulai analisis {len(pairs)} pair pada {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")  
 
-    for pair in pairs:
-        print(f"\n🔎 Sedang menganalisis pair: {pair}")
-        try:
-            signal, current_price, details, entry_analysis = generate_signal(pair)
-            if signal:
-                print(f"💡 Sinyal: {signal}, Harga: {current_price:.8f}")
-                print(f"📝 Details: {details}")
-                send_telegram_alert(signal, pair, current_price, details, entry_analysis)
-            else:
-                print("ℹ️ Tidak ada sinyal untuk pair ini.")
-        except Exception as e:
-            print(f"⚠️ Error di {pair}: {e}")
-            continue
+    for pair in pairs:  
+        print(f"\n🔎 Sedang menganalisis pair: {pair}")  
+        try:  
+            signal, current_price, details, entry_analysis = generate_signal(pair)  
+            if signal:  
+                print(f"💡 Sinyal: {signal}, Harga: {current_price:.8f}")  
+                print(f"📝 Details: {details}")  
+                send_telegram_alert(signal, pair, current_price, details, entry_analysis)  
+            else:  
+                print("ℹ️ Tidak ada sinyal untuk pair ini.")  
+        except Exception as e:  
+            print(f"⚠️ Error di {pair}: {e}")  
+            continue  
 
-    save_active_buys()
+    save_active_buys()  
     save_unused_signals()
 
 if __name__ == "__main__":
