@@ -10,11 +10,5 @@
         "time": "2025-02-26T15:41:06.323698",
         "trailing_stop_active": false,
         "highest_price": null
-    },
-    "EURIUSDT": {
-        "price": 1.0518,
-        "time": "2025-02-26T17:27:20.570824",
-        "trailing_stop_active": false,
-        "highest_price": null
     }
 }
