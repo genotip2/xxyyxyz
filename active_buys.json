@@ -3,7 +3,7 @@
         "price": 93.7,
         "time": "2025-02-25T12:14:04.935790",
         "trailing_stop_active": true,
-        "highest_price": 101.9,
+        "highest_price": 103.9,
         "exit_flag": null
     },
     "OGUSDT": {
@@ -16,8 +16,8 @@
     "IMXUSDT": {
         "price": 0.673,
         "time": "2025-02-25T19:21:45.470902",
-        "trailing_stop_active": false,
-        "highest_price": null,
+        "trailing_stop_active": true,
+        "highest_price": 0.714,
         "exit_flag": null
     },
     "THEUSDT": {
@@ -142,6 +142,13 @@
     "CRVUSDT": {
         "price": 0.4684,
         "time": "2025-02-26T03:18:26.278510",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "LPTUSDT": {
+        "price": 7.981,
+        "time": "2025-02-26T03:41:50.805635",
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
