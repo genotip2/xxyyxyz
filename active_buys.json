@@ -179,12 +179,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "BLURUSDT": {
-        "price": 0.1398,
-        "time": "2025-02-26T15:08:42.926971",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "MANAUSDT": {
         "price": 0.29,
         "time": "2025-02-26T15:08:43.536927",
