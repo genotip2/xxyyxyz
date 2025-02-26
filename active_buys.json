@@ -516,5 +516,33 @@
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
+    },
+    "ARBUSDT": {
+        "price": 0.4217,
+        "time": "2025-02-26T09:27:51.693466",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "SNXUSDT": {
+        "price": 0.908,
+        "time": "2025-02-26T09:28:00.787014",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "IDUSDT": {
+        "price": 0.2722,
+        "time": "2025-02-26T09:28:05.038729",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "STGUSDT": {
+        "price": 0.2506,
+        "time": "2025-02-26T09:28:13.793294",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
     }
 }
