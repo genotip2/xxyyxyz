@@ -3,7 +3,7 @@
         "price": 93.7,
         "time": "2025-02-25T12:14:04.935790",
         "trailing_stop_active": true,
-        "highest_price": 108.9,
+        "highest_price": 109.7,
         "exit_flag": null
     },
     "OGUSDT": {
@@ -17,7 +17,7 @@
         "price": 0.673,
         "time": "2025-02-25T19:21:45.470902",
         "trailing_stop_active": true,
-        "highest_price": 0.724,
+        "highest_price": 0.727,
         "exit_flag": null
     },
     "THEUSDT": {
@@ -562,6 +562,83 @@
     "ONEUSDT": {
         "price": 0.01446,
         "time": "2025-02-26T09:37:35.314862",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "AVAXUSDT": {
+        "price": 22.4,
+        "time": "2025-02-26T09:45:35.797172",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "TRBUSDT": {
+        "price": 34.13,
+        "time": "2025-02-26T09:45:37.261679",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "FLOKIUSDT": {
+        "price": 8.408e-05,
+        "time": "2025-02-26T09:45:39.060882",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "BONKUSDT": {
+        "price": 1.36e-05,
+        "time": "2025-02-26T09:45:42.603412",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "BIOUSDT": {
+        "price": 0.1099,
+        "time": "2025-02-26T09:45:43.359634",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "CFXUSDT": {
+        "price": 0.1154,
+        "time": "2025-02-26T09:45:44.666631",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "IOUSDT": {
+        "price": 1.22,
+        "time": "2025-02-26T09:45:45.978868",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "DYDXUSDT": {
+        "price": 0.6941,
+        "time": "2025-02-26T09:45:47.780714",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "EGLDUSDT": {
+        "price": 21.28,
+        "time": "2025-02-26T09:45:51.193200",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "FLOWUSDT": {
+        "price": 0.477,
+        "time": "2025-02-26T09:45:56.595238",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "OMNIUSDT": {
+        "price": 4.55,
+        "time": "2025-02-26T09:45:57.264580",
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
