@@ -642,5 +642,12 @@
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
+    },
+    "ATMUSDT": {
+        "price": 1.43,
+        "time": "2025-02-26T10:46:28.571477",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
     }
 }
