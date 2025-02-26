@@ -405,13 +405,6 @@
         "highest_price": null,
         "exit_flag": null
     },
-    "SCRUSDT": {
-        "price": 0.591,
-        "time": "2025-02-26T04:31:58.546836",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": null
-    },
     "DYMUSDT": {
         "price": 0.429,
         "time": "2025-02-26T04:32:04.526734",
