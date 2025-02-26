@@ -20,8 +20,8 @@
     "PNUTUSDT": {
         "price": 0.1891,
         "time": "2025-02-26T15:08:03.362638",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 0.2045
     },
     "HBARUSDT": {
         "price": 0.19773,
@@ -314,6 +314,72 @@
     "CELOUSDT": {
         "price": 0.393,
         "time": "2025-02-26T15:41:19.616541",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "NEARUSDT": {
+        "price": 3.074,
+        "time": "2025-02-26T16:00:59.009683",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "PENGUUSDT": {
+        "price": 0.00837,
+        "time": "2025-02-26T16:00:59.767965",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "IOUSDT": {
+        "price": 1.222,
+        "time": "2025-02-26T16:01:05.766574",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "MANTAUSDT": {
+        "price": 0.359,
+        "time": "2025-02-26T16:01:07.724348",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "MEMEUSDT": {
+        "price": 0.0038,
+        "time": "2025-02-26T16:01:09.026659",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "COOKIEUSDT": {
+        "price": 0.1922,
+        "time": "2025-02-26T16:01:09.867804",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "XAIUSDT": {
+        "price": 0.0875,
+        "time": "2025-02-26T16:01:14.575186",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "TRUUSDT": {
+        "price": 0.0455,
+        "time": "2025-02-26T16:01:18.426356",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "AIUSDT": {
+        "price": 0.2415,
+        "time": "2025-02-26T16:01:20.386015",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "SCRUSDT": {
+        "price": 0.586,
+        "time": "2025-02-26T16:01:21.102378",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "ONEUSDT": {
+        "price": 0.01453,
+        "time": "2025-02-26T16:01:21.948055",
         "trailing_stop_active": false,
         "highest_price": null
     }
