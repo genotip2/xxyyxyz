@@ -47,12 +47,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "ARKMUSDT": {
-        "price": 0.632,
-        "time": "2025-02-26T15:08:15.911857",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "RENDERUSDT": {
         "price": 3.775,
         "time": "2025-02-26T15:08:16.982844",
@@ -185,12 +179,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "WLDUSDT": {
-        "price": 1.113,
-        "time": "2025-02-26T15:40:30.991214",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "OPUSDT": {
         "price": 1.11,
         "time": "2025-02-26T15:40:35.907690",
@@ -200,18 +188,6 @@
     "CRVUSDT": {
         "price": 0.4684,
         "time": "2025-02-26T15:40:38.284085",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "1MBABYDOGEUSDT": {
-        "price": 0.0015078,
-        "time": "2025-02-26T15:41:00.566226",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "SSVUSDT": {
-        "price": 11.28,
-        "time": "2025-02-26T15:41:01.609686",
         "trailing_stop_active": false,
         "highest_price": null
     },
@@ -248,12 +224,6 @@
     "NEARUSDT": {
         "price": 3.074,
         "time": "2025-02-26T16:00:59.009683",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "PENGUUSDT": {
-        "price": 0.00837,
-        "time": "2025-02-26T16:00:59.767965",
         "trailing_stop_active": false,
         "highest_price": null
     },
