@@ -20,13 +20,6 @@
         "highest_price": null,
         "exit_flag": null
     },
-    "TIAUSDT": {
-        "price": 3.718,
-        "time": "2025-02-25T20:08:32.076720",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": null
-    },
     "THEUSDT": {
         "price": 0.5639,
         "time": "2025-02-25T20:28:27.810568",
@@ -79,6 +72,13 @@
     "DUSDT": {
         "price": 0.08095,
         "time": "2025-02-26T00:36:19.437649",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "ENAUSDT": {
+        "price": 0.4088,
+        "time": "2025-02-26T02:08:11.769213",
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
