@@ -293,12 +293,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "NEARUSDT": {
-        "price": 3.045,
-        "time": "2025-02-27T05:01:00.220386+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "PENGUUSDT": {
         "price": 0.008354,
         "time": "2025-02-27T05:01:01.301356+07:00",
@@ -470,12 +464,6 @@
     "FXSUSDT": {
         "price": 1.606,
         "time": "2025-02-27T05:46:11.044311+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "ETCUSDT": {
-        "price": 18.9,
-        "time": "2025-02-27T06:01:09.484990+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     },
