@@ -1,1 +1,30 @@
-{}
+{
+    "ATOMUSDT": {
+        "price": 4.592,
+        "time": "2025-02-26T12:14:12.946405",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "ICPUSDT": {
+        "price": 6.533,
+        "time": "2025-02-26T12:14:14.526159",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "ARPAUSDT": {
+        "price": 0.03469,
+        "time": "2025-02-26T12:14:30.725358",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "ROSEUSDT": {
+        "price": 0.03917,
+        "time": "2025-02-26T12:14:33.527833",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    }
+}
