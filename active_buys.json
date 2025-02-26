@@ -3,7 +3,7 @@
         "price": 93.7,
         "time": "2025-02-25T12:14:04.935790",
         "trailing_stop_active": true,
-        "highest_price": 108.7,
+        "highest_price": 108.9,
         "exit_flag": null
     },
     "OGUSDT": {
@@ -541,6 +541,27 @@
     "STGUSDT": {
         "price": 0.2506,
         "time": "2025-02-26T09:28:13.793294",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "THETAUSDT": {
+        "price": 1.178,
+        "time": "2025-02-26T09:37:15.905341",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "GRTUSDT": {
+        "price": 0.1229,
+        "time": "2025-02-26T09:37:33.260461",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "ONEUSDT": {
+        "price": 0.01446,
+        "time": "2025-02-26T09:37:35.314862",
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
