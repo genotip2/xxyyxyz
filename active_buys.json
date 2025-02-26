@@ -47,5 +47,40 @@
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
+    },
+    "RUNEUSDT": {
+        "price": 1.469,
+        "time": "2025-02-26T00:35:34.518384",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "ORDIUSDT": {
+        "price": 11.73,
+        "time": "2025-02-26T00:35:41.306798",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "NEIROUSDT": {
+        "price": 0.00037445,
+        "time": "2025-02-26T00:35:43.899404",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "XVSUSDT": {
+        "price": 7.91,
+        "time": "2025-02-26T00:35:57.296451",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "DUSDT": {
+        "price": 0.08095,
+        "time": "2025-02-26T00:36:19.437649",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
     }
 }
