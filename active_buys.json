@@ -26,5 +26,12 @@
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
+    },
+    "ENJUSDT": {
+        "price": 0.1118,
+        "time": "2025-02-26T13:16:37.183033",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
     }
 }
