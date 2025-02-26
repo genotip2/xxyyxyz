@@ -3,7 +3,7 @@
         "price": 93.7,
         "time": "2025-02-25T12:14:04.935790",
         "trailing_stop_active": true,
-        "highest_price": 107.2,
+        "highest_price": 108.1,
         "exit_flag": null
     },
     "OGUSDT": {
@@ -401,13 +401,6 @@
     "ALTUSDT": {
         "price": 0.04136,
         "time": "2025-02-26T04:31:53.568620",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": null
-    },
-    "NMRUSDT": {
-        "price": 10.86,
-        "time": "2025-02-26T04:31:56.212654",
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
