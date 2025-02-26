@@ -349,13 +349,6 @@
         "highest_price": null,
         "exit_flag": null
     },
-    "MBOXUSDT": {
-        "price": 0.1175,
-        "time": "2025-02-26T04:10:38.866786",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": null
-    },
     "PHAUSDT": {
         "price": 0.1476,
         "time": "2025-02-26T04:10:39.906803",
@@ -443,6 +436,20 @@
     "TURBOUSDT": {
         "price": 0.003312,
         "time": "2025-02-26T07:01:00.791310",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "NOTUSDT": {
+        "price": 0.002663,
+        "time": "2025-02-26T08:10:41.249375",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "ASTRUSDT": {
+        "price": 0.0399,
+        "time": "2025-02-26T08:10:51.533334",
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
