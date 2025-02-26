@@ -9,7 +9,7 @@
         "price": 1.105,
         "time": "2025-02-27T03:08:20.252366+07:00",
         "trailing_stop_active": true,
-        "highest_price": 1.174
+        "highest_price": 1.175
     },
     "USDCUSDT": {
         "price": 1.0016,
@@ -20,8 +20,8 @@
     "CGPTUSDT": {
         "price": 0.1297,
         "time": "2025-02-27T03:28:02.298612+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 0.1376
     },
     "BIOUSDT": {
         "price": 0.1103,
