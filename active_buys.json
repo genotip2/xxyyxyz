@@ -2,6 +2,12 @@
     "ANIMEUSDT": {
         "price": 0.0257,
         "time": "2025-02-26T15:30:08.048334",
+        "trailing_stop_active": true,
+        "highest_price": 0.0277
+    },
+    "COOKIEUSDT": {
+        "price": 0.2157,
+        "time": "2025-02-26T19:45:44.816002",
         "trailing_stop_active": false,
         "highest_price": null
     }
