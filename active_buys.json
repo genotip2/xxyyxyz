@@ -11,12 +11,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "SOLVUSDT": {
-        "price": 0.0351,
-        "time": "2025-02-26T13:37:56.268437",
-        "trailing_stop_active": true,
-        "highest_price": 0.039
-    },
     "PNUTUSDT": {
         "price": 0.1891,
         "time": "2025-02-26T15:08:03.362638",
@@ -398,6 +392,12 @@
     "VANRYUSDT": {
         "price": 0.0396,
         "time": "2025-02-26T16:35:01.043070",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "MINAUSDT": {
+        "price": 0.3134,
+        "time": "2025-02-26T17:01:00.668220",
         "trailing_stop_active": false,
         "highest_price": null
     }
