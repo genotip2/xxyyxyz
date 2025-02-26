@@ -3,7 +3,7 @@
         "price": 93.7,
         "time": "2025-02-25T12:14:04.935790",
         "trailing_stop_active": true,
-        "highest_price": 103.9,
+        "highest_price": 104.8,
         "exit_flag": null
     },
     "OGUSDT": {
@@ -45,7 +45,7 @@
         "price": 1.469,
         "time": "2025-02-26T00:35:34.518384",
         "trailing_stop_active": true,
-        "highest_price": 1.565,
+        "highest_price": 1.566,
         "exit_flag": null
     },
     "ORDIUSDT": {
@@ -394,6 +394,62 @@
     "SKLUSDT": {
         "price": 0.03358,
         "time": "2025-02-26T04:10:42.129682",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "HBARUSDT": {
+        "price": 0.19994,
+        "time": "2025-02-26T04:31:30.085996",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "ETCUSDT": {
+        "price": 19.11,
+        "time": "2025-02-26T04:31:38.674638",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "1MBABYDOGEUSDT": {
+        "price": 0.0015068,
+        "time": "2025-02-26T04:31:48.560455",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "SUSHIUSDT": {
+        "price": 0.796,
+        "time": "2025-02-26T04:31:51.945946",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "ALTUSDT": {
+        "price": 0.04136,
+        "time": "2025-02-26T04:31:53.568620",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "NMRUSDT": {
+        "price": 10.86,
+        "time": "2025-02-26T04:31:56.212654",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "SCRUSDT": {
+        "price": 0.591,
+        "time": "2025-02-26T04:31:58.546836",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "DYMUSDT": {
+        "price": 0.429,
+        "time": "2025-02-26T04:32:04.526734",
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
