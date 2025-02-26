@@ -33,5 +33,12 @@
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
+    },
+    "SOLVUSDT": {
+        "price": 0.0351,
+        "time": "2025-02-26T13:37:56.268437",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
     }
 }
