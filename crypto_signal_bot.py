@@ -288,7 +288,7 @@ def is_best_entry_from_data(data):
 
     macd_entry = data.get('macd_entry')
     macd_signal_entry = data.get('macd_signal_entry')
-    if macd_entry is None or macd_signal_entry is None or macd_entry <= macd_signal_entry or macd_entry <= 0:
+    if macd_entry is None or macd_signal_entry is None or macd_entry <= macd_signal_entry:
         return False, "MACD entry tidak memenuhi (tidak > signal atau tidak > 0)."
 
     macd_trend = data.get('macd_trend')
