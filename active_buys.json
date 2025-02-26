@@ -8,8 +8,8 @@
     "OPUSDT": {
         "price": 1.105,
         "time": "2025-02-27T03:08:20.252366+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 1.174
     },
     "USDCUSDT": {
         "price": 1.0016,
@@ -452,6 +452,24 @@
     "MOVRUSDT": {
         "price": 7.263,
         "time": "2025-02-27T05:01:32.476683+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "VANAUSDT": {
+        "price": 9.232,
+        "time": "2025-02-27T05:28:59.096114+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "FETUSDT": {
+        "price": 0.668,
+        "time": "2025-02-27T05:29:02.017489+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "DASHUSDT": {
+        "price": 26.55,
+        "time": "2025-02-27T05:29:22.308818+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     }
