@@ -236,5 +236,26 @@
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
+    },
+    "ACTUSDT": {
+        "price": 0.2377,
+        "time": "2025-02-26T15:29:56.777639",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "NEIROUSDT": {
+        "price": 0.00038477,
+        "time": "2025-02-26T15:29:59.444729",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "ANIMEUSDT": {
+        "price": 0.0257,
+        "time": "2025-02-26T15:30:08.048334",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
     }
 }
