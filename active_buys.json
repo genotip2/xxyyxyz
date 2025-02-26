@@ -111,13 +111,6 @@
         "highest_price": null,
         "exit_flag": null
     },
-    "MEUSDT": {
-        "price": 1.384,
-        "time": "2025-02-26T02:57:33.405589",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": null
-    },
     "PERPUSDT": {
         "price": 0.4435,
         "time": "2025-02-26T02:57:38.637777",
@@ -167,13 +160,6 @@
         "highest_price": null,
         "exit_flag": null
     },
-    "SEIUSDT": {
-        "price": 0.285,
-        "time": "2025-02-26T04:09:59.034336",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": null
-    },
     "FILUSDT": {
         "price": 3.205,
         "time": "2025-02-26T04:10:01.160123",
@@ -198,13 +184,6 @@
     "GALAUSDT": {
         "price": 0.01999,
         "time": "2025-02-26T04:10:04.184214",
-        "trailing_stop_active": false,
-        "highest_price": null,
-        "exit_flag": null
-    },
-    "CGPTUSDT": {
-        "price": 0.1316,
-        "time": "2025-02-26T04:10:07.220603",
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
