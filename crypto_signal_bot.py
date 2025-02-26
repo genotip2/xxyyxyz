@@ -286,11 +286,6 @@ def is_best_entry_from_data(data):
     if candle_entry is None or (("BUY" not in candle_entry.upper()) and ("STRONG_BUY" not in candle_entry.upper())):
         return False, "Rekomendasi candle tidak mendukung (tidak ada BUY/STRONG_BUY)."
 
-    ema10_entry = data.get('ema10_entry')
-    ema20_entry = data.get('ema20_entry')
-    if ema10_entry is None or ema20_entry is None or ema10_entry <= ema20_entry:
-        return False, "EMA entry tidak memenuhi (EMA10 <= EMA20)."
-
     macd_entry = data.get('macd_entry')
     macd_signal_entry = data.get('macd_signal_entry')
     if macd_entry is None or macd_signal_entry is None or macd_entry <= macd_signal_entry or macd_entry <= 0:
