@@ -17,7 +17,7 @@
         "price": 0.673,
         "time": "2025-02-25T19:21:45.470902",
         "trailing_stop_active": true,
-        "highest_price": 0.722,
+        "highest_price": 0.724,
         "exit_flag": null
     },
     "THEUSDT": {
@@ -457,6 +457,13 @@
     "VICUSDT": {
         "price": 0.2795,
         "time": "2025-02-26T04:49:13.356801",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "TURBOUSDT": {
+        "price": 0.003312,
+        "time": "2025-02-26T07:01:00.791310",
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
