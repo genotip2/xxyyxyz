@@ -3,7 +3,7 @@
         "price": 93.7,
         "time": "2025-02-25T12:14:04.935790",
         "trailing_stop_active": true,
-        "highest_price": 106.9,
+        "highest_price": 107.2,
         "exit_flag": null
     },
     "OGUSDT": {
@@ -450,6 +450,13 @@
     "ASTRUSDT": {
         "price": 0.0399,
         "time": "2025-02-26T08:10:51.533334",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "RSRUSDT": {
+        "price": 0.007724,
+        "time": "2025-02-26T08:33:16.301041",
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
