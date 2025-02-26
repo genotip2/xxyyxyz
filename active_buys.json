@@ -3,7 +3,7 @@
         "price": 93.7,
         "time": "2025-02-25T12:14:04.935790",
         "trailing_stop_active": true,
-        "highest_price": 108.1,
+        "highest_price": 108.7,
         "exit_flag": null
     },
     "OGUSDT": {
@@ -450,6 +450,69 @@
     "RSRUSDT": {
         "price": 0.007724,
         "time": "2025-02-26T08:33:16.301041",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "GMTUSDT": {
+        "price": 0.0605,
+        "time": "2025-02-26T09:08:20.799787",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "RENDERUSDT": {
+        "price": 3.699,
+        "time": "2025-02-26T09:08:22.006838",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "STXUSDT": {
+        "price": 0.795,
+        "time": "2025-02-26T09:08:25.037154",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "IOTAUSDT": {
+        "price": 0.2033,
+        "time": "2025-02-26T09:08:28.308726",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "AIUSDT": {
+        "price": 0.24,
+        "time": "2025-02-26T09:08:30.408481",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "BBUSDT": {
+        "price": 0.1584,
+        "time": "2025-02-26T09:08:31.392708",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "BARUSDT": {
+        "price": 1.698,
+        "time": "2025-02-26T09:08:32.772045",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "PIXELUSDT": {
+        "price": 0.0547,
+        "time": "2025-02-26T09:08:34.203670",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "PROMUSDT": {
+        "price": 6.829,
+        "time": "2025-02-26T09:08:35.231460",
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
