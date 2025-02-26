@@ -28,5 +28,11 @@
         "time": "2025-02-27T03:28:04.674888+07:00",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "ENAUSDT": {
+        "price": 0.4262,
+        "time": "2025-02-27T03:36:55.885278+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
