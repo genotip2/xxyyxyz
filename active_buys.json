@@ -82,5 +82,54 @@
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
+    },
+    "OPUSDT": {
+        "price": 1.08,
+        "time": "2025-02-26T02:57:21.432313",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "DOTUSDT": {
+        "price": 4.725,
+        "time": "2025-02-26T02:57:23.094610",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "POLUSDT": {
+        "price": 0.2795,
+        "time": "2025-02-26T02:57:26.563061",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "ZKUSDT": {
+        "price": 0.0999,
+        "time": "2025-02-26T02:57:31.086911",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "MEUSDT": {
+        "price": 1.384,
+        "time": "2025-02-26T02:57:33.405589",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "PERPUSDT": {
+        "price": 0.4435,
+        "time": "2025-02-26T02:57:38.637777",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "API3USDT": {
+        "price": 0.764,
+        "time": "2025-02-26T02:57:42.905716",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
     }
 }
