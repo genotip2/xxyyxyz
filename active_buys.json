@@ -1,73 +1,13 @@
 {
-    "ENJUSDT": {
-        "price": 0.1118,
-        "time": "2025-02-26T13:16:37.183033",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "ENAUSDT": {
-        "price": 0.4245,
-        "time": "2025-02-26T15:08:05.934508",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "ORDIUSDT": {
-        "price": 12.03,
-        "time": "2025-02-26T15:08:12.581046",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "RENDERUSDT": {
-        "price": 3.775,
-        "time": "2025-02-26T15:08:16.982844",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "NOTUSDT": {
-        "price": 0.002697,
-        "time": "2025-02-26T15:08:17.892079",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "DYDXUSDT": {
-        "price": 0.6996,
-        "time": "2025-02-26T15:08:22.321911",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "ACTUSDT": {
-        "price": 0.2377,
-        "time": "2025-02-26T15:29:56.777639",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "ANIMEUSDT": {
         "price": 0.0257,
         "time": "2025-02-26T15:30:08.048334",
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "OPUSDT": {
-        "price": 1.11,
-        "time": "2025-02-26T15:40:35.907690",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "CGPTUSDT": {
-        "price": 0.131,
-        "time": "2025-02-26T15:41:05.010805",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "BIOUSDT": {
         "price": 0.1114,
         "time": "2025-02-26T15:41:06.323698",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "TRBUSDT": {
-        "price": 34.4,
-        "time": "2025-02-26T15:41:13.509636",
         "trailing_stop_active": false,
         "highest_price": null
     },
