@@ -3,7 +3,7 @@
         "price": 93.7,
         "time": "2025-02-25T12:14:04.935790",
         "trailing_stop_active": true,
-        "highest_price": 104.8,
+        "highest_price": 105.3,
         "exit_flag": null
     },
     "OGUSDT": {
@@ -45,7 +45,7 @@
         "price": 1.469,
         "time": "2025-02-26T00:35:34.518384",
         "trailing_stop_active": true,
-        "highest_price": 1.566,
+        "highest_price": 1.579,
         "exit_flag": null
     },
     "ORDIUSDT": {
@@ -450,6 +450,13 @@
     "DYMUSDT": {
         "price": 0.429,
         "time": "2025-02-26T04:32:04.526734",
+        "trailing_stop_active": false,
+        "highest_price": null,
+        "exit_flag": null
+    },
+    "VICUSDT": {
+        "price": 0.2795,
+        "time": "2025-02-26T04:49:13.356801",
         "trailing_stop_active": false,
         "highest_price": null,
         "exit_flag": null
