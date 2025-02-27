@@ -1,10 +1,4 @@
 {
-    "OPUSDT": {
-        "price": 1.105,
-        "time": "2025-02-27T03:08:20.252366+07:00",
-        "trailing_stop_active": true,
-        "highest_price": 1.204
-    },
     "CGPTUSDT": {
         "price": 0.1297,
         "time": "2025-02-27T03:28:02.298612+07:00",
@@ -51,7 +45,7 @@
         "price": 12.16,
         "time": "2025-02-27T04:00:50.270063+07:00",
         "trailing_stop_active": true,
-        "highest_price": 12.89
+        "highest_price": 12.92
     },
     "ARKMUSDT": {
         "price": 0.632,
@@ -219,7 +213,7 @@
         "price": 0.0001667,
         "time": "2025-02-27T04:24:58.132745+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.0001772
+        "highest_price": 0.0001778
     },
     "PHAUSDT": {
         "price": 0.1485,
