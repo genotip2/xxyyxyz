@@ -398,8 +398,8 @@
     "AEVOUSDT": {
         "price": 0.1444,
         "time": "2025-02-27T05:01:25.121454+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 0.1533
     },
     "MANAUSDT": {
         "price": 0.2901,
@@ -485,12 +485,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "GUSDT": {
-        "price": 0.02111,
-        "time": "2025-02-27T07:36:29.443061+07:00",
-        "trailing_stop_active": true,
-        "highest_price": 0.02253
-    },
     "AVAXUSDT": {
         "price": 22.26,
         "time": "2025-02-27T09:08:27.792292+07:00",
@@ -563,12 +557,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "KDAUSDT": {
-        "price": 0.4987,
-        "time": "2025-02-27T09:08:54.936037+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "COTIUSDT": {
         "price": 0.07423,
         "time": "2025-02-27T09:08:58.845991+07:00",
@@ -584,6 +572,12 @@
     "FLOWUSDT": {
         "price": 0.476,
         "time": "2025-02-27T09:09:00.608639+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "1MBABYDOGEUSDT": {
+        "price": 0.0014802,
+        "time": "2025-02-27T09:58:42.458634+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     }
