@@ -640,5 +640,11 @@
         "time": "2025-02-27T12:46:27.424333+07:00",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "MASKUSDT": {
+        "price": 2.266,
+        "time": "2025-02-27T13:11:02.963100+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
