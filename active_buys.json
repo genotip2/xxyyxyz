@@ -593,12 +593,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "MASKUSDT": {
-        "price": 2.266,
-        "time": "2025-02-27T13:11:02.963100+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "DOTUSDT": {
         "price": 4.885,
         "time": "2025-02-27T13:35:45.021529+07:00",
@@ -608,12 +602,6 @@
     "LPTUSDT": {
         "price": 7.168,
         "time": "2025-02-27T13:35:59.222307+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "TWTUSDT": {
-        "price": 1.0299,
-        "time": "2025-02-27T13:36:24.478885+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     },
