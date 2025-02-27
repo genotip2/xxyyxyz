@@ -5,12 +5,6 @@
         "trailing_stop_active": true,
         "highest_price": 1.204
     },
-    "USDCUSDT": {
-        "price": 1.0016,
-        "time": "2025-02-27T03:27:52.345161+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "CGPTUSDT": {
         "price": 0.1297,
         "time": "2025-02-27T03:28:02.298612+07:00",
@@ -362,8 +356,8 @@
     "BEAMXUSDT": {
         "price": 0.0083,
         "time": "2025-02-27T05:01:16.662835+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 0.00881
     },
     "SSVUSDT": {
         "price": 11.22,
@@ -704,6 +698,18 @@
     "KSMUSDT": {
         "price": 20.43,
         "time": "2025-02-27T14:01:23.649852+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "ETCUSDT": {
+        "price": 19.12,
+        "time": "2025-02-27T14:46:03.119247+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "KAIAUSDT": {
+        "price": 0.1284,
+        "time": "2025-02-27T14:46:26.426106+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     }
