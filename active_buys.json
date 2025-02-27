@@ -1,10 +1,4 @@
 {
-    "WLDUSDT": {
-        "price": 1.108,
-        "time": "2025-02-27T04:00:45.648645+07:00",
-        "trailing_stop_active": true,
-        "highest_price": 1.179
-    },
     "TRBUSDT": {
         "price": 34.39,
         "time": "2025-02-27T04:01:06.423145+07:00",
@@ -35,39 +29,9 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "PEOPLEUSDT": {
-        "price": 0.02068,
-        "time": "2025-02-27T05:01:11.028441+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "EGLDUSDT": {
-        "price": 21.49,
-        "time": "2025-02-27T05:01:15.854489+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "MANAUSDT": {
         "price": 0.2901,
         "time": "2025-02-27T05:01:27.093893+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "SUSHIUSDT": {
-        "price": 0.8,
-        "time": "2025-02-27T06:01:31.780385+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "AVAXUSDT": {
-        "price": 22.26,
-        "time": "2025-02-27T09:08:27.792292+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "NEARUSDT": {
-        "price": 3.096,
-        "time": "2025-02-27T09:08:30.814270+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     },
@@ -83,39 +47,15 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "GRTUSDT": {
-        "price": 0.1226,
-        "time": "2025-02-27T09:08:45.921468+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "FLOWUSDT": {
         "price": 0.476,
         "time": "2025-02-27T09:09:00.608639+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "YFIUSDT": {
-        "price": 5729,
-        "time": "2025-02-27T11:09:46.875890+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "C98USDT": {
-        "price": 0.0865,
-        "time": "2025-02-27T12:08:30.321948+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "DOTUSDT": {
         "price": 4.885,
         "time": "2025-02-27T13:35:45.021529+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "INJUSDT": {
-        "price": 13.55,
-        "time": "2025-02-27T13:49:22.764085+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     },
