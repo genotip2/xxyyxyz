@@ -371,12 +371,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "KSMUSDT": {
-        "price": 20.43,
-        "time": "2025-02-27T14:01:23.649852+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "FIDAUSDT": {
         "price": 0.1194,
         "time": "2025-02-27T16:37:06.243822+07:00",
