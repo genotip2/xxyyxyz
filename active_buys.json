@@ -33,7 +33,7 @@
         "price": 0.565,
         "time": "2025-02-27T03:45:44.489251+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.612
+        "highest_price": 0.615
     },
     "NEIROUSDT": {
         "price": 0.00038829,
@@ -309,7 +309,7 @@
         "price": 0.8,
         "time": "2025-02-27T05:01:06.086214+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.884
+        "highest_price": 0.885
     },
     "ARUSDT": {
         "price": 8.3,
@@ -698,6 +698,12 @@
     "MBLUSDT": {
         "price": 0.00251,
         "time": "2025-02-27T13:49:47.938949+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "KSMUSDT": {
+        "price": 20.43,
+        "time": "2025-02-27T14:01:23.649852+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     }
