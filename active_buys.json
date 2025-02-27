@@ -50,8 +50,8 @@
     "ORDIUSDT": {
         "price": 12.16,
         "time": "2025-02-27T04:00:50.270063+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 12.89
     },
     "ARKMUSDT": {
         "price": 0.632,
@@ -598,12 +598,6 @@
         "time": "2025-02-27T12:30:30.128234+07:00",
         "trailing_stop_active": false,
         "highest_price": null
-    },
-    "THEUSDT": {
-        "price": 0.5655,
-        "time": "2025-02-27T12:40:03.844547+07:00",
-        "trailing_stop_active": true,
-        "highest_price": 0.6403
     },
     "CATIUSDT": {
         "price": 0.1473,
