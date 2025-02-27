@@ -207,7 +207,7 @@
         "price": 0.0001667,
         "time": "2025-02-27T04:24:58.132745+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.0001778
+        "highest_price": 0.0001787
     },
     "PHAUSDT": {
         "price": 0.1485,
@@ -680,6 +680,12 @@
     "1INCHUSDT": {
         "price": 0.2498,
         "time": "2025-02-27T17:08:44.907869+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "TNSRUSDT": {
+        "price": 0.4955,
+        "time": "2025-02-27T19:52:25.143472+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     }
