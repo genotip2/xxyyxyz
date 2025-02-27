@@ -58,5 +58,17 @@
         "time": "2025-02-27T13:49:45.703006+07:00",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "SOLVUSDT": {
+        "price": 0.0382,
+        "time": "2025-02-28T06:01:14.264825+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "TWTUSDT": {
+        "price": 1.0138,
+        "time": "2025-02-28T06:01:38.699383+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
