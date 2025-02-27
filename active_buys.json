@@ -1,10 +1,4 @@
 {
-    "CGPTUSDT": {
-        "price": 0.1297,
-        "time": "2025-02-27T03:28:02.298612+07:00",
-        "trailing_stop_active": true,
-        "highest_price": 0.1403
-    },
     "ENAUSDT": {
         "price": 0.4262,
         "time": "2025-02-27T03:36:55.885278+07:00",
@@ -674,6 +668,12 @@
     "TNSRUSDT": {
         "price": 0.4955,
         "time": "2025-02-27T19:52:25.143472+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "GLMUSDT": {
+        "price": 0.3577,
+        "time": "2025-02-27T20:38:58.052751+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     }
