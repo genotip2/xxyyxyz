@@ -70,5 +70,11 @@
         "time": "2025-02-28T06:01:38.699383+07:00",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "CATIUSDT": {
+        "price": 0.1485,
+        "time": "2025-02-28T06:25:15.926059+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
