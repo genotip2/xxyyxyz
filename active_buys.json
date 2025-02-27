@@ -93,7 +93,7 @@
         "price": 0.5279,
         "time": "2025-02-27T04:01:05.158444+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.5615
+        "highest_price": 0.5637
     },
     "TRBUSDT": {
         "price": 34.39,
@@ -218,8 +218,8 @@
     "DOGSUSDT": {
         "price": 0.0001667,
         "time": "2025-02-27T04:24:58.132745+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 0.0001772
     },
     "PHAUSDT": {
         "price": 0.1485,
@@ -369,7 +369,7 @@
         "price": 0.1444,
         "time": "2025-02-27T05:01:25.121454+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.1557
+        "highest_price": 0.1573
     },
     "MANAUSDT": {
         "price": 0.2901,
