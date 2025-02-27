@@ -155,23 +155,11 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "AIUSDT": {
-        "price": 0.2441,
-        "time": "2025-02-27T04:24:54.653085+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "LISTAUSDT": {
         "price": 0.233,
         "time": "2025-02-27T04:24:57.314140+07:00",
         "trailing_stop_active": false,
         "highest_price": null
-    },
-    "DOGSUSDT": {
-        "price": 0.0001667,
-        "time": "2025-02-27T04:24:58.132745+07:00",
-        "trailing_stop_active": true,
-        "highest_price": 0.0001787
     },
     "PHAUSDT": {
         "price": 0.1485,
@@ -245,12 +233,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "IOTAUSDT": {
-        "price": 0.2073,
-        "time": "2025-02-27T05:01:11.741964+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "PIXELUSDT": {
         "price": 0.0548,
         "time": "2025-02-27T05:01:12.433508+07:00",
@@ -292,12 +274,6 @@
         "time": "2025-02-27T05:01:24.284425+07:00",
         "trailing_stop_active": false,
         "highest_price": null
-    },
-    "AEVOUSDT": {
-        "price": 0.1444,
-        "time": "2025-02-27T05:01:25.121454+07:00",
-        "trailing_stop_active": true,
-        "highest_price": 0.1573
     },
     "MANAUSDT": {
         "price": 0.2901,
@@ -464,12 +440,6 @@
     "SNXUSDT": {
         "price": 0.891,
         "time": "2025-02-27T10:49:49.969744+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "RIFUSDT": {
-        "price": 0.0498,
-        "time": "2025-02-27T11:09:45.617043+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     },
