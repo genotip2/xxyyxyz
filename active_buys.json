@@ -47,12 +47,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "FLOWUSDT": {
-        "price": 0.476,
-        "time": "2025-02-27T09:09:00.608639+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "DOTUSDT": {
         "price": 4.885,
         "time": "2025-02-27T13:35:45.021529+07:00",
