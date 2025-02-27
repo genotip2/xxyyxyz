@@ -5,12 +5,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "NOTUSDT": {
-        "price": 0.002692,
-        "time": "2025-02-27T03:45:48.672879+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "ACEUSDT": {
         "price": 0.981,
         "time": "2025-02-27T03:45:59.928383+07:00",
@@ -20,8 +14,8 @@
     "WLDUSDT": {
         "price": 1.108,
         "time": "2025-02-27T04:00:45.648645+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 1.175
     },
     "EIGENUSDT": {
         "price": 1.728,
