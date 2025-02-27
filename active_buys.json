@@ -9,7 +9,7 @@
         "price": 1.108,
         "time": "2025-02-27T04:00:45.648645+07:00",
         "trailing_stop_active": true,
-        "highest_price": 1.176
+        "highest_price": 1.179
     },
     "EIGENUSDT": {
         "price": 1.728,
@@ -38,12 +38,6 @@
     "DYDXUSDT": {
         "price": 0.6964,
         "time": "2025-02-27T04:00:56.359314+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "XAIUSDT": {
-        "price": 0.0877,
-        "time": "2025-02-27T04:01:02.471875+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     },
