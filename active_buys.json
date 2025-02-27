@@ -119,12 +119,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "USUALUSDT": {
-        "price": 0.2314,
-        "time": "2025-02-27T04:24:38.053603+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "ATOMUSDT": {
         "price": 4.631,
         "time": "2025-02-27T04:24:39.205349+07:00",
@@ -344,8 +338,8 @@
     "FXSUSDT": {
         "price": 1.606,
         "time": "2025-02-27T05:46:11.044311+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 1.707
     },
     "APEUSDT": {
         "price": 0.64,
