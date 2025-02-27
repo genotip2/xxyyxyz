@@ -593,12 +593,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "MASKUSDT": {
-        "price": 2.267,
-        "time": "2025-02-27T11:09:42.763474+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "RIFUSDT": {
         "price": 0.0498,
         "time": "2025-02-27T11:09:45.617043+07:00",
