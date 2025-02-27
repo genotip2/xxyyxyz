@@ -285,7 +285,7 @@
         "price": 0.8,
         "time": "2025-02-27T05:01:06.086214+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.897
+        "highest_price": 0.909
     },
     "ARUSDT": {
         "price": 8.3,
@@ -369,7 +369,7 @@
         "price": 0.1444,
         "time": "2025-02-27T05:01:25.121454+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.1539
+        "highest_price": 0.1541
     },
     "MANAUSDT": {
         "price": 0.2901,
