@@ -39,7 +39,7 @@
         "price": 0.00038829,
         "time": "2025-02-27T03:45:46.611868+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.00042365
+        "highest_price": 0.00043527
     },
     "NOTUSDT": {
         "price": 0.002692,
@@ -620,6 +620,18 @@
     "BELUSDT": {
         "price": 1.0273,
         "time": "2025-02-27T12:30:30.128234+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "THEUSDT": {
+        "price": 0.5655,
+        "time": "2025-02-27T12:40:03.844547+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "CATIUSDT": {
+        "price": 0.1473,
+        "time": "2025-02-27T12:40:12.681548+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     }
