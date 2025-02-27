@@ -83,12 +83,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "MANTAUSDT": {
-        "price": 0.364,
-        "time": "2025-02-27T04:24:43.113826+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "CFXUSDT": {
         "price": 0.1163,
         "time": "2025-02-27T04:24:46.516350+07:00",
@@ -179,12 +173,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "THETAUSDT": {
-        "price": 1.188,
-        "time": "2025-02-27T05:01:15.016352+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "EGLDUSDT": {
         "price": 21.49,
         "time": "2025-02-27T05:01:15.854489+07:00",
@@ -212,12 +200,6 @@
     "ONEUSDT": {
         "price": 0.01468,
         "time": "2025-02-27T05:01:28.690672+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "LUNAUSDT": {
-        "price": 0.2307,
-        "time": "2025-02-27T05:01:31.415410+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     },
@@ -284,12 +266,6 @@
     "ICPUSDT": {
         "price": 6.452,
         "time": "2025-02-27T09:08:38.874954+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "MOVEUSDT": {
-        "price": 0.4683,
-        "time": "2025-02-27T09:08:40.928964+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     },
