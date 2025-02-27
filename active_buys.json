@@ -610,5 +610,11 @@
         "time": "2025-02-27T11:09:50.621344+07:00",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "C98USDT": {
+        "price": 0.0865,
+        "time": "2025-02-27T12:08:30.321948+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
