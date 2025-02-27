@@ -11,12 +11,6 @@
         "trailing_stop_active": true,
         "highest_price": 1.179
     },
-    "EIGENUSDT": {
-        "price": 1.728,
-        "time": "2025-02-27T04:00:46.951089+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "ARKMUSDT": {
         "price": 0.632,
         "time": "2025-02-27T04:00:50.961899+07:00",
@@ -26,12 +20,6 @@
     "BCHUSDT": {
         "price": 296.4,
         "time": "2025-02-27T04:00:53.272068+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "IOUSDT": {
-        "price": 1.212,
-        "time": "2025-02-27T04:00:55.643401+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     },
@@ -89,12 +77,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "MINAUSDT": {
-        "price": 0.3134,
-        "time": "2025-02-27T04:24:51.766948+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "LISTAUSDT": {
         "price": 0.233,
         "time": "2025-02-27T04:24:57.314140+07:00",
@@ -122,12 +104,6 @@
     "HBARUSDT": {
         "price": 0.19821,
         "time": "2025-02-27T05:00:58.217923+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "ARBUSDT": {
-        "price": 0.427,
-        "time": "2025-02-27T05:01:02.647371+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     },
@@ -188,12 +164,6 @@
     "MANAUSDT": {
         "price": 0.2901,
         "time": "2025-02-27T05:01:27.093893+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "ONEUSDT": {
-        "price": 0.01468,
-        "time": "2025-02-27T05:01:28.690672+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     },
@@ -341,21 +311,9 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "FIDAUSDT": {
-        "price": 0.1194,
-        "time": "2025-02-27T16:37:06.243822+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "TNSRUSDT": {
         "price": 0.4955,
         "time": "2025-02-27T19:52:25.143472+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "1INCHUSDT": {
-        "price": 0.2472,
-        "time": "2025-02-28T01:49:43.346701+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     }
