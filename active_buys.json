@@ -76,5 +76,11 @@
         "time": "2025-02-28T06:25:15.926059+07:00",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "ZENUSDT": {
+        "price": 13.35,
+        "time": "2025-02-28T06:45:38.138711+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
