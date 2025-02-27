@@ -27,7 +27,7 @@
         "price": 0.1103,
         "time": "2025-02-27T03:28:04.674888+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.1219
+        "highest_price": 0.1223
     },
     "ENAUSDT": {
         "price": 0.4262,
@@ -45,7 +45,7 @@
         "price": 0.00038829,
         "time": "2025-02-27T03:45:46.611868+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.00041772
+        "highest_price": 0.00042193
     },
     "NOTUSDT": {
         "price": 0.002692,
@@ -170,8 +170,8 @@
     "BBUSDT": {
         "price": 0.162,
         "time": "2025-02-27T04:01:23.363230+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 0.1726
     },
     "PHBUSDT": {
         "price": 0.793,
@@ -584,6 +584,12 @@
     "MKRUSDT": {
         "price": 1706,
         "time": "2025-02-27T10:21:18.231511+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "KDAUSDT": {
+        "price": 0.4981,
+        "time": "2025-02-27T10:41:39.296166+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     }
