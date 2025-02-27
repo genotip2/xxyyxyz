@@ -11,29 +11,11 @@
         "trailing_stop_active": true,
         "highest_price": 0.1391
     },
-    "BIOUSDT": {
-        "price": 0.1103,
-        "time": "2025-02-27T03:28:04.674888+07:00",
-        "trailing_stop_active": true,
-        "highest_price": 0.1249
-    },
     "ENAUSDT": {
         "price": 0.4262,
         "time": "2025-02-27T03:36:55.885278+07:00",
         "trailing_stop_active": false,
         "highest_price": null
-    },
-    "WIFUSDT": {
-        "price": 0.565,
-        "time": "2025-02-27T03:45:44.489251+07:00",
-        "trailing_stop_active": true,
-        "highest_price": 0.618
-    },
-    "NEIROUSDT": {
-        "price": 0.00038829,
-        "time": "2025-02-27T03:45:46.611868+07:00",
-        "trailing_stop_active": true,
-        "highest_price": 0.00043527
     },
     "NOTUSDT": {
         "price": 0.002692,
@@ -303,7 +285,7 @@
         "price": 0.8,
         "time": "2025-02-27T05:01:06.086214+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.885
+        "highest_price": 0.894
     },
     "ARUSDT": {
         "price": 8.3,
@@ -620,8 +602,8 @@
     "THEUSDT": {
         "price": 0.5655,
         "time": "2025-02-27T12:40:03.844547+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 0.601
     },
     "CATIUSDT": {
         "price": 0.1473,
