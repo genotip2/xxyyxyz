@@ -5,17 +5,11 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "ACEUSDT": {
-        "price": 0.981,
-        "time": "2025-02-27T03:45:59.928383+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "WLDUSDT": {
         "price": 1.108,
         "time": "2025-02-27T04:00:45.648645+07:00",
         "trailing_stop_active": true,
-        "highest_price": 1.175
+        "highest_price": 1.176
     },
     "EIGENUSDT": {
         "price": 1.728,
@@ -188,12 +182,6 @@
     "HBARUSDT": {
         "price": 0.19821,
         "time": "2025-02-27T05:00:58.217923+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "PENGUUSDT": {
-        "price": 0.008354,
-        "time": "2025-02-27T05:01:01.301356+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     },
