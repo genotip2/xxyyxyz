@@ -9,7 +9,7 @@
         "price": 1.105,
         "time": "2025-02-27T03:08:20.252366+07:00",
         "trailing_stop_active": true,
-        "highest_price": 1.195
+        "highest_price": 1.202
     },
     "USDCUSDT": {
         "price": 1.0016,
@@ -21,13 +21,13 @@
         "price": 0.1297,
         "time": "2025-02-27T03:28:02.298612+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.1386
+        "highest_price": 0.1391
     },
     "BIOUSDT": {
         "price": 0.1103,
         "time": "2025-02-27T03:28:04.674888+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.1199
+        "highest_price": 0.1219
     },
     "ENAUSDT": {
         "price": 0.4262,
@@ -44,8 +44,8 @@
     "NEIROUSDT": {
         "price": 0.00038829,
         "time": "2025-02-27T03:45:46.611868+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 0.00041772
     },
     "NOTUSDT": {
         "price": 0.002692,
@@ -399,7 +399,7 @@
         "price": 0.1444,
         "time": "2025-02-27T05:01:25.121454+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.1533
+        "highest_price": 0.1538
     },
     "MANAUSDT": {
         "price": 0.2901,
@@ -578,6 +578,12 @@
     "1MBABYDOGEUSDT": {
         "price": 0.0014802,
         "time": "2025-02-27T09:58:42.458634+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "MKRUSDT": {
+        "price": 1706,
+        "time": "2025-02-27T10:21:18.231511+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     }
