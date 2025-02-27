@@ -382,5 +382,11 @@
         "time": "2025-02-27T19:52:25.143472+07:00",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "1INCHUSDT": {
+        "price": 0.2472,
+        "time": "2025-02-28T01:49:43.346701+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
