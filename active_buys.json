@@ -165,7 +165,7 @@
         "price": 295,
         "time": "2025-02-28T21:29:26.263488+07:00",
         "trailing_stop_active": true,
-        "highest_price": 314
+        "highest_price": 314.5
     },
     "FIDAUSDT": {
         "price": 0.1177,
@@ -602,6 +602,12 @@
     "ENAUSDT": {
         "price": 0.4261,
         "time": "2025-03-01T01:49:00.516676+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "COTIUSDT": {
+        "price": 0.07428,
+        "time": "2025-03-01T02:22:34.296007+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     }
