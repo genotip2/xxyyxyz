@@ -296,6 +296,11 @@ def is_best_entry_from_data(data):
     macd_signal_trend = data.get('macd_signal_trend')    
     if macd_trend is None or macd_signal_trend is None or macd_trend <= macd_signal_trend:    
         return False, "MACD trend tidak memenuhi (MACD trend <= signal trend)."    
+        
+    ema10_konfirmasi = data.get('ema10_konfirmasi')
+    ema20_konfirmasi = data.get('ema20_konfirmasi')
+    if ema10_konfirmasi is None or ema20_konfirmasi is None or ema10_konfirmasi <= ema20_konfirmasi:
+        return False, "EMA konfirmasi tidak memenuhi (EMA10 <= EMA20)."
 
     macd_konfirmasi = data.get('macd_konfirmasi')    
     signal_konfirmasi = data.get('signal_konfirmasi')    
@@ -360,6 +365,8 @@ def generate_signal(pair):
         'candle_entry': entry_analysis.summary.get('RECOMMENDATION'),  
         'macd_trend': trend_analysis.indicators.get('MACD.macd'),  
         'macd_signal_trend': trend_analysis.indicators.get('MACD.signal'),  
+        'ema10_konfirmasi': konfirmasi_analysis.indicators.get('EMA10'),  
+        'ema20_konfirmasi': konfirmasi_analysis.indicators.get('EMA20'),  
         'macd_konfirmasi': konfirmasi_analysis.indicators.get('MACD.macd'),  
         'signal_konfirmasi': konfirmasi_analysis.indicators.get('MACD.signal')  
     }  
