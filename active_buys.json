@@ -599,12 +599,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "1000SATSUSDT": {
-        "price": 0.0001365,
-        "time": "2025-03-01T03:08:21.750239+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "POLUSDT": {
         "price": 0.2714,
         "time": "2025-03-01T03:08:25.856269+07:00",
