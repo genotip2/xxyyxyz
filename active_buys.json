@@ -3,7 +3,7 @@
         "price": 0.1485,
         "time": "2025-02-28T13:11:34.855006+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.1588
+        "highest_price": 0.1591
     },
     "NOTUSDT": {
         "price": 0.002653,
@@ -21,7 +21,7 @@
         "price": 0.2045,
         "time": "2025-02-28T19:12:59.867177+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.2456
+        "highest_price": 0.2486
     },
     "HARDUSDT": {
         "price": 0.1415,
@@ -141,13 +141,13 @@
         "price": 0.1462,
         "time": "2025-02-28T20:45:50.095221+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.1603
+        "highest_price": 0.1624
     },
     "PENGUUSDT": {
         "price": 0.008573,
         "time": "2025-02-28T21:00:57.488891+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.009176
+        "highest_price": 0.009186
     },
     "ZENUSDT": {
         "price": 12.97,
@@ -500,6 +500,42 @@
     "LUNAUSDT": {
         "price": 0.2265,
         "time": "2025-02-28T23:33:59.567275+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "AVAXUSDT": {
+        "price": 21.86,
+        "time": "2025-02-28T23:48:01.747419+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "INJUSDT": {
+        "price": 13.09,
+        "time": "2025-02-28T23:48:07.011724+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "ATOMUSDT": {
+        "price": 4.556,
+        "time": "2025-02-28T23:48:09.012715+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "GRTUSDT": {
+        "price": 0.1205,
+        "time": "2025-02-28T23:48:13.593232+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "PYTHUSDT": {
+        "price": 0.2076,
+        "time": "2025-02-28T23:48:14.322211+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "XVGUSDT": {
+        "price": 0.005573,
+        "time": "2025-02-28T23:48:26.047527+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     }
