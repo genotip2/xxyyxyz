@@ -3,13 +3,13 @@
         "price": 0.1485,
         "time": "2025-02-28T13:11:34.855006+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.1607
+        "highest_price": 0.1615
     },
     "NOTUSDT": {
         "price": 0.002653,
         "time": "2025-02-28T15:10:31.117667+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.002881
+        "highest_price": 0.002888
     },
     "BIOUSDT": {
         "price": 0.1229,
@@ -21,7 +21,7 @@
         "price": 0.2045,
         "time": "2025-02-28T19:12:59.867177+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.2773
+        "highest_price": 0.2841
     },
     "HARDUSDT": {
         "price": 0.1415,
@@ -50,14 +50,14 @@
     "WIFUSDT": {
         "price": 0.593,
         "time": "2025-02-28T20:36:49.411657+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 0.631
     },
     "NEIROUSDT": {
         "price": 0.00040985,
         "time": "2025-02-28T20:36:51.457801+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.0004704
+        "highest_price": 0.00047921
     },
     "FILUSDT": {
         "price": 3.175,
@@ -165,7 +165,7 @@
         "price": 295,
         "time": "2025-02-28T21:29:26.263488+07:00",
         "trailing_stop_active": true,
-        "highest_price": 313.7
+        "highest_price": 314
     },
     "FIDAUSDT": {
         "price": 0.1177,
@@ -596,6 +596,12 @@
     "LISTAUSDT": {
         "price": 0.2364,
         "time": "2025-03-01T01:35:42.011318+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "ENAUSDT": {
+        "price": 0.4261,
+        "time": "2025-03-01T01:49:00.516676+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     }
