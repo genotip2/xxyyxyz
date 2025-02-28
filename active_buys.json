@@ -34,5 +34,23 @@
         "time": "2025-02-28T19:13:12.987712+07:00",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "APTUSDT": {
+        "price": 5.99,
+        "time": "2025-02-28T20:15:38.260935+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "BELUSDT": {
+        "price": 1.0503,
+        "time": "2025-02-28T20:16:01.574531+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "VANRYUSDT": {
+        "price": 0.0401,
+        "time": "2025-02-28T20:16:04.421235+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
