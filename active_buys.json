@@ -142,5 +142,11 @@
         "time": "2025-02-28T20:37:19.514871+07:00",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "AEVOUSDT": {
+        "price": 0.1462,
+        "time": "2025-02-28T20:45:50.095221+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
