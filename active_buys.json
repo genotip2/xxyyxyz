@@ -21,7 +21,7 @@
         "price": 0.2045,
         "time": "2025-02-28T19:12:59.867177+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.2377
+        "highest_price": 0.2456
     },
     "HARDUSDT": {
         "price": 0.1415,
@@ -141,13 +141,13 @@
         "price": 0.1462,
         "time": "2025-02-28T20:45:50.095221+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.1555
+        "highest_price": 0.1603
     },
     "PENGUUSDT": {
         "price": 0.008573,
         "time": "2025-02-28T21:00:57.488891+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 0.009176
     },
     "ZENUSDT": {
         "price": 12.97,
@@ -353,12 +353,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "REZUSDT": {
-        "price": 0.0218,
-        "time": "2025-02-28T22:28:41.103517+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "MANAUSDT": {
         "price": 0.2898,
         "time": "2025-02-28T22:28:42.452570+07:00",
@@ -452,6 +446,60 @@
     "FXSUSDT": {
         "price": 1.603,
         "time": "2025-02-28T23:09:16.907667+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "TRUMPUSDT": {
+        "price": 12.88,
+        "time": "2025-02-28T23:33:25.917656+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "ARBUSDT": {
+        "price": 0.416,
+        "time": "2025-02-28T23:33:36.168915+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "USUALUSDT": {
+        "price": 0.2299,
+        "time": "2025-02-28T23:33:38.757619+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "ARUSDT": {
+        "price": 8.16,
+        "time": "2025-02-28T23:33:41.991310+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "THETAUSDT": {
+        "price": 1.157,
+        "time": "2025-02-28T23:33:46.644956+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "BLURUSDT": {
+        "price": 0.1317,
+        "time": "2025-02-28T23:33:49.021163+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "RIFUSDT": {
+        "price": 0.0487,
+        "time": "2025-02-28T23:33:54.254267+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "ONEUSDT": {
+        "price": 0.01432,
+        "time": "2025-02-28T23:33:57.531112+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "LUNAUSDT": {
+        "price": 0.2265,
+        "time": "2025-02-28T23:33:59.567275+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     }
