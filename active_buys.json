@@ -92,8 +92,8 @@
     "1000CATUSDT": {
         "price": 0.00979,
         "time": "2025-02-28T20:37:09.482334+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 0.0104
     },
     "DYMUSDT": {
         "price": 0.429,
@@ -165,7 +165,7 @@
         "price": 295,
         "time": "2025-02-28T21:29:26.263488+07:00",
         "trailing_stop_active": true,
-        "highest_price": 314.5
+        "highest_price": 315.6
     },
     "FIDAUSDT": {
         "price": 0.1177,
