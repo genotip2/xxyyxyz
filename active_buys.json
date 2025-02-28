@@ -21,7 +21,7 @@
         "price": 0.2045,
         "time": "2025-02-28T19:12:59.867177+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.2489
+        "highest_price": 0.2508
     },
     "HARDUSDT": {
         "price": 0.1415,
@@ -536,6 +536,18 @@
     "XVGUSDT": {
         "price": 0.005573,
         "time": "2025-02-28T23:48:26.047527+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "EIGENUSDT": {
+        "price": 1.66,
+        "time": "2025-03-01T00:25:10.669357+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "MOVEUSDT": {
+        "price": 0.4507,
+        "time": "2025-03-01T00:25:15.829024+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     }
