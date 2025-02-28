@@ -8,8 +8,8 @@
     "NOTUSDT": {
         "price": 0.002653,
         "time": "2025-02-28T15:10:31.117667+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 0.002816
     },
     "BIOUSDT": {
         "price": 0.1229,
@@ -57,7 +57,7 @@
         "price": 0.00040985,
         "time": "2025-02-28T20:36:51.457801+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.00043824
+        "highest_price": 0.00044079
     },
     "FILUSDT": {
         "price": 3.175,
