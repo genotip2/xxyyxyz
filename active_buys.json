@@ -3,13 +3,13 @@
         "price": 0.1485,
         "time": "2025-02-28T13:11:34.855006+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.1591
+        "highest_price": 0.1594
     },
     "NOTUSDT": {
         "price": 0.002653,
         "time": "2025-02-28T15:10:31.117667+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.002816
+        "highest_price": 0.002849
     },
     "BIOUSDT": {
         "price": 0.1229,
@@ -21,7 +21,7 @@
         "price": 0.2045,
         "time": "2025-02-28T19:12:59.867177+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.2508
+        "highest_price": 0.2676
     },
     "HARDUSDT": {
         "price": 0.1415,
@@ -33,7 +33,7 @@
         "price": 5.99,
         "time": "2025-02-28T20:15:38.260935+07:00",
         "trailing_stop_active": true,
-        "highest_price": 6.35
+        "highest_price": 6.4
     },
     "BELUSDT": {
         "price": 1.0503,
@@ -57,7 +57,7 @@
         "price": 0.00040985,
         "time": "2025-02-28T20:36:51.457801+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.00044079
+        "highest_price": 0.00045274
     },
     "FILUSDT": {
         "price": 3.175,
@@ -141,13 +141,13 @@
         "price": 0.1462,
         "time": "2025-02-28T20:45:50.095221+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.1638
+        "highest_price": 0.1645
     },
     "PENGUUSDT": {
         "price": 0.008573,
         "time": "2025-02-28T21:00:57.488891+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.009186
+        "highest_price": 0.009298
     },
     "ZENUSDT": {
         "price": 12.97,
@@ -548,6 +548,24 @@
     "MOVEUSDT": {
         "price": 0.4507,
         "time": "2025-03-01T00:25:15.829024+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "SANDUSDT": {
+        "price": 0.318,
+        "time": "2025-03-01T01:10:09.335998+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "1MBABYDOGEUSDT": {
+        "price": 0.0014625,
+        "time": "2025-03-01T01:10:14.617505+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "BBUSDT": {
+        "price": 0.1678,
+        "time": "2025-03-01T01:10:24.442659+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     }
