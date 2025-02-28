@@ -57,7 +57,7 @@
         "price": 0.00040985,
         "time": "2025-02-28T20:36:51.457801+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.00047921
+        "highest_price": 0.00047938
     },
     "FILUSDT": {
         "price": 3.175,
@@ -99,7 +99,7 @@
         "price": 0.429,
         "time": "2025-02-28T20:37:10.684298+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.457
+        "highest_price": 0.458
     },
     "ALTUSDT": {
         "price": 0.042,
@@ -159,7 +159,7 @@
         "price": 0.19961,
         "time": "2025-02-28T21:29:13.944101+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.21335
+        "highest_price": 0.21374
     },
     "BCHUSDT": {
         "price": 295,
