@@ -160,5 +160,23 @@
         "time": "2025-02-28T21:01:00.719991+07:00",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "HBARUSDT": {
+        "price": 0.19961,
+        "time": "2025-02-28T21:29:13.944101+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "BCHUSDT": {
+        "price": 295,
+        "time": "2025-02-28T21:29:26.263488+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "FIDAUSDT": {
+        "price": 0.1177,
+        "time": "2025-02-28T21:29:52.454400+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
