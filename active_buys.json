@@ -21,7 +21,7 @@
         "price": 0.2045,
         "time": "2025-02-28T19:12:59.867177+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.2486
+        "highest_price": 0.2489
     },
     "HARDUSDT": {
         "price": 0.1415,
@@ -141,7 +141,7 @@
         "price": 0.1462,
         "time": "2025-02-28T20:45:50.095221+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.1624
+        "highest_price": 0.1626
     },
     "PENGUUSDT": {
         "price": 0.008573,
