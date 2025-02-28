@@ -32,8 +32,8 @@
     "APTUSDT": {
         "price": 5.99,
         "time": "2025-02-28T20:15:38.260935+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 6.35
     },
     "BELUSDT": {
         "price": 1.0503,
@@ -56,8 +56,8 @@
     "NEIROUSDT": {
         "price": 0.00040985,
         "time": "2025-02-28T20:36:51.457801+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 0.00043824
     },
     "FILUSDT": {
         "price": 3.175,
@@ -141,7 +141,7 @@
         "price": 0.1462,
         "time": "2025-02-28T20:45:50.095221+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.1626
+        "highest_price": 0.1638
     },
     "PENGUUSDT": {
         "price": 0.008573,
