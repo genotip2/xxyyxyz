@@ -93,7 +93,7 @@
         "price": 0.19961,
         "time": "2025-02-28T21:29:13.944101+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.22939
+        "highest_price": 0.22968
     },
     "BCHUSDT": {
         "price": 295,
@@ -398,8 +398,8 @@
     "USUALUSDT": {
         "price": 0.2299,
         "time": "2025-02-28T23:33:38.757619+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 0.2443
     },
     "ARUSDT": {
         "price": 8.16,
