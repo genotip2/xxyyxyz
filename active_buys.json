@@ -77,12 +77,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "PHAUSDT": {
-        "price": 0.1482,
-        "time": "2025-02-28T20:37:19.514871+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "ZENUSDT": {
         "price": 12.97,
         "time": "2025-02-28T21:01:00.719991+07:00",
