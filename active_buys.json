@@ -17,27 +17,9 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "THEUSDT": {
-        "price": 0.5827,
-        "time": "2025-02-28T20:36:59.489939+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "ALTUSDT": {
         "price": 0.042,
         "time": "2025-02-28T20:37:12.656180+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "DOGSUSDT": {
-        "price": 0.0001716,
-        "time": "2025-02-28T20:37:15.943832+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "MOVRUSDT": {
-        "price": 7.09,
-        "time": "2025-02-28T20:37:18.281001+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     },
@@ -65,21 +47,9 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "AIUSDT": {
-        "price": 0.2368,
-        "time": "2025-02-28T21:46:11.988401+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "ZECUSDT": {
         "price": 36.48,
         "time": "2025-02-28T22:01:13.031405+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "GALAUSDT": {
-        "price": 0.01963,
-        "time": "2025-02-28T22:28:10.522601+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     },
@@ -92,12 +62,6 @@
     "ETCUSDT": {
         "price": 19.02,
         "time": "2025-02-28T22:28:12.018485+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "ICPUSDT": {
-        "price": 6.517,
-        "time": "2025-02-28T22:28:14.500024+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     },
@@ -119,21 +83,9 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "BEAMXUSDT": {
-        "price": 0.00836,
-        "time": "2025-02-28T22:28:27.553751+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "TRBUSDT": {
         "price": 35.11,
         "time": "2025-02-28T22:28:32.947083+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "C98USDT": {
-        "price": 0.0857,
-        "time": "2025-02-28T22:28:34.885807+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     },
@@ -143,21 +95,9 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "MANAUSDT": {
-        "price": 0.2898,
-        "time": "2025-02-28T22:28:42.452570+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "CELOUSDT": {
         "price": 0.3905,
         "time": "2025-02-28T22:28:47.507834+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "FLOWUSDT": {
-        "price": 0.477,
-        "time": "2025-02-28T22:28:48.151587+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     },
@@ -179,18 +119,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "IMXUSDT": {
-        "price": 0.711,
-        "time": "2025-02-28T23:09:01.176240+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "TURBOUSDT": {
-        "price": 0.003312,
-        "time": "2025-02-28T23:09:02.222164+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "CETUSUSDT": {
         "price": 0.1183,
         "time": "2025-02-28T23:09:07.101905+07:00",
@@ -203,21 +131,9 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "ONEUSDT": {
-        "price": 0.01432,
-        "time": "2025-02-28T23:33:57.531112+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "LUNAUSDT": {
         "price": 0.2265,
         "time": "2025-02-28T23:33:59.567275+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "AVAXUSDT": {
-        "price": 21.86,
-        "time": "2025-02-28T23:48:01.747419+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     },
