@@ -69,7 +69,7 @@
         "price": 0.19961,
         "time": "2025-02-28T21:29:13.944101+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.23637
+        "highest_price": 0.23656
     },
     "FIDAUSDT": {
         "price": 0.1177,
@@ -188,12 +188,6 @@
     "XAIUSDT": {
         "price": 0.0876,
         "time": "2025-02-28T22:28:28.863992+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "SUSHIUSDT": {
-        "price": 0.803,
-        "time": "2025-02-28T22:28:30.521992+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     },
