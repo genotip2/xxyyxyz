@@ -5,21 +5,9 @@
         "trailing_stop_active": true,
         "highest_price": 6.56
     },
-    "FILUSDT": {
-        "price": 3.175,
-        "time": "2025-02-28T20:36:53.086244+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "RENDERUSDT": {
         "price": 3.691,
         "time": "2025-02-28T20:36:54.883313+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "ZENUSDT": {
-        "price": 12.97,
-        "time": "2025-02-28T21:01:00.719991+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     },
@@ -47,12 +35,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "EGLDUSDT": {
-        "price": 21.59,
-        "time": "2025-02-28T22:28:26.505985+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "TRBUSDT": {
         "price": 35.11,
         "time": "2025-02-28T22:28:32.947083+07:00",
@@ -68,24 +50,6 @@
     "IOTAUSDT": {
         "price": 0.2001,
         "time": "2025-02-28T23:08:58.888295+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "CHZUSDT": {
-        "price": 0.05,
-        "time": "2025-02-28T23:08:59.853230+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "LUNAUSDT": {
-        "price": 0.2265,
-        "time": "2025-02-28T23:33:59.567275+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "SANDUSDT": {
-        "price": 0.318,
-        "time": "2025-03-01T01:10:09.335998+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     },
