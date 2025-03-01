@@ -35,12 +35,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "MEUSDT": {
-        "price": 1.36,
-        "time": "2025-02-28T20:37:06.691999+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "ALTUSDT": {
         "price": 0.042,
         "time": "2025-02-28T20:37:12.656180+07:00",
@@ -428,12 +422,6 @@
     "EIGENUSDT": {
         "price": 1.66,
         "time": "2025-03-01T00:25:10.669357+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "MOVEUSDT": {
-        "price": 0.4507,
-        "time": "2025-03-01T00:25:15.829024+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     },
