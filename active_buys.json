@@ -11,12 +11,6 @@
         "trailing_stop_active": true,
         "highest_price": 6.48
     },
-    "BELUSDT": {
-        "price": 1.0503,
-        "time": "2025-02-28T20:16:01.574531+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "VANRYUSDT": {
         "price": 0.0401,
         "time": "2025-02-28T20:16:04.421235+07:00",
@@ -99,7 +93,7 @@
         "price": 0.19961,
         "time": "2025-02-28T21:29:13.944101+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.22598
+        "highest_price": 0.22828
     },
     "BCHUSDT": {
         "price": 295,
