@@ -65,12 +65,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "PIXELUSDT": {
-        "price": 0.0537,
-        "time": "2025-02-28T21:45:57.488529+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "AIUSDT": {
         "price": 0.2368,
         "time": "2025-02-28T21:46:11.988401+07:00",
@@ -209,12 +203,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "THETAUSDT": {
-        "price": 1.157,
-        "time": "2025-02-28T23:33:46.644956+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "ONEUSDT": {
         "price": 0.01432,
         "time": "2025-02-28T23:33:57.531112+07:00",
@@ -248,12 +236,6 @@
     "SANDUSDT": {
         "price": 0.318,
         "time": "2025-03-01T01:10:09.335998+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "1MBABYDOGEUSDT": {
-        "price": 0.0014625,
-        "time": "2025-03-01T01:10:14.617505+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     },
