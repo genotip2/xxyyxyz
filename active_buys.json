@@ -383,12 +383,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "TRUMPUSDT": {
-        "price": 12.88,
-        "time": "2025-02-28T23:33:25.917656+07:00",
-        "trailing_stop_active": true,
-        "highest_price": 14.17
-    },
     "ARBUSDT": {
         "price": 0.416,
         "time": "2025-02-28T23:33:36.168915+07:00",
