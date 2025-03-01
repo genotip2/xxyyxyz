@@ -101,12 +101,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "FETUSDT": {
-        "price": 0.646,
-        "time": "2025-02-28T22:28:05.132841+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "ETHFIUSDT": {
         "price": 0.939,
         "time": "2025-02-28T22:28:07.914834+07:00",
@@ -221,12 +215,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "KDAUSDT": {
-        "price": 0.5017,
-        "time": "2025-02-28T22:28:39.279018+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "MANAUSDT": {
         "price": 0.2898,
         "time": "2025-02-28T22:28:42.452570+07:00",
@@ -322,12 +310,6 @@
         "time": "2025-02-28T23:33:36.168915+07:00",
         "trailing_stop_active": false,
         "highest_price": null
-    },
-    "USUALUSDT": {
-        "price": 0.2299,
-        "time": "2025-02-28T23:33:38.757619+07:00",
-        "trailing_stop_active": true,
-        "highest_price": 0.2443
     },
     "ARUSDT": {
         "price": 8.16,
