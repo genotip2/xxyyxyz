@@ -99,13 +99,13 @@
         "price": 0.19961,
         "time": "2025-02-28T21:29:13.944101+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.21694
+        "highest_price": 0.22304
     },
     "BCHUSDT": {
         "price": 295,
         "time": "2025-02-28T21:29:26.263488+07:00",
         "trailing_stop_active": true,
-        "highest_price": 320
+        "highest_price": 324
     },
     "FIDAUSDT": {
         "price": 0.1177,
@@ -392,8 +392,8 @@
     "TRUMPUSDT": {
         "price": 12.88,
         "time": "2025-02-28T23:33:25.917656+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 13.86
     },
     "ARBUSDT": {
         "price": 0.416,
