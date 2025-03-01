@@ -3,7 +3,7 @@
         "price": 0.002653,
         "time": "2025-02-28T15:10:31.117667+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.002901
+        "highest_price": 0.002913
     },
     "APTUSDT": {
         "price": 5.99,
@@ -518,12 +518,6 @@
     "COTIUSDT": {
         "price": 0.07428,
         "time": "2025-03-01T02:22:34.296007+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "BNXUSDT": {
-        "price": 1.2115,
-        "time": "2025-03-01T03:08:17.567507+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     },
