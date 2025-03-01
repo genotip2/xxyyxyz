@@ -53,12 +53,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "COTIUSDT": {
-        "price": 0.07428,
-        "time": "2025-03-01T02:22:34.296007+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "TIAUSDT": {
         "price": 4.096,
         "time": "2025-03-01T03:08:18.192088+07:00",
