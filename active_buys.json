@@ -5,12 +5,6 @@
         "trailing_stop_active": true,
         "highest_price": 6.56
     },
-    "HBARUSDT": {
-        "price": 0.19961,
-        "time": "2025-02-28T21:29:13.944101+07:00",
-        "trailing_stop_active": true,
-        "highest_price": 0.237
-    },
     "ZECUSDT": {
         "price": 36.48,
         "time": "2025-02-28T22:01:13.031405+07:00",
@@ -35,12 +29,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "IOTAUSDT": {
-        "price": 0.2001,
-        "time": "2025-02-28T23:08:58.888295+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "TIAUSDT": {
         "price": 4.096,
         "time": "2025-03-01T03:08:18.192088+07:00",
@@ -50,12 +38,6 @@
     "TNSRUSDT": {
         "price": 0.4995,
         "time": "2025-03-01T03:08:37.655025+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "CVCUSDT": {
-        "price": 0.113,
-        "time": "2025-03-01T04:24:43.334079+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     },
