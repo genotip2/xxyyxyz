@@ -95,12 +95,6 @@
         "trailing_stop_active": true,
         "highest_price": 0.23407
     },
-    "BCHUSDT": {
-        "price": 295,
-        "time": "2025-02-28T21:29:26.263488+07:00",
-        "trailing_stop_active": true,
-        "highest_price": 324
-    },
     "FIDAUSDT": {
         "price": 0.1177,
         "time": "2025-02-28T21:29:52.454400+07:00",
@@ -230,12 +224,6 @@
     "BEAMXUSDT": {
         "price": 0.00836,
         "time": "2025-02-28T22:28:27.553751+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "DEGOUSDT": {
-        "price": 1.568,
-        "time": "2025-02-28T22:28:28.237299+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     },
@@ -371,12 +359,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "TRUUSDT": {
-        "price": 0.0455,
-        "time": "2025-02-28T23:09:13.182199+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "FXSUSDT": {
         "price": 1.603,
         "time": "2025-02-28T23:09:16.907667+07:00",
@@ -491,12 +473,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "BBUSDT": {
-        "price": 0.1678,
-        "time": "2025-03-01T01:10:24.442659+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "WLDUSDT": {
         "price": 1.117,
         "time": "2025-03-01T01:35:00.129685+07:00",
@@ -569,21 +545,9 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "ACEUSDT": {
-        "price": 0.964,
-        "time": "2025-03-01T03:08:43.428495+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "CGPTUSDT": {
         "price": 0.1321,
         "time": "2025-03-01T04:02:32.507453+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "GUSDT": {
-        "price": 0.02114,
-        "time": "2025-03-01T04:24:36.633501+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     },
