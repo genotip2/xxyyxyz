@@ -3,7 +3,7 @@
         "price": 0.002653,
         "time": "2025-02-28T15:10:31.117667+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.002926
+        "highest_price": 0.002945
     },
     "APTUSDT": {
         "price": 5.99,
@@ -50,12 +50,6 @@
     "DOGSUSDT": {
         "price": 0.0001716,
         "time": "2025-02-28T20:37:15.943832+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "BSWUSDT": {
-        "price": 0.0427,
-        "time": "2025-02-28T20:37:16.770823+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     },
