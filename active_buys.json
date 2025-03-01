@@ -9,7 +9,7 @@
         "price": 5.99,
         "time": "2025-02-28T20:15:38.260935+07:00",
         "trailing_stop_active": true,
-        "highest_price": 6.52
+        "highest_price": 6.53
     },
     "FILUSDT": {
         "price": 3.175,
@@ -69,7 +69,7 @@
         "price": 0.19961,
         "time": "2025-02-28T21:29:13.944101+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.23562
+        "highest_price": 0.23637
     },
     "FIDAUSDT": {
         "price": 0.1177,
