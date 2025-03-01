@@ -11,12 +11,6 @@
         "trailing_stop_active": true,
         "highest_price": 6.48
     },
-    "VANRYUSDT": {
-        "price": 0.0401,
-        "time": "2025-02-28T20:16:04.421235+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "FILUSDT": {
         "price": 3.175,
         "time": "2025-02-28T20:36:53.086244+07:00",
@@ -112,12 +106,6 @@
         "time": "2025-02-28T21:45:57.488529+07:00",
         "trailing_stop_active": false,
         "highest_price": null
-    },
-    "MINAUSDT": {
-        "price": 0.3087,
-        "time": "2025-02-28T21:46:08.010248+07:00",
-        "trailing_stop_active": true,
-        "highest_price": 0.3281
     },
     "AIUSDT": {
         "price": 0.2368,
@@ -512,12 +500,6 @@
     "ASTRUSDT": {
         "price": 0.0382,
         "time": "2025-03-01T03:08:32.983447+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "SSVUSDT": {
-        "price": 10.84,
-        "time": "2025-03-01T03:08:36.090633+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     },
