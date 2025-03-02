@@ -8,8 +8,8 @@
     "TNSRUSDT": {
         "price": 0.4995,
         "time": "2025-03-01T03:08:37.655025+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 0.5346
     },
     "TWTUSDT": {
         "price": 1.0033,
@@ -38,6 +38,18 @@
     "AGLDUSDT": {
         "price": 1.364,
         "time": "2025-03-02T22:31:43.540185+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "1000SATSUSDT": {
+        "price": 0.0001304,
+        "time": "2025-03-02T23:30:33.984879+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "QNTUSDT": {
+        "price": 98.1,
+        "time": "2025-03-02T23:30:36.454983+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     }
