@@ -28,5 +28,11 @@
         "time": "2025-03-01T10:49:57.452179+07:00",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "PNUTUSDT": {
+        "price": 0.2545,
+        "time": "2025-03-02T17:29:11.321735+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
