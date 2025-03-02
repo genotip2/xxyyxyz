@@ -14,8 +14,8 @@
     "TWTUSDT": {
         "price": 1.0033,
         "time": "2025-03-01T07:39:42.146633+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 1.0672
     },
     "SUSDT": {
         "price": 0.7322,
@@ -32,6 +32,12 @@
     "HARDUSDT": {
         "price": 0.1403,
         "time": "2025-03-02T19:12:06.625082+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "AGLDUSDT": {
+        "price": 1.364,
+        "time": "2025-03-02T22:31:43.540185+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     }
