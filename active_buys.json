@@ -29,12 +29,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "PNUTUSDT": {
-        "price": 0.2545,
-        "time": "2025-03-02T17:29:11.321735+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "AUCTIONUSDT": {
         "price": 14.12,
         "time": "2025-03-02T19:11:45.888151+07:00",
