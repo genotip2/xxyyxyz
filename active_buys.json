@@ -9,7 +9,7 @@
         "price": 0.4995,
         "time": "2025-03-01T03:08:37.655025+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.5346
+        "highest_price": 0.5377
     },
     "TWTUSDT": {
         "price": 1.0033,
@@ -50,6 +50,24 @@
     "QNTUSDT": {
         "price": 98.1,
         "time": "2025-03-02T23:30:36.454983+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "MKRUSDT": {
+        "price": 1715,
+        "time": "2025-03-02T23:45:52.145290+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "GLMUSDT": {
+        "price": 0.3555,
+        "time": "2025-03-02T23:46:22.575404+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "HMSTRUSDT": {
+        "price": 0.002098,
+        "time": "2025-03-02T23:46:27.850777+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     }
