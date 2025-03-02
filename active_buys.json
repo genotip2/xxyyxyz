@@ -53,12 +53,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "MKRUSDT": {
-        "price": 1715,
-        "time": "2025-03-02T23:45:52.145290+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "GLMUSDT": {
         "price": 0.3555,
         "time": "2025-03-02T23:46:22.575404+07:00",
