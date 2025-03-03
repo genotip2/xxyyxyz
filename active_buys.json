@@ -35,12 +35,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "GLMUSDT": {
-        "price": 0.3555,
-        "time": "2025-03-02T23:46:22.575404+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "HMSTRUSDT": {
         "price": 0.002098,
         "time": "2025-03-02T23:46:27.850777+07:00",
@@ -50,6 +44,12 @@
     "FDUSDUSDT": {
         "price": 0.9995,
         "time": "2025-03-03T01:47:41.864282+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "APTUSDT": {
+        "price": 6.7,
+        "time": "2025-03-03T07:37:53.708509+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     }
