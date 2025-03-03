@@ -5,12 +5,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "1000SATSUSDT": {
-        "price": 0.0001304,
-        "time": "2025-03-02T23:30:33.984879+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "HMSTRUSDT": {
         "price": 0.002098,
         "time": "2025-03-02T23:46:27.850777+07:00",
