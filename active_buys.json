@@ -5,12 +5,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "AGLDUSDT": {
-        "price": 1.364,
-        "time": "2025-03-02T22:31:43.540185+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "1000SATSUSDT": {
         "price": 0.0001304,
         "time": "2025-03-02T23:30:33.984879+07:00",
