@@ -11,12 +11,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "QNTUSDT": {
-        "price": 98.1,
-        "time": "2025-03-02T23:30:36.454983+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "HMSTRUSDT": {
         "price": 0.002098,
         "time": "2025-03-02T23:46:27.850777+07:00",
@@ -26,6 +20,12 @@
     "FDUSDUSDT": {
         "price": 0.9995,
         "time": "2025-03-03T01:47:41.864282+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "AUCTIONUSDT": {
+        "price": 14.14,
+        "time": "2025-03-03T13:11:41.832988+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     }
