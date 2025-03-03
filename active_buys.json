@@ -1,10 +1,4 @@
 {
-    "SUSDT": {
-        "price": 0.7322,
-        "time": "2025-03-01T10:49:57.452179+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "HARDUSDT": {
         "price": 0.1403,
         "time": "2025-03-02T19:12:06.625082+07:00",
@@ -38,12 +32,6 @@
     "FDUSDUSDT": {
         "price": 0.9995,
         "time": "2025-03-03T01:47:41.864282+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "APTUSDT": {
-        "price": 6.7,
-        "time": "2025-03-03T07:37:53.708509+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     }
