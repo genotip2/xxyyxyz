@@ -2,8 +2,8 @@
     "HARDUSDT": {
         "price": 0.1403,
         "time": "2025-03-02T19:12:06.625082+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 0.1498
     },
     "HMSTRUSDT": {
         "price": 0.002098,
