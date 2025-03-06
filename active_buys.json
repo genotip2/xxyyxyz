@@ -1,16 +1,4 @@
 {
-    "TRXUSDT": {
-        "price": 0.2426,
-        "time": "2025-03-05T07:36:40.059899+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "TWTUSDT": {
-        "price": 1.0232,
-        "time": "2025-03-05T15:10:47.209492+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "HARDUSDT": {
         "price": 0.1466,
         "time": "2025-03-06T12:01:31.950775+07:00",
