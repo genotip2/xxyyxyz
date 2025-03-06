@@ -4,5 +4,11 @@
         "time": "2025-03-06T12:01:31.950775+07:00",
         "trailing_stop_active": true,
         "highest_price": 0.1685
+    },
+    "ACTUSDT": {
+        "price": 0.1966,
+        "time": "2025-03-06T22:38:57.679860+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
