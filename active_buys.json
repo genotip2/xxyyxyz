@@ -11,12 +11,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "ACTUSDT": {
-        "price": 0.1949,
-        "time": "2025-03-05T20:16:46.604049+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "TIAUSDT": {
         "price": 3.44,
         "time": "2025-03-06T11:09:46.178722+07:00",
