@@ -10,5 +10,11 @@
         "time": "2025-03-07T23:08:40.102443+07:00",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "AUCTIONUSDT": {
+        "price": 16.38,
+        "time": "2025-03-08T02:21:17.719559+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
