@@ -4,11 +4,5 @@
         "time": "2025-03-07T23:08:40.102443+07:00",
         "trailing_stop_active": false,
         "highest_price": null
-    },
-    "SOLVUSDT": {
-        "price": 0.04567,
-        "time": "2025-03-08T14:20:58.582641+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
     }
 }
