@@ -10,11 +10,5 @@
         "time": "2025-03-08T14:20:58.582641+07:00",
         "trailing_stop_active": false,
         "highest_price": null
-    },
-    "REZUSDT": {
-        "price": 0.02765,
-        "time": "2025-03-08T15:25:43.417265+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
     }
 }
