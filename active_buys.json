@@ -1,14 +1,1 @@
-{
-    "TRXUSDT": {
-        "price": 0.2456,
-        "time": "2025-03-07T23:08:40.102443+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "HMSTRUSDT": {
-        "price": 0.002101,
-        "time": "2025-03-09T03:01:18.949249+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    }
-}
+{}
