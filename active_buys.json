@@ -2,13 +2,19 @@
     "DEGOUSDT": {
         "price": 2.079,
         "time": "2025-03-09T18:01:03.122897+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 2.211
     },
     "HMSTRUSDT": {
         "price": 0.00204,
         "time": "2025-03-09T23:46:14.687245+07:00",
         "trailing_stop_active": true,
         "highest_price": 0.002273
+    },
+    "SOLVUSDT": {
+        "price": 0.04251,
+        "time": "2025-03-10T19:13:45.076845+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
