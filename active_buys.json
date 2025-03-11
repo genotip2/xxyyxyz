@@ -4,5 +4,11 @@
         "time": "2025-03-11T23:09:52.444791+07:00",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "HMSTRUSDT": {
+        "price": 0.002156,
+        "time": "2025-03-12T00:46:01.021060+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
