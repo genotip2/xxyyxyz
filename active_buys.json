@@ -5,15 +5,15 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "1000CHEEMSUSDT": {
-        "price": 0.000973,
-        "time": "2025-03-14T07:36:59.433844+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "HARDUSDT": {
         "price": 0.1562,
         "time": "2025-03-14T07:37:05.876384+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "KAVAUSDT": {
+        "price": 0.4714,
+        "time": "2025-03-14T10:00:34.497141+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     }
