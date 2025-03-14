@@ -11,12 +11,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "HARDUSDT": {
-        "price": 0.164,
-        "time": "2025-03-14T18:23:14.714262+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "HMSTRUSDT": {
         "price": 0.002229,
         "time": "2025-03-14T19:13:20.607298+07:00",
