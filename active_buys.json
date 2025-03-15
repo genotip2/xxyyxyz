@@ -11,12 +11,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "BCHUSDT": {
-        "price": 351.1,
-        "time": "2025-03-15T16:45:46.369672+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "TIAUSDT": {
         "price": 3.72,
         "time": "2025-03-15T19:11:51.514062+07:00",
