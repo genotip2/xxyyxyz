@@ -11,12 +11,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "KAVAUSDT": {
-        "price": 0.4749,
-        "time": "2025-03-16T07:40:16.858629+07:00",
-        "trailing_stop_active": true,
-        "highest_price": 0.5043
-    },
     "DEGOUSDT": {
         "price": 1.837,
         "time": "2025-03-16T14:23:23.255922+07:00",
