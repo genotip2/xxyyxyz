@@ -10,11 +10,5 @@
         "time": "2025-03-16T04:00:52.757790+07:00",
         "trailing_stop_active": false,
         "highest_price": null
-    },
-    "DEGOUSDT": {
-        "price": 1.837,
-        "time": "2025-03-16T14:23:23.255922+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
     }
 }
