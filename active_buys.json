@@ -14,7 +14,7 @@
     "KAVAUSDT": {
         "price": 0.4749,
         "time": "2025-03-16T07:40:16.858629+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 0.5043
     }
 }
