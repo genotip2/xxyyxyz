@@ -22,11 +22,5 @@
         "time": "2025-03-16T09:17:36.769426+07:00",
         "trailing_stop_active": false,
         "highest_price": null
-    },
-    "BNXUSDT": {
-        "price": 1.1823,
-        "time": "2025-03-16T11:30:57.912414+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
     }
 }
