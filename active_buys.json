@@ -5,12 +5,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "TIAUSDT": {
-        "price": 3.72,
-        "time": "2025-03-15T19:11:51.514062+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "HARDUSDT": {
         "price": 0.1631,
         "time": "2025-03-16T04:00:52.757790+07:00",
@@ -20,6 +14,12 @@
     "KAVAUSDT": {
         "price": 0.4749,
         "time": "2025-03-16T07:40:16.858629+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "FXSUSDT": {
+        "price": 1.977,
+        "time": "2025-03-16T09:17:36.769426+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     }
