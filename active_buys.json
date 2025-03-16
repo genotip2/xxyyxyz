@@ -1,1 +1,8 @@
-{}
+{
+    "1000CHEEMSUSDT": {
+        "price": 0.001005,
+        "time": "2025-03-17T05:27:55.221104+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    }
+}
