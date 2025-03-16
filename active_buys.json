@@ -16,11 +16,5 @@
         "time": "2025-03-16T07:40:16.858629+07:00",
         "trailing_stop_active": false,
         "highest_price": null
-    },
-    "FXSUSDT": {
-        "price": 1.977,
-        "time": "2025-03-16T09:17:36.769426+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
     }
 }
