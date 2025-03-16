@@ -1,14 +1,1 @@
-{
-    "1000CHEEMSUSDT": {
-        "price": 0.000964,
-        "time": "2025-03-15T10:21:31.415330+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "HARDUSDT": {
-        "price": 0.1631,
-        "time": "2025-03-16T04:00:52.757790+07:00",
-        "trailing_stop_active": true,
-        "highest_price": 0.1776
-    }
-}
+{}
