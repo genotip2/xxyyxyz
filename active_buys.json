@@ -8,7 +8,7 @@
     "DEGOUSDT": {
         "price": 1.841,
         "time": "2025-03-17T09:14:21.152612+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 1.957
     }
 }
