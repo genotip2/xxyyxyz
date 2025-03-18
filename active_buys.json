@@ -10,5 +10,11 @@
         "time": "2025-03-18T07:36:45.216627+07:00",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "PAXGUSDT": {
+        "price": 3023,
+        "time": "2025-03-18T10:04:11.764678+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
