@@ -16,5 +16,11 @@
         "time": "2025-03-18T17:32:52.964182+07:00",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "CAKEUSDT": {
+        "price": 2.755,
+        "time": "2025-03-18T17:47:13.961867+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
