@@ -8,8 +8,8 @@
     "FXSUSDT": {
         "price": 2.109,
         "time": "2025-03-19T17:47:46.265140+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 2.244
     },
     "TONUSDT": {
         "price": 3.747,
