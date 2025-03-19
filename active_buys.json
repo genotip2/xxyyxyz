@@ -5,12 +5,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "DEGOUSDT": {
-        "price": 1.918,
-        "time": "2025-03-20T01:36:46.812288+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "FDUSDUSDT": {
         "price": 0.9991,
         "time": "2025-03-20T02:22:06.748360+07:00",
