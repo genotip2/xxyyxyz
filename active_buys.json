@@ -10,5 +10,11 @@
         "time": "2025-03-19T05:00:54.348515+07:00",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "KAVAUSDT": {
+        "price": 0.5272,
+        "time": "2025-03-19T11:09:41.970995+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
