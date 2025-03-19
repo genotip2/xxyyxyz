@@ -1,16 +1,4 @@
 {
-    "PAXGUSDT": {
-        "price": 3023,
-        "time": "2025-03-18T10:04:11.764678+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "FXSUSDT": {
-        "price": 2.109,
-        "time": "2025-03-19T17:47:46.265140+07:00",
-        "trailing_stop_active": true,
-        "highest_price": 2.244
-    },
     "TONUSDT": {
         "price": 3.747,
         "time": "2025-03-19T23:09:38.214547+07:00",
