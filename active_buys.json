@@ -22,5 +22,11 @@
         "time": "2025-03-20T02:22:28.664454+07:00",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "SOLVUSDT": {
+        "price": 0.03909,
+        "time": "2025-03-20T02:30:56.298096+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
