@@ -11,12 +11,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "BCHUSDT": {
-        "price": 347.7,
-        "time": "2025-03-20T09:11:24.548752+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "KAVAUSDT": {
         "price": 0.5194,
         "time": "2025-03-20T10:01:52.218017+07:00",
