@@ -17,12 +17,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "XRPUSDT": {
-        "price": 2.5214,
-        "time": "2025-03-20T07:36:31.289008+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "BCHUSDT": {
         "price": 347.7,
         "time": "2025-03-20T09:11:24.548752+07:00",
