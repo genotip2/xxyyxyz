@@ -28,5 +28,11 @@
         "time": "2025-03-20T10:01:52.218017+07:00",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "BANANAUSDT": {
+        "price": 20.98,
+        "time": "2025-03-20T12:39:04.943683+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
