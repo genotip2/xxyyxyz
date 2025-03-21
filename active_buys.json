@@ -5,12 +5,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "ZROUSDT": {
-        "price": 2.597,
-        "time": "2025-03-20T19:14:05.370633+07:00",
-        "trailing_stop_active": true,
-        "highest_price": 3.091
-    },
     "USDCUSDT": {
         "price": 1.0006,
         "time": "2025-03-21T07:37:14.528225+07:00",
