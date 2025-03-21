@@ -9,7 +9,7 @@
         "price": 0.5194,
         "time": "2025-03-20T10:01:52.218017+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.5655
+        "highest_price": 0.5695
     },
     "ZROUSDT": {
         "price": 2.597,
@@ -26,12 +26,6 @@
     "USDCUSDT": {
         "price": 1.0006,
         "time": "2025-03-21T07:37:14.528225+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "1000CHEEMSUSDT": {
-        "price": 0.001513,
-        "time": "2025-03-21T09:13:16.934643+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     }
