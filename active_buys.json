@@ -9,17 +9,11 @@
         "price": 2.597,
         "time": "2025-03-20T19:14:05.370633+07:00",
         "trailing_stop_active": true,
-        "highest_price": 2.95
+        "highest_price": 2.979
     },
     "USDCUSDT": {
         "price": 1.0006,
         "time": "2025-03-21T07:37:14.528225+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "VANAUSDT": {
-        "price": 7.694,
-        "time": "2025-03-21T10:52:38.047745+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     }
