@@ -22,5 +22,17 @@
         "time": "2025-03-20T20:18:34.343742+07:00",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "USDCUSDT": {
+        "price": 1.0006,
+        "time": "2025-03-21T07:37:14.528225+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "DEXEUSDT": {
+        "price": 19.3,
+        "time": "2025-03-21T07:37:41.522595+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
