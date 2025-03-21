@@ -8,14 +8,14 @@
     "KAVAUSDT": {
         "price": 0.5194,
         "time": "2025-03-20T10:01:52.218017+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 0.565
     },
     "ZROUSDT": {
         "price": 2.597,
         "time": "2025-03-20T19:14:05.370633+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 2.788
     },
     "HARDUSDT": {
         "price": 0.1803,
@@ -29,9 +29,9 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "DEXEUSDT": {
-        "price": 19.3,
-        "time": "2025-03-21T07:37:41.522595+07:00",
+    "1000CHEEMSUSDT": {
+        "price": 0.001513,
+        "time": "2025-03-21T09:13:16.934643+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     }
