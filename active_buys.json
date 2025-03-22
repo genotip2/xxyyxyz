@@ -5,15 +5,15 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "DOGSUSDT": {
-        "price": 0.0001846,
-        "time": "2025-03-22T14:01:50.863920+07:00",
-        "trailing_stop_active": true,
-        "highest_price": 0.0001993
-    },
     "ATOMUSDT": {
         "price": 4.791,
         "time": "2025-03-22T16:45:43.427110+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "HARDUSDT": {
+        "price": 0.1778,
+        "time": "2025-03-22T19:12:03.464604+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     }
