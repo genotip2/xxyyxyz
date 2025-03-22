@@ -10,5 +10,11 @@
         "time": "2025-03-22T14:01:50.863920+07:00",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "ATOMUSDT": {
+        "price": 4.791,
+        "time": "2025-03-22T16:45:43.427110+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
