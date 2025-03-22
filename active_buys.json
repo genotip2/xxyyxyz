@@ -28,11 +28,5 @@
         "time": "2025-03-22T23:01:00.205329+07:00",
         "trailing_stop_active": false,
         "highest_price": null
-    },
-    "1000CHEEMSUSDT": {
-        "price": 0.001708,
-        "time": "2025-03-23T00:25:04.320185+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
     }
 }
