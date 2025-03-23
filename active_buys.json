@@ -5,17 +5,11 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "TRXUSDT": {
-        "price": 0.2404,
-        "time": "2025-03-23T09:18:53.210107+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "PNUTUSDT": {
         "price": 0.2108,
         "time": "2025-03-23T16:45:18.000843+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 0.2247
     },
     "1000SATSUSDT": {
         "price": 0.000132,
