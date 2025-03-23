@@ -16,5 +16,17 @@
         "time": "2025-03-23T16:45:18.000843+07:00",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "1000SATSUSDT": {
+        "price": 0.000132,
+        "time": "2025-03-23T17:29:43.095153+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "COTIUSDT": {
+        "price": 0.07605,
+        "time": "2025-03-23T17:30:21.859341+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
