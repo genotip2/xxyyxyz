@@ -17,9 +17,9 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "COTIUSDT": {
-        "price": 0.07605,
-        "time": "2025-03-23T17:30:21.859341+07:00",
+    "EOSUSDT": {
+        "price": 0.568,
+        "time": "2025-03-23T23:07:42.878815+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     }
