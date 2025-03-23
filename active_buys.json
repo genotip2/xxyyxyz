@@ -1,10 +1,4 @@
 {
-    "ATOMUSDT": {
-        "price": 4.791,
-        "time": "2025-03-22T16:45:43.427110+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "CRVUSDT": {
         "price": 0.4731,
         "time": "2025-03-22T20:45:30.948787+07:00",
