@@ -2,14 +2,14 @@
     "CRVUSDT": {
         "price": 0.4731,
         "time": "2025-03-22T20:45:30.948787+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 0.5015
     },
     "PNUTUSDT": {
         "price": 0.2108,
         "time": "2025-03-23T16:45:18.000843+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.2255
+        "highest_price": 0.229
     },
     "1000SATSUSDT": {
         "price": 0.000132,
