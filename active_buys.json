@@ -5,12 +5,6 @@
         "trailing_stop_active": true,
         "highest_price": 0.0001446
     },
-    "BEAMXUSDT": {
-        "price": 0.00839,
-        "time": "2025-03-24T03:01:12.741140+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "COTIUSDT": {
         "price": 0.0774,
         "time": "2025-03-24T05:29:35.779403+07:00",
@@ -65,12 +59,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "BERAUSDT": {
-        "price": 6.957,
-        "time": "2025-03-24T15:50:54.799617+07:00",
-        "trailing_stop_active": true,
-        "highest_price": 8.01
-    },
     "BBUSDT": {
         "price": 0.1533,
         "time": "2025-03-24T16:40:54.393614+07:00",
@@ -80,12 +68,6 @@
     "PENDLEUSDT": {
         "price": 2.784,
         "time": "2025-03-24T19:14:55.673738+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "TONUSDT": {
-        "price": 3.736,
-        "time": "2025-03-24T23:10:11.112294+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     },
