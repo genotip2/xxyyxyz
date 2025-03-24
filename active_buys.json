@@ -2,8 +2,8 @@
     "1000SATSUSDT": {
         "price": 0.000132,
         "time": "2025-03-23T17:29:43.095153+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 0.0001407
     },
     "BEAMXUSDT": {
         "price": 0.00839,
