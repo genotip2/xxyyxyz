@@ -5,12 +5,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "EOSUSDT": {
-        "price": 0.568,
-        "time": "2025-03-23T23:07:42.878815+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "BEAMXUSDT": {
         "price": 0.00839,
         "time": "2025-03-24T03:01:12.741140+07:00",
@@ -29,12 +23,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "ARKMUSDT": {
-        "price": 0.625,
-        "time": "2025-03-24T05:29:21.041507+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "COTIUSDT": {
         "price": 0.0774,
         "time": "2025-03-24T05:29:35.779403+07:00",
@@ -44,12 +32,6 @@
     "XRPUSDT": {
         "price": 2.4241,
         "time": "2025-03-24T06:23:51.359818+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "TIAUSDT": {
-        "price": 3.633,
-        "time": "2025-03-24T07:39:02.384164+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     }
