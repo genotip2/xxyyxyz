@@ -15,7 +15,7 @@
         "price": 0.001616,
         "time": "2025-03-24T03:27:26.071628+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.001836
+        "highest_price": 0.001848
     },
     "COTIUSDT": {
         "price": 0.0774,
@@ -80,6 +80,12 @@
     "BBUSDT": {
         "price": 0.1533,
         "time": "2025-03-24T16:40:54.393614+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "PENDLEUSDT": {
+        "price": 2.784,
+        "time": "2025-03-24T19:14:55.673738+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     }
