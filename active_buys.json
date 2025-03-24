@@ -64,5 +64,11 @@
         "time": "2025-03-24T14:01:19.795566+07:00",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "DYDXUSDT": {
+        "price": 0.6942,
+        "time": "2025-03-24T15:11:56.344758+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
