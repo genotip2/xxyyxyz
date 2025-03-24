@@ -58,5 +58,11 @@
         "time": "2025-03-24T13:12:01.672622+07:00",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "KDAUSDT": {
+        "price": 0.508,
+        "time": "2025-03-24T14:01:19.795566+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
