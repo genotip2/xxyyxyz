@@ -28,5 +28,23 @@
         "time": "2025-03-24T06:23:51.359818+07:00",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "DOTUSDT": {
+        "price": 4.611,
+        "time": "2025-03-24T11:33:06.830925+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "CETUSUSDT": {
+        "price": 0.1162,
+        "time": "2025-03-24T11:33:19.691226+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "HARDUSDT": {
+        "price": 0.1777,
+        "time": "2025-03-24T11:33:25.877054+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
