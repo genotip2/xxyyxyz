@@ -69,7 +69,7 @@
         "price": 6.957,
         "time": "2025-03-24T15:50:54.799617+07:00",
         "trailing_stop_active": true,
-        "highest_price": 7.491
+        "highest_price": 7.714
     },
     "BBUSDT": {
         "price": 0.1533,
@@ -80,6 +80,12 @@
     "PENDLEUSDT": {
         "price": 2.784,
         "time": "2025-03-24T19:14:55.673738+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "TONUSDT": {
+        "price": 3.736,
+        "time": "2025-03-24T23:10:11.112294+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     }
