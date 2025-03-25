@@ -26,8 +26,8 @@
     "DYDXUSDT": {
         "price": 0.6942,
         "time": "2025-03-24T15:11:56.344758+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 0.7364
     },
     "PENDLEUSDT": {
         "price": 2.784,
