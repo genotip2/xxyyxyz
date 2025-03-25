@@ -14,8 +14,8 @@
     "PENDLEUSDT": {
         "price": 2.784,
         "time": "2025-03-24T19:14:55.673738+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 2.964
     },
     "PEPEUSDT": {
         "price": 8.02e-06,
@@ -80,6 +80,12 @@
     "KDAUSDT": {
         "price": 0.5105,
         "time": "2025-03-25T22:08:18.565104+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "MOVEUSDT": {
+        "price": 0.6062,
+        "time": "2025-03-26T00:00:59.456032+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     }
