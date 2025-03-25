@@ -17,12 +17,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "CETUSUSDT": {
-        "price": 0.1162,
-        "time": "2025-03-24T11:33:19.691226+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "EOSUSDT": {
         "price": 0.572,
         "time": "2025-03-24T12:30:26.829139+07:00",
