@@ -83,9 +83,15 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "IMXUSDT": {
-        "price": 0.72,
-        "time": "2025-03-26T03:29:28.798975+07:00",
+    "MASKUSDT": {
+        "price": 2.225,
+        "time": "2025-03-26T06:01:09.380020+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "SNXUSDT": {
+        "price": 0.931,
+        "time": "2025-03-26T06:01:10.507311+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     }
