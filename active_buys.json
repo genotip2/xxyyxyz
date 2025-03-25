@@ -83,12 +83,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "MOVEUSDT": {
-        "price": 0.6062,
-        "time": "2025-03-26T00:00:59.456032+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "MASKUSDT": {
         "price": 2.232,
         "time": "2025-03-26T00:29:11.265642+07:00",
