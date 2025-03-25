@@ -3,7 +3,7 @@
         "price": 0.000132,
         "time": "2025-03-23T17:29:43.095153+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.0001466
+        "highest_price": 0.0001469
     },
     "COTIUSDT": {
         "price": 0.0774,
@@ -26,12 +26,6 @@
     "DYDXUSDT": {
         "price": 0.6942,
         "time": "2025-03-24T15:11:56.344758+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "BBUSDT": {
-        "price": 0.1533,
-        "time": "2025-03-24T16:40:54.393614+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     },
