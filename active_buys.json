@@ -76,5 +76,11 @@
         "time": "2025-03-25T18:00:39.234059+07:00",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "DOTUSDT": {
+        "price": 4.674,
+        "time": "2025-03-25T19:13:56.309336+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
