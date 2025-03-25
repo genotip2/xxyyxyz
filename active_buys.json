@@ -83,12 +83,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "MASKUSDT": {
-        "price": 2.232,
-        "time": "2025-03-26T00:29:11.265642+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "FXSUSDT": {
         "price": 2.17,
         "time": "2025-03-26T00:29:17.308827+07:00",
