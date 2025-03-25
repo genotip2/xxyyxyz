@@ -41,12 +41,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "MASKUSDT": {
-        "price": 2.226,
-        "time": "2025-03-25T07:38:19.384846+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "CELOUSDT": {
         "price": 0.3892,
         "time": "2025-03-25T07:38:29.573411+07:00",
