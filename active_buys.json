@@ -2,8 +2,8 @@
     "COTIUSDT": {
         "price": 0.0774,
         "time": "2025-03-24T05:29:35.779403+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 0.08232
     },
     "EOSUSDT": {
         "price": 0.572,
@@ -26,12 +26,6 @@
     "PEPEUSDT": {
         "price": 8.02e-06,
         "time": "2025-03-25T07:37:48.737221+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "APTUSDT": {
-        "price": 6.064,
-        "time": "2025-03-25T07:37:53.098040+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     },
