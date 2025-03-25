@@ -64,11 +64,5 @@
         "time": "2025-03-25T07:38:29.573411+07:00",
         "trailing_stop_active": false,
         "highest_price": null
-    },
-    "BEAMXUSDT": {
-        "price": 0.00896,
-        "time": "2025-03-25T11:01:19.156906+07:00",
-        "trailing_stop_active": true,
-        "highest_price": 0.00966
     }
 }
