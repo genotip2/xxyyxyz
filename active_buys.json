@@ -3,7 +3,7 @@
         "price": 0.000132,
         "time": "2025-03-23T17:29:43.095153+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.0001469
+        "highest_price": 0.0001475
     },
     "COTIUSDT": {
         "price": 0.0774,
@@ -68,7 +68,7 @@
     "BEAMXUSDT": {
         "price": 0.00896,
         "time": "2025-03-25T11:01:19.156906+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 0.00966
     }
 }
