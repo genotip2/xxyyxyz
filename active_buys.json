@@ -11,12 +11,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "XRPUSDT": {
-        "price": 2.4241,
-        "time": "2025-03-24T06:23:51.359818+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "DOTUSDT": {
         "price": 4.611,
         "time": "2025-03-24T11:33:06.830925+07:00",
@@ -68,12 +62,6 @@
     "PENDLEUSDT": {
         "price": 2.784,
         "time": "2025-03-24T19:14:55.673738+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "ARKMUSDT": {
-        "price": 0.656,
-        "time": "2025-03-25T05:30:21.206972+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     },
