@@ -39,7 +39,7 @@
         "price": 0.007179,
         "time": "2025-03-25T16:29:24.899219+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.007867
+        "highest_price": 0.007874
     },
     "RENDERUSDT": {
         "price": 3.934,
@@ -86,6 +86,12 @@
     "XRPUSDT": {
         "price": 2.4719,
         "time": "2025-03-26T01:10:38.108779+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "IMXUSDT": {
+        "price": 0.72,
+        "time": "2025-03-26T03:29:28.798975+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     }
