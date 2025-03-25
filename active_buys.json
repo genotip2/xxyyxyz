@@ -82,5 +82,17 @@
         "time": "2025-03-25T19:54:19.127655+07:00",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "AVAXUSDT": {
+        "price": 22.66,
+        "time": "2025-03-25T22:08:00.428018+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "KDAUSDT": {
+        "price": 0.5105,
+        "time": "2025-03-25T22:08:18.565104+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
