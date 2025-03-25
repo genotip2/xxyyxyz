@@ -82,5 +82,11 @@
         "time": "2025-03-25T19:13:56.309336+07:00",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "HARDUSDT": {
+        "price": 0.1826,
+        "time": "2025-03-25T19:54:19.127655+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
