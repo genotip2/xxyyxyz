@@ -45,7 +45,7 @@
         "price": 0.007179,
         "time": "2025-03-25T16:29:24.899219+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.007727
+        "highest_price": 0.00779
     },
     "RENDERUSDT": {
         "price": 3.934,
@@ -98,12 +98,6 @@
     "XRPUSDT": {
         "price": 2.4719,
         "time": "2025-03-26T01:10:38.108779+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "ACTUSDT": {
-        "price": 0.2062,
-        "time": "2025-03-26T01:10:43.443834+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     }
