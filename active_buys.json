@@ -76,5 +76,41 @@
         "time": "2025-03-25T05:30:21.206972+07:00",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "PEPEUSDT": {
+        "price": 8.02e-06,
+        "time": "2025-03-25T07:37:48.737221+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "APTUSDT": {
+        "price": 6.064,
+        "time": "2025-03-25T07:37:53.098040+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "1MBABYDOGEUSDT": {
+        "price": 0.0013969,
+        "time": "2025-03-25T07:38:12.067776+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "MASKUSDT": {
+        "price": 2.226,
+        "time": "2025-03-25T07:38:19.384846+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "SNXUSDT": {
+        "price": 0.931,
+        "time": "2025-03-25T07:38:21.129835+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "CELOUSDT": {
+        "price": 0.3892,
+        "time": "2025-03-25T07:38:29.573411+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
