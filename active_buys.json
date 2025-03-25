@@ -39,7 +39,7 @@
         "price": 0.007179,
         "time": "2025-03-25T16:29:24.899219+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.007922
+        "highest_price": 0.007944
     },
     "RENDERUSDT": {
         "price": 3.934,
@@ -50,12 +50,6 @@
     "SUSDT": {
         "price": 0.6134,
         "time": "2025-03-25T18:00:39.234059+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "DOTUSDT": {
-        "price": 4.674,
-        "time": "2025-03-25T19:13:56.309336+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     },
