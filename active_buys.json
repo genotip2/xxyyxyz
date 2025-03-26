@@ -5,12 +5,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "SUSDT": {
-        "price": 0.6134,
-        "time": "2025-03-25T18:00:39.234059+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "NEARUSDT": {
         "price": 3.042,
         "time": "2025-03-26T07:37:20.211622+07:00",
@@ -89,15 +83,15 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "APTUSDT": {
-        "price": 6.029,
-        "time": "2025-03-26T18:23:29.735166+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "ZROUSDT": {
         "price": 3.01,
         "time": "2025-03-26T18:45:48.042255+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "BANANAUSDT": {
+        "price": 24.58,
+        "time": "2025-03-26T23:10:04.221339+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     }
