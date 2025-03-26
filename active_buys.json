@@ -220,5 +220,11 @@
         "time": "2025-03-26T17:48:37.931869+07:00",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "APTUSDT": {
+        "price": 6.029,
+        "time": "2025-03-26T18:23:29.735166+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
