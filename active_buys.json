@@ -1,21 +1,15 @@
 {
-    "DYDXUSDT": {
-        "price": 0.6942,
-        "time": "2025-03-24T15:11:56.344758+07:00",
-        "trailing_stop_active": true,
-        "highest_price": 0.7614
-    },
     "PEPEUSDT": {
         "price": 8.02e-06,
         "time": "2025-03-25T07:37:48.737221+07:00",
         "trailing_stop_active": true,
-        "highest_price": 8.71e-06
+        "highest_price": 8.74e-06
     },
     "1MBABYDOGEUSDT": {
         "price": 0.0013969,
         "time": "2025-03-25T07:38:12.067776+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 0.001484
     },
     "CELOUSDT": {
         "price": 0.3892,
@@ -33,13 +27,13 @@
         "price": 0.007179,
         "time": "2025-03-25T16:29:24.899219+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.00814
+        "highest_price": 0.008165
     },
     "RENDERUSDT": {
         "price": 3.934,
         "time": "2025-03-25T17:00:58.166868+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 4.175
     },
     "SUSDT": {
         "price": 0.6134,
@@ -188,6 +182,18 @@
     "BBUSDT": {
         "price": 0.1602,
         "time": "2025-03-26T15:11:01.782394+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "KAVAUSDT": {
+        "price": 0.4911,
+        "time": "2025-03-26T15:35:49.670919+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "DOGSUSDT": {
+        "price": 0.0001694,
+        "time": "2025-03-26T15:36:03.548952+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     }
