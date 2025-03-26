@@ -94,5 +94,35 @@
         "time": "2025-03-26T06:01:10.507311+07:00",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "NEARUSDT": {
+        "price": 3.042,
+        "time": "2025-03-26T07:37:20.211622+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "FILUSDT": {
+        "price": 3.159,
+        "time": "2025-03-26T07:37:23.279855+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "MEUSDT": {
+        "price": 1.27,
+        "time": "2025-03-26T07:37:44.308980+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "TRUUSDT": {
+        "price": 0.0415,
+        "time": "2025-03-26T07:37:49.231668+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "VELODROMEUSDT": {
+        "price": 0.0604,
+        "time": "2025-03-26T07:37:54.968128+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
