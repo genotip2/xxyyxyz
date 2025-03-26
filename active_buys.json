@@ -47,12 +47,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "ENAUSDT": {
-        "price": 0.4284,
-        "time": "2025-03-26T17:08:20.963864+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "ZECUSDT": {
         "price": 38.21,
         "time": "2025-03-26T17:48:37.931869+07:00",
