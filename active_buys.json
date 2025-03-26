@@ -11,27 +11,9 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "RSRUSDT": {
-        "price": 0.007179,
-        "time": "2025-03-25T16:29:24.899219+07:00",
-        "trailing_stop_active": true,
-        "highest_price": 0.008165
-    },
-    "RENDERUSDT": {
-        "price": 3.934,
-        "time": "2025-03-25T17:00:58.166868+07:00",
-        "trailing_stop_active": true,
-        "highest_price": 4.175
-    },
     "SUSDT": {
         "price": 0.6134,
         "time": "2025-03-25T18:00:39.234059+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "HARDUSDT": {
-        "price": 0.1826,
-        "time": "2025-03-25T19:54:19.127655+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     },
@@ -44,18 +26,6 @@
     "KDAUSDT": {
         "price": 0.5105,
         "time": "2025-03-25T22:08:18.565104+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "FXSUSDT": {
-        "price": 2.17,
-        "time": "2025-03-26T00:29:17.308827+07:00",
-        "trailing_stop_active": true,
-        "highest_price": 2.385
-    },
-    "XRPUSDT": {
-        "price": 2.4719,
-        "time": "2025-03-26T01:10:38.108779+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     },
@@ -131,27 +101,9 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "BTCUSDT": {
-        "price": 88092.33,
-        "time": "2025-03-26T14:33:08.277048+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "LINKUSDT": {
         "price": 15.82,
         "time": "2025-03-26T14:33:11.620951+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "WBTCUSDT": {
-        "price": 88087.71,
-        "time": "2025-03-26T14:33:14.510258+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "RUNEUSDT": {
-        "price": 1.32,
-        "time": "2025-03-26T15:10:41.725422+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     },
@@ -166,18 +118,6 @@
         "time": "2025-03-26T15:10:54.515141+07:00",
         "trailing_stop_active": true,
         "highest_price": 0.1268
-    },
-    "BBUSDT": {
-        "price": 0.1602,
-        "time": "2025-03-26T15:11:01.782394+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "KAVAUSDT": {
-        "price": 0.4911,
-        "time": "2025-03-26T15:35:49.670919+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
     },
     "DOGSUSDT": {
         "price": 0.0001694,
