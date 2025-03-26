@@ -1,10 +1,4 @@
 {
-    "PEPEUSDT": {
-        "price": 8.02e-06,
-        "time": "2025-03-25T07:37:48.737221+07:00",
-        "trailing_stop_active": true,
-        "highest_price": 9.15e-06
-    },
     "CELOUSDT": {
         "price": 0.3892,
         "time": "2025-03-25T07:38:29.573411+07:00",
