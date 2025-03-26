@@ -77,12 +77,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "LINKUSDT": {
-        "price": 15.82,
-        "time": "2025-03-26T14:33:11.620951+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "DOTUSDT": {
         "price": 4.724,
         "time": "2025-03-26T15:10:44.136445+07:00",
