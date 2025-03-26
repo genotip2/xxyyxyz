@@ -8,8 +8,8 @@
     "PEPEUSDT": {
         "price": 8.02e-06,
         "time": "2025-03-25T07:37:48.737221+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 8.52e-06
     },
     "1MBABYDOGEUSDT": {
         "price": 0.0013969,
@@ -33,7 +33,7 @@
         "price": 0.007179,
         "time": "2025-03-25T16:29:24.899219+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.008058
+        "highest_price": 0.008091
     },
     "RENDERUSDT": {
         "price": 3.934,
