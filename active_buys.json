@@ -9,7 +9,7 @@
         "price": 0.0013969,
         "time": "2025-03-25T07:38:12.067776+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.0014959
+        "highest_price": 0.0015041
     },
     "CELOUSDT": {
         "price": 0.3892,
@@ -212,6 +212,12 @@
     "BSWUSDT": {
         "price": 0.0388,
         "time": "2025-03-26T17:33:25.081534+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "ZECUSDT": {
+        "price": 38.21,
+        "time": "2025-03-26T17:48:37.931869+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     }
