@@ -1,25 +1,7 @@
 {
-    "NOTUSDT": {
-        "price": 0.002664,
-        "time": "2025-03-25T16:08:22.656563+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "NEARUSDT": {
-        "price": 3.042,
-        "time": "2025-03-26T07:37:20.211622+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "MEUSDT": {
         "price": 1.27,
         "time": "2025-03-26T07:37:44.308980+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "TRUUSDT": {
-        "price": 0.0415,
-        "time": "2025-03-26T07:37:49.231668+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     },
@@ -62,12 +44,6 @@
     "DOTUSDT": {
         "price": 4.724,
         "time": "2025-03-26T15:10:44.136445+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "DOGSUSDT": {
-        "price": 0.0001694,
-        "time": "2025-03-26T15:36:03.548952+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     },
