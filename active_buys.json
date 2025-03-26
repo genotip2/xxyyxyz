@@ -3,7 +3,7 @@
         "price": 8.02e-06,
         "time": "2025-03-25T07:37:48.737221+07:00",
         "trailing_stop_active": true,
-        "highest_price": 8.74e-06
+        "highest_price": 8.75e-06
     },
     "1MBABYDOGEUSDT": {
         "price": 0.0013969,
@@ -62,8 +62,8 @@
     "FXSUSDT": {
         "price": 2.17,
         "time": "2025-03-26T00:29:17.308827+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 2.331
     },
     "XRPUSDT": {
         "price": 2.4719,
