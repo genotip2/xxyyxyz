@@ -5,12 +5,6 @@
         "trailing_stop_active": true,
         "highest_price": 0.7614
     },
-    "PENDLEUSDT": {
-        "price": 2.784,
-        "time": "2025-03-24T19:14:55.673738+07:00",
-        "trailing_stop_active": true,
-        "highest_price": 2.964
-    },
     "PEPEUSDT": {
         "price": 8.02e-06,
         "time": "2025-03-25T07:37:48.737221+07:00",
@@ -80,18 +74,6 @@
     "XRPUSDT": {
         "price": 2.4719,
         "time": "2025-03-26T01:10:38.108779+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "MASKUSDT": {
-        "price": 2.225,
-        "time": "2025-03-26T06:01:09.380020+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "SNXUSDT": {
-        "price": 0.931,
-        "time": "2025-03-26T06:01:10.507311+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     },
