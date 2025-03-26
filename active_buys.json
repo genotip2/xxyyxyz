@@ -166,5 +166,29 @@
         "time": "2025-03-26T14:33:14.510258+07:00",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "RUNEUSDT": {
+        "price": 1.32,
+        "time": "2025-03-26T15:10:41.725422+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "DOTUSDT": {
+        "price": 4.724,
+        "time": "2025-03-26T15:10:44.136445+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "CETUSUSDT": {
+        "price": 0.1195,
+        "time": "2025-03-26T15:10:54.515141+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "BBUSDT": {
+        "price": 0.1602,
+        "time": "2025-03-26T15:11:01.782394+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
