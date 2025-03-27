@@ -15,7 +15,7 @@
         "price": 1311,
         "time": "2025-03-26T12:46:29.871235+07:00",
         "trailing_stop_active": true,
-        "highest_price": 1453
+        "highest_price": 1456
     },
     "PEOPLEUSDT": {
         "price": 0.01859,
@@ -92,6 +92,12 @@
     "TRUUSDT": {
         "price": 0.0422,
         "time": "2025-03-27T10:42:46.968022+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "DOTUSDT": {
+        "price": 4.742,
+        "time": "2025-03-27T10:54:08.022509+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     }
