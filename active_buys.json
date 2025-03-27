@@ -15,7 +15,7 @@
         "price": 1311,
         "time": "2025-03-26T12:46:29.871235+07:00",
         "trailing_stop_active": true,
-        "highest_price": 1411
+        "highest_price": 1437
     },
     "PEOPLEUSDT": {
         "price": 0.01859,
@@ -50,6 +50,24 @@
     "GMTUSDT": {
         "price": 0.0559,
         "time": "2025-03-27T07:37:28.804539+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "DYDXUSDT": {
+        "price": 0.7624,
+        "time": "2025-03-27T09:13:23.419616+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "MASKUSDT": {
+        "price": 2.231,
+        "time": "2025-03-27T09:13:31.843444+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "CKBUSDT": {
+        "price": 0.00571,
+        "time": "2025-03-27T09:13:37.159457+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     }
