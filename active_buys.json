@@ -52,5 +52,11 @@
         "time": "2025-03-27T21:48:33.891357+07:00",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "TRUUSDT": {
+        "price": 0.0426,
+        "time": "2025-03-28T02:46:19.594405+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
