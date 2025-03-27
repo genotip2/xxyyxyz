@@ -9,7 +9,7 @@
         "price": 3.707,
         "time": "2025-03-27T07:37:27.900044+07:00",
         "trailing_stop_active": true,
-        "highest_price": 3.938
+        "highest_price": 3.955
     },
     "ENAUSDT": {
         "price": 0.4303,
@@ -56,6 +56,12 @@
     "TRUUSDT": {
         "price": 0.0426,
         "time": "2025-03-28T02:46:19.594405+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "DOGSUSDT": {
+        "price": 0.0001713,
+        "time": "2025-03-28T03:46:15.439540+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     }
