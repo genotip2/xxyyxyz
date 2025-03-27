@@ -15,7 +15,7 @@
         "price": 1311,
         "time": "2025-03-26T12:46:29.871235+07:00",
         "trailing_stop_active": true,
-        "highest_price": 1463
+        "highest_price": 1482
     },
     "PEOPLEUSDT": {
         "price": 0.01859,
@@ -104,6 +104,12 @@
     "RUNEUSDT": {
         "price": 1.287,
         "time": "2025-03-27T11:09:39.859099+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "ENAUSDT": {
+        "price": 0.4303,
+        "time": "2025-03-27T11:31:50.510910+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     }
