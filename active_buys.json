@@ -11,12 +11,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "BANANAUSDT": {
-        "price": 24.58,
-        "time": "2025-03-26T23:10:04.221339+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "TONUSDT": {
         "price": 3.707,
         "time": "2025-03-27T07:37:27.900044+07:00",
@@ -50,12 +44,6 @@
     "DOGSUSDT": {
         "price": 0.0001718,
         "time": "2025-03-27T11:50:02.186481+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "APTUSDT": {
-        "price": 6.064,
-        "time": "2025-03-27T12:08:03.660163+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     },
