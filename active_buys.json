@@ -5,12 +5,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "ZECUSDT": {
-        "price": 38.21,
-        "time": "2025-03-26T17:48:37.931869+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "TONUSDT": {
         "price": 3.707,
         "time": "2025-03-27T07:37:27.900044+07:00",
