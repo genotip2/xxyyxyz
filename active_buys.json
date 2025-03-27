@@ -52,5 +52,11 @@
         "time": "2025-03-27T16:29:52.865463+07:00",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "BLURUSDT": {
+        "price": 0.1224,
+        "time": "2025-03-27T19:54:40.527716+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
