@@ -15,7 +15,7 @@
         "price": 1311,
         "time": "2025-03-26T12:46:29.871235+07:00",
         "trailing_stop_active": true,
-        "highest_price": 1437
+        "highest_price": 1440
     },
     "PEOPLEUSDT": {
         "price": 0.01859,
@@ -68,6 +68,24 @@
     "CKBUSDT": {
         "price": 0.00571,
         "time": "2025-03-27T09:13:37.159457+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "NOTUSDT": {
+        "price": 0.002748,
+        "time": "2025-03-27T10:05:21.470022+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "LUNCUSDT": {
+        "price": 6.732e-05,
+        "time": "2025-03-27T10:05:35.476794+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "FXSUSDT": {
+        "price": 2.343,
+        "time": "2025-03-27T10:05:41.638439+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     }
