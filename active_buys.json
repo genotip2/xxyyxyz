@@ -5,12 +5,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "PEOPLEUSDT": {
-        "price": 0.01859,
-        "time": "2025-03-26T14:08:31.382790+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "ZECUSDT": {
         "price": 38.21,
         "time": "2025-03-26T17:48:37.931869+07:00",
@@ -35,12 +29,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "MASKUSDT": {
-        "price": 2.231,
-        "time": "2025-03-27T09:13:31.843444+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "CKBUSDT": {
         "price": 0.00571,
         "time": "2025-03-27T09:13:37.159457+07:00",
@@ -56,12 +44,6 @@
     "TRUUSDT": {
         "price": 0.0422,
         "time": "2025-03-27T10:42:46.968022+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "RUNEUSDT": {
-        "price": 1.287,
-        "time": "2025-03-27T11:09:39.859099+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     },
