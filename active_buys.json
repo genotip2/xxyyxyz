@@ -15,7 +15,7 @@
         "price": 1311,
         "time": "2025-03-26T12:46:29.871235+07:00",
         "trailing_stop_active": true,
-        "highest_price": 1456
+        "highest_price": 1463
     },
     "PEOPLEUSDT": {
         "price": 0.01859,
@@ -98,6 +98,12 @@
     "DOTUSDT": {
         "price": 4.742,
         "time": "2025-03-27T10:54:08.022509+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "RUNEUSDT": {
+        "price": 1.287,
+        "time": "2025-03-27T11:09:39.859099+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     }
