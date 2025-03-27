@@ -112,5 +112,11 @@
         "time": "2025-03-27T11:31:50.510910+07:00",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "DOGSUSDT": {
+        "price": 0.0001718,
+        "time": "2025-03-27T11:50:02.186481+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
