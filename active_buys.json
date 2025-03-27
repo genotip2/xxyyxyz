@@ -35,12 +35,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "DYDXUSDT": {
-        "price": 0.7624,
-        "time": "2025-03-27T09:13:23.419616+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "MASKUSDT": {
         "price": 2.231,
         "time": "2025-03-27T09:13:31.843444+07:00",
