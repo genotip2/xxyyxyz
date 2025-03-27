@@ -29,12 +29,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "CKBUSDT": {
-        "price": 0.00571,
-        "time": "2025-03-27T09:13:37.159457+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "NOTUSDT": {
         "price": 0.002748,
         "time": "2025-03-27T10:05:21.470022+07:00",
