@@ -34,5 +34,17 @@
         "time": "2025-03-27T20:40:58.203861+07:00",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "VANAUSDT": {
+        "price": 7.441,
+        "time": "2025-03-27T21:00:41.201886+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "CKBUSDT": {
+        "price": 0.005719,
+        "time": "2025-03-27T21:01:04.264913+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
