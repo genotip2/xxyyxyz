@@ -1,10 +1,4 @@
 {
-    "SUPERUSDT": {
-        "price": 0.594,
-        "time": "2025-03-26T11:31:31.615774+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "TONUSDT": {
         "price": 3.707,
         "time": "2025-03-27T07:37:27.900044+07:00",
@@ -44,12 +38,6 @@
     "BERAUSDT": {
         "price": 8.371,
         "time": "2025-03-27T21:48:10.621798+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "HARDUSDT": {
-        "price": 0.187,
-        "time": "2025-03-27T21:48:33.891357+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     },
