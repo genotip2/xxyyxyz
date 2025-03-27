@@ -1,10 +1,4 @@
 {
-    "MEUSDT": {
-        "price": 1.27,
-        "time": "2025-03-26T07:37:44.308980+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "SUPERUSDT": {
         "price": 0.594,
         "time": "2025-03-26T11:31:31.615774+07:00",
