@@ -71,12 +71,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "DOTUSDT": {
-        "price": 4.742,
-        "time": "2025-03-27T10:54:08.022509+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "RUNEUSDT": {
         "price": 1.287,
         "time": "2025-03-27T11:09:39.859099+07:00",
@@ -98,12 +92,6 @@
     "APTUSDT": {
         "price": 6.064,
         "time": "2025-03-27T12:08:03.660163+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "HARDUSDT": {
-        "price": 0.1875,
-        "time": "2025-03-27T14:01:23.475270+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     }
