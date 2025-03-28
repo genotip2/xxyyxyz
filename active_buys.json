@@ -5,12 +5,6 @@
         "trailing_stop_active": true,
         "highest_price": 4.06
     },
-    "ENAUSDT": {
-        "price": 0.4303,
-        "time": "2025-03-27T11:31:50.510910+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "BLURUSDT": {
         "price": 0.1224,
         "time": "2025-03-27T19:54:40.527716+07:00",
@@ -20,12 +14,6 @@
     "FDUSDUSDT": {
         "price": 0.9999,
         "time": "2025-03-27T20:40:58.203861+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "VANAUSDT": {
-        "price": 7.441,
-        "time": "2025-03-27T21:00:41.201886+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     },
