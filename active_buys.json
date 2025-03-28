@@ -23,12 +23,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "VANRYUSDT": {
-        "price": 0.0353,
-        "time": "2025-03-28T07:37:28.237324+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "PAXGUSDT": {
         "price": 3076,
         "time": "2025-03-28T09:14:19.886827+07:00",
