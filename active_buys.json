@@ -11,12 +11,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "BERAUSDT": {
-        "price": 8.371,
-        "time": "2025-03-27T21:48:10.621798+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "PAXGUSDT": {
         "price": 3076,
         "time": "2025-03-28T09:14:19.886827+07:00",
