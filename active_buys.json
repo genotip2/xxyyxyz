@@ -16,11 +16,5 @@
         "time": "2025-03-28T09:14:19.886827+07:00",
         "trailing_stop_active": false,
         "highest_price": null
-    },
-    "EOSUSDT": {
-        "price": 0.5976,
-        "time": "2025-03-28T15:34:19.618716+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
     }
 }
