@@ -16,11 +16,5 @@
         "time": "2025-03-28T22:45:58.912453+07:00",
         "trailing_stop_active": false,
         "highest_price": null
-    },
-    "BERAUSDT": {
-        "price": 8.839,
-        "time": "2025-03-29T09:11:49.332946+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
     }
 }
