@@ -22,5 +22,11 @@
         "time": "2025-03-31T02:00:58.885226+07:00",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "ZECUSDT": {
+        "price": 37.64,
+        "time": "2025-03-31T04:46:10.614386+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
