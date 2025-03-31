@@ -1,10 +1,4 @@
 {
-    "EOSUSDT": {
-        "price": 0.588,
-        "time": "2025-03-30T11:32:30.075025+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "ZROUSDT": {
         "price": 2.823,
         "time": "2025-03-30T21:45:46.968656+07:00",
