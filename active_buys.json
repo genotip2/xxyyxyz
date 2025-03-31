@@ -40,5 +40,11 @@
         "time": "2025-04-01T03:09:00.332006+07:00",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "ZROUSDT": {
+        "price": 2.815,
+        "time": "2025-04-01T06:07:31.245079+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
