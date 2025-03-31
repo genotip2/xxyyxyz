@@ -22,5 +22,11 @@
         "time": "2025-03-31T04:46:10.614386+07:00",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "TRXUSDT": {
+        "price": 0.2335,
+        "time": "2025-03-31T11:10:06.801760+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
