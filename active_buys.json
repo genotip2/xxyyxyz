@@ -23,12 +23,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "EOSUSDT": {
-        "price": 0.6018,
-        "time": "2025-03-31T16:30:18.069719+07:00",
-        "trailing_stop_active": true,
-        "highest_price": 0.6429
-    },
     "PENDLEUSDT": {
         "price": 2.558,
         "time": "2025-03-31T19:14:26.894019+07:00",
@@ -38,6 +32,12 @@
     "MASKUSDT": {
         "price": 2.199,
         "time": "2025-03-31T21:32:02.422468+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "CRVUSDT": {
+        "price": 0.4996,
+        "time": "2025-03-31T23:09:40.647694+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     }
