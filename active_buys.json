@@ -29,12 +29,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "MASKUSDT": {
-        "price": 2.199,
-        "time": "2025-03-31T21:32:02.422468+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "CRVUSDT": {
         "price": 0.4996,
         "time": "2025-03-31T23:09:40.647694+07:00",
