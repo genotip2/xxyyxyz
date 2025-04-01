@@ -27,19 +27,13 @@
         "price": 2.558,
         "time": "2025-03-31T19:14:26.894019+07:00",
         "trailing_stop_active": true,
-        "highest_price": 2.844
+        "highest_price": 2.846
     },
     "CRVUSDT": {
         "price": 0.4996,
         "time": "2025-03-31T23:09:40.647694+07:00",
         "trailing_stop_active": true,
         "highest_price": 0.5327
-    },
-    "MKRUSDT": {
-        "price": 1326,
-        "time": "2025-04-01T03:09:00.332006+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
     },
     "ZROUSDT": {
         "price": 2.815,
