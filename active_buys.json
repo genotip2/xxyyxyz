@@ -2,8 +2,8 @@
     "ZECUSDT": {
         "price": 37.64,
         "time": "2025-03-31T04:46:10.614386+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 40.08
     },
     "PAXGUSDT": {
         "price": 3136,
@@ -15,7 +15,7 @@
         "price": 2.558,
         "time": "2025-03-31T19:14:26.894019+07:00",
         "trailing_stop_active": true,
-        "highest_price": 2.911
+        "highest_price": 2.918
     },
     "RENDERUSDT": {
         "price": 3.501,
