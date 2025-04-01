@@ -3,13 +3,13 @@
         "price": 37.64,
         "time": "2025-03-31T04:46:10.614386+07:00",
         "trailing_stop_active": true,
-        "highest_price": 41.42
+        "highest_price": 41.73
     },
     "PENDLEUSDT": {
         "price": 2.558,
         "time": "2025-03-31T19:14:26.894019+07:00",
         "trailing_stop_active": true,
-        "highest_price": 2.964
+        "highest_price": 2.965
     },
     "RENDERUSDT": {
         "price": 3.501,
@@ -26,8 +26,8 @@
     "MKRUSDT": {
         "price": 1319,
         "time": "2025-04-01T14:09:07.658475+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 1403
     },
     "PEPEUSDT": {
         "price": 7.7e-06,
