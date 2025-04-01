@@ -53,12 +53,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "MASKUSDT": {
-        "price": 2.309,
-        "time": "2025-04-01T23:52:53.911947+07:00",
-        "trailing_stop_active": true,
-        "highest_price": 2.476
-    },
     "TRXUSDT": {
         "price": 0.2367,
         "time": "2025-04-02T00:39:06.773059+07:00",
