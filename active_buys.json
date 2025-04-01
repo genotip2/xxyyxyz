@@ -27,13 +27,13 @@
         "price": 2.558,
         "time": "2025-03-31T19:14:26.894019+07:00",
         "trailing_stop_active": true,
-        "highest_price": 2.879
+        "highest_price": 2.907
     },
     "CRVUSDT": {
         "price": 0.4996,
         "time": "2025-03-31T23:09:40.647694+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.5343
+        "highest_price": 0.5373
     },
     "RENDERUSDT": {
         "price": 3.501,
@@ -50,6 +50,18 @@
     "HMSTRUSDT": {
         "price": 0.002243,
         "time": "2025-04-01T12:01:47.954888+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "BEAMXUSDT": {
+        "price": 0.00713,
+        "time": "2025-04-01T13:40:44.913176+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "SUPERUSDT": {
+        "price": 0.5133,
+        "time": "2025-04-01T13:40:46.621260+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     }
