@@ -29,12 +29,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "HMSTRUSDT": {
-        "price": 0.00222,
-        "time": "2025-04-01T18:24:33.202033+07:00",
-        "trailing_stop_active": true,
-        "highest_price": 0.002359
-    },
     "ZROUSDT": {
         "price": 2.822,
         "time": "2025-04-01T22:30:29.621603+07:00",
