@@ -35,12 +35,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "RSRUSDT": {
-        "price": 0.006364,
-        "time": "2025-04-01T10:28:50.693237+07:00",
-        "trailing_stop_active": true,
-        "highest_price": 0.006795
-    },
     "BEAMXUSDT": {
         "price": 0.00713,
         "time": "2025-04-01T13:40:44.913176+07:00",
@@ -68,6 +62,12 @@
     "JTOUSDT": {
         "price": 2.389,
         "time": "2025-04-01T17:34:25.992436+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "HMSTRUSDT": {
+        "price": 0.00222,
+        "time": "2025-04-01T18:24:33.202033+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     }
