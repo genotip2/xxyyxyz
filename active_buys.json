@@ -14,8 +14,8 @@
     "SUPERUSDT": {
         "price": 0.5184,
         "time": "2025-04-02T21:01:00.793758+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 0.5501
     },
     "RENDERUSDT": {
         "price": 3.638,
