@@ -29,12 +29,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "CRVUSDT": {
-        "price": 0.5425,
-        "time": "2025-04-04T15:11:06.829836+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "MKRUSDT": {
         "price": 1338,
         "time": "2025-04-04T16:38:32.439386+07:00",
