@@ -1,10 +1,4 @@
 {
-    "ATOMUSDT": {
-        "price": 4.794,
-        "time": "2025-04-04T10:51:56.440713+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "ZROUSDT": {
         "price": 2.934,
         "time": "2025-04-04T11:09:58.741306+07:00",
