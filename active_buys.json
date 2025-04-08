@@ -5,12 +5,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "EOSUSDT": {
-        "price": 0.7671,
-        "time": "2025-04-08T07:37:37.867035+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "PENDLEUSDT": {
         "price": 2.875,
         "time": "2025-04-08T11:33:39.559689+07:00",
