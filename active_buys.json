@@ -4,5 +4,11 @@
         "time": "2025-04-07T21:01:27.720599+07:00",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "EOSUSDT": {
+        "price": 0.7671,
+        "time": "2025-04-08T07:37:37.867035+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
