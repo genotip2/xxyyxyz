@@ -5,12 +5,6 @@
         "trailing_stop_active": true,
         "highest_price": 3.362
     },
-    "USDCUSDT": {
-        "price": 1.0008,
-        "time": "2025-04-09T22:09:57.203004+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "RSRUSDT": {
         "price": 0.006917,
         "time": "2025-04-10T00:29:04.412924+07:00",
