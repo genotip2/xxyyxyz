@@ -3,13 +3,13 @@
         "price": 2.925,
         "time": "2025-04-09T13:12:05.238301+07:00",
         "trailing_stop_active": true,
-        "highest_price": 3.428
+        "highest_price": 3.438
     },
     "RSRUSDT": {
         "price": 0.006917,
         "time": "2025-04-10T00:29:04.412924+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.007382
+        "highest_price": 0.00749
     },
     "TRXUSDT": {
         "price": 0.2377,
