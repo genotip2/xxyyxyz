@@ -16,5 +16,11 @@
         "time": "2025-04-10T23:09:17.245204+07:00",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "CRVUSDT": {
+        "price": 0.5333,
+        "time": "2025-04-11T04:07:20.918770+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
