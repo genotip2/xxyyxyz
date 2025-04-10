@@ -1,10 +1,4 @@
 {
-    "PENDLEUSDT": {
-        "price": 2.925,
-        "time": "2025-04-09T13:12:05.238301+07:00",
-        "trailing_stop_active": true,
-        "highest_price": 3.438
-    },
     "RSRUSDT": {
         "price": 0.006917,
         "time": "2025-04-10T00:29:04.412924+07:00",
@@ -14,6 +8,12 @@
     "TRXUSDT": {
         "price": 0.2377,
         "time": "2025-04-10T03:11:34.549481+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "MKRUSDT": {
+        "price": 1380,
+        "time": "2025-04-10T07:37:39.261661+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     }
