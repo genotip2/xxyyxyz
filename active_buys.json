@@ -10,5 +10,11 @@
         "time": "2025-04-10T20:20:45.260612+07:00",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "USDCUSDT": {
+        "price": 1.0006,
+        "time": "2025-04-10T23:09:17.245204+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
