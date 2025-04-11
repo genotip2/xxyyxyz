@@ -15,11 +15,17 @@
         "price": 0.5333,
         "time": "2025-04-11T04:07:20.918770+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.5693
+        "highest_price": 0.5832
     },
     "PAXGUSDT": {
         "price": 3235,
         "time": "2025-04-11T07:38:37.859638+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "PENDLEUSDT": {
+        "price": 3.363,
+        "time": "2025-04-11T09:15:33.799685+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     }
