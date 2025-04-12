@@ -1,10 +1,4 @@
 {
-    "PAXGUSDT": {
-        "price": 3235,
-        "time": "2025-04-11T07:38:37.859638+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "TRXUSDT": {
         "price": 0.2374,
         "time": "2025-04-11T16:00:55.045438+07:00",
@@ -20,8 +14,8 @@
     "USUALUSDT": {
         "price": 0.1626,
         "time": "2025-04-12T15:00:51.368256+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 0.1884
     },
     "MKRUSDT": {
         "price": 1353,
