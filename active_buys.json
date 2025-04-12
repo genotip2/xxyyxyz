@@ -10,5 +10,11 @@
         "time": "2025-04-11T16:00:55.045438+07:00",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "RENDERUSDT": {
+        "price": 3.866,
+        "time": "2025-04-12T14:01:02.324756+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
