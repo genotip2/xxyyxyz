@@ -22,5 +22,11 @@
         "time": "2025-04-12T18:21:19.838384+07:00",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "PENDLEUSDT": {
+        "price": 3.383,
+        "time": "2025-04-12T23:08:11.217965+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
