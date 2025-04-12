@@ -29,12 +29,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "JASMYUSDT": {
-        "price": 0.01613,
-        "time": "2025-04-12T18:21:18.784173+07:00",
-        "trailing_stop_active": true,
-        "highest_price": 0.01754
-    },
     "RSRUSDT": {
         "price": 0.007644,
         "time": "2025-04-12T18:21:19.838384+07:00",
