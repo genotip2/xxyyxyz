@@ -11,12 +11,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "PENDLEUSDT": {
-        "price": 3.383,
-        "time": "2025-04-12T23:08:11.217965+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "HMSTRUSDT": {
         "price": 0.002578,
         "time": "2025-04-13T11:04:29.301571+07:00",
