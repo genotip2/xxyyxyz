@@ -1,10 +1,4 @@
 {
-    "HMSTRUSDT": {
-        "price": 0.002578,
-        "time": "2025-04-13T11:04:29.301571+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "MKRUSDT": {
         "price": 1395,
         "time": "2025-04-14T01:09:50.032799+07:00",
