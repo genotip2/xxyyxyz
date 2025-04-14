@@ -2,8 +2,8 @@
     "MANAUSDT": {
         "price": 0.2737,
         "time": "2025-04-14T07:41:55.423445+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 0.2913
     },
     "BCHUSDT": {
         "price": 353.1,
