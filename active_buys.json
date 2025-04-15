@@ -4,11 +4,5 @@
         "time": "2025-04-15T13:51:52.548408+07:00",
         "trailing_stop_active": false,
         "highest_price": null
-    },
-    "WBTCUSDT": {
-        "price": 86340.77,
-        "time": "2025-04-15T20:51:05.374507+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
     }
 }
