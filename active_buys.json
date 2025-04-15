@@ -2,8 +2,8 @@
     "LISTAUSDT": {
         "price": 0.1926,
         "time": "2025-04-15T07:39:53.196065+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 0.2069
     },
     "CVCUSDT": {
         "price": 0.1098,
