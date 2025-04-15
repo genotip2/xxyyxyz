@@ -2,8 +2,8 @@
     "ACHUSDT": {
         "price": 0.02663,
         "time": "2025-04-15T07:39:21.789099+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 0.02839
     },
     "LISTAUSDT": {
         "price": 0.1926,
