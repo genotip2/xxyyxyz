@@ -10,5 +10,11 @@
         "time": "2025-04-16T11:10:09.209458+07:00",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "FDUSDUSDT": {
+        "price": 0.9981,
+        "time": "2025-04-16T18:00:40.919678+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
