@@ -2,8 +2,8 @@
     "DEGOUSDT": {
         "price": 1.9,
         "time": "2025-04-16T07:39:35.864470+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 2.02
     },
     "PAXGUSDT": {
         "price": 3301,
