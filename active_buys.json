@@ -26,7 +26,7 @@
     "MBLUSDT": {
         "price": 0.00227,
         "time": "2025-04-16T09:18:19.583440+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 0.002428
     }
 }
