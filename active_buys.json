@@ -17,12 +17,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "ANIMEUSDT": {
-        "price": 0.02116,
-        "time": "2025-04-16T09:18:02.770351+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "PAXGUSDT": {
         "price": 3301,
         "time": "2025-04-16T11:10:09.209458+07:00",
