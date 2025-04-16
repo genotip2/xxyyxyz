@@ -23,10 +23,10 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "MBLUSDT": {
-        "price": 0.00227,
-        "time": "2025-04-16T09:18:19.583440+07:00",
-        "trailing_stop_active": true,
-        "highest_price": 0.002428
+    "PAXGUSDT": {
+        "price": 3301,
+        "time": "2025-04-16T11:10:09.209458+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
