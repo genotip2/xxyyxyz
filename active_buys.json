@@ -16,5 +16,17 @@
         "time": "2025-04-16T07:39:35.864470+07:00",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "ANIMEUSDT": {
+        "price": 0.02116,
+        "time": "2025-04-16T09:18:02.770351+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "MBLUSDT": {
+        "price": 0.00227,
+        "time": "2025-04-16T09:18:19.583440+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
