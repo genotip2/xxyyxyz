@@ -22,5 +22,17 @@
         "time": "2025-04-17T09:16:45.924997+07:00",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "SOLUSDT": {
+        "price": 134.7,
+        "time": "2025-04-17T13:51:25.903337+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "BNSOLUSDT": {
+        "price": 140.8,
+        "time": "2025-04-17T13:51:38.394952+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
