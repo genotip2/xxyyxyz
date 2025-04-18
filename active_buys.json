@@ -70,5 +70,17 @@
         "time": "2025-04-18T15:11:00.706499+07:00",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "AVAXUSDT": {
+        "price": 19.28,
+        "time": "2025-04-18T15:50:28.165178+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "1MBABYDOGEUSDT": {
+        "price": 0.0013994,
+        "time": "2025-04-18T15:50:49.612187+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
