@@ -1,16 +1,4 @@
 {
-    "SOLUSDT": {
-        "price": 134.7,
-        "time": "2025-04-17T13:51:25.903337+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "BNSOLUSDT": {
-        "price": 140.8,
-        "time": "2025-04-17T13:51:38.394952+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "RENDERUSDT": {
         "price": 3.953,
         "time": "2025-04-17T19:14:20.359112+07:00",
