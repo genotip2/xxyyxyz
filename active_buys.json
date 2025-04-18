@@ -23,12 +23,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "BCHUSDT": {
-        "price": 334.6,
-        "time": "2025-04-17T19:14:22.600033+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "HMSTRUSDT": {
         "price": 0.002526,
         "time": "2025-04-17T19:14:36.044554+07:00",
@@ -50,6 +44,12 @@
     "FETUSDT": {
         "price": 0.502,
         "time": "2025-04-18T07:37:49.592737+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "HIVEUSDT": {
+        "price": 0.2368,
+        "time": "2025-04-18T11:10:40.092656+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     }
