@@ -47,12 +47,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "SUPERUSDT": {
-        "price": 0.5306,
-        "time": "2025-04-18T15:11:00.706499+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "BCHUSDT": {
         "price": 337.6,
         "time": "2025-04-18T19:53:04.527609+07:00",
