@@ -1,10 +1,4 @@
 {
-    "FDUSDUSDT": {
-        "price": 0.9981,
-        "time": "2025-04-16T21:00:56.465849+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "SOLUSDT": {
         "price": 134.7,
         "time": "2025-04-17T13:51:25.903337+07:00",
