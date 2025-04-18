@@ -52,5 +52,11 @@
         "time": "2025-04-18T11:10:40.092656+07:00",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "MANAUSDT": {
+        "price": 0.2796,
+        "time": "2025-04-18T11:51:08.702087+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
