@@ -38,8 +38,8 @@
     "TAOUSDT": {
         "price": 249.2,
         "time": "2025-04-18T07:37:46.030818+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 265.3
     },
     "FETUSDT": {
         "price": 0.502,
@@ -68,6 +68,12 @@
     "SUPERUSDT": {
         "price": 0.5306,
         "time": "2025-04-18T15:11:00.706499+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "BCHUSDT": {
+        "price": 337.6,
+        "time": "2025-04-18T19:53:04.527609+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     }
