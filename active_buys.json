@@ -99,7 +99,7 @@
         "price": 0.01859,
         "time": "2025-04-19T11:09:16.352310+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.0201
+        "highest_price": 0.02034
     },
     "LISTAUSDT": {
         "price": 0.1977,
@@ -116,6 +116,24 @@
     "RENDERUSDT": {
         "price": 4.012,
         "time": "2025-04-19T14:30:36.659984+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "BTCUSDT": {
+        "price": 85231.7,
+        "time": "2025-04-19T14:45:23.468116+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "WBTCUSDT": {
+        "price": 85227.4,
+        "time": "2025-04-19T14:45:32.581321+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "CRVUSDT": {
+        "price": 0.6243,
+        "time": "2025-04-19T14:45:33.917953+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     }
