@@ -23,12 +23,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "GLMUSDT": {
-        "price": 0.2676,
-        "time": "2025-04-18T13:38:28.363292+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "BCHUSDT": {
         "price": 337.6,
         "time": "2025-04-18T19:53:04.527609+07:00",
