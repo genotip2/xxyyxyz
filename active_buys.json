@@ -3,7 +3,7 @@
         "price": 0.502,
         "time": "2025-04-18T07:37:49.592737+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.558
+        "highest_price": 0.564
     },
     "QTUMUSDT": {
         "price": 2.12,
@@ -74,6 +74,12 @@
     "PEPEUSDT": {
         "price": 7.39e-06,
         "time": "2025-04-19T23:07:44.112309+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "RSRUSDT": {
+        "price": 0.007374,
+        "time": "2025-04-20T01:09:32.724175+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     }
