@@ -82,5 +82,11 @@
         "time": "2025-04-19T20:32:16.687103+07:00",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "GLMUSDT": {
+        "price": 0.2716,
+        "time": "2025-04-19T22:01:06.101379+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
