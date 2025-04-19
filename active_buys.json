@@ -3,7 +3,7 @@
         "price": 0.502,
         "time": "2025-04-18T07:37:49.592737+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.547
+        "highest_price": 0.549
     },
     "BCHUSDT": {
         "price": 337.6,
@@ -74,6 +74,12 @@
     "WBTCUSDT": {
         "price": 85227.4,
         "time": "2025-04-19T14:45:32.581321+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "SUPERUSDT": {
+        "price": 0.5311,
+        "time": "2025-04-19T20:32:16.687103+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     }
