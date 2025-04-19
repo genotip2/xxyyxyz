@@ -5,12 +5,6 @@
         "trailing_stop_active": true,
         "highest_price": 0.551
     },
-    "BCHUSDT": {
-        "price": 337.6,
-        "time": "2025-04-18T19:53:04.527609+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "QTUMUSDT": {
         "price": 2.12,
         "time": "2025-04-18T20:46:21.140407+07:00",
