@@ -5,12 +5,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "TAOUSDT": {
-        "price": 249.2,
-        "time": "2025-04-18T07:37:46.030818+07:00",
-        "trailing_stop_active": true,
-        "highest_price": 287.4
-    },
     "FETUSDT": {
         "price": 0.502,
         "time": "2025-04-18T07:37:49.592737+07:00",
@@ -32,12 +26,6 @@
     "QTUMUSDT": {
         "price": 2.12,
         "time": "2025-04-18T20:46:21.140407+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "PEPEUSDT": {
-        "price": 7.26e-06,
-        "time": "2025-04-19T03:00:38.558132+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     },
@@ -68,12 +56,6 @@
     "BNSOLUSDT": {
         "price": 143.9,
         "time": "2025-04-19T10:03:43.484424+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "SUPERUSDT": {
-        "price": 0.5315,
-        "time": "2025-04-19T10:03:44.892768+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     },
