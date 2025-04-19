@@ -41,12 +41,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "LISTAUSDT": {
-        "price": 0.1977,
-        "time": "2025-04-19T12:01:49.434657+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "RENDERUSDT": {
         "price": 4.012,
         "time": "2025-04-19T14:30:36.659984+07:00",
