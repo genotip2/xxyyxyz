@@ -5,12 +5,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "RSRUSDT": {
-        "price": 0.007185,
-        "time": "2025-04-18T01:11:14.844791+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "TAOUSDT": {
         "price": 249.2,
         "time": "2025-04-18T07:37:46.030818+07:00",
@@ -105,7 +99,7 @@
         "price": 0.01368,
         "time": "2025-04-19T13:10:34.347533+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.01478
+        "highest_price": 0.01507
     },
     "RENDERUSDT": {
         "price": 4.012,
