@@ -14,8 +14,8 @@
     "AVAXUSDT": {
         "price": 19.16,
         "time": "2025-04-19T03:00:39.791305+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 20.32
     },
     "MKRUSDT": {
         "price": 1361,
@@ -44,8 +44,8 @@
     "RENDERUSDT": {
         "price": 4.012,
         "time": "2025-04-19T14:30:36.659984+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 4.261
     },
     "BTCUSDT": {
         "price": 85231.7,
