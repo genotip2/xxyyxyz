@@ -15,7 +15,7 @@
         "price": 249.2,
         "time": "2025-04-18T07:37:46.030818+07:00",
         "trailing_stop_active": true,
-        "highest_price": 285.6
+        "highest_price": 287.4
     },
     "FETUSDT": {
         "price": 0.502,
@@ -104,8 +104,8 @@
     "JASMYUSDT": {
         "price": 0.01368,
         "time": "2025-04-19T13:10:34.347533+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 0.01478
     },
     "RENDERUSDT": {
         "price": 4.012,
