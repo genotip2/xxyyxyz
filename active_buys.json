@@ -29,12 +29,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "ALGOUSDT": {
-        "price": 0.1939,
-        "time": "2025-04-19T10:03:26.119517+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "BNSOLUSDT": {
         "price": 143.9,
         "time": "2025-04-19T10:03:43.484424+07:00",
