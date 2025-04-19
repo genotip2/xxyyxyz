@@ -98,8 +98,8 @@
     "ANIMEUSDT": {
         "price": 0.01859,
         "time": "2025-04-19T11:09:16.352310+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 0.0201
     },
     "LISTAUSDT": {
         "price": 0.1977,
