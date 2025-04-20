@@ -53,12 +53,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "KDAUSDT": {
-        "price": 0.4734,
-        "time": "2025-04-20T12:30:09.303133+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "COTIUSDT": {
         "price": 0.0708,
         "time": "2025-04-20T15:09:31.923821+07:00",
