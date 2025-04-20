@@ -28,5 +28,17 @@
         "time": "2025-04-20T23:48:35.294324+07:00",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "RSRUSDT": {
+        "price": 0.007374,
+        "time": "2025-04-21T00:01:03.846197+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "TURBOUSDT": {
+        "price": 0.00212,
+        "time": "2025-04-21T00:01:07.658272+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
