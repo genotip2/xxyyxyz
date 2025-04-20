@@ -1,10 +1,4 @@
 {
-    "MKRUSDT": {
-        "price": 1361,
-        "time": "2025-04-19T03:00:40.490491+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "SOLUSDT": {
         "price": 135.87,
         "time": "2025-04-19T09:11:11.074577+07:00",
@@ -22,12 +16,6 @@
         "time": "2025-04-19T10:03:53.171834+07:00",
         "trailing_stop_active": false,
         "highest_price": null
-    },
-    "RENDERUSDT": {
-        "price": 4.012,
-        "time": "2025-04-19T14:30:36.659984+07:00",
-        "trailing_stop_active": true,
-        "highest_price": 4.433
     },
     "SUPERUSDT": {
         "price": 0.5311,
@@ -56,12 +44,6 @@
     "FDUSDUSDT": {
         "price": 0.999,
         "time": "2025-04-20T03:00:46.196097+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "HIVEUSDT": {
-        "price": 0.2455,
-        "time": "2025-04-20T05:45:49.772270+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     },
