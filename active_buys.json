@@ -1,10 +1,4 @@
 {
-    "FETUSDT": {
-        "price": 0.502,
-        "time": "2025-04-18T07:37:49.592737+07:00",
-        "trailing_stop_active": true,
-        "highest_price": 0.571
-    },
     "QTUMUSDT": {
         "price": 2.12,
         "time": "2025-04-18T20:46:21.140407+07:00",
@@ -98,6 +92,36 @@
     "HIVEUSDT": {
         "price": 0.2455,
         "time": "2025-04-20T05:45:49.772270+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "RUNEUSDT": {
+        "price": 1.177,
+        "time": "2025-04-20T07:42:05.485740+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "VETUSDT": {
+        "price": 0.02364,
+        "time": "2025-04-20T07:42:11.832941+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "TURBOUSDT": {
+        "price": 0.002064,
+        "time": "2025-04-20T07:42:15.075749+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "RIFUSDT": {
+        "price": 0.0421,
+        "time": "2025-04-20T07:42:19.035334+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "ONEUSDT": {
+        "price": 0.01134,
+        "time": "2025-04-20T07:42:21.068729+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     }
