@@ -11,45 +11,15 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "MANAUSDT": {
-        "price": 0.2827,
-        "time": "2025-04-19T10:03:53.171834+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "SUPERUSDT": {
-        "price": 0.5311,
-        "time": "2025-04-19T20:32:16.687103+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "PEPEUSDT": {
-        "price": 7.39e-06,
-        "time": "2025-04-19T23:07:44.112309+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "RUNEUSDT": {
         "price": 1.177,
         "time": "2025-04-20T07:42:05.485740+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "TURBOUSDT": {
-        "price": 0.002064,
-        "time": "2025-04-20T07:42:15.075749+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "RIFUSDT": {
         "price": 0.0421,
         "time": "2025-04-20T07:42:19.035334+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "ONEUSDT": {
-        "price": 0.01134,
-        "time": "2025-04-20T07:42:21.068729+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     },
