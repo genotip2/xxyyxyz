@@ -53,12 +53,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "1MBABYDOGEUSDT": {
-        "price": 0.001282,
-        "time": "2025-04-20T12:01:11.382087+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "KDAUSDT": {
         "price": 0.4734,
         "time": "2025-04-20T12:30:09.303133+07:00",
