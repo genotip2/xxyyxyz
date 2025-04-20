@@ -33,7 +33,7 @@
         "price": 4.012,
         "time": "2025-04-19T14:30:36.659984+07:00",
         "trailing_stop_active": true,
-        "highest_price": 4.39
+        "highest_price": 4.399
     },
     "BTCUSDT": {
         "price": 85231.7,
@@ -128,6 +128,12 @@
     "1MBABYDOGEUSDT": {
         "price": 0.001282,
         "time": "2025-04-20T12:01:11.382087+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "KDAUSDT": {
+        "price": 0.4734,
+        "time": "2025-04-20T12:30:09.303133+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     }
