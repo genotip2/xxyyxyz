@@ -41,12 +41,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "ACHUSDT": {
-        "price": 0.02751,
-        "time": "2025-04-21T01:09:29.874383+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "ALGOUSDT": {
         "price": 0.1947,
         "time": "2025-04-21T01:09:33.942684+07:00",
