@@ -1,16 +1,4 @@
 {
-    "SOLUSDT": {
-        "price": 135.87,
-        "time": "2025-04-19T09:11:11.074577+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "BNSOLUSDT": {
-        "price": 143.9,
-        "time": "2025-04-19T10:03:43.484424+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "RUNEUSDT": {
         "price": 1.177,
         "time": "2025-04-20T07:42:05.485740+07:00",
