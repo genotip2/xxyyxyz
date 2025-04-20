@@ -33,7 +33,7 @@
         "price": 4.012,
         "time": "2025-04-19T14:30:36.659984+07:00",
         "trailing_stop_active": true,
-        "highest_price": 4.355
+        "highest_price": 4.382
     },
     "BTCUSDT": {
         "price": 85231.7,
@@ -116,6 +116,12 @@
     "ONEUSDT": {
         "price": 0.01134,
         "time": "2025-04-20T07:42:21.068729+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "BCHUSDT": {
+        "price": 341.2,
+        "time": "2025-04-20T11:31:12.234719+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     }
