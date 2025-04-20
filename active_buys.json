@@ -58,5 +58,23 @@
         "time": "2025-04-21T01:34:13.115350+07:00",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "VETUSDT": {
+        "price": 0.02374,
+        "time": "2025-04-21T03:07:45.136534+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "SUPERUSDT": {
+        "price": 0.5471,
+        "time": "2025-04-21T03:07:51.337567+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "MANAUSDT": {
+        "price": 0.286,
+        "time": "2025-04-21T03:07:54.957529+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
