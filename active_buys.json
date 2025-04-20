@@ -29,18 +29,6 @@
         "trailing_stop_active": true,
         "highest_price": 4.433
     },
-    "BTCUSDT": {
-        "price": 85231.7,
-        "time": "2025-04-19T14:45:23.468116+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "WBTCUSDT": {
-        "price": 85227.4,
-        "time": "2025-04-19T14:45:32.581321+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "SUPERUSDT": {
         "price": 0.5311,
         "time": "2025-04-19T20:32:16.687103+07:00",
@@ -68,12 +56,6 @@
     "FDUSDUSDT": {
         "price": 0.999,
         "time": "2025-04-20T03:00:46.196097+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "ALGOUSDT": {
-        "price": 0.1938,
-        "time": "2025-04-20T03:27:21.412339+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     },
