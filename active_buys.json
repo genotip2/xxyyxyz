@@ -58,5 +58,11 @@
         "time": "2025-04-21T01:09:57.061762+07:00",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "MEMEUSDT": {
+        "price": 0.00229,
+        "time": "2025-04-21T01:34:13.115350+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
