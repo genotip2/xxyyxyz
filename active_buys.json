@@ -65,12 +65,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "MANAUSDT": {
-        "price": 0.286,
-        "time": "2025-04-21T03:07:54.957529+07:00",
-        "trailing_stop_active": true,
-        "highest_price": 0.3345
-    },
     "SUPERUSDT": {
         "price": 0.5378,
         "time": "2025-04-21T06:07:11.955165+07:00",
