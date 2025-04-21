@@ -149,12 +149,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "PIXELUSDT": {
-        "price": 0.03282,
-        "time": "2025-04-21T15:36:36.900613+07:00",
-        "trailing_stop_active": true,
-        "highest_price": 0.04393
-    },
     "DEGOUSDT": {
         "price": 1.857,
         "time": "2025-04-21T15:36:40.051153+07:00",
