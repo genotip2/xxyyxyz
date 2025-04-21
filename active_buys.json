@@ -89,12 +89,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "DEGOUSDT": {
-        "price": 1.857,
-        "time": "2025-04-21T15:36:40.051153+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "1MBABYDOGEUSDT": {
         "price": 0.0013126,
         "time": "2025-04-21T15:52:31.413142+07:00",
@@ -110,6 +104,12 @@
     "TRUUSDT": {
         "price": 0.0363,
         "time": "2025-04-21T21:30:33.960548+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "RSRUSDT": {
+        "price": 0.007769,
+        "time": "2025-04-22T00:39:30.535751+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     }
