@@ -5,12 +5,6 @@
         "trailing_stop_active": true,
         "highest_price": 1.248
     },
-    "RIFUSDT": {
-        "price": 0.0421,
-        "time": "2025-04-20T07:42:19.035334+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "COTIUSDT": {
         "price": 0.0708,
         "time": "2025-04-20T15:09:31.923821+07:00",
