@@ -190,5 +190,11 @@
         "time": "2025-04-21T15:36:40.051153+07:00",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "1MBABYDOGEUSDT": {
+        "price": 0.0013126,
+        "time": "2025-04-21T15:52:31.413142+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
