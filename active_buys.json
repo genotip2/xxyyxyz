@@ -39,7 +39,7 @@
         "price": 0.00212,
         "time": "2025-04-21T00:01:07.658272+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.002254
+        "highest_price": 0.0023
     },
     "ALGOUSDT": {
         "price": 0.1947,
@@ -176,6 +176,18 @@
     "HMSTRUSDT": {
         "price": 0.002654,
         "time": "2025-04-21T15:12:13.365961+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "PIXELUSDT": {
+        "price": 0.03282,
+        "time": "2025-04-21T15:36:36.900613+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "DEGOUSDT": {
+        "price": 1.857,
+        "time": "2025-04-21T15:36:40.051153+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     }
