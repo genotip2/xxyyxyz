@@ -53,12 +53,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "MEMEUSDT": {
-        "price": 0.00229,
-        "time": "2025-04-21T01:34:13.115350+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "VETUSDT": {
         "price": 0.02374,
         "time": "2025-04-21T03:07:45.136534+07:00",
