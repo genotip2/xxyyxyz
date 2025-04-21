@@ -2,8 +2,8 @@
     "RUNEUSDT": {
         "price": 1.177,
         "time": "2025-04-20T07:42:05.485740+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 1.248
     },
     "RIFUSDT": {
         "price": 0.0421,
