@@ -35,12 +35,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "TURBOUSDT": {
-        "price": 0.00212,
-        "time": "2025-04-21T00:01:07.658272+07:00",
-        "trailing_stop_active": true,
-        "highest_price": 0.0023
-    },
     "ALGOUSDT": {
         "price": 0.1947,
         "time": "2025-04-21T01:09:33.942684+07:00",
@@ -158,12 +152,6 @@
     "ARKMUSDT": {
         "price": 0.534,
         "time": "2025-04-21T13:11:48.671787+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "SANDUSDT": {
-        "price": 0.2901,
-        "time": "2025-04-21T13:11:50.319004+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     },
