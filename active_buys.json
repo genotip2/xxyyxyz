@@ -76,5 +76,59 @@
         "time": "2025-04-21T06:07:11.955165+07:00",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "BTCUSDT": {
+        "price": 86426.81,
+        "time": "2025-04-21T07:41:18.773853+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "AVAXUSDT": {
+        "price": 19.92,
+        "time": "2025-04-21T07:41:21.811615+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "MKRUSDT": {
+        "price": 1376,
+        "time": "2025-04-21T07:41:22.529537+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "WBTCUSDT": {
+        "price": 86373.51,
+        "time": "2025-04-21T07:41:24.366284+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "STXUSDT": {
+        "price": 0.683,
+        "time": "2025-04-21T07:41:26.555414+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "ZENUSDT": {
+        "price": 8.88,
+        "time": "2025-04-21T07:41:27.145224+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "PYTHUSDT": {
+        "price": 0.1466,
+        "time": "2025-04-21T07:41:30.994814+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "CETUSUSDT": {
+        "price": 0.1061,
+        "time": "2025-04-21T07:41:32.571262+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "LUNCUSDT": {
+        "price": 6.232e-05,
+        "time": "2025-04-21T07:41:34.061524+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
