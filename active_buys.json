@@ -5,12 +5,6 @@
         "trailing_stop_active": true,
         "highest_price": 1.251
     },
-    "COTIUSDT": {
-        "price": 0.0708,
-        "time": "2025-04-20T15:09:31.923821+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "PEPEUSDT": {
         "price": 7.63e-06,
         "time": "2025-04-20T23:48:35.294324+07:00",
@@ -107,12 +101,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "CRVUSDT": {
-        "price": 0.6166,
-        "time": "2025-04-21T11:11:20.836222+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "BLURUSDT": {
         "price": 0.1071,
         "time": "2025-04-21T12:32:07.018359+07:00",
@@ -176,6 +164,12 @@
     "RIFUSDT": {
         "price": 0.0438,
         "time": "2025-04-21T22:01:06.897485+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "LISTAUSDT": {
+        "price": 0.1911,
+        "time": "2025-04-21T23:01:10.769009+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     }
