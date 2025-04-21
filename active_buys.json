@@ -23,12 +23,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "AVAXUSDT": {
-        "price": 19.92,
-        "time": "2025-04-21T07:41:21.811615+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "WBTCUSDT": {
         "price": 86373.51,
         "time": "2025-04-21T07:41:24.366284+07:00",
