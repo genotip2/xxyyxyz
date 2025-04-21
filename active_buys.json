@@ -17,12 +17,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "VETUSDT": {
-        "price": 0.02374,
-        "time": "2025-04-21T03:07:45.136534+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "BTCUSDT": {
         "price": 86426.81,
         "time": "2025-04-21T07:41:18.773853+07:00",
@@ -47,21 +41,9 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "LUNCUSDT": {
-        "price": 6.232e-05,
-        "time": "2025-04-21T07:41:34.061524+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "PAXGUSDT": {
         "price": 3398,
         "time": "2025-04-21T09:22:30.421247+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "BLURUSDT": {
-        "price": 0.1071,
-        "time": "2025-04-21T12:32:07.018359+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     },
@@ -86,12 +68,6 @@
     "1MBABYDOGEUSDT": {
         "price": 0.0013126,
         "time": "2025-04-21T15:52:31.413142+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "TRBUSDT": {
-        "price": 27.46,
-        "time": "2025-04-21T20:40:37.162017+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     },
