@@ -3,7 +3,7 @@
         "price": 1.177,
         "time": "2025-04-20T07:42:05.485740+07:00",
         "trailing_stop_active": true,
-        "highest_price": 1.248
+        "highest_price": 1.249
     },
     "COTIUSDT": {
         "price": 0.0708,
@@ -44,8 +44,8 @@
     "SUPERUSDT": {
         "price": 0.5378,
         "time": "2025-04-21T06:07:11.955165+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 0.5709
     },
     "BTCUSDT": {
         "price": 86426.81,
@@ -153,7 +153,7 @@
         "price": 0.03282,
         "time": "2025-04-21T15:36:36.900613+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.03558
+        "highest_price": 0.03964
     },
     "DEGOUSDT": {
         "price": 1.857,
