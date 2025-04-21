@@ -153,7 +153,7 @@
         "price": 0.03282,
         "time": "2025-04-21T15:36:36.900613+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.04159
+        "highest_price": 0.04393
     },
     "DEGOUSDT": {
         "price": 1.857,
@@ -182,6 +182,12 @@
     "TRUUSDT": {
         "price": 0.0363,
         "time": "2025-04-21T21:30:33.960548+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "RIFUSDT": {
+        "price": 0.0438,
+        "time": "2025-04-21T22:01:06.897485+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     }
