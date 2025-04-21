@@ -130,5 +130,17 @@
         "time": "2025-04-21T07:41:34.061524+07:00",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "JASMYUSDT": {
+        "price": 0.01502,
+        "time": "2025-04-21T09:22:26.297245+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "PAXGUSDT": {
+        "price": 3398,
+        "time": "2025-04-21T09:22:30.421247+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
