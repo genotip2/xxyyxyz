@@ -69,7 +69,7 @@
         "price": 0.286,
         "time": "2025-04-21T03:07:54.957529+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.3131
+        "highest_price": 0.3345
     },
     "SUPERUSDT": {
         "price": 0.5378,
@@ -164,6 +164,18 @@
     "XVGUSDT": {
         "price": 0.004614,
         "time": "2025-04-21T12:48:26.765305+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "ARKMUSDT": {
+        "price": 0.534,
+        "time": "2025-04-21T13:11:48.671787+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "SANDUSDT": {
+        "price": 0.2901,
+        "time": "2025-04-21T13:11:50.319004+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     }
