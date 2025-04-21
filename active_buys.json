@@ -142,5 +142,11 @@
         "time": "2025-04-21T09:22:30.421247+07:00",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "ENJUSDT": {
+        "price": 0.0922,
+        "time": "2025-04-21T10:26:00.139862+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
