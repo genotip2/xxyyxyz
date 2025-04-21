@@ -47,12 +47,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "ZENUSDT": {
-        "price": 8.88,
-        "time": "2025-04-21T07:41:27.145224+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "LUNCUSDT": {
         "price": 6.232e-05,
         "time": "2025-04-21T07:41:34.061524+07:00",
