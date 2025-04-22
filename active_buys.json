@@ -1,16 +1,4 @@
 {
-    "RUNEUSDT": {
-        "price": 1.177,
-        "time": "2025-04-20T07:42:05.485740+07:00",
-        "trailing_stop_active": true,
-        "highest_price": 1.251
-    },
-    "PEPEUSDT": {
-        "price": 7.63e-06,
-        "time": "2025-04-20T23:48:35.294324+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "ONEUSDT": {
         "price": 0.01129,
         "time": "2025-04-21T01:09:57.061762+07:00",
@@ -50,18 +38,6 @@
     "BCHUSDT": {
         "price": 342.2,
         "time": "2025-04-21T14:35:18.874529+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "HMSTRUSDT": {
-        "price": 0.002654,
-        "time": "2025-04-21T15:12:13.365961+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
-    "TRUUSDT": {
-        "price": 0.0363,
-        "time": "2025-04-21T21:30:33.960548+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     },
