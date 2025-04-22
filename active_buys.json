@@ -124,5 +124,11 @@
         "time": "2025-04-22T18:32:34.567574+07:00",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "ARKMUSDT": {
+        "price": 0.535,
+        "time": "2025-04-22T19:14:36.753259+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
