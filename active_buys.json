@@ -160,5 +160,29 @@
         "time": "2025-04-22T20:20:28.477263+07:00",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "LINKUSDT": {
+        "price": 13.66,
+        "time": "2025-04-22T20:49:36.778492+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "FLOKIUSDT": {
+        "price": 6.04e-05,
+        "time": "2025-04-22T20:49:41.236627+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "PENDLEUSDT": {
+        "price": 3.375,
+        "time": "2025-04-22T20:49:44.560160+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "TRUUSDT": {
+        "price": 0.036,
+        "time": "2025-04-22T20:49:56.103392+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
