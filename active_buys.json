@@ -46,5 +46,35 @@
         "time": "2025-04-22T14:45:40.855351+07:00",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "AVAXUSDT": {
+        "price": 20.33,
+        "time": "2025-04-22T15:11:33.190130+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "MKRUSDT": {
+        "price": 1384,
+        "time": "2025-04-22T15:11:34.702883+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "BCHUSDT": {
+        "price": 347.1,
+        "time": "2025-04-22T15:11:43.657004+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "1MBABYDOGEUSDT": {
+        "price": 0.0013233,
+        "time": "2025-04-22T15:11:52.593283+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "CETUSUSDT": {
+        "price": 0.1075,
+        "time": "2025-04-22T15:11:55.307188+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
