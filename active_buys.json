@@ -23,12 +23,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "XVGUSDT": {
-        "price": 0.004614,
-        "time": "2025-04-21T12:48:26.765305+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "BCHUSDT": {
         "price": 342.2,
         "time": "2025-04-21T14:35:18.874529+07:00",
@@ -41,12 +35,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "BLURUSDT": {
-        "price": 0.1071,
-        "time": "2025-04-22T09:17:02.569473+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "KAIAUSDT": {
         "price": 0.1099,
         "time": "2025-04-22T10:13:41.740630+07:00",
@@ -56,6 +44,12 @@
     "MBLUSDT": {
         "price": 0.002527,
         "time": "2025-04-22T10:13:50.778349+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "POLUSDT": {
+        "price": 0.2098,
+        "time": "2025-04-22T13:12:03.963051+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     }
