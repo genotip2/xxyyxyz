@@ -45,7 +45,7 @@
         "price": 20.33,
         "time": "2025-04-22T15:11:33.190130+07:00",
         "trailing_stop_active": true,
-        "highest_price": 21.68
+        "highest_price": 21.78
     },
     "MKRUSDT": {
         "price": 1384,
@@ -236,6 +236,12 @@
     "QTUMUSDT": {
         "price": 2.187,
         "time": "2025-04-22T22:30:16.395743+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "ZENUSDT": {
+        "price": 9.07,
+        "time": "2025-04-22T23:09:30.477016+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     }
