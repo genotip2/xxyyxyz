@@ -77,12 +77,6 @@
         "trailing_stop_active": true,
         "highest_price": 0.6058
     },
-    "CRVUSDT": {
-        "price": 0.6191,
-        "time": "2025-04-22T16:08:56.916572+07:00",
-        "trailing_stop_active": true,
-        "highest_price": 0.689
-    },
     "BLURUSDT": {
         "price": 0.1064,
         "time": "2025-04-22T17:48:49.725508+07:00",
@@ -93,7 +87,7 @@
         "price": 0.01172,
         "time": "2025-04-22T17:48:54.243054+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.01244
+        "highest_price": 0.01246
     },
     "TAOUSDT": {
         "price": 331.8,
