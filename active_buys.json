@@ -136,5 +136,29 @@
         "time": "2025-04-22T19:55:19.778897+07:00",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "SOLUSDT": {
+        "price": 142.36,
+        "time": "2025-04-22T20:19:57.512557+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "SANDUSDT": {
+        "price": 0.2801,
+        "time": "2025-04-22T20:20:13.330984+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "IMXUSDT": {
+        "price": 0.545,
+        "time": "2025-04-22T20:20:23.979853+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "BNSOLUSDT": {
+        "price": 148.9,
+        "time": "2025-04-22T20:20:28.477263+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
