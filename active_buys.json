@@ -106,5 +106,17 @@
         "time": "2025-04-22T17:48:54.243054+07:00",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "TAOUSDT": {
+        "price": 331.8,
+        "time": "2025-04-22T18:25:29.571618+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "SUSHIUSDT": {
+        "price": 0.607,
+        "time": "2025-04-22T18:25:44.523316+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
