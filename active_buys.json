@@ -17,12 +17,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "STXUSDT": {
-        "price": 0.683,
-        "time": "2025-04-21T07:41:26.555414+07:00",
-        "trailing_stop_active": true,
-        "highest_price": 0.774
-    },
     "PAXGUSDT": {
         "price": 3398,
         "time": "2025-04-21T09:22:30.421247+07:00",
@@ -40,12 +34,6 @@
         "time": "2025-04-21T14:35:18.874529+07:00",
         "trailing_stop_active": false,
         "highest_price": null
-    },
-    "RSRUSDT": {
-        "price": 0.007769,
-        "time": "2025-04-22T00:39:30.535751+07:00",
-        "trailing_stop_active": true,
-        "highest_price": 0.008473
     },
     "PEPEUSDT": {
         "price": 8e-06,
