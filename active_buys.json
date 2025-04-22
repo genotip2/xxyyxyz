@@ -87,7 +87,7 @@
         "price": 0.6191,
         "time": "2025-04-22T16:08:56.916572+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.6788
+        "highest_price": 0.6808
     },
     "BLURUSDT": {
         "price": 0.1064,
@@ -242,6 +242,12 @@
     "ZENUSDT": {
         "price": 9.07,
         "time": "2025-04-22T23:09:30.477016+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "BAKEUSDT": {
+        "price": 0.1329,
+        "time": "2025-04-22T23:35:51.550362+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     }
