@@ -11,12 +11,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "PAXGUSDT": {
-        "price": 3398,
-        "time": "2025-04-21T09:22:30.421247+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
-    },
     "PEPEUSDT": {
         "price": 8e-06,
         "time": "2025-04-22T09:16:52.746419+07:00",
@@ -80,8 +74,8 @@
     "SUPERUSDT": {
         "price": 0.5584,
         "time": "2025-04-22T15:52:12.153870+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 0.5955
     },
     "TRXUSDT": {
         "price": 0.2485,
@@ -149,12 +143,6 @@
         "trailing_stop_active": false,
         "highest_price": null
     },
-    "IMXUSDT": {
-        "price": 0.545,
-        "time": "2025-04-22T20:20:23.979853+07:00",
-        "trailing_stop_active": true,
-        "highest_price": 0.584
-    },
     "BNSOLUSDT": {
         "price": 148.9,
         "time": "2025-04-22T20:20:28.477263+07:00",
@@ -182,6 +170,12 @@
     "TRUUSDT": {
         "price": 0.036,
         "time": "2025-04-22T20:49:56.103392+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "FXSUSDT": {
+        "price": 1.928,
+        "time": "2025-04-22T21:00:59.016008+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     }
