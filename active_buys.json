@@ -69,7 +69,7 @@
         "price": 0.1075,
         "time": "2025-04-22T15:11:55.307188+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.1144
+        "highest_price": 0.1146
     },
     "SUPERUSDT": {
         "price": 0.5584,
@@ -87,7 +87,7 @@
         "price": 0.6191,
         "time": "2025-04-22T16:08:56.916572+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.6716
+        "highest_price": 0.6766
     },
     "BLURUSDT": {
         "price": 0.1064,
@@ -206,6 +206,12 @@
     "CKBUSDT": {
         "price": 0.004805,
         "time": "2025-04-22T21:49:11.959099+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "ALGOUSDT": {
+        "price": 0.2013,
+        "time": "2025-04-22T22:00:45.919978+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     }
