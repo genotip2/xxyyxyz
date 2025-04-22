@@ -82,5 +82,17 @@
         "time": "2025-04-22T15:52:12.153870+07:00",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "TRXUSDT": {
+        "price": 0.2485,
+        "time": "2025-04-22T16:08:47.328616+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "CRVUSDT": {
+        "price": 0.6191,
+        "time": "2025-04-22T16:08:56.916572+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
