@@ -44,8 +44,8 @@
     "AVAXUSDT": {
         "price": 20.33,
         "time": "2025-04-22T15:11:33.190130+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 21.68
     },
     "MKRUSDT": {
         "price": 1384,
@@ -69,7 +69,7 @@
         "price": 0.1075,
         "time": "2025-04-22T15:11:55.307188+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.1146
+        "highest_price": 0.1147
     },
     "SUPERUSDT": {
         "price": 0.5584,
@@ -87,7 +87,7 @@
         "price": 0.6191,
         "time": "2025-04-22T16:08:56.916572+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.6766
+        "highest_price": 0.6788
     },
     "BLURUSDT": {
         "price": 0.1064,
@@ -212,6 +212,30 @@
     "ALGOUSDT": {
         "price": 0.2013,
         "time": "2025-04-22T22:00:45.919978+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "GALAUSDT": {
+        "price": 0.01634,
+        "time": "2025-04-22T22:29:59.975932+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "IOTAUSDT": {
+        "price": 0.1806,
+        "time": "2025-04-22T22:30:06.987802+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "CVCUSDT": {
+        "price": 0.1086,
+        "time": "2025-04-22T22:30:15.782937+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "QTUMUSDT": {
+        "price": 2.187,
+        "time": "2025-04-22T22:30:16.395743+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     }
