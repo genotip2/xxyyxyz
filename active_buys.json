@@ -250,5 +250,11 @@
         "time": "2025-04-23T03:09:14.851857+07:00",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "HIVEUSDT": {
+        "price": 0.2448,
+        "time": "2025-04-23T03:47:56.088378+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
