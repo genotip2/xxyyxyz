@@ -14,8 +14,8 @@
     "PEPEUSDT": {
         "price": 8e-06,
         "time": "2025-04-22T09:16:52.746419+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 8.59e-06
     },
     "KAIAUSDT": {
         "price": 0.1099,
@@ -87,7 +87,7 @@
         "price": 0.01172,
         "time": "2025-04-22T17:48:54.243054+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.01246
+        "highest_price": 0.01268
     },
     "TAOUSDT": {
         "price": 331.8,
@@ -104,8 +104,8 @@
     "XVGUSDT": {
         "price": 0.004668,
         "time": "2025-04-22T18:32:34.567574+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 0.00497
     },
     "ARKMUSDT": {
         "price": 0.535,
@@ -116,8 +116,8 @@
     "WIFUSDT": {
         "price": 0.451,
         "time": "2025-04-22T19:55:19.778897+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 0.481
     },
     "SOLUSDT": {
         "price": 142.36,
@@ -146,8 +146,8 @@
     "FLOKIUSDT": {
         "price": 6.04e-05,
         "time": "2025-04-22T20:49:41.236627+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 6.44e-05
     },
     "PENDLEUSDT": {
         "price": 3.375,
