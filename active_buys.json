@@ -69,7 +69,7 @@
         "price": 0.1075,
         "time": "2025-04-22T15:11:55.307188+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.1147
+        "highest_price": 0.115
     },
     "SUPERUSDT": {
         "price": 0.5584,
@@ -87,7 +87,7 @@
         "price": 0.6191,
         "time": "2025-04-22T16:08:56.916572+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.6828
+        "highest_price": 0.685
     },
     "BLURUSDT": {
         "price": 0.1064,
