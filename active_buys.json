@@ -118,5 +118,11 @@
         "time": "2025-04-22T18:25:44.523316+07:00",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "XVGUSDT": {
+        "price": 0.004668,
+        "time": "2025-04-22T18:32:34.567574+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
