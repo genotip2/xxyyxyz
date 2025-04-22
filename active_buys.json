@@ -2,14 +2,14 @@
     "BTCUSDT": {
         "price": 86426.81,
         "time": "2025-04-21T07:41:18.773853+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 91640
     },
     "WBTCUSDT": {
         "price": 86373.51,
         "time": "2025-04-21T07:41:24.366284+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 91574.55
     },
     "PEPEUSDT": {
         "price": 8e-06,
@@ -75,7 +75,7 @@
         "price": 0.5584,
         "time": "2025-04-22T15:52:12.153870+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.5983
+        "highest_price": 0.5994
     },
     "TRXUSDT": {
         "price": 0.2485,
