@@ -76,5 +76,11 @@
         "time": "2025-04-22T15:11:55.307188+07:00",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "SUPERUSDT": {
+        "price": 0.5584,
+        "time": "2025-04-22T15:52:12.153870+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
