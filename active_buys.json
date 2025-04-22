@@ -152,8 +152,8 @@
     "IMXUSDT": {
         "price": 0.545,
         "time": "2025-04-22T20:20:23.979853+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 0.584
     },
     "BNSOLUSDT": {
         "price": 148.9,
