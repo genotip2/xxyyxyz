@@ -51,13 +51,13 @@
         "price": 0.0013233,
         "time": "2025-04-22T15:11:52.593283+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.0014415
+        "highest_price": 0.0014485
     },
     "CETUSUSDT": {
         "price": 0.1075,
         "time": "2025-04-22T15:11:55.307188+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.1422
+        "highest_price": 0.1433
     },
     "SUPERUSDT": {
         "price": 0.5584,
@@ -111,7 +111,7 @@
         "price": 142.36,
         "time": "2025-04-22T20:19:57.512557+07:00",
         "trailing_stop_active": true,
-        "highest_price": 151.16
+        "highest_price": 151.25
     },
     "SANDUSDT": {
         "price": 0.2801,
@@ -123,7 +123,7 @@
         "price": 148.9,
         "time": "2025-04-22T20:20:28.477263+07:00",
         "trailing_stop_active": true,
-        "highest_price": 158.1
+        "highest_price": 158.5
     },
     "LINKUSDT": {
         "price": 13.66,
@@ -147,7 +147,7 @@
         "price": 0.036,
         "time": "2025-04-22T20:49:56.103392+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.039
+        "highest_price": 0.0391
     },
     "FXSUSDT": {
         "price": 1.928,
@@ -165,7 +165,7 @@
         "price": 0.0244,
         "time": "2025-04-22T21:32:31.278557+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.0261
+        "highest_price": 0.02613
     },
     "ACHUSDT": {
         "price": 0.02693,
@@ -176,8 +176,8 @@
     "DEGOUSDT": {
         "price": 1.858,
         "time": "2025-04-22T21:48:52.960101+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 1.972
     },
     "CKBUSDT": {
         "price": 0.004805,
@@ -201,7 +201,7 @@
         "price": 0.1806,
         "time": "2025-04-22T22:30:06.987802+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.1919
+        "highest_price": 0.1922
     },
     "CVCUSDT": {
         "price": 0.1086,
@@ -243,7 +243,7 @@
         "price": 0.816,
         "time": "2025-04-23T04:34:28.483410+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.867
+        "highest_price": 0.869
     },
     "LUNCUSDT": {
         "price": 6.256e-05,
@@ -483,7 +483,7 @@
         "price": 0.107,
         "time": "2025-04-23T07:40:10.608954+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.114
+        "highest_price": 0.1158
     },
     "YGGUSDT": {
         "price": 0.194,
