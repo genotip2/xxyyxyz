@@ -15,7 +15,7 @@
         "price": 8e-06,
         "time": "2025-04-22T09:16:52.746419+07:00",
         "trailing_stop_active": true,
-        "highest_price": 8.83e-06
+        "highest_price": 8.99e-06
     },
     "KAIAUSDT": {
         "price": 0.1099,
@@ -69,7 +69,7 @@
         "price": 0.1075,
         "time": "2025-04-22T15:11:55.307188+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.1226
+        "highest_price": 0.1265
     },
     "SUPERUSDT": {
         "price": 0.5584,
@@ -87,7 +87,7 @@
         "price": 0.01172,
         "time": "2025-04-22T17:48:54.243054+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.01272
+        "highest_price": 0.01289
     },
     "TAOUSDT": {
         "price": 331.8,
@@ -98,8 +98,8 @@
     "SUSHIUSDT": {
         "price": 0.607,
         "time": "2025-04-22T18:25:44.523316+07:00",
-        "trailing_stop_active": false,
-        "highest_price": null
+        "trailing_stop_active": true,
+        "highest_price": 0.644
     },
     "XVGUSDT": {
         "price": 0.004668,
@@ -117,7 +117,7 @@
         "price": 0.451,
         "time": "2025-04-22T19:55:19.778897+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.501
+        "highest_price": 0.51
     },
     "SOLUSDT": {
         "price": 142.36,
@@ -147,7 +147,7 @@
         "price": 6.04e-05,
         "time": "2025-04-22T20:49:41.236627+07:00",
         "trailing_stop_active": true,
-        "highest_price": 6.561e-05
+        "highest_price": 6.582e-05
     },
     "PENDLEUSDT": {
         "price": 3.375,
@@ -171,7 +171,7 @@
         "price": 0.001329,
         "time": "2025-04-22T21:32:30.071518+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.001415
+        "highest_price": 0.001422
     },
     "VETUSDT": {
         "price": 0.0244,
@@ -267,7 +267,7 @@
         "price": 2.5292,
         "time": "2025-04-23T04:45:32.113753+07:00",
         "trailing_stop_active": true,
-        "highest_price": 2.681
+        "highest_price": 2.7089
     },
     "FDUSDUSDT": {
         "price": 0.9993,
@@ -332,6 +332,192 @@
     "TRXUSDT": {
         "price": 0.2483,
         "time": "2025-04-23T06:45:39.666686+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "XRPUSDT": {
+        "price": 2.2114,
+        "time": "2025-04-23T07:38:45.283592+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "DOGEUSDT": {
+        "price": 0.18123,
+        "time": "2025-04-23T07:38:48.965244+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "HBARUSDT": {
+        "price": 0.18076,
+        "time": "2025-04-23T07:38:54.389290+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "APTUSDT": {
+        "price": 5.306,
+        "time": "2025-04-23T07:39:00.946697+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "NEIROUSDT": {
+        "price": 0.00022291,
+        "time": "2025-04-23T07:39:03.751784+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "CAKEUSDT": {
+        "price": 2.019,
+        "time": "2025-04-23T07:39:09.116177+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "INJUSDT": {
+        "price": 9.37,
+        "time": "2025-04-23T07:39:14.649470+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "ETCUSDT": {
+        "price": 16.68,
+        "time": "2025-04-23T07:39:17.574795+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "SOLVUSDT": {
+        "price": 0.03075,
+        "time": "2025-04-23T07:39:22.921905+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "LPTUSDT": {
+        "price": 5.45,
+        "time": "2025-04-23T07:39:25.833610+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "DYDXUSDT": {
+        "price": 0.6348,
+        "time": "2025-04-23T07:39:28.159210+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "ENSUSDT": {
+        "price": 16.24,
+        "time": "2025-04-23T07:39:29.549924+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "ANIMEUSDT": {
+        "price": 0.01752,
+        "time": "2025-04-23T07:39:31.018000+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "ASTRUSDT": {
+        "price": 0.0288,
+        "time": "2025-04-23T07:39:34.964863+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "MANTAUSDT": {
+        "price": 0.23,
+        "time": "2025-04-23T07:39:36.895582+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "BANANAUSDT": {
+        "price": 18.88,
+        "time": "2025-04-23T07:39:37.842562+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "GRTUSDT": {
+        "price": 0.0896,
+        "time": "2025-04-23T07:39:47.319897+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "GUSDT": {
+        "price": 0.0146,
+        "time": "2025-04-23T07:39:52.093424+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "AGLDUSDT": {
+        "price": 0.874,
+        "time": "2025-04-23T07:39:55.032147+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "ROSEUSDT": {
+        "price": 0.02793,
+        "time": "2025-04-23T07:39:56.282216+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "VANRYUSDT": {
+        "price": 0.0286,
+        "time": "2025-04-23T07:39:57.004956+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "1000CATUSDT": {
+        "price": 0.00638,
+        "time": "2025-04-23T07:39:58.760725+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "DASHUSDT": {
+        "price": 22.13,
+        "time": "2025-04-23T07:39:59.887030+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "DYMUSDT": {
+        "price": 0.297,
+        "time": "2025-04-23T07:40:00.579167+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "YFIUSDT": {
+        "price": 4986,
+        "time": "2025-04-23T07:40:01.886340+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "AIUSDT": {
+        "price": 0.1626,
+        "time": "2025-04-23T07:40:03.042572+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "HMSTRUSDT": {
+        "price": 0.002883,
+        "time": "2025-04-23T07:40:04.143810+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "PHBUSDT": {
+        "price": 0.498,
+        "time": "2025-04-23T07:40:08.430022+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "XVSUSDT": {
+        "price": 5.41,
+        "time": "2025-04-23T07:40:09.615897+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "PHAUSDT": {
+        "price": 0.107,
+        "time": "2025-04-23T07:40:10.608954+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    },
+    "YGGUSDT": {
+        "price": 0.194,
+        "time": "2025-04-23T07:40:11.349625+07:00",
         "trailing_stop_active": false,
         "highest_price": null
     }
