@@ -27,19 +27,19 @@
         "price": 1.251,
         "time": "2025-04-22T14:45:40.855351+07:00",
         "trailing_stop_active": true,
-        "highest_price": 1.329
+        "highest_price": 1.332
     },
     "AVAXUSDT": {
         "price": 20.33,
         "time": "2025-04-22T15:11:33.190130+07:00",
         "trailing_stop_active": true,
-        "highest_price": 22.72
+        "highest_price": 22.75
     },
     "MKRUSDT": {
         "price": 1384,
         "time": "2025-04-22T15:11:34.702883+07:00",
         "trailing_stop_active": true,
-        "highest_price": 1499
+        "highest_price": 1500
     },
     "BCHUSDT": {
         "price": 347.1,
@@ -129,7 +129,7 @@
         "price": 13.66,
         "time": "2025-04-22T20:49:36.778492+07:00",
         "trailing_stop_active": true,
-        "highest_price": 14.58
+        "highest_price": 14.62
     },
     "FLOKIUSDT": {
         "price": 6.04e-05,
@@ -153,7 +153,7 @@
         "price": 1.928,
         "time": "2025-04-22T21:00:59.016008+07:00",
         "trailing_stop_active": true,
-        "highest_price": 2.085
+        "highest_price": 2.088
     },
     "BOMEUSDT": {
         "price": 0.001329,
@@ -165,7 +165,7 @@
         "price": 0.0244,
         "time": "2025-04-22T21:32:31.278557+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.02604
+        "highest_price": 0.0261
     },
     "ACHUSDT": {
         "price": 0.02693,
@@ -189,7 +189,7 @@
         "price": 0.2013,
         "time": "2025-04-22T22:00:45.919978+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.2152
+        "highest_price": 0.2163
     },
     "GALAUSDT": {
         "price": 0.01634,
@@ -231,7 +231,7 @@
         "price": 0.01479,
         "time": "2025-04-23T03:09:14.851857+07:00",
         "trailing_stop_active": true,
-        "highest_price": 0.01626
+        "highest_price": 0.01684
     },
     "HIVEUSDT": {
         "price": 0.2448,
@@ -346,12 +346,6 @@
         "time": "2025-04-23T07:39:00.946697+07:00",
         "trailing_stop_active": false,
         "highest_price": null
-    },
-    "NEIROUSDT": {
-        "price": 0.00022291,
-        "time": "2025-04-23T07:39:03.751784+07:00",
-        "trailing_stop_active": true,
-        "highest_price": 0.0002378
     },
     "CAKEUSDT": {
         "price": 2.019,
