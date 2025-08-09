@@ -14,10 +14,6 @@ TELEGRAM_CHAT_ID = os.getenv('TELEGRAM_CHAT_ID')
 ACTIVE_BUYS_FILE = 'active_buys.json'
 ACTIVE_BUYS = {}
 
-# Konfigurasi Parameter Trading (Untuk informasi di alert saja, tidak digunakan dalam logika beli/jual sederhana ini)
-STOP_LOSS_PERCENTAGE = 3
-TAKE_PROFIT_PERCENTAGE = 6
-
 # Konfigurasi Timeframe
 TIMEFRAME_DAILY = Interval.INTERVAL_1_DAY
 
@@ -73,10 +69,10 @@ def analyze_pair_daily(pair):
         print(f"⚠️ Gagal menganalisis {pair} pada interval {TIMEFRAME_DAILY}: {e}")
         return None
 
-# --- GENERATE SINYAL TRADING SEDERHANA ---
+# --- GENERATE SINYAL TRADING SEDERHANA (HANYA MACD) ---
 def generate_signal(pair):
     """
-    Hasilkan sinyal BUY atau SELL berdasarkan EMA dan MACD pada timeframe 1D.
+    Hasilkan sinyal BUY atau SELL berdasarkan MACD pada timeframe 1D.
     Mengembalikan tuple (signal, current_price, details).
     """
     analysis = analyze_pair_daily(pair)
@@ -84,23 +80,21 @@ def generate_signal(pair):
         return None, None, "Analisis gagal."
 
     current_price = analysis.indicators.get('close')
-    ema10 = analysis.indicators.get('EMA10')
-    ema20 = analysis.indicators.get('EMA20')
     macd = analysis.indicators.get('MACD.macd')
     signal_line = analysis.indicators.get('MACD.signal')
 
-    if any(v is None for v in [current_price, ema10, ema20, macd, signal_line]):
-        return None, current_price, "Data indikator tidak lengkap."
+    if any(v is None for v in [current_price, macd, signal_line]):
+        return None, current_price, "Data MACD tidak lengkap."
 
     # --- KONDISI SINYAL ---
-    buy_condition = ema10 > ema20 and macd > signal_line
-    sell_condition = ema10 < ema20 and macd < signal_line
+    buy_condition = macd > signal_line
+    sell_condition = macd < signal_line
 
     if pair not in ACTIVE_BUYS and buy_condition:
-        return "BUY", current_price, "EMA10 > EMA20 & MACD > Signal"
+        return "BUY", current_price, f"MACD ({macd:.6f}) > Signal ({signal_line:.6f})"
 
     elif pair in ACTIVE_BUYS and sell_condition:
-        return "SELL", current_price, "EMA10 < EMA20 & MACD < Signal"
+        return "SELL", current_price, f"MACD ({macd:.6f}) < Signal ({signal_line:.6f})"
 
     return None, current_price, "Tidak ada sinyal."
 
@@ -143,17 +137,6 @@ def send_telegram_alert(signal_type, pair, current_price, details="", entry_anal
         message += f"🕒 *Duration:* {str(duration).split('.')[0]}\n"
 
     message += f"📝 *Details:* {details}\n"
-
-    # Tambahkan indikator jika analysis tersedia
-    if entry_analysis is None:
-        entry_analysis = analyze_pair_daily(pair)
-    if entry_analysis:
-        rsi_value = entry_analysis.indicators.get('RSI')
-        adx_value = entry_analysis.indicators.get('ADX')
-        stoch_k_value = entry_analysis.indicators.get('Stoch.K')
-        if rsi_value is not None and adx_value is not None and stoch_k_value is not None:
-            indicator_info = f"*RSI:* {rsi_value:.2f}, *ADX:* {adx_value:.2f}, *Stoch K:* {stoch_k_value:.2f}"
-            message += f"📊 {indicator_info}\n"
 
     print(f"📢 Mengirim alert:\n{message}")
     try:
