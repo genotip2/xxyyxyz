@@ -24,7 +24,7 @@ UNUSED_SIGNALS = {}
 # File cache untuk menyimpan daftar pair top berdasarkan ranking CMC
 
 CACHE_FILE = 'pairs_cache.json'
-CACHE_EXPIRED_DAYS = 30  # Cache dianggap kadaluarsa jika lebih dari 30 hari
+CACHE_EXPIRED_DAYS = 360  # Cache dianggap kadaluarsa jika lebih dari 30 hari
 
 # Flag untuk mengetahui apakah cache telah diperbarui (misalnya file tidak ada atau sudah kadaluarsa)
 
