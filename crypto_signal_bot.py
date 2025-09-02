@@ -283,9 +283,6 @@ def is_best_entry_from_data(data):
     """
     Evaluasi apakah kondisi best entry terpenuhi.
     """
-    candle_entry = data.get('candle_entry')
-    if candle_entry is None or (("BUY" not in candle_entry.upper()) and ("STRONG_BUY" not in candle_entry.upper())):
-        return False, "Rekomendasi candle tidak mendukung (tidak ada BUY/STRONG_BUY)."
 
     macd_entry = data.get('macd_entry')    
     macd_signal_entry = data.get('macd_signal_entry')    
@@ -313,10 +310,7 @@ def is_best_exit_from_data(data):
     """
     Evaluasi apakah kondisi best exit terpenuhi.
     """
-    candle_entry = data.get('candle_entry')
-    if candle_entry is None or (("SELL" not in candle_entry.upper()) and ("STRONG_SELL" not in candle_entry.upper())):
-        return False, "Rekomendasi candle tidak mendukung exit (tidak ada SELL/STRONG_SELL)."
-
+    
     ema10_entry = data.get('ema10_entry')    
     ema20_entry = data.get('ema20_entry')    
     if ema10_entry is None or ema20_entry is None or ema10_entry >= ema20_entry:    
@@ -326,6 +320,11 @@ def is_best_exit_from_data(data):
     macd_signal_entry = data.get('macd_signal_entry')    
     if macd_entry is None or macd_signal_entry is None or macd_entry >= macd_signal_entry:    
         return False, "MACD entry tidak mendukung exit (tidak < signal)."    
+
+    macd_trend = data.get('macd_trend')    
+    macd_signal_trend = data.get('macd_signal_trend')    
+    if macd_trend is None or macd_signal_trend is None or macd_trend >= macd_signal_trend:    
+        return False, "MACD trend tidak mendukung exit (tidak < signal)."    
 
     return True, "Best Exit Condition terpenuhi."
 
