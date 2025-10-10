@@ -1,1 +1,8 @@
-{}
+{
+    "BCHUSDT": {
+        "price": 588.2,
+        "time": "2025-10-10T09:19:23.479950+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    }
+}
