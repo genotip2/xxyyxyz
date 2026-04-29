@@ -4,5 +4,11 @@
         "time": "2026-04-27T11:26:32.002523+07:00",
         "trailing_stop_active": false,
         "highest_price": null
+    },
+    "BCHUSDT": {
+        "price": 454,
+        "time": "2026-04-29T11:24:54.730470+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
     }
 }
