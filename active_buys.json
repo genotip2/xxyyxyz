@@ -1,1 +1,8 @@
-{}
+{
+    "PEPEUSDT": {
+        "price": 4.12e-06,
+        "time": "2026-05-04T11:36:18.890621+07:00",
+        "trailing_stop_active": false,
+        "highest_price": null
+    }
+}
