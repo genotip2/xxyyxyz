@@ -5,7 +5,7 @@ on:
     # Jalankan setiap 1 jam (Menit ke-0 setiap jam)
     # Format cron GitHub Actions menggunakan UTC. 
     # 0 * * * * = 07:00, 08:00, 09:00 WIB, dst.
-    - cron: "0 * * * *"
+    - cron: "15 * * * *"
   workflow_dispatch: # Agar bisa dijalankan manual kapan saja
 
 jobs:
