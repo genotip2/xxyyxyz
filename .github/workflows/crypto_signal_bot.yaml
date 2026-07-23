@@ -2,20 +2,27 @@ name: Crypto Signal Bot
 
 on:
   schedule:
-    - cron: "0 1 * * *"
-  workflow_dispatch:
+    # Jalankan setiap 1 jam (Menit ke-0 setiap jam)
+    # Format cron GitHub Actions menggunakan UTC. 
+    # 0 * * * * = 07:00, 08:00, 09:00 WIB, dst.
+    - cron: "0 * * * *"
+  workflow_dispatch: # Agar bisa dijalankan manual kapan saja
 
 jobs:
   run-bot:
     runs-on: ubuntu-latest
+    timeout-minutes: 10 # Mencegah workflow hang selamanya
+    
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v3
+      with:
+        fetch-depth: 0 # Penting agar git push berfungsi dengan baik
 
     - name: Setup Python
-      uses: actions/setup-python@v3
+      uses: actions/setup-python@v4
       with:
-        python-version: '3.9'
+        python-version: '3.10' # Disarankan upgrade ke 3.10 untuk stabilitas
 
     - name: Install Dependencies
       run: pip install requests tradingview-ta
@@ -24,16 +31,19 @@ jobs:
       env:
         TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
         TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-      run: python crypto_signal_bot.py
+      run: python crypto_signal_bot.py # Pastikan nama file ini sesuai
 
     - name: Check for changes and commit
       run: |
         git config --local user.name "github-actions[bot]"
         git config --local user.email "github-actions[bot]@users.noreply.github.com"
-        git add active_buys.json pairs_cache.json unused_signal.json
+        
+        # PERHATIAN: unused_signal.json DIHAPUS karena fitur tsb sudah tidak ada di kode baru
+        git add active_buys.json pairs_cache.json
+        
         if git diff --cached --exit-code; then
           echo "No changes to commit"
         else
-          git commit -m "update active buys"
+          git commit -m "chore: update active buys [skip ci]"
           git push
         fi
