@@ -26,7 +26,7 @@ TF_SETUP = Interval.INTERVAL_4_HOURS
 TF_ENTRY = Interval.INTERVAL_1_HOUR
 
 # ==========================================
-# PARAMETER STRATEGI (V2.0.1)
+# PARAMETER STRATEGI (V2.0.2)
 # ==========================================
 ATR_SL_MULTIPLIER = 1.5
 MAX_DISTANCE_FROM_EMA20_PCT = 7.0
@@ -194,16 +194,32 @@ def get_analysis(pair, interval):
         return None
 
 def extract_indicators(analysis):
+    """🛡️ V2.0.2: Tahan None - konversi semua nilai None → 0"""
     if not analysis or not analysis.indicators:
         return {}
     ind = analysis.indicators
+    
+    def safe_float(value, default=0):
+        if value is None:
+            return default
+        try:
+            return float(value)
+        except (TypeError, ValueError):
+            return default
+    
     return {
-        'close': ind.get('close', 0), 'ema10': ind.get('EMA10', 0),
-        'ema20': ind.get('EMA20', 0), 'ema50': ind.get('EMA50', 0),
-        'ema200': ind.get('EMA200', 0), 'macd': ind.get('MACD.macd', 0),
-        'macd_signal': ind.get('MACD.signal', 0), 'rsi': ind.get('RSI', 50),
-        'adx': ind.get('ADX', 0), 'atr': ind.get('ATR', 0),
-        'volume': ind.get('Volume', 0), 'average_volume': ind.get('average_volume', 0),
+        'close': safe_float(ind.get('close')),
+        'ema10': safe_float(ind.get('EMA10')),
+        'ema20': safe_float(ind.get('EMA20')),
+        'ema50': safe_float(ind.get('EMA50')),
+        'ema200': safe_float(ind.get('EMA200')),
+        'macd': safe_float(ind.get('MACD.macd')),
+        'macd_signal': safe_float(ind.get('MACD.signal')),
+        'rsi': safe_float(ind.get('RSI'), 50),
+        'adx': safe_float(ind.get('ADX')),
+        'atr': safe_float(ind.get('ATR')),
+        'volume': safe_float(ind.get('Volume')),
+        'average_volume': safe_float(ind.get('average_volume')),
     }
 
 # ==========================================
@@ -233,32 +249,27 @@ def check_btc_condition():
 # DEBUG: TAMPILKAN INDIKATOR MENTAH
 # ==========================================
 def print_raw_indicators(pair, data_1d, data_4h, data_1h, current_price):
-    """Menampilkan indikator mentah untuk debugging"""
     print(f"  📊 Indikator Mentah:")
     print(f"      💲 Harga: ${current_price:.6f}")
     print(f"      📈 1D: EMA50={data_1d['ema50']:.4f} EMA200={data_1d['ema200']:.4f} ADX={data_1d['adx']:.1f}")
     print(f"      📈 4H: EMA20={data_4h['ema20']:.4f} EMA50={data_4h['ema50']:.4f} RSI={data_4h['rsi']:.1f}")
     print(f"      📈 1H: EMA10={data_1h['ema10']:.4f} EMA20={data_1h['ema20']:.4f} RSI={data_1h['rsi']:.1f}")
-    print(f"      📈 1H: MACD={data_1h['macd']:.4f} Signal={data_1h['macd_signal']:.4f} ATR={data_1h['atr']:.4f}")
+    print(f"      📈 1H: MACD={data_1h['macd']:.6f} Signal={data_1h['macd_signal']:.6f} ATR={data_1h['atr']:.6f}")
 
 # ==========================================
-# SCORING SYSTEM (Weighted V2.0.1)
+# SCORING SYSTEM (Weighted V2.0.2)
 # ==========================================
 def calculate_entry_score(data_1d, data_4h, data_1h, current_price, sl_price):
     score = 0
     reasons = []
     vetoes = []
 
-    # ==========================================
-    # 🆕 QUICK FILTER: Downtrend 1D Jelas
-    # ==========================================
+    # Quick Filter: Downtrend 1D Jelas
     if data_1d['ema50'] < data_1d['ema200'] and data_1d['close'] < data_1d['ema50']:
         vetoes.append("1D Downtrend jelas (Close<EMA50<EMA200)")
         return 0, reasons, vetoes
 
-    # ==========================================
-    # VETO CONDITIONS (Hard Filter)
-    # ==========================================
+    # VETO CONDITIONS
     if data_1h['rsi'] > RSI_OVERBOUGHT_VETO:
         vetoes.append(f"RSI 1H OB ({data_1h['rsi']:.1f})")
 
@@ -286,11 +297,7 @@ def calculate_entry_score(data_1d, data_4h, data_1h, current_price, sl_price):
     if vetoes:
         return 0, reasons, vetoes
 
-    # ==========================================
-    # SCORING (Total 100 Poin Berbobot)
-    # ==========================================
-    
-    # 1. TREND (40%)
+    # SCORING
     if data_1d['ema20'] > data_1d['ema50'] > data_1d['ema200'] and data_1d['close'] > data_1d['ema20']:
         score += 25
         reasons.append("✅ 1D Strong Trend (EMA20>50>200) [+25]")
@@ -306,7 +313,6 @@ def calculate_entry_score(data_1d, data_4h, data_1h, current_price, sl_price):
     else:
         reasons.append(f"❌ 1D ADX Lemah ({data_1d['adx']:.1f}) [+0]")
 
-    # 2. PULLBACK (15%)
     if data_4h['ema20'] > data_4h['ema50']:
         dist_4h = abs(current_price - data_4h['ema20']) / data_4h['ema20'] * 100
         if dist_4h <= 2.0:
@@ -324,10 +330,9 @@ def calculate_entry_score(data_1d, data_4h, data_1h, current_price, sl_price):
     else:
         reasons.append(f"⚠️ 4H RSI Tidak Ideal ({data_4h['rsi']:.1f}) [+0]")
 
-    # 3. MOMENTUM (30%)
     macd_diff_4h = data_4h['macd'] - data_4h['macd_signal']
     if macd_diff_4h > 0:
-        if abs(macd_diff_4h) / current_price < 0.002:
+        if current_price > 0 and abs(macd_diff_4h) / current_price < 0.002:
             score += 15
             reasons.append("✅ 4H MACD Fresh Cross [+15]")
         else:
@@ -344,7 +349,7 @@ def calculate_entry_score(data_1d, data_4h, data_1h, current_price, sl_price):
 
     macd_diff_1h = data_1h['macd'] - data_1h['macd_signal']
     if macd_diff_1h > 0:
-        if abs(macd_diff_1h) / current_price < 0.002:
+        if current_price > 0 and abs(macd_diff_1h) / current_price < 0.002:
             score += 10
             reasons.append("✅ 1H MACD Fresh Cross [+10]")
         else:
@@ -359,7 +364,6 @@ def calculate_entry_score(data_1d, data_4h, data_1h, current_price, sl_price):
     else:
         reasons.append(f"⚠️ 1H RSI Tidak Optimal ({data_1h['rsi']:.1f}) [+0]")
 
-    # 4. VOLUME (15%)
     vol = data_1h.get('volume', 0)
     avg_vol = data_1h.get('average_volume', 0)
     if avg_vol > 0 and vol > (1.5 * avg_vol):
@@ -424,7 +428,7 @@ def check_entry(pair, data_1d, data_4h, data_1h, current_price, sl_price, btc_co
         return None, score, reasons, sl_price, []
 
 # ==========================================
-# CHECK EXIT (Smarter Exit V2.0.1)
+# CHECK EXIT
 # ==========================================
 def check_exit(pair, current_price, data_1h):
     if pair not in ACTIVE_BUYS:
@@ -525,7 +529,7 @@ def send_telegram_alert(signal_type, pair, current_price, details,
 # PROGRAM UTAMA
 # ==========================================
 def main():
-    print(f"🕒 Bot V2.0.1 dimulai: {datetime.now(UTC7).strftime('%Y-%m-%d %H:%M:%S')}")
+    print(f"🕒 Bot V2.0.2 dimulai: {datetime.now(UTC7).strftime('%Y-%m-%d %H:%M:%S')}")
     print("=" * 60)
     
     load_active_buys()
@@ -537,7 +541,6 @@ def main():
     
     print("=" * 60)
     
-    # 🆕 Statistik siklus
     stats = {'BUY': 0, 'WATCH': 0, 'SKIP': 0, 'VETO': 0, 'HOLD': 0, 'EXIT': 0}
     
     for pair in pairs:
@@ -572,7 +575,6 @@ def main():
             stats['SKIP'] += 1
             continue
         
-        # 🆕 Tampilkan indikator mentah untuk debugging
         print_raw_indicators(pair, data_1d, data_4h, data_1h, current_price)
             
         atr = data_1h.get('atr', 0)
@@ -581,9 +583,6 @@ def main():
         else:
             sl_price = current_price * 0.97
 
-        # ==========================================
-        # JIKA SUDAH PUNYA POSISI → CEK EXIT
-        # ==========================================
         if pair in ACTIVE_BUYS:
             signal, details = check_exit(pair, current_price, data_1h)
             if signal:
@@ -605,9 +604,6 @@ def main():
                 print(f"  ⏸️ Hold: Profit {profit_pct:+.2f}%")
                 stats['HOLD'] += 1
                 
-        # ==========================================
-        # JIKA BELUM PUNYA POSISI → CEK ENTRY
-        # ==========================================
         else:
             signal, score, reasons, sl_price, vetoes = check_entry(
                 pair, data_1d, data_4h, data_1h, current_price, sl_price, btc_condition, btc_d_status
@@ -632,7 +628,6 @@ def main():
                 print(f"  🚫 VETO: {'; '.join(vetoes)}")
                 stats['VETO'] += 1
             else:
-                # 🆕 DEBUG LOGGING: Tampilkan semua alasan meski skip
                 print(f"  ❌ Skip (Score: {score}/100)")
                 print(f"  📋 Detail Scoring:")
                 for reason in reasons:
@@ -641,7 +636,6 @@ def main():
                 
     save_active_buys()
     
-    # 🆕 Ringkasan akhir siklus
     print("\n" + "=" * 60)
     print("📊 RINGKASAN SIKLUS:")
     print(f"   🚀 BUY: {stats['BUY']}")
