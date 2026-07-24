@@ -2,24 +2,22 @@ name: Crypto Signal Bot
 
 on:
   schedule:
-    # Jalankan setiap 1 jam (Menit ke-15 setiap jam)
-    # Format cron GitHub Actions menggunakan UTC.
-    # 15 * * * * = 07:15, 08:15, 09:15 WIB, dst.
+    # Jalankan setiap 1 jam (Menit ke-15 setiap jam UTC)
     - cron: "15 * * * *"
-  workflow_dispatch: # Agar bisa dijalankan manual kapan saja
+  workflow_dispatch:
 
 jobs:
   run-bot:
     runs-on: ubuntu-latest
-    timeout-minutes: 10 # Mencegah workflow hang selamanya
+    timeout-minutes: 10
     permissions:
-      contents: write # PENTING: Memberi izin agar bot bisa push file json ke repo
+      contents: write
     
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0 # Penting agar git push berfungsi dengan baik
+          fetch-depth: 0
 
       - name: Setup Python
         uses: actions/setup-python@v4
@@ -33,15 +31,15 @@ jobs:
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-        run: python crypto_signal_bot.py # Pastikan nama file python Anda persis ini
+        run: python crypto_signal_bot.py
 
       - name: Check for changes and commit
         run: |
           git config --local user.name "github-actions[bot]"
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           
-          # PERBAIKAN: Menggunakan *.json agar mencakup active_buys, pairs_cache, DAN cooldowns
-          git add *.json 
+          # Tambahkan SEMUA file JSON (active_buys, pairs_cache, cooldowns, btc_dominance)
+          git add *.json
           
           if git diff --cached --exit-code; then
             echo "No changes to commit"
