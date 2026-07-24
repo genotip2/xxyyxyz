@@ -13,7 +13,7 @@ TELEGRAM_CHAT_ID = os.getenv('TELEGRAM_CHAT_ID', 'YOUR_TELEGRAM_CHAT_ID')
 PAIRS_FILE = 'pairs_cache.json'
 ACTIVE_BUYS_FILE = 'active_buys.json'
 COOLDOWNS_FILE = 'cooldowns.json'
-BTC_D_FILE = 'btc_dominance.json'  # BARU: untuk persistensi BTC Dominance
+BTC_D_FILE = 'btc_dominance.json'
 
 ACTIVE_BUYS = {}
 COOLDOWNS = {}
@@ -26,18 +26,18 @@ TF_SETUP = Interval.INTERVAL_4_HOURS
 TF_ENTRY = Interval.INTERVAL_1_HOUR
 
 # ==========================================
-# PARAMETER STRATEGI (V2.0)
+# PARAMETER STRATEGI (V2.0.1)
 # ==========================================
 ATR_SL_MULTIPLIER = 1.5
 MAX_DISTANCE_FROM_EMA20_PCT = 7.0
 RSI_OVERBOUGHT_VETO = 75
 COOLDOWN_HOURS = 12
-BREAK_EVEN_PCT = 3.0  # Saran 8: Break Even di +3%
+BREAK_EVEN_PCT = 3.0
 
 TRAILING_LEVELS = [
-    (15.0, 5.0),   # Profit >= 15% → Trailing 5%
-    (8.0,  3.0),   # Profit >= 8%  → Trailing 3%
-    (5.0,  2.0),   # Profit >= 5%  → Trailing 2% (Aktif setelah Break Even)
+    (15.0, 5.0),
+    (8.0,  3.0),
+    (5.0,  2.0),
 ]
 
 SCORE_BUY_STRONG = 90
@@ -126,7 +126,6 @@ def get_pairs_from_file():
 # BTC DOMINANCE (Persistent via CoinGecko)
 # ==========================================
 def load_last_btc_dominance():
-    """Muat nilai BTC.D dari siklus sebelumnya"""
     if os.path.exists(BTC_D_FILE):
         try:
             with open(BTC_D_FILE, 'r') as f:
@@ -137,7 +136,6 @@ def load_last_btc_dominance():
     return None
 
 def save_btc_dominance(value):
-    """Simpan nilai BTC.D untuk siklus berikutnya"""
     try:
         with open(BTC_D_FILE, 'w') as f:
             json.dump({
@@ -148,12 +146,7 @@ def save_btc_dominance(value):
         print(f"⚠️ Gagal simpan BTC Dominance: {e}")
 
 def check_btc_dominance():
-    """
-    Cek BTC Dominance trend menggunakan CoinGecko API (gratis, tanpa key).
-    Membandingkan nilai sekarang dengan siklus sebelumnya untuk menentukan trend.
-    """
     print("🔍 Mengecek BTC Dominance via CoinGecko...")
-    
     try:
         response = requests.get(
             "https://api.coingecko.com/api/v3/global",
@@ -171,18 +164,16 @@ def check_btc_dominance():
             change = btc_d_now - last_btc_d
             print(f"   Perubahan: {change:+.2f}% (dari {last_btc_d:.2f}%)")
             
-            # Threshold 0.3% untuk mendeteksi trend signifikan
             if change > 0.3:
-                status = "UPTREND"    # ⚠️ Bahaya untuk altcoin
+                status = "UPTREND"
             elif change < -0.3:
-                status = "DOWNTREND"  # ✅ Bagus untuk altcoin
+                status = "DOWNTREND"
             else:
                 status = "NEUTRAL"
         else:
             status = "NEUTRAL"
-            print(f"   Baseline pertama: {btc_d_now:.2f}% (akan dibandingkan siklus berikutnya)")
+            print(f"   Baseline pertama: {btc_d_now:.2f}%")
         
-        # Simpan untuk siklus berikutnya
         save_btc_dominance(btc_d_now)
         print(f"   BTC.D Status: {status}")
         return status
@@ -219,7 +210,6 @@ def extract_indicators(analysis):
 # FILTER BTC (Adaptive - 3 Kondisi)
 # ==========================================
 def check_btc_condition():
-    """Mengembalikan BULLISH, SIDEWAYS, atau BEARISH"""
     print("🔍 Mengecek kondisi BTC (Market Leader)...")
     analysis = get_analysis("BTCUSDT", TF_TREND)
     if not analysis: return "SIDEWAYS"
@@ -240,7 +230,19 @@ def check_btc_condition():
     return status
 
 # ==========================================
-# SCORING SYSTEM (Weighted V2.0)
+# DEBUG: TAMPILKAN INDIKATOR MENTAH
+# ==========================================
+def print_raw_indicators(pair, data_1d, data_4h, data_1h, current_price):
+    """Menampilkan indikator mentah untuk debugging"""
+    print(f"  📊 Indikator Mentah:")
+    print(f"      💲 Harga: ${current_price:.6f}")
+    print(f"      📈 1D: EMA50={data_1d['ema50']:.4f} EMA200={data_1d['ema200']:.4f} ADX={data_1d['adx']:.1f}")
+    print(f"      📈 4H: EMA20={data_4h['ema20']:.4f} EMA50={data_4h['ema50']:.4f} RSI={data_4h['rsi']:.1f}")
+    print(f"      📈 1H: EMA10={data_1h['ema10']:.4f} EMA20={data_1h['ema20']:.4f} RSI={data_1h['rsi']:.1f}")
+    print(f"      📈 1H: MACD={data_1h['macd']:.4f} Signal={data_1h['macd_signal']:.4f} ATR={data_1h['atr']:.4f}")
+
+# ==========================================
+# SCORING SYSTEM (Weighted V2.0.1)
 # ==========================================
 def calculate_entry_score(data_1d, data_4h, data_1h, current_price, sl_price):
     score = 0
@@ -248,24 +250,27 @@ def calculate_entry_score(data_1d, data_4h, data_1h, current_price, sl_price):
     vetoes = []
 
     # ==========================================
+    # 🆕 QUICK FILTER: Downtrend 1D Jelas
+    # ==========================================
+    if data_1d['ema50'] < data_1d['ema200'] and data_1d['close'] < data_1d['ema50']:
+        vetoes.append("1D Downtrend jelas (Close<EMA50<EMA200)")
+        return 0, reasons, vetoes
+
+    # ==========================================
     # VETO CONDITIONS (Hard Filter)
     # ==========================================
-    # Veto 1: RSI 1H Overbought
     if data_1h['rsi'] > RSI_OVERBOUGHT_VETO:
         vetoes.append(f"RSI 1H OB ({data_1h['rsi']:.1f})")
 
-    # Veto 2: Harga terlalu jauh dari EMA20 4H
     if data_4h['ema20'] > 0:
         dist = ((current_price - data_4h['ema20']) / data_4h['ema20']) * 100
         if dist > MAX_DISTANCE_FROM_EMA20_PCT:
             vetoes.append(f"Jauh dari EMA20 4H ({dist:.1f}%)")
 
-    # Veto 3: ATR terlalu kecil (Market mati) - Saran 6
     atr = data_1h.get('atr', 0)
     if atr > 0 and (atr / current_price) < 0.008:
         vetoes.append(f"ATR terlalu kecil ({(atr/current_price)*100:.2f}%)")
 
-    # Veto 4: Risk/Reward < 1:2 - Saran 10
     target_1d = data_1d.get('ema50', 0)
     risk = current_price - sl_price
     if risk > 0:
@@ -282,7 +287,7 @@ def calculate_entry_score(data_1d, data_4h, data_1h, current_price, sl_price):
         return 0, reasons, vetoes
 
     # ==========================================
-    # SCORING (Total 100 Poin Berbobot) - Saran 9
+    # SCORING (Total 100 Poin Berbobot)
     # ==========================================
     
     # 1. TREND (40%)
@@ -383,7 +388,6 @@ def check_entry(pair, data_1d, data_4h, data_1h, current_price, sl_price, btc_co
     if vetoes:
         return None, score, reasons, sl_price, vetoes
         
-    # Adaptive BTC & Dominance Scoring
     is_btc = pair == "BTCUSDT"
     if not is_btc:
         if btc_condition == "BULLISH":
@@ -402,7 +406,6 @@ def check_entry(pair, data_1d, data_4h, data_1h, current_price, sl_price, btc_co
             
     score = max(0, min(100, score))
     
-    # Dynamic Threshold
     buy_threshold = SCORE_BUY
     if not is_btc:
         if btc_condition == "BULLISH":
@@ -421,7 +424,7 @@ def check_entry(pair, data_1d, data_4h, data_1h, current_price, sl_price, btc_co
         return None, score, reasons, sl_price, []
 
 # ==========================================
-# CHECK EXIT (Smarter Exit V2.0)
+# CHECK EXIT (Smarter Exit V2.0.1)
 # ==========================================
 def check_exit(pair, current_price, data_1h):
     if pair not in ACTIVE_BUYS:
@@ -432,18 +435,15 @@ def check_exit(pair, current_price, data_1h):
     stop_loss = entry_data['stop_loss']
     profit_pct = ((current_price - entry_price) / entry_price) * 100
 
-    # 1. Hard Stop Loss
     if current_price <= stop_loss:
         return "STOP_LOSS", f"SL tercapai (${stop_loss:.4f})"
 
-    # 2. Break Even Stop (Saran 8)
     if profit_pct >= BREAK_EVEN_PCT and not entry_data.get('break_even_active', False):
         ACTIVE_BUYS[pair]['stop_loss'] = entry_price
         ACTIVE_BUYS[pair]['break_even_active'] = True
         save_active_buys()
         send_telegram_alert("BREAK_EVEN", pair, current_price, f"Profit {profit_pct:.2f}%, SL moved to Entry", entry_price=entry_price, profit_pct=profit_pct)
 
-    # 3. Dynamic Trailing Stop
     trailing_pct = get_trailing_percentage(profit_pct)
     if trailing_pct > 0:
         if not entry_data.get('trailing_active', False):
@@ -460,7 +460,6 @@ def check_exit(pair, current_price, data_1h):
         if current_price <= trailing_limit:
             return "TRAILING_STOP", f"Trailing {trailing_pct}% kena"
 
-    # 4. Smarter Exit (Saran 7)
     ema_cross_down = data_1h['ema10'] < data_1h['ema20']
     macd_bearish = data_1h['macd'] < data_1h['macd_signal']
     
@@ -526,7 +525,7 @@ def send_telegram_alert(signal_type, pair, current_price, details,
 # PROGRAM UTAMA
 # ==========================================
 def main():
-    print(f"🕒 Bot dimulai: {datetime.now(UTC7).strftime('%Y-%m-%d %H:%M:%S')}")
+    print(f"🕒 Bot V2.0.1 dimulai: {datetime.now(UTC7).strftime('%Y-%m-%d %H:%M:%S')}")
     print("=" * 60)
     
     load_active_buys()
@@ -534,29 +533,33 @@ def main():
     pairs = get_pairs_from_file()
     
     btc_condition = check_btc_condition()
-    btc_d_status = check_btc_dominance()  # Sekarang pakai CoinGecko API
+    btc_d_status = check_btc_dominance()
     
     print("=" * 60)
+    
+    # 🆕 Statistik siklus
+    stats = {'BUY': 0, 'WATCH': 0, 'SKIP': 0, 'VETO': 0, 'HOLD': 0, 'EXIT': 0}
     
     for pair in pairs:
         print(f"\n🔎 Menganalisis: {pair}")
         
-        # Cek Cooldown (Saran 11)
         if pair in COOLDOWNS:
             if datetime.now(UTC7) < COOLDOWNS[pair]:
-                print(f"  ⏳ {pair} dalam cooldown. Skip.")
+                remaining = (COOLDOWNS[pair] - datetime.now(UTC7)).total_seconds() / 3600
+                print(f"  ⏳ {pair} dalam cooldown ({remaining:.1f} jam lagi). Skip.")
+                stats['SKIP'] += 1
                 continue
             else:
                 del COOLDOWNS[pair]
                 save_cooldowns()
         
-        # Ambil data multi-timeframe
         analysis_1d = get_analysis(pair, TF_TREND)
         analysis_4h = get_analysis(pair, TF_SETUP)
         analysis_1h = get_analysis(pair, TF_ENTRY)
         
         if not all([analysis_1d, analysis_4h, analysis_1h]):
             print(f"⚠️ Gagal mengambil data untuk {pair}. Skip.")
+            stats['SKIP'] += 1
             continue
             
         data_1d = extract_indicators(analysis_1d)
@@ -566,9 +569,12 @@ def main():
         
         if current_price == 0:
             print(f"⚠️ Harga 0 untuk {pair}. Skip.")
+            stats['SKIP'] += 1
             continue
+        
+        # 🆕 Tampilkan indikator mentah untuk debugging
+        print_raw_indicators(pair, data_1d, data_4h, data_1h, current_price)
             
-        # Hitung SL awal untuk keperluan cek RR
         atr = data_1h.get('atr', 0)
         if atr > 0:
             sl_price = current_price - (ATR_SL_MULTIPLIER * atr)
@@ -593,9 +599,11 @@ def main():
                         save_cooldowns()
                     del ACTIVE_BUYS[pair]
                     print(f"✅ Posisi {pair} ditutup.")
+                    stats['EXIT'] += 1
             else:
                 profit_pct = ((current_price - ACTIVE_BUYS[pair]['price']) / ACTIVE_BUYS[pair]['price']) * 100
                 print(f"  ⏸️ Hold: Profit {profit_pct:+.2f}%")
+                stats['HOLD'] += 1
                 
         # ==========================================
         # JIKA BELUM PUNYA POSISI → CEK ENTRY
@@ -615,16 +623,34 @@ def main():
                 }
                 sl_info = f"SL: ${sl_price:.4f} (ATR-based)"
                 send_telegram_alert(signal, pair, current_price, sl_info, score=score, reasons=reasons)
+                stats['BUY'] += 1
             elif signal == "WATCH":
                 print(f"  👀 WATCH (Score: {score}/100) - Pantau")
                 send_telegram_alert("WATCH", pair, current_price, f"Score {score}/100, pantau untuk entry", score=score, reasons=reasons)
+                stats['WATCH'] += 1
             elif vetoes:
                 print(f"  🚫 VETO: {'; '.join(vetoes)}")
+                stats['VETO'] += 1
             else:
+                # 🆕 DEBUG LOGGING: Tampilkan semua alasan meski skip
                 print(f"  ❌ Skip (Score: {score}/100)")
+                print(f"  📋 Detail Scoring:")
+                for reason in reasons:
+                    print(f"      {reason}")
+                stats['SKIP'] += 1
                 
     save_active_buys()
+    
+    # 🆕 Ringkasan akhir siklus
     print("\n" + "=" * 60)
+    print("📊 RINGKASAN SIKLUS:")
+    print(f"   🚀 BUY: {stats['BUY']}")
+    print(f"   👀 WATCH: {stats['WATCH']}")
+    print(f"   ⏸️ HOLD: {stats['HOLD']}")
+    print(f"   ✅ EXIT: {stats['EXIT']}")
+    print(f"   🚫 VETO: {stats['VETO']}")
+    print(f"   ❌ SKIP: {stats['SKIP']}")
+    print("=" * 60)
     print("✅ Siklus analisis selesai.")
 
 if __name__ == "__main__":
