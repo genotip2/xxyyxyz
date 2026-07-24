@@ -13,6 +13,7 @@ TELEGRAM_CHAT_ID = os.getenv('TELEGRAM_CHAT_ID', 'YOUR_TELEGRAM_CHAT_ID')
 PAIRS_FILE = 'pairs_cache.json'
 ACTIVE_BUYS_FILE = 'active_buys.json'
 COOLDOWNS_FILE = 'cooldowns.json'
+BTC_D_FILE = 'btc_dominance.json'  # BARU: untuk persistensi BTC Dominance
 
 ACTIVE_BUYS = {}
 COOLDOWNS = {}
@@ -122,6 +123,75 @@ def get_pairs_from_file():
         return default_pairs
 
 # ==========================================
+# BTC DOMINANCE (Persistent via CoinGecko)
+# ==========================================
+def load_last_btc_dominance():
+    """Muat nilai BTC.D dari siklus sebelumnya"""
+    if os.path.exists(BTC_D_FILE):
+        try:
+            with open(BTC_D_FILE, 'r') as f:
+                data = json.load(f)
+                return data.get('last_value', None)
+        except Exception as e:
+            print(f"⚠️ Gagal memuat BTC Dominance: {e}")
+    return None
+
+def save_btc_dominance(value):
+    """Simpan nilai BTC.D untuk siklus berikutnya"""
+    try:
+        with open(BTC_D_FILE, 'w') as f:
+            json.dump({
+                'last_value': value,
+                'updated': datetime.now(UTC7).isoformat()
+            }, f, indent=4)
+    except Exception as e:
+        print(f"⚠️ Gagal simpan BTC Dominance: {e}")
+
+def check_btc_dominance():
+    """
+    Cek BTC Dominance trend menggunakan CoinGecko API (gratis, tanpa key).
+    Membandingkan nilai sekarang dengan siklus sebelumnya untuk menentukan trend.
+    """
+    print("🔍 Mengecek BTC Dominance via CoinGecko...")
+    
+    try:
+        response = requests.get(
+            "https://api.coingecko.com/api/v3/global",
+            timeout=10
+        )
+        response.raise_for_status()
+        data = response.json()
+        
+        btc_d_now = data['data']['market_cap_percentage']['btc']
+        last_btc_d = load_last_btc_dominance()
+        
+        print(f"   BTC Dominance saat ini: {btc_d_now:.2f}%")
+        
+        if last_btc_d is not None:
+            change = btc_d_now - last_btc_d
+            print(f"   Perubahan: {change:+.2f}% (dari {last_btc_d:.2f}%)")
+            
+            # Threshold 0.3% untuk mendeteksi trend signifikan
+            if change > 0.3:
+                status = "UPTREND"    # ⚠️ Bahaya untuk altcoin
+            elif change < -0.3:
+                status = "DOWNTREND"  # ✅ Bagus untuk altcoin
+            else:
+                status = "NEUTRAL"
+        else:
+            status = "NEUTRAL"
+            print(f"   Baseline pertama: {btc_d_now:.2f}% (akan dibandingkan siklus berikutnya)")
+        
+        # Simpan untuk siklus berikutnya
+        save_btc_dominance(btc_d_now)
+        print(f"   BTC.D Status: {status}")
+        return status
+        
+    except Exception as e:
+        print(f"⚠️ Gagal cek BTC Dominance: {e} → NEUTRAL")
+        return "NEUTRAL"
+
+# ==========================================
 # FUNGSI ANALISIS TRADINGVIEW
 # ==========================================
 def get_analysis(pair, interval):
@@ -146,7 +216,7 @@ def extract_indicators(analysis):
     }
 
 # ==========================================
-# FILTER BTC & DOMINANCE (Adaptive)
+# FILTER BTC (Adaptive - 3 Kondisi)
 # ==========================================
 def check_btc_condition():
     """Mengembalikan BULLISH, SIDEWAYS, atau BEARISH"""
@@ -168,31 +238,6 @@ def check_btc_condition():
         
     print(f"   BTC 1D: {status}")
     return status
-
-def check_btc_dominance():
-    """Cek BTC.D untuk filter altcoin"""
-    print("🔍 Mengecek BTC Dominance...")
-    try:
-        handler = TA_Handler(symbol="BTC.D", exchange="TRADINGVIEW", screener="crypto", interval=TF_TREND)
-        analysis = handler.get_analysis()
-        if not analysis: return "NEUTRAL"
-        data = extract_indicators(analysis)
-        
-        is_uptrend = data['ema20'] > data['ema50']
-        is_macd_bull = data['macd'] > data['macd_signal']
-        
-        if is_uptrend and is_macd_bull:
-            status = "UPTREND" # Bahaya untuk altcoin
-        elif not is_uptrend:
-            status = "DOWNTREND" # Bagus untuk altcoin
-        else:
-            status = "NEUTRAL"
-            
-        print(f"   BTC.D 1D: {status}")
-        return status
-    except Exception as e:
-        print(f"⚠️ Gagal cek BTC.D: {e}")
-        return "NEUTRAL"
 
 # ==========================================
 # SCORING SYSTEM (Weighted V2.0)
@@ -227,7 +272,7 @@ def calculate_entry_score(data_1d, data_4h, data_1h, current_price, sl_price):
         if target_1d > current_price:
             reward = target_1d - current_price
         else:
-            reward = 3.0 * atr if atr > 0 else current_price * 0.05 # Fallback target
+            reward = 3.0 * atr if atr > 0 else current_price * 0.05
             
         rr_ratio = reward / risk
         if rr_ratio < 2.0:
@@ -241,7 +286,6 @@ def calculate_entry_score(data_1d, data_4h, data_1h, current_price, sl_price):
     # ==========================================
     
     # 1. TREND (40%)
-    # Saran 1: Trend 1D lebih ketat
     if data_1d['ema20'] > data_1d['ema50'] > data_1d['ema200'] and data_1d['close'] > data_1d['ema20']:
         score += 25
         reasons.append("✅ 1D Strong Trend (EMA20>50>200) [+25]")
@@ -258,7 +302,6 @@ def calculate_entry_score(data_1d, data_4h, data_1h, current_price, sl_price):
         reasons.append(f"❌ 1D ADX Lemah ({data_1d['adx']:.1f}) [+0]")
 
     # 2. PULLBACK (15%)
-    # Saran 2: Pullback 4H lebih ketat
     if data_4h['ema20'] > data_4h['ema50']:
         dist_4h = abs(current_price - data_4h['ema20']) / data_4h['ema20'] * 100
         if dist_4h <= 2.0:
@@ -277,7 +320,6 @@ def calculate_entry_score(data_1d, data_4h, data_1h, current_price, sl_price):
         reasons.append(f"⚠️ 4H RSI Tidak Ideal ({data_4h['rsi']:.1f}) [+0]")
 
     # 3. MOMENTUM (30%)
-    # Saran 3: Fresh MACD Crossover
     macd_diff_4h = data_4h['macd'] - data_4h['macd_signal']
     if macd_diff_4h > 0:
         if abs(macd_diff_4h) / current_price < 0.002:
@@ -313,7 +355,6 @@ def calculate_entry_score(data_1d, data_4h, data_1h, current_price, sl_price):
         reasons.append(f"⚠️ 1H RSI Tidak Optimal ({data_1h['rsi']:.1f}) [+0]")
 
     # 4. VOLUME (15%)
-    # Saran 4: Volume Spike
     vol = data_1h.get('volume', 0)
     avg_vol = data_1h.get('average_volume', 0)
     if avg_vol > 0 and vol > (1.5 * avg_vol):
@@ -493,7 +534,7 @@ def main():
     pairs = get_pairs_from_file()
     
     btc_condition = check_btc_condition()
-    btc_d_status = check_btc_dominance()
+    btc_d_status = check_btc_dominance()  # Sekarang pakai CoinGecko API
     
     print("=" * 60)
     
