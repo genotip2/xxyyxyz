@@ -1,4 +1,4 @@
-name: Crypto Signal Bot V2.1
+name: Crypto Signal Bot V3.0
 
 on:
   schedule:
@@ -36,11 +36,13 @@ jobs:
         run: |
           git config --local user.name "github-actions[bot]"
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          # Hanya commit file JSON yang masih aktif
+          
+          # V3.0: Hanya active_buys, pairs_cache, cooldowns (tidak ada btc_dominance)
           git add active_buys.json pairs_cache.json cooldowns.json
+          
           if git diff --cached --exit-code; then
             echo "No changes to commit"
           else
-            git commit -m "chore: update bot state V2.1 [skip ci]"
+            git commit -m "chore: update bot state V3.0 [skip ci]"
             git push
           fi
