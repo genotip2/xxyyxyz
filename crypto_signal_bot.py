@@ -430,16 +430,26 @@ def main():
             del COOLDOWNS[pair]
             save_cooldowns()
         
-        analysis_1d, analysis_4h, analysis_1h = get_analysis(pair, TF_TREND), get_analysis(pair, TF_SETUP), get_analysis(pair, TF_ENTRY)
+        analysis_1d = get_analysis(pair, TF_TREND)
+        analysis_4h = get_analysis(pair, TF_SETUP)
+        analysis_1h = get_analysis(pair, TF_ENTRY)
+        
         if not all([analysis_1d, analysis_4h, analysis_1h]):
+            print(f"⚠️ Gagal mengambil data untuk {pair}. Skip.")
             stats['SKIP'] += 1
             continue
             
-        data_1d, data_4h, data_1h = extract_indicators(analysis_1d), extract_indicators(analysis_4h), extract_indicators(analysis_1h)
+        data_1d = extract_indicators(analysis_1d)
+        data_4h = extract_indicators(analysis_4h)
+        data_1h = extract_indicators(analysis_1h)
         current_price = data_1h['close']
+        
         if current_price == 0:
+            print(f"⚠️ Harga 0 untuk {pair}. Skip.")
             stats['SKIP'] += 1
             continue
+        
+        print_raw_indicators(pair, data_1d, data_4h, data_1h, current_price)
         
         atr = data_1h.get('atr', 0)
         sl_price = current_price - (ATR_SL_MULTIPLIER * atr) if atr > 0 else current_price * 0.97
