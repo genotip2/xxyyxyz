@@ -488,8 +488,15 @@ def main():
     # 🆕 CEK APAKAH PERLU KIRIM REKAP MINGGUAN
     check_and_send_weekly_recap()
     
-    print(f"\n📊 RINGKASAN: BUY:{stats['BUY']} WATCH:{stats['WATCH']} HOLD:{stats['HOLD']} EXIT:{stats['EXIT']} VETO:{stats['VETO']} SKIP:{stats['SKIP']}")
-    print("✅ Siklus selesai.")
-
+    print("\n" + "=" * 60)
+    print("📊 RINGKASAN SIKLUS:")
+    print(f"   🚀 BUY: {stats['BUY']}")
+    print(f"   👀 WATCH: {stats['WATCH']}")
+    print(f"   ⏸️ HOLD: {stats['HOLD']}")
+    print(f"   ✅ EXIT: {stats['EXIT']}")
+    print(f"   🚫 VETO: {stats['VETO']}")
+    print(f"   ❌ SKIP: {stats['SKIP']}")
+    print("=" * 60)
+    print("✅ Siklus analisis selesai.")
 if __name__ == "__main__":
     main()
