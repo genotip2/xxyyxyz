@@ -1,7 +1,6 @@
 import os
 import requests
 import json
-import time
 from datetime import datetime, timedelta, timezone
 from tradingview_ta import TA_Handler, Interval
 
@@ -26,15 +25,7 @@ TF_SETUP = Interval.INTERVAL_4_HOURS
 TF_ENTRY = Interval.INTERVAL_1_HOUR
 
 # ==========================================
-# KONFIGURASI BATCH (Anti-Rate-Limit)
-# ==========================================
-BATCH_SIZE = 25          # Jumlah pair per batch
-BATCH_DELAY = 1          # Delay antar batch (detik)
-REQUEST_DELAY = 0        # Delay antar request (detik)
-MAX_RETRIES = 3          # Retry jika gagal
-
-# ==========================================
-# PARAMETER STRATEGI (V2.1)
+# PARAMETER STRATEGI (V3.0)
 # ==========================================
 ATR_SL_MULTIPLIER = 1.5
 MAX_DISTANCE_FROM_EMA20_PCT = 7.0
@@ -48,6 +39,7 @@ TRAILING_LEVELS = [
     (5.0,  2.0),
 ]
 
+# 🆕 V3.0: Threshold tetap (tidak ada dynamic threshold)
 SCORE_BUY_STRONG = 90
 SCORE_BUY = 80
 SCORE_WATCH = 60
@@ -131,39 +123,18 @@ def get_pairs_from_file():
         return default_pairs
 
 # ==========================================
-# FUNGSI ANALISIS TRADINGVIEW (Anti-Rate-Limit)
+# FUNGSI ANALISIS TRADINGVIEW
 # ==========================================
-def get_analysis(pair, interval, max_retries=MAX_RETRIES):
-    """Ambil analisis dengan retry & delay untuk menghindari rate limit."""
-    for attempt in range(max_retries):
-        try:
-            handler = TA_Handler(
-                symbol=pair, 
-                exchange="BINANCE",
-                screener="CRYPTO", 
-                interval=interval
-            )
-            result = handler.get_analysis()
-            time.sleep(REQUEST_DELAY)
-            return result
-            
-        except Exception as e:
-            error_msg = str(e).lower()
-            
-            if "429" in error_msg or "too many requests" in error_msg:
-                wait_time = (attempt + 1) * 10
-                print(f"⚠️ Rate limit {pair}@{interval}. Tunggu {wait_time}s... ({attempt+1}/{max_retries})")
-                time.sleep(wait_time)
-                continue
-            
-            print(f"⚠️ Gagal menganalisis {pair} pada {interval}: {e}")
-            return None
-    
-    print(f"❌ Gagal mengambil data {pair}@{interval} setelah {max_retries} percobaan")
-    return None
+def get_analysis(pair, interval):
+    try:
+        handler = TA_Handler(symbol=pair, exchange="BINANCE", screener="CRYPTO", interval=interval)
+        return handler.get_analysis()
+    except Exception as e:
+        print(f"⚠️ Gagal menganalisis {pair} pada {interval}: {e}")
+        return None
 
 def extract_indicators(analysis):
-    """Tahan None - konversi semua nilai None → 0"""
+    """🛡️ Tahan None - konversi semua nilai None → 0"""
     if not analysis or not analysis.indicators:
         return {}
     ind = analysis.indicators
@@ -192,24 +163,6 @@ def extract_indicators(analysis):
     }
 
 # ==========================================
-# BATCH HELPER: Ambil data 3 TF sekaligus
-# ==========================================
-def get_all_timeframes_data(pair):
-    """Ambil data 1D, 4H, 1H untuk satu pair."""
-    analysis_1d = get_analysis(pair, TF_TREND)
-    analysis_4h = get_analysis(pair, TF_SETUP)
-    analysis_1h = get_analysis(pair, TF_ENTRY)
-    
-    if not all([analysis_1d, analysis_4h, analysis_1h]):
-        return None
-    
-    return {
-        '1d': extract_indicators(analysis_1d),
-        '4h': extract_indicators(analysis_4h),
-        '1h': extract_indicators(analysis_1h),
-    }
-
-# ==========================================
 # DEBUG: TAMPILKAN INDIKATOR MENTAH
 # ==========================================
 def print_raw_indicators(pair, data_1d, data_4h, data_1h, current_price):
@@ -221,19 +174,23 @@ def print_raw_indicators(pair, data_1d, data_4h, data_1h, current_price):
     print(f"      📈 1H: MACD={data_1h['macd']:.6f} Signal={data_1h['macd_signal']:.6f} ATR={data_1h['atr']:.6f}")
 
 # ==========================================
-# SCORING SYSTEM (Weighted - Mandiri)
+# SCORING SYSTEM (Weighted V3.0)
 # ==========================================
 def calculate_entry_score(data_1d, data_4h, data_1h, current_price, sl_price):
     score = 0
     reasons = []
     vetoes = []
 
-    # Quick Filter: Downtrend 1D Jelas
+    # ==========================================
+    # QUICK FILTER: Downtrend 1D Jelas
+    # ==========================================
     if data_1d['ema50'] < data_1d['ema200'] and data_1d['close'] < data_1d['ema50']:
         vetoes.append("1D Downtrend jelas (Close<EMA50<EMA200)")
         return 0, reasons, vetoes
 
-    # VETO CONDITIONS
+    # ==========================================
+    # VETO CONDITIONS (Hard Filter)
+    # ==========================================
     if data_1h['rsi'] > RSI_OVERBOUGHT_VETO:
         vetoes.append(f"RSI 1H OB ({data_1h['rsi']:.1f})")
 
@@ -261,7 +218,11 @@ def calculate_entry_score(data_1d, data_4h, data_1h, current_price, sl_price):
     if vetoes:
         return 0, reasons, vetoes
 
-    # SCORING
+    # ==========================================
+    # SCORING (Total 100 Poin Berbobot)
+    # ==========================================
+    
+    # 1. TREND (40%)
     if data_1d['ema20'] > data_1d['ema50'] > data_1d['ema200'] and data_1d['close'] > data_1d['ema20']:
         score += 25
         reasons.append("✅ 1D Strong Trend (EMA20>50>200) [+25]")
@@ -277,6 +238,7 @@ def calculate_entry_score(data_1d, data_4h, data_1h, current_price, sl_price):
     else:
         reasons.append(f"❌ 1D ADX Lemah ({data_1d['adx']:.1f}) [+0]")
 
+    # 2. PULLBACK (15%)
     if data_4h['ema20'] > data_4h['ema50']:
         dist_4h = abs(current_price - data_4h['ema20']) / data_4h['ema20'] * 100
         if dist_4h <= 2.0:
@@ -294,6 +256,7 @@ def calculate_entry_score(data_1d, data_4h, data_1h, current_price, sl_price):
     else:
         reasons.append(f"⚠️ 4H RSI Tidak Ideal ({data_4h['rsi']:.1f}) [+0]")
 
+    # 3. MOMENTUM (30%)
     macd_diff_4h = data_4h['macd'] - data_4h['macd_signal']
     if macd_diff_4h > 0:
         if current_price > 0 and abs(macd_diff_4h) / current_price < 0.002:
@@ -328,6 +291,7 @@ def calculate_entry_score(data_1d, data_4h, data_1h, current_price, sl_price):
     else:
         reasons.append(f"⚠️ 1H RSI Tidak Optimal ({data_1h['rsi']:.1f}) [+0]")
 
+    # 4. VOLUME (15%)
     vol = data_1h.get('volume', 0)
     avg_vol = data_1h.get('average_volume', 0)
     if avg_vol > 0 and vol > (1.5 * avg_vol):
@@ -348,19 +312,18 @@ def get_trailing_percentage(profit_pct):
     return 0
 
 # ==========================================
-# CHECK ENTRY (Tanpa Filter BTC)
+# CHECK ENTRY (V3.0 - Tanpa Filter BTC)
 # ==========================================
 def check_entry(pair, data_1d, data_4h, data_1h, current_price, sl_price):
     """
-    Cek entry berdasarkan kualitas setup coin itu sendiri.
-    Tidak ada lagi filter BTC/Dominance.
+    V3.0: Setiap coin dinilai mandiri tanpa filter BTC/Dominance.
     """
     score, reasons, vetoes = calculate_entry_score(data_1d, data_4h, data_1h, current_price, sl_price)
     
     if vetoes:
         return None, score, reasons, sl_price, vetoes
     
-    # Threshold statis (tidak lagi dinamis berdasarkan BTC)
+    # 🆕 V3.0: Threshold tetap (tidak ada dynamic threshold)
     if score >= SCORE_BUY:
         signal = "BUY_STRONG" if score >= SCORE_BUY_STRONG else "BUY"
         return signal, score, reasons, sl_price, []
@@ -468,140 +431,120 @@ def send_telegram_alert(signal_type, pair, current_price, details,
         print(f"❌ Gagal kirim Telegram: {e}")
 
 # ==========================================
-# BATCH PROCESSING HELPER
-# ==========================================
-def chunk_list(lst, chunk_size):
-    """Bagi list menjadi chunks berukuran chunk_size"""
-    for i in range(0, len(lst), chunk_size):
-        yield lst[i:i + chunk_size]
-
-# ==========================================
-# PROGRAM UTAMA (V2.1 - Tanpa BTC Filter)
+# PROGRAM UTAMA (V3.0)
 # ==========================================
 def main():
-    print(f"🕒 Bot V2.1 (Standalone) dimulai: {datetime.now(UTC7).strftime('%Y-%m-%d %H:%M:%S')}")
+    print(f"🕒 Bot V3.0 dimulai: {datetime.now(UTC7).strftime('%Y-%m-%d %H:%M:%S')}")
+    print("📌 Mode: Independent Coin Analysis (tanpa filter BTC/Dominance)")
     print("=" * 60)
     
     load_active_buys()
     load_cooldowns()
     pairs = get_pairs_from_file()
     
-    # Hitung estimasi batch
-    total_pairs = len(pairs)
-    total_batches = (total_pairs + BATCH_SIZE - 1) // BATCH_SIZE
-    total_requests = total_pairs * 3  # pairs × 3 TF (tidak ada BTC check lagi)
-    estimated_time = (total_requests * REQUEST_DELAY) + ((total_batches - 1) * BATCH_DELAY)
-    
-    print(f"📦 Konfigurasi Batch:")
-    print(f"   • Total pairs: {total_pairs}")
-    print(f"   • Batch size: {BATCH_SIZE} pairs/batch")
-    print(f"   • Total batch: {total_batches}")
-    print(f"   • Total request: {total_requests}")
-    print(f"   • Estimasi waktu: ~{estimated_time:.0f} detik")
-    print(f"   • Mode: STANDALONE (tanpa filter BTC/Dominance)")
+    # 🆕 V3.0: Tidak ada check_btc_condition() dan check_btc_dominance()
+    print("✅ Bot siap menganalisis semua pair secara mandiri")
     print("=" * 60)
     
-    stats = {'BUY': 0, 'WATCH': 0, 'SKIP': 0, 'VETO': 0, 'HOLD': 0, 'EXIT': 0, 'ERROR': 0}
+    stats = {'BUY': 0, 'WATCH': 0, 'SKIP': 0, 'VETO': 0, 'HOLD': 0, 'EXIT': 0}
     
-    # PROSES PER BATCH
-    for batch_idx, batch_pairs in enumerate(chunk_list(pairs, BATCH_SIZE), 1):
-        print(f"\n{'='*60}")
-        print(f"📦 BATCH {batch_idx}/{total_batches} ({len(batch_pairs)} pairs)")
-        print(f"{'='*60}")
+    for pair in pairs:
+        print(f"\n🔎 Menganalisis: {pair}")
         
-        for pair in batch_pairs:
-            print(f"\n🔎 Menganalisis: {pair}")
-            
-            if pair in COOLDOWNS:
-                if datetime.now(UTC7) < COOLDOWNS[pair]:
-                    remaining = (COOLDOWNS[pair] - datetime.now(UTC7)).total_seconds() / 3600
-                    print(f"  ⏳ {pair} dalam cooldown ({remaining:.1f} jam lagi). Skip.")
-                    stats['SKIP'] += 1
-                    continue
-                else:
-                    del COOLDOWNS[pair]
-                    save_cooldowns()
-            
-            tf_data = get_all_timeframes_data(pair)
-            
-            if not tf_data:
-                print(f"⚠️ Gagal mengambil data untuk {pair}. Skip.")
-                stats['ERROR'] += 1
-                continue
-                
-            data_1d = tf_data['1d']
-            data_4h = tf_data['4h']
-            data_1h = tf_data['1h']
-            current_price = data_1h['close']
-            
-            if current_price == 0:
-                print(f"⚠️ Harga 0 untuk {pair}. Skip.")
+        if pair in COOLDOWNS:
+            if datetime.now(UTC7) < COOLDOWNS[pair]:
+                remaining = (COOLDOWNS[pair] - datetime.now(UTC7)).total_seconds() / 3600
+                print(f"  ⏳ {pair} dalam cooldown ({remaining:.1f} jam lagi). Skip.")
                 stats['SKIP'] += 1
                 continue
-            
-            print_raw_indicators(pair, data_1d, data_4h, data_1h, current_price)
-                
-            atr = data_1h.get('atr', 0)
-            if atr > 0:
-                sl_price = current_price - (ATR_SL_MULTIPLIER * atr)
             else:
-                sl_price = current_price * 0.97
-
-            if pair in ACTIVE_BUYS:
-                signal, details = check_exit(pair, current_price, data_1h)
-                if signal:
-                    entry_data = ACTIVE_BUYS[pair]
-                    profit_pct = ((current_price - entry_data['price']) / entry_data['price']) * 100
-                    send_telegram_alert(
-                        signal, pair, current_price, details,
-                        entry_price=entry_data['price'], profit_pct=profit_pct
-                    )
-                    if signal in ["STOP_LOSS", "TRAILING_STOP", "SELL_EMA_MACD", "SELL_CLOSE_EMA"]:
-                        if signal == "STOP_LOSS":
-                            COOLDOWNS[pair] = datetime.now(UTC7) + timedelta(hours=COOLDOWN_HOURS)
-                            save_cooldowns()
-                        del ACTIVE_BUYS[pair]
-                        print(f"✅ Posisi {pair} ditutup.")
-                        stats['EXIT'] += 1
-                else:
-                    profit_pct = ((current_price - ACTIVE_BUYS[pair]['price']) / ACTIVE_BUYS[pair]['price']) * 100
-                    print(f"  ⏸️ Hold: Profit {profit_pct:+.2f}%")
-                    stats['HOLD'] += 1
-                    
-            else:
-                signal, score, reasons, sl_price, vetoes = check_entry(
-                    pair, data_1d, data_4h, data_1h, current_price, sl_price
-                )
-                
-                if signal == "BUY" or signal == "BUY_STRONG":
-                    print(f"  ✅ SINYAL {signal} (Score: {score}/100)")
-                    ACTIVE_BUYS[pair] = {
-                        'price': current_price, 'time': datetime.now(UTC7),
-                        'stop_loss': sl_price, 'trailing_active': False,
-                        'highest_price': current_price, 'current_trailing_pct': 0,
-                        'entry_score': score, 'break_even_active': False
-                    }
-                    sl_info = f"SL: ${sl_price:.4f} (ATR-based)"
-                    send_telegram_alert(signal, pair, current_price, sl_info, score=score, reasons=reasons)
-                    stats['BUY'] += 1
-                elif signal == "WATCH":
-                    print(f"  👀 WATCH (Score: {score}/100) - Pantau")
-                    send_telegram_alert("WATCH", pair, current_price, f"Score {score}/100, pantau untuk entry", score=score, reasons=reasons)
-                    stats['WATCH'] += 1
-                elif vetoes:
-                    print(f"  🚫 VETO: {'; '.join(vetoes)}")
-                    stats['VETO'] += 1
-                else:
-                    print(f"  ❌ Skip (Score: {score}/100)")
-                    print(f"  📋 Detail Scoring:")
-                    for reason in reasons:
-                        print(f"      {reason}")
-                    stats['SKIP'] += 1
+                del COOLDOWNS[pair]
+                save_cooldowns()
         
-        # DELAY ANTAR BATCH (kecuali batch terakhir)
-        if batch_idx < total_batches:
-            print(f"\n⏸️ Istirahat {BATCH_DELAY} detik sebelum batch berikutnya...")
-            time.sleep(BATCH_DELAY)
+        analysis_1d = get_analysis(pair, TF_TREND)
+        analysis_4h = get_analysis(pair, TF_SETUP)
+        analysis_1h = get_analysis(pair, TF_ENTRY)
+        
+        if not all([analysis_1d, analysis_4h, analysis_1h]):
+            print(f"⚠️ Gagal mengambil data untuk {pair}. Skip.")
+            stats['SKIP'] += 1
+            continue
+            
+        data_1d = extract_indicators(analysis_1d)
+        data_4h = extract_indicators(analysis_4h)
+        data_1h = extract_indicators(analysis_1h)
+        current_price = data_1h['close']
+        
+        if current_price == 0:
+            print(f"⚠️ Harga 0 untuk {pair}. Skip.")
+            stats['SKIP'] += 1
+            continue
+        
+        print_raw_indicators(pair, data_1d, data_4h, data_1h, current_price)
+            
+        atr = data_1h.get('atr', 0)
+        if atr > 0:
+            sl_price = current_price - (ATR_SL_MULTIPLIER * atr)
+        else:
+            sl_price = current_price * 0.97
+
+        # ==========================================
+        # JIKA SUDAH PUNYA POSISI → CEK EXIT
+        # ==========================================
+        if pair in ACTIVE_BUYS:
+            signal, details = check_exit(pair, current_price, data_1h)
+            if signal:
+                entry_data = ACTIVE_BUYS[pair]
+                profit_pct = ((current_price - entry_data['price']) / entry_data['price']) * 100
+                send_telegram_alert(
+                    signal, pair, current_price, details,
+                    entry_price=entry_data['price'], profit_pct=profit_pct
+                )
+                if signal in ["STOP_LOSS", "TRAILING_STOP", "SELL_EMA_MACD", "SELL_CLOSE_EMA"]:
+                    if signal == "STOP_LOSS":
+                        COOLDOWNS[pair] = datetime.now(UTC7) + timedelta(hours=COOLDOWN_HOURS)
+                        save_cooldowns()
+                    del ACTIVE_BUYS[pair]
+                    print(f"✅ Posisi {pair} ditutup.")
+                    stats['EXIT'] += 1
+            else:
+                profit_pct = ((current_price - ACTIVE_BUYS[pair]['price']) / ACTIVE_BUYS[pair]['price']) * 100
+                print(f"  ⏸️ Hold: Profit {profit_pct:+.2f}%")
+                stats['HOLD'] += 1
+                
+        # ==========================================
+        # JIKA BELUM PUNYA POSISI → CEK ENTRY
+        # ==========================================
+        else:
+            # 🆕 V3.0: Tidak ada parameter btc_condition & btc_d_status
+            signal, score, reasons, sl_price, vetoes = check_entry(
+                pair, data_1d, data_4h, data_1h, current_price, sl_price
+            )
+            
+            if signal == "BUY" or signal == "BUY_STRONG":
+                print(f"  ✅ SINYAL {signal} (Score: {score}/100)")
+                ACTIVE_BUYS[pair] = {
+                    'price': current_price, 'time': datetime.now(UTC7),
+                    'stop_loss': sl_price, 'trailing_active': False,
+                    'highest_price': current_price, 'current_trailing_pct': 0,
+                    'entry_score': score, 'break_even_active': False
+                }
+                sl_info = f"SL: ${sl_price:.4f} (ATR-based)"
+                send_telegram_alert(signal, pair, current_price, sl_info, score=score, reasons=reasons)
+                stats['BUY'] += 1
+            elif signal == "WATCH":
+                print(f"  👀 WATCH (Score: {score}/100) - Pantau")
+                send_telegram_alert("WATCH", pair, current_price, f"Score {score}/100, pantau untuk entry", score=score, reasons=reasons)
+                stats['WATCH'] += 1
+            elif vetoes:
+                print(f"  🚫 VETO: {'; '.join(vetoes)}")
+                stats['VETO'] += 1
+            else:
+                print(f"  ❌ Skip (Score: {score}/100)")
+                print(f"  📋 Detail Scoring:")
+                for reason in reasons:
+                    print(f"      {reason}")
+                stats['SKIP'] += 1
                 
     save_active_buys()
     
@@ -613,7 +556,6 @@ def main():
     print(f"   ✅ EXIT: {stats['EXIT']}")
     print(f"   🚫 VETO: {stats['VETO']}")
     print(f"   ❌ SKIP: {stats['SKIP']}")
-    print(f"   ⚠️ ERROR: {stats['ERROR']}")
     print("=" * 60)
     print("✅ Siklus analisis selesai.")
 
