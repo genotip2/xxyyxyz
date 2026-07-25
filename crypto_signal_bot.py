@@ -13,8 +13,8 @@ TELEGRAM_CHAT_ID = os.getenv('TELEGRAM_CHAT_ID', 'YOUR_TELEGRAM_CHAT_ID')
 PAIRS_FILE = 'pairs_cache.json'
 ACTIVE_BUYS_FILE = 'active_buys.json'
 COOLDOWNS_FILE = 'cooldowns.json'
-TRADE_HISTORY_FILE = 'trade_history.json'   # 🆕 BARU: Untuk rekap PnL
-RECAP_SENT_FILE = 'recap_sent.json'         # 🆕 BARU: Mencegah spam rekap
+TRADE_HISTORY_FILE = 'trade_history.json'
+RECAP_SENT_FILE = 'recap_sent.json'
 
 ACTIVE_BUYS = {}
 COOLDOWNS = {}
@@ -67,7 +67,9 @@ def load_active_buys():
                     }
                     for pair, d in data.items()
                 }
+            print(f"✅ Dimuat {len(ACTIVE_BUYS)} posisi aktif.")
         except Exception as e:
+            print(f"❌ Gagal memuat posisi aktif: {e}")
             ACTIVE_BUYS = {}
     else:
         ACTIVE_BUYS = {}
@@ -105,7 +107,6 @@ def save_cooldowns():
     except Exception as e:
         print(f"❌ Gagal simpan cooldown: {e}")
 
-# 🆕 FUNGSI RIWAYAT TRADE (Untuk Rekap Mingguan)
 def load_trade_history():
     if os.path.exists(TRADE_HISTORY_FILE):
         try:
@@ -141,13 +142,17 @@ def save_recap_sent(date_str):
 def get_pairs_from_file():
     default_pairs = ["BTCUSDT", "ETHUSDT", "SOLUSDT", "BNBUSDT", "XRPUSDT"]
     if not os.path.exists(PAIRS_FILE):
+        print(f"ℹ️ File {PAIRS_FILE} tidak ditemukan. Membuat default...")
         with open(PAIRS_FILE, 'w') as f:
             json.dump(default_pairs, f, indent=4)
         return default_pairs
     try:
         with open(PAIRS_FILE, 'r') as f:
-            return json.load(f)
-    except:
+            pairs = json.load(f)
+        print(f"✅ Memuat {len(pairs)} pair: {pairs}")
+        return pairs
+    except Exception as e:
+        print(f"❌ Gagal membaca {PAIRS_FILE}: {e}")
         return default_pairs
 
 # ==========================================
@@ -158,16 +163,19 @@ def get_analysis(pair, interval):
         handler = TA_Handler(symbol=pair, exchange="BINANCE", screener="CRYPTO", interval=interval)
         return handler.get_analysis()
     except Exception as e:
+        print(f"⚠️ Gagal menganalisis {pair} pada {interval}: {e}")
         return None
 
 def extract_indicators(analysis):
+    """🛡️ Tahan None - konversi semua nilai None → 0"""
     if not analysis or not analysis.indicators:
         return {}
     ind = analysis.indicators
+    
     def safe_float(value, default=0):
         if value is None: return default
         try: return float(value)
-        except: return default
+        except (TypeError, ValueError): return default
     
     return {
         'close': safe_float(ind.get('close')),
@@ -184,19 +192,32 @@ def extract_indicators(analysis):
         'average_volume': safe_float(ind.get('average_volume')),
     }
 
+# ==========================================
+# DEBUG: TAMPILKAN INDIKATOR MENTAH (DETAIL)
+# ==========================================
 def print_raw_indicators(pair, data_1d, data_4h, data_1h, current_price):
-    print(f"  📊 Indikator: Harga=${current_price:.6f} | 1D: EMA50={data_1d['ema50']:.2f} | 4H: RSI={data_4h['rsi']:.1f}")
+    """Menampilkan indikator mentah untuk debugging (format sama dengan V2.1)"""
+    print(f"  📊 Indikator Mentah:")
+    print(f"      💲 Harga: ${current_price:.6f}")
+    print(f"      📈 1D: EMA50={data_1d['ema50']:.4f} EMA200={data_1d['ema200']:.4f} ADX={data_1d['adx']:.1f}")
+    print(f"      📈 4H: EMA20={data_4h['ema20']:.4f} EMA50={data_4h['ema50']:.4f} RSI={data_4h['rsi']:.1f}")
+    print(f"      📈 1H: EMA10={data_1h['ema10']:.4f} EMA20={data_1h['ema20']:.4f} RSI={data_1h['rsi']:.1f}")
+    print(f"      📈 1H: MACD={data_1h['macd']:.6f} Signal={data_1h['macd_signal']:.6f} ATR={data_1h['atr']:.6f}")
 
 # ==========================================
-# SCORING SYSTEM
+# SCORING SYSTEM (Weighted V3.1)
 # ==========================================
 def calculate_entry_score(data_1d, data_4h, data_1h, current_price, sl_price):
-    score, reasons, vetoes = 0, [], []
+    score = 0
+    reasons = []
+    vetoes = []
 
+    # Quick Filter: Downtrend 1D Jelas
     if data_1d['ema50'] < data_1d['ema200'] and data_1d['close'] < data_1d['ema50']:
-        vetoes.append("1D Downtrend jelas")
+        vetoes.append("1D Downtrend jelas (Close<EMA50<EMA200)")
         return 0, reasons, vetoes
 
+    # VETO CONDITIONS
     if data_1h['rsi'] > RSI_OVERBOUGHT_VETO:
         vetoes.append(f"RSI 1H OB ({data_1h['rsi']:.1f})")
 
@@ -213,56 +234,90 @@ def calculate_entry_score(data_1d, data_4h, data_1h, current_price, sl_price):
     risk = current_price - sl_price
     if risk > 0:
         reward = (target_1d - current_price) if target_1d > current_price else (3.0 * atr if atr > 0 else current_price * 0.05)
-        if (reward / risk) < 2.0:
-            vetoes.append(f"RR kecil (1:{(reward/risk):.1f} < 1:2.0)")
+        rr_ratio = reward / risk
+        if rr_ratio < 2.0:
+            vetoes.append(f"RR kecil (1:{rr_ratio:.1f} < 1:2.0)")
 
     if vetoes:
         return 0, reasons, vetoes
 
-    # Scoring
+    # 1. TREND (40%)
     if data_1d['ema20'] > data_1d['ema50'] > data_1d['ema200'] and data_1d['close'] > data_1d['ema20']:
-        score += 25; reasons.append("✅ 1D Strong Trend [+25]")
+        score += 25
+        reasons.append("✅ 1D Strong Trend (EMA20>50>200) [+25]")
     elif data_1d['ema50'] > data_1d['ema200'] and data_1d['close'] > data_1d['ema50']:
-        score += 20; reasons.append("✅ 1D Uptrend [+20]")
+        score += 20
+        reasons.append("✅ 1D Uptrend (Close>EMA50>200) [+20]")
     else:
         reasons.append("❌ 1D Trend Lemah [+0]")
 
-    if data_1d['adx'] > 25: score += 15; reasons.append(f"✅ 1D ADX Kuat [+15]")
-    else: reasons.append("❌ 1D ADX Lemah [+0]")
+    if data_1d['adx'] > 25:
+        score += 15
+        reasons.append(f"✅ 1D ADX Kuat ({data_1d['adx']:.1f}) [+15]")
+    else:
+        reasons.append(f"❌ 1D ADX Lemah ({data_1d['adx']:.1f}) [+0]")
 
+    # 2. PULLBACK (15%)
     if data_4h['ema20'] > data_4h['ema50']:
         dist_4h = abs(current_price - data_4h['ema20']) / data_4h['ema20'] * 100
-        if dist_4h <= 2.0: score += 10; reasons.append(f"✅ 4H Perfect Pullback [+10]")
-        else: score += 5; reasons.append(f"⚠️ 4H Pullback Far [+5]")
+        if dist_4h <= 2.0:
+            score += 10
+            reasons.append(f"✅ 4H Perfect Pullback (Dist {dist_4h:.1f}%) [+10]")
+        else:
+            score += 5
+            reasons.append(f"⚠️ 4H Pullback Far (Dist {dist_4h:.1f}%) [+5]")
     else:
         reasons.append("❌ 4H Bukan Pullback [+0]")
 
-    if 45 <= data_4h['rsi'] <= 60: score += 5; reasons.append("✅ 4H RSI Rebound [+5]")
-    else: reasons.append("⚠️ 4H RSI Tidak Ideal [+0]")
+    if 45 <= data_4h['rsi'] <= 60:
+        score += 5
+        reasons.append(f"✅ 4H RSI Rebound ({data_4h['rsi']:.1f}) [+5]")
+    else:
+        reasons.append(f"⚠️ 4H RSI Tidak Ideal ({data_4h['rsi']:.1f}) [+0]")
 
+    # 3. MOMENTUM (30%)
     macd_diff_4h = data_4h['macd'] - data_4h['macd_signal']
     if macd_diff_4h > 0:
-        if current_price > 0 and abs(macd_diff_4h) / current_price < 0.002: score += 15; reasons.append("✅ 4H MACD Fresh Cross [+15]")
-        else: score += 10; reasons.append("✅ 4H MACD Bullish [+10]")
+        if current_price > 0 and abs(macd_diff_4h) / current_price < 0.002:
+            score += 15
+            reasons.append("✅ 4H MACD Fresh Cross [+15]")
+        else:
+            score += 10
+            reasons.append("✅ 4H MACD Bullish [+10]")
     else:
         reasons.append("❌ 4H MACD Bearish [+0]")
 
-    if data_1h['ema10'] > data_1h['ema20']: score += 5; reasons.append("✅ 1H Momentum [+5]")
-    else: reasons.append("❌ 1H Momentum Lemah [+0]")
+    if data_1h['ema10'] > data_1h['ema20']:
+        score += 5
+        reasons.append("✅ 1H Momentum (EMA10>20) [+5]")
+    else:
+        reasons.append("❌ 1H Momentum Lemah [+0]")
 
     macd_diff_1h = data_1h['macd'] - data_1h['macd_signal']
     if macd_diff_1h > 0:
-        if current_price > 0 and abs(macd_diff_1h) / current_price < 0.002: score += 10; reasons.append("✅ 1H MACD Fresh Cross [+10]")
-        else: score += 5; reasons.append("✅ 1H MACD Bullish [+5]")
+        if current_price > 0 and abs(macd_diff_1h) / current_price < 0.002:
+            score += 10
+            reasons.append("✅ 1H MACD Fresh Cross [+10]")
+        else:
+            score += 5
+            reasons.append("✅ 1H MACD Bullish [+5]")
     else:
         reasons.append("❌ 1H MACD Bearish [+0]")
 
-    if 50 <= data_1h['rsi'] <= 65: score += 5; reasons.append("✅ 1H RSI Optimal [+5]")
-    else: reasons.append("⚠️ 1H RSI Tidak Optimal [+0]")
+    if 50 <= data_1h['rsi'] <= 65:
+        score += 5
+        reasons.append(f"✅ 1H RSI Optimal ({data_1h['rsi']:.1f}) [+5]")
+    else:
+        reasons.append(f"⚠️ 1H RSI Tidak Optimal ({data_1h['rsi']:.1f}) [+0]")
 
-    vol, avg_vol = data_1h.get('volume', 0), data_1h.get('average_volume', 0)
-    if avg_vol > 0 and vol > (1.5 * avg_vol): score += 15; reasons.append(f"✅ 1H Volume Spike [+15]")
-    else: reasons.append("❌ 1H Volume Rendah [+0]")
+    # 4. VOLUME (15%)
+    vol = data_1h.get('volume', 0)
+    avg_vol = data_1h.get('average_volume', 0)
+    if avg_vol > 0 and vol > (1.5 * avg_vol):
+        score += 15
+        reasons.append(f"✅ 1H Volume Spike ({vol/avg_vol:.1f}x) [+15]")
+    else:
+        reasons.append("❌ 1H Volume Rendah/Tidak Spike [+0]")
 
     return score, reasons, vetoes
 
@@ -272,17 +327,28 @@ def get_trailing_percentage(profit_pct):
             return trailing
     return 0
 
+# ==========================================
+# CHECK ENTRY (V3.1 - Tanpa Filter BTC)
+# ==========================================
 def check_entry(pair, data_1d, data_4h, data_1h, current_price, sl_price):
+    """V3.1: Setiap coin dinilai mandiri tanpa filter BTC/Dominance."""
     score, reasons, vetoes = calculate_entry_score(data_1d, data_4h, data_1h, current_price, sl_price)
+    
     if vetoes:
         return None, score, reasons, sl_price, vetoes
     
+    # Threshold tetap (tidak ada dynamic threshold)
     if score >= SCORE_BUY:
-        return "BUY_STRONG" if score >= SCORE_BUY_STRONG else "BUY", score, reasons, sl_price, []
+        signal = "BUY_STRONG" if score >= SCORE_BUY_STRONG else "BUY"
+        return signal, score, reasons, sl_price, []
     elif score >= SCORE_WATCH:
         return "WATCH", score, reasons, sl_price, []
-    return None, score, reasons, sl_price, []
+    else:
+        return None, score, reasons, sl_price, []
 
+# ==========================================
+# CHECK EXIT
+# ==========================================
 def check_exit(pair, current_price, data_1h):
     if pair not in ACTIVE_BUYS:
         return None, ""
@@ -317,7 +383,10 @@ def check_exit(pair, current_price, data_1h):
         if current_price <= trailing_limit:
             return "TRAILING_STOP", f"Trailing {trailing_pct}% kena"
 
-    if data_1h['ema10'] < data_1h['ema20'] and data_1h['macd'] < data_1h['macd_signal']:
+    ema_cross_down = data_1h['ema10'] < data_1h['ema20']
+    macd_bearish = data_1h['macd'] < data_1h['macd_signal']
+    
+    if ema_cross_down and macd_bearish:
         if profit_pct > 1 or profit_pct < -1:
             return "SELL_EMA_MACD", f"EMA10 < EMA20 & MACD Bearish"
 
@@ -328,35 +397,57 @@ def check_exit(pair, current_price, data_1h):
     return None, "Hold"
 
 # ==========================================
-# TELEGRAM NOTIFICATION & REKAP MINGGUAN
+# TELEGRAM NOTIFICATION
 # ==========================================
-def send_telegram_alert(signal_type, pair, current_price, details, entry_price=None, profit_pct=None, score=None, reasons=None):
+def send_telegram_alert(signal_type, pair, current_price, details,
+                        entry_price=None, profit_pct=None, score=None, reasons=None):
     display_pair = f"{pair[:-4]}/USDT"
-    emojis = {'BUY': '🚀', 'BUY_STRONG': '🚀🔥', 'WATCH': '👀', 'SELL_EMA_MACD': '📉', 'SELL_CLOSE_EMA': '📉', 'STOP_LOSS': '🛑', 'TRAILING_STOP': '💰', 'ACTIVATE_TRAIL': '🔒', 'BREAK_EVEN': '🛡️', 'REKAP_MINGGUAN': '📊'}
+    emojis = {
+        'BUY': '🚀', 'BUY_STRONG': '🚀🔥', 'WATCH': '👀',
+        'SELL_EMA_MACD': '📉', 'SELL_CLOSE_EMA': '📉',
+        'STOP_LOSS': '🛑', 'TRAILING_STOP': '💰',
+        'ACTIVATE_TRAIL': '🔒', 'BREAK_EVEN': '🛡️',
+        'REKAP_MINGGUAN': '📊'
+    }
     emoji = emojis.get(signal_type, 'ℹ️')
+    binance_url = f"https://www.binance.com/en/trade/{pair[:-4]}_USDT"
+    tv_url = f"https://www.tradingview.com/chart/?symbol=BINANCE:{pair}"
     
     message = f"{emoji} *{signal_type.replace('_', ' ')}*\n"
-    message += f"💱 *Pair:* {display_pair}\n"
+    message += f"💱 *Pair:* [{display_pair}]({binance_url}) | [TV]({tv_url})\n"
     message += f"💲 *Price:* ${current_price:.4f}\n"
     
     if entry_price is not None and profit_pct is not None:
         status = "Profit" if profit_pct > 0 else "Loss"
         message += f"▫️ *Entry:* ${entry_price:.4f}\n"
         message += f"📊 *{status}:* {profit_pct:+.2f}%\n"
+        
     if score is not None:
         message += f"🎯 *Score:* {score}/100\n"
+        
     if details:
         message += f"📝 *Note:* {details}\n"
-    if reasons:
-        message += "\n*Analisis:*\n" + "\n".join([f"  {r}" for r in reasons[:8]])
         
+    if reasons:
+        message += "\n*Analisis:*\n"
+        for reason in reasons[:8]:
+            message += f"  {reason}\n"
+            
     print(f"📢 {message.replace('*', '').replace('[', '').replace(']', '')}")
     try:
-        requests.post(f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage", json={'chat_id': TELEGRAM_CHAT_ID, 'text': message, 'parse_mode': 'Markdown', 'disable_web_page_preview': True}, timeout=10)
+        requests.post(
+            f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage",
+            json={
+                'chat_id': TELEGRAM_CHAT_ID, 'text': message,
+                'parse_mode': 'Markdown', 'disable_web_page_preview': True
+            }, timeout=10
+        )
     except Exception as e:
         print(f"❌ Gagal kirim Telegram: {e}")
 
-# 🆕 FUNGSI REKAP MINGGUAN
+# ==========================================
+# REKAP MINGGUAN
+# ==========================================
 def check_and_send_weekly_recap():
     now = datetime.now(UTC7)
     # Cek apakah hari Minggu (weekday 6) dan jam 23
@@ -364,15 +455,14 @@ def check_and_send_weekly_recap():
         last_sent = load_recap_sent()
         today_str = now.strftime('%Y-%m-%d')
         
-        # Mencegah spam jika bot berjalan beberapa kali di jam yang sama
         if last_sent == today_str:
+            print("ℹ️ Rekap mingguan sudah dikirim hari ini. Skip.")
             return
             
         print("📊 Membuat rekap mingguan...")
         history = load_trade_history()
         cutoff = now - timedelta(days=7)
         
-        # Filter trade 7 hari terakhir
         recent_trades = []
         for t in history:
             try:
@@ -388,7 +478,6 @@ def check_and_send_weekly_recap():
         win_rate = (wins / total_trades * 100) if total_trades > 0 else 0
         total_profit = sum(t['profit_pct'] for t in recent_trades)
         
-        # Buat pesan Telegram
         message = f"📊 *REKAP PERFORMA MINGGUAN*\n"
         message += f"📅 Periode: 7 Hari Terakhir\n"
         message += f"━━━━━━━━━━━━━━━━━━━━\n"
@@ -396,40 +485,48 @@ def check_and_send_weekly_recap():
         message += f"✅ *Win:* {wins} | ❌ *Loss:* {losses}\n"
         message += f"🎯 *Win Rate:* {win_rate:.1f}%\n"
         message += f"💰 *Total PnL:* {total_profit:+.2f}%\n"
-        message += f"📏 *Rata-rata/Trade:* {(total_profit/total_trades):+.2f}%\n" if total_trades > 0 else ""
+        if total_trades > 0:
+            message += f"📏 *Rata-rata/Trade:* {(total_profit/total_trades):+.2f}%\n"
         message += f"━━━━━━━━━━━━━━━━━━━━\n"
         message += f"🤖 Bot V3.1 berjalan dengan baik!"
         
         send_telegram_alert("REKAP_MINGGUAN", "SYSTEM", 0, message)
-        
-        # Tandai sudah dikirim hari ini
         save_recap_sent(today_str)
+        print("✅ Rekap mingguan berhasil dikirim ke Telegram.")
 
 # ==========================================
-# PROGRAM UTAMA
+# PROGRAM UTAMA (V3.1 - Print Console Lengkap)
 # ==========================================
 def main():
     print(f"🕒 Bot V3.1 dimulai: {datetime.now(UTC7).strftime('%Y-%m-%d %H:%M:%S')}")
+    print("📌 Mode: Independent Coin Analysis (tanpa filter BTC/Dominance)")
     print("=" * 60)
     
     load_active_buys()
     load_cooldowns()
     pairs = get_pairs_from_file()
-
+    
+    print("✅ Bot siap menganalisis semua pair secara mandiri")
     print("=" * 60)
     
+    # Statistik siklus
     stats = {'BUY': 0, 'WATCH': 0, 'SKIP': 0, 'VETO': 0, 'HOLD': 0, 'EXIT': 0}
     
     for pair in pairs:
         print(f"\n🔎 Menganalisis: {pair}")
         
-        if pair in COOLDOWNS and datetime.now(UTC7) < COOLDOWNS[pair]:
-            stats['SKIP'] += 1
-            continue
-        elif pair in COOLDOWNS:
-            del COOLDOWNS[pair]
-            save_cooldowns()
+        # Cek Cooldown
+        if pair in COOLDOWNS:
+            if datetime.now(UTC7) < COOLDOWNS[pair]:
+                remaining = (COOLDOWNS[pair] - datetime.now(UTC7)).total_seconds() / 3600
+                print(f"  ⏳ {pair} dalam cooldown ({remaining:.1f} jam lagi). Skip.")
+                stats['SKIP'] += 1
+                continue
+            else:
+                del COOLDOWNS[pair]
+                save_cooldowns()
         
+        # Ambil data multi-timeframe
         analysis_1d = get_analysis(pair, TF_TREND)
         analysis_4h = get_analysis(pair, TF_SETUP)
         analysis_1h = get_analysis(pair, TF_ENTRY)
@@ -449,52 +546,84 @@ def main():
             stats['SKIP'] += 1
             continue
         
+        # 📊 Tampilkan indikator mentah untuk debugging
         print_raw_indicators(pair, data_1d, data_4h, data_1h, current_price)
-        
+            
         atr = data_1h.get('atr', 0)
-        sl_price = current_price - (ATR_SL_MULTIPLIER * atr) if atr > 0 else current_price * 0.97
+        if atr > 0:
+            sl_price = current_price - (ATR_SL_MULTIPLIER * atr)
+        else:
+            sl_price = current_price * 0.97
 
-        # CEK EXIT
+        # ==========================================
+        # JIKA SUDAH PUNYA POSISI → CEK EXIT
+        # ==========================================
         if pair in ACTIVE_BUYS:
             signal, details = check_exit(pair, current_price, data_1h)
             if signal:
                 entry_data = ACTIVE_BUYS[pair]
                 profit_pct = ((current_price - entry_data['price']) / entry_data['price']) * 100
-                send_telegram_alert(signal, pair, current_price, details, entry_price=entry_data['price'], profit_pct=profit_pct)
-                
-                # 🆕 SIMPAN KE RIWAYAT SEBELUM DIHAPUS
-                history = load_trade_history()
-                history.append({
-                    'pair': pair,
-                    'entry_price': entry_data['price'],
-                    'exit_price': current_price,
-                    'profit_pct': profit_pct,
-                    'exit_reason': signal,
-                    'entry_date': entry_data['time'].isoformat(),
-                    'exit_date': datetime.now(UTC7).isoformat()
-                })
-                save_trade_history(history)
-                
+                send_telegram_alert(
+                    signal, pair, current_price, details,
+                    entry_price=entry_data['price'], profit_pct=profit_pct
+                )
                 if signal in ["STOP_LOSS", "TRAILING_STOP", "SELL_EMA_MACD", "SELL_CLOSE_EMA"]:
-                    COOLDOWNS[pair] = datetime.now(UTC7) + timedelta(hours=COOLDOWN_HOURS)
-                    save_cooldowns()
-                del ACTIVE_BUYS[pair]
-                stats['EXIT'] += 1
+                    # 🆕 SIMPAN KE RIWAYAT SEBELUM DIHAPUS
+                    history = load_trade_history()
+                    history.append({
+                        'pair': pair,
+                        'entry_price': entry_data['price'],
+                        'exit_price': current_price,
+                        'profit_pct': profit_pct,
+                        'exit_reason': signal,
+                        'entry_date': entry_data['time'].isoformat(),
+                        'exit_date': datetime.now(UTC7).isoformat()
+                    })
+                    save_trade_history(history)
+                    
+                    if signal == "STOP_LOSS":
+                        COOLDOWNS[pair] = datetime.now(UTC7) + timedelta(hours=COOLDOWN_HOURS)
+                        save_cooldowns()
+                    del ACTIVE_BUYS[pair]
+                    print(f"✅ Posisi {pair} ditutup.")
+                    stats['EXIT'] += 1
             else:
+                profit_pct = ((current_price - ACTIVE_BUYS[pair]['price']) / ACTIVE_BUYS[pair]['price']) * 100
+                print(f"  ⏸️ Hold: Profit {profit_pct:+.2f}%")
                 stats['HOLD'] += 1
                 
-        # CEK ENTRY
+        # ==========================================
+        # JIKA BELUM PUNYA POSISI → CEK ENTRY
+        # ==========================================
         else:
-            signal, score, reasons, sl_price, vetoes = check_entry(pair, data_1d, data_4h, data_1h, current_price, sl_price)
-            if signal in ["BUY", "BUY_STRONG"]:
-                ACTIVE_BUYS[pair] = {'price': current_price, 'time': datetime.now(UTC7), 'stop_loss': sl_price, 'trailing_active': False, 'highest_price': current_price, 'current_trailing_pct': 0, 'entry_score': score, 'break_even_active': False}
-                send_telegram_alert(signal, pair, current_price, f"SL: ${sl_price:.4f}", score=score, reasons=reasons)
+            signal, score, reasons, sl_price, vetoes = check_entry(
+                pair, data_1d, data_4h, data_1h, current_price, sl_price
+            )
+            
+            if signal == "BUY" or signal == "BUY_STRONG":
+                print(f"  ✅ SINYAL {signal} (Score: {score}/100)")
+                ACTIVE_BUYS[pair] = {
+                    'price': current_price, 'time': datetime.now(UTC7),
+                    'stop_loss': sl_price, 'trailing_active': False,
+                    'highest_price': current_price, 'current_trailing_pct': 0,
+                    'entry_score': score, 'break_even_active': False
+                }
+                sl_info = f"SL: ${sl_price:.4f} (ATR-based)"
+                send_telegram_alert(signal, pair, current_price, sl_info, score=score, reasons=reasons)
                 stats['BUY'] += 1
             elif signal == "WATCH":
+                print(f"  👀 WATCH (Score: {score}/100) - Pantau")
+                send_telegram_alert("WATCH", pair, current_price, f"Score {score}/100, pantau untuk entry", score=score, reasons=reasons)
                 stats['WATCH'] += 1
             elif vetoes:
+                print(f"  🚫 VETO: {'; '.join(vetoes)}")
                 stats['VETO'] += 1
             else:
+                # 🔧 DEBUG LOGGING: Tampilkan semua alasan meski skip
+                print(f"  ❌ Skip (Score: {score}/100)")
+                print(f"  📋 Detail Scoring:")
+                for reason in reasons:
+                    print(f"      {reason}")
                 stats['SKIP'] += 1
                 
     save_active_buys()
@@ -502,6 +631,7 @@ def main():
     # 🆕 CEK APAKAH PERLU KIRIM REKAP MINGGUAN
     check_and_send_weekly_recap()
     
+    # 📊 Ringkasan akhir siklus
     print("\n" + "=" * 60)
     print("📊 RINGKASAN SIKLUS:")
     print(f"   🚀 BUY: {stats['BUY']}")
@@ -512,5 +642,6 @@ def main():
     print(f"   ❌ SKIP: {stats['SKIP']}")
     print("=" * 60)
     print("✅ Siklus analisis selesai.")
+
 if __name__ == "__main__":
     main()
