@@ -415,10 +415,14 @@ def main():
     load_active_buys()
     load_cooldowns()
     pairs = get_pairs_from_file()
+
+    print("=" * 60)
     
     stats = {'BUY': 0, 'WATCH': 0, 'SKIP': 0, 'VETO': 0, 'HOLD': 0, 'EXIT': 0}
     
     for pair in pairs:
+        print(f"\n🔎 Menganalisis: {pair}")
+        
         if pair in COOLDOWNS and datetime.now(UTC7) < COOLDOWNS[pair]:
             stats['SKIP'] += 1
             continue
