@@ -29,8 +29,8 @@ TF_ENTRY = Interval.INTERVAL_1_HOUR
 # KONFIGURASI BATCH (Anti-Rate-Limit)
 # ==========================================
 BATCH_SIZE = 25          # Jumlah pair per batch
-BATCH_DELAY = 15         # Delay antar batch (detik)
-REQUEST_DELAY = 1.0      # Delay antar request (detik)
+BATCH_DELAY = 1          # Delay antar batch (detik)
+REQUEST_DELAY = 0        # Delay antar request (detik)
 MAX_RETRIES = 3          # Retry jika gagal
 
 # ==========================================
