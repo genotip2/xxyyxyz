@@ -2,6 +2,7 @@ name: Crypto Signal Bot
 
 on:
   schedule:
+    # Jalankan setiap 1 jam (Menit ke-15 setiap jam UTC)
     - cron: "15 * * * *"
   workflow_dispatch:
 
@@ -37,17 +38,10 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           
-          # 🛡️ Tambahkan file JSON hanya jika file tersebut ada
-          for f in active_buys.json pairs_cache.json cooldowns.json btc_dominance.json; do
-            if [ -f "$f" ]; then
-              git add "$f"
-              echo "✅ Added: $f"
-            else
-              echo "⏭️ Skipped (not found): $f"
-            fi
-          done
+          # Tambahkan SEMUA file JSON (active_buys, pairs_cache, cooldowns, btc_dominance)
+          git add *.json
           
-          if git diff --cached --quiet; then
+          if git diff --cached --exit-code; then
             echo "No changes to commit"
           else
             git commit -m "chore: update bot state [skip ci]"
