@@ -27,19 +27,17 @@ TF_SETUP = Interval.INTERVAL_4_HOURS
 TF_ENTRY = Interval.INTERVAL_1_HOUR
 
 # ==========================================
-# PARAMETER STRATEGI (V3.1)
+# PARAMETER STRATEGI (V4.1 - Tanpa Filter BTC)
 # ==========================================
-ATR_SL_MULTIPLIER = 1.5
+ATR_SL_MULTIPLIER = 2.5        # Diperbesar untuk menghindari whipsaw
 MAX_DISTANCE_FROM_EMA20_PCT = 7.0
 RSI_OVERBOUGHT_VETO = 75
 COOLDOWN_HOURS = 12
-BREAK_EVEN_PCT = 3.0
 
-TRAILING_LEVELS = [
-    (15.0, 5.0),
-    (8.0,  3.0),
-    (5.0,  2.0),
-]
+# Parameter Trailing & Break Even Berbasis ATR
+ATR_TRAIL_ACTIVATION = 2.0     # Trailing aktif jika profit mencapai 2x ATR
+ATR_TRAIL_DISTANCE = 1.5       # Trailing Stop berada 1.5x ATR di bawah harga tertinggi
+BREAK_EVEN_ATR_MULTIPLIER = 1.0 # Pindah SL ke Entry jika profit 1x ATR
 
 SCORE_BUY_STRONG = 90
 SCORE_BUY = 80
@@ -59,9 +57,9 @@ def load_active_buys():
                         'price': float(d['price']),
                         'time': datetime.fromisoformat(d['time']),
                         'stop_loss': float(d['stop_loss']),
+                        'entry_atr': float(d.get('entry_atr', d['price'] * 0.02)),
                         'trailing_active': d.get('trailing_active', False),
                         'highest_price': float(d.get('highest_price', d['price'])),
-                        'current_trailing_pct': float(d.get('current_trailing_pct', 0)),
                         'entry_score': int(d.get('entry_score', 0)),
                         'break_even_active': d.get('break_even_active', False)
                     }
@@ -80,8 +78,8 @@ def save_active_buys():
         for pair, d in ACTIVE_BUYS.items():
             data[pair] = {
                 'price': d['price'], 'time': d['time'].isoformat(),
-                'stop_loss': d['stop_loss'], 'trailing_active': d['trailing_active'],
-                'highest_price': d['highest_price'], 'current_trailing_pct': d['current_trailing_pct'],
+                'stop_loss': d['stop_loss'], 'entry_atr': d['entry_atr'], 
+                'trailing_active': d['trailing_active'], 'highest_price': d['highest_price'],
                 'entry_score': d['entry_score'], 'break_even_active': d['break_even_active']
             }
         with open(ACTIVE_BUYS_FILE, 'w') as f:
@@ -167,7 +165,6 @@ def get_analysis(pair, interval):
         return None
 
 def extract_indicators(analysis):
-    """🛡️ Tahan None - konversi semua nilai None → 0"""
     if not analysis or not analysis.indicators:
         return {}
     ind = analysis.indicators
@@ -196,7 +193,6 @@ def extract_indicators(analysis):
 # DEBUG: TAMPILKAN INDIKATOR MENTAH (DETAIL)
 # ==========================================
 def print_raw_indicators(pair, data_1d, data_4h, data_1h, current_price):
-    """Menampilkan indikator mentah untuk debugging (format sama dengan V2.1)"""
     print(f"  📊 Indikator Mentah:")
     print(f"      💲 Harga: ${current_price:.6f}")
     print(f"      📈 1D: EMA50={data_1d['ema50']:.4f} EMA200={data_1d['ema200']:.4f} ADX={data_1d['adx']:.1f}")
@@ -205,7 +201,7 @@ def print_raw_indicators(pair, data_1d, data_4h, data_1h, current_price):
     print(f"      📈 1H: MACD={data_1h['macd']:.6f} Signal={data_1h['macd_signal']:.6f} ATR={data_1h['atr']:.6f}")
 
 # ==========================================
-# SCORING SYSTEM (Weighted V3.1)
+# SCORING SYSTEM (Weighted V4.1)
 # ==========================================
 def calculate_entry_score(data_1d, data_4h, data_1h, current_price, sl_price):
     score = 0
@@ -230,10 +226,11 @@ def calculate_entry_score(data_1d, data_4h, data_1h, current_price, sl_price):
     if atr > 0 and (atr / current_price) < 0.008:
         vetoes.append(f"ATR terlalu kecil ({(atr/current_price)*100:.2f}%)")
 
-    target_1d = data_1d.get('ema50', 0)
+    # Perhitungan RR Target (3x ATR murni sebagai benchmark target)
     risk = current_price - sl_price
-    if risk > 0:
-        reward = (target_1d - current_price) if target_1d > current_price else (3.0 * atr if atr > 0 else current_price * 0.05)
+    if risk > 0 and atr > 0:
+        target_price = current_price + (3.0 * atr)
+        reward = target_price - current_price
         rr_ratio = reward / risk
         if rr_ratio < 2.0:
             vetoes.append(f"RR kecil (1:{rr_ratio:.1f} < 1:2.0)")
@@ -321,23 +318,15 @@ def calculate_entry_score(data_1d, data_4h, data_1h, current_price, sl_price):
 
     return score, reasons, vetoes
 
-def get_trailing_percentage(profit_pct):
-    for threshold, trailing in TRAILING_LEVELS:
-        if profit_pct >= threshold:
-            return trailing
-    return 0
-
 # ==========================================
-# CHECK ENTRY (V3.1 - Tanpa Filter BTC)
+# CHECK ENTRY (V4.1)
 # ==========================================
 def check_entry(pair, data_1d, data_4h, data_1h, current_price, sl_price):
-    """V3.1: Setiap coin dinilai mandiri tanpa filter BTC/Dominance."""
     score, reasons, vetoes = calculate_entry_score(data_1d, data_4h, data_1h, current_price, sl_price)
     
     if vetoes:
         return None, score, reasons, sl_price, vetoes
     
-    # Threshold tetap (tidak ada dynamic threshold)
     if score >= SCORE_BUY:
         signal = "BUY_STRONG" if score >= SCORE_BUY_STRONG else "BUY"
         return signal, score, reasons, sl_price, []
@@ -347,7 +336,7 @@ def check_entry(pair, data_1d, data_4h, data_1h, current_price, sl_price):
         return None, score, reasons, sl_price, []
 
 # ==========================================
-# CHECK EXIT
+# CHECK EXIT (MENGGUNAKAN TRAILING ATR)
 # ==========================================
 def check_exit(pair, current_price, data_1h):
     if pair not in ACTIVE_BUYS:
@@ -356,33 +345,41 @@ def check_exit(pair, current_price, data_1h):
     entry_data = ACTIVE_BUYS[pair]
     entry_price = entry_data['price']
     stop_loss = entry_data['stop_loss']
+    entry_atr = entry_data.get('entry_atr', current_price * 0.02)
+    highest_price = entry_data['highest_price']
+    
     profit_pct = ((current_price - entry_price) / entry_price) * 100
+    profit_amount = current_price - entry_price
 
+    # 1. Stop Loss Tersentuh
     if current_price <= stop_loss:
         return "STOP_LOSS", f"SL tercapai (${stop_loss:.4f})"
 
-    if profit_pct >= BREAK_EVEN_PCT and not entry_data.get('break_even_active', False):
+    # 2. Break Even (Pindah SL ke Entry jika profit > 1x ATR)
+    if profit_amount >= (BREAK_EVEN_ATR_MULTIPLIER * entry_atr) and not entry_data.get('break_even_active', False):
         ACTIVE_BUYS[pair]['stop_loss'] = entry_price
         ACTIVE_BUYS[pair]['break_even_active'] = True
         save_active_buys()
-        send_telegram_alert("BREAK_EVEN", pair, current_price, f"Profit {profit_pct:.2f}%, SL moved to Entry", entry_price=entry_price, profit_pct=profit_pct)
+        send_telegram_alert("BREAK_EVEN", pair, current_price, f"Profit > 1x ATR, SL moved to Entry", entry_price=entry_price, profit_pct=profit_pct)
 
-    trailing_pct = get_trailing_percentage(profit_pct)
-    if trailing_pct > 0:
+    # 3. Aktivasi & Update Trailing Stop (Berdasarkan ATR)
+    if profit_amount >= (ATR_TRAIL_ACTIVATION * entry_atr):
+        # Update Highest Price
+        if current_price > highest_price:
+            ACTIVE_BUYS[pair]['highest_price'] = current_price
+            highest_price = current_price
+            
         if not entry_data.get('trailing_active', False):
             ACTIVE_BUYS[pair]['trailing_active'] = True
-            ACTIVE_BUYS[pair]['highest_price'] = current_price
-            ACTIVE_BUYS[pair]['current_trailing_pct'] = trailing_pct
-            send_telegram_alert("ACTIVATE_TRAIL", pair, current_price, f"Profit {profit_pct:.2f}%, Trailing {trailing_pct}%", entry_price=entry_price, profit_pct=profit_pct)
+            send_telegram_alert("ACTIVATE_TRAIL", pair, current_price, f"Profit > {ATR_TRAIL_ACTIVATION}x ATR. Trailing aktif.", entry_price=entry_price, profit_pct=profit_pct)
         
-        if current_price > entry_data['highest_price']:
-            ACTIVE_BUYS[pair]['highest_price'] = current_price
-            ACTIVE_BUYS[pair]['current_trailing_pct'] = trailing_pct
-            
-        trailing_limit = entry_data['highest_price'] * (1 - trailing_pct / 100)
+        # Batas Trailing: 1.5x ATR dari harga tertinggi
+        trailing_limit = highest_price - (ATR_TRAIL_DISTANCE * entry_atr)
+        
         if current_price <= trailing_limit:
-            return "TRAILING_STOP", f"Trailing {trailing_pct}% kena"
+            return "TRAILING_STOP", f"Trailing Stop ATR tersentuh di ${trailing_limit:.4f}"
 
+    # 4. Exit Indikator Pembalikan Arah (1H)
     ema_cross_down = data_1h['ema10'] < data_1h['ema20']
     macd_bearish = data_1h['macd'] < data_1h['macd_signal']
     
@@ -450,13 +447,11 @@ def send_telegram_alert(signal_type, pair, current_price, details,
 # ==========================================
 def check_and_send_weekly_recap():
     now = datetime.now(UTC7)
-    # Cek apakah hari Minggu (weekday 6) dan jam 23
     if now.weekday() == 6 and now.hour == 23:
         last_sent = load_recap_sent()
         today_str = now.strftime('%Y-%m-%d')
         
         if last_sent == today_str:
-            print("ℹ️ Rekap mingguan sudah dikirim hari ini. Skip.")
             return
             
         print("📊 Membuat rekap mingguan...")
@@ -488,34 +483,32 @@ def check_and_send_weekly_recap():
         if total_trades > 0:
             message += f"📏 *Rata-rata/Trade:* {(total_profit/total_trades):+.2f}%\n"
         message += f"━━━━━━━━━━━━━━━━━━━━\n"
-        message += f"🤖 Bot V3.1 berjalan dengan baik!"
+        message += f"🤖 Bot V4.1 (Independent Coin Analysis + ATR Risk) berjalan dengan baik!"
         
         send_telegram_alert("REKAP_MINGGUAN", "SYSTEM", 0, message)
         save_recap_sent(today_str)
         print("✅ Rekap mingguan berhasil dikirim ke Telegram.")
 
 # ==========================================
-# PROGRAM UTAMA (V3.1 - Print Console Lengkap)
+# PROGRAM UTAMA (V4.1)
 # ==========================================
 def main():
-    print(f"🕒 Bot V3.1 dimulai: {datetime.now(UTC7).strftime('%Y-%m-%d %H:%M:%S')}")
-    print("📌 Mode: Independent Coin Analysis (tanpa filter BTC/Dominance)")
+    print(f"🕒 Bot V4.1 dimulai: {datetime.now(UTC7).strftime('%Y-%m-%d %H:%M:%S')}")
+    print("📌 Mode: Independent Coin Analysis (Tanpa Filter Makro BTC) + ATR Risk Management")
     print("=" * 60)
     
     load_active_buys()
     load_cooldowns()
     pairs = get_pairs_from_file()
     
-    print("✅ Bot siap menganalisis semua pair secara mandiri")
+    print("\n✅ Mulai menganalisis altcoin...")
     print("=" * 60)
     
-    # Statistik siklus
     stats = {'BUY': 0, 'WATCH': 0, 'SKIP': 0, 'VETO': 0, 'HOLD': 0, 'EXIT': 0}
     
     for pair in pairs:
         print(f"\n🔎 Menganalisis: {pair}")
         
-        # Cek Cooldown
         if pair in COOLDOWNS:
             if datetime.now(UTC7) < COOLDOWNS[pair]:
                 remaining = (COOLDOWNS[pair] - datetime.now(UTC7)).total_seconds() / 3600
@@ -526,7 +519,6 @@ def main():
                 del COOLDOWNS[pair]
                 save_cooldowns()
         
-        # Ambil data multi-timeframe
         analysis_1d = get_analysis(pair, TF_TREND)
         analysis_4h = get_analysis(pair, TF_SETUP)
         analysis_1h = get_analysis(pair, TF_ENTRY)
@@ -546,18 +538,15 @@ def main():
             stats['SKIP'] += 1
             continue
         
-        # 📊 Tampilkan indikator mentah untuk debugging
         print_raw_indicators(pair, data_1d, data_4h, data_1h, current_price)
             
         atr = data_1h.get('atr', 0)
         if atr > 0:
             sl_price = current_price - (ATR_SL_MULTIPLIER * atr)
         else:
-            sl_price = current_price * 0.97
+            sl_price = current_price * 0.95 # Fallback lebar jika tidak ada ATR
 
-        # ==========================================
-        # JIKA SUDAH PUNYA POSISI → CEK EXIT
-        # ==========================================
+        # CEK EXIT UNTUK POSISI AKTIF
         if pair in ACTIVE_BUYS:
             signal, details = check_exit(pair, current_price, data_1h)
             if signal:
@@ -568,15 +557,11 @@ def main():
                     entry_price=entry_data['price'], profit_pct=profit_pct
                 )
                 if signal in ["STOP_LOSS", "TRAILING_STOP", "SELL_EMA_MACD", "SELL_CLOSE_EMA"]:
-                    # 🆕 SIMPAN KE RIWAYAT SEBELUM DIHAPUS
                     history = load_trade_history()
                     history.append({
-                        'pair': pair,
-                        'entry_price': entry_data['price'],
-                        'exit_price': current_price,
-                        'profit_pct': profit_pct,
-                        'exit_reason': signal,
-                        'entry_date': entry_data['time'].isoformat(),
+                        'pair': pair, 'entry_price': entry_data['price'],
+                        'exit_price': current_price, 'profit_pct': profit_pct,
+                        'exit_reason': signal, 'entry_date': entry_data['time'].isoformat(),
                         'exit_date': datetime.now(UTC7).isoformat()
                     })
                     save_trade_history(history)
@@ -592,9 +577,7 @@ def main():
                 print(f"  ⏸️ Hold: Profit {profit_pct:+.2f}%")
                 stats['HOLD'] += 1
                 
-        # ==========================================
-        # JIKA BELUM PUNYA POSISI → CEK ENTRY
-        # ==========================================
+        # CEK ENTRY JIKA TIDAK ADA POSISI
         else:
             signal, score, reasons, sl_price, vetoes = check_entry(
                 pair, data_1d, data_4h, data_1h, current_price, sl_price
@@ -604,42 +587,30 @@ def main():
                 print(f"  ✅ SINYAL {signal} (Score: {score}/100)")
                 ACTIVE_BUYS[pair] = {
                     'price': current_price, 'time': datetime.now(UTC7),
-                    'stop_loss': sl_price, 'trailing_active': False,
-                    'highest_price': current_price, 'current_trailing_pct': 0,
+                    'stop_loss': sl_price, 'entry_atr': atr, # Simpan ATR untuk Trailing
+                    'trailing_active': False, 'highest_price': current_price,
                     'entry_score': score, 'break_even_active': False
                 }
-                sl_info = f"SL: ${sl_price:.4f} (ATR-based)"
+                sl_info = f"SL: ${sl_price:.4f} (2.5x ATR)"
                 send_telegram_alert(signal, pair, current_price, sl_info, score=score, reasons=reasons)
                 stats['BUY'] += 1
             elif signal == "WATCH":
                 print(f"  👀 WATCH (Score: {score}/100) - Pantau")
-                send_telegram_alert("WATCH", pair, current_price, f"Score {score}/100, pantau untuk entry", score=score, reasons=reasons)
                 stats['WATCH'] += 1
             elif vetoes:
                 print(f"  🚫 VETO: {'; '.join(vetoes)}")
                 stats['VETO'] += 1
             else:
-                # 🔧 DEBUG LOGGING: Tampilkan semua alasan meski skip
                 print(f"  ❌ Skip (Score: {score}/100)")
-                print(f"  📋 Detail Scoring:")
-                for reason in reasons:
-                    print(f"      {reason}")
                 stats['SKIP'] += 1
                 
     save_active_buys()
-    
-    # 🆕 CEK APAKAH PERLU KIRIM REKAP MINGGUAN
     check_and_send_weekly_recap()
     
-    # 📊 Ringkasan akhir siklus
     print("\n" + "=" * 60)
     print("📊 RINGKASAN SIKLUS:")
-    print(f"   🚀 BUY: {stats['BUY']}")
-    print(f"   👀 WATCH: {stats['WATCH']}")
-    print(f"   ⏸️ HOLD: {stats['HOLD']}")
-    print(f"   ✅ EXIT: {stats['EXIT']}")
-    print(f"   🚫 VETO: {stats['VETO']}")
-    print(f"   ❌ SKIP: {stats['SKIP']}")
+    print(f"   🚀 BUY: {stats['BUY']} | 👀 WATCH: {stats['WATCH']} | ⏸️ HOLD: {stats['HOLD']}")
+    print(f"   ✅ EXIT: {stats['EXIT']} | 🚫 VETO: {stats['VETO']} | ❌ SKIP: {stats['SKIP']}")
     print("=" * 60)
     print("✅ Siklus analisis selesai.")
 
