@@ -2,8 +2,8 @@ name: Crypto Signal Bot
 
 on:
   schedule:
-    # Jalankan setiap 1 jam (Menit ke-15 setiap jam UTC)
-    - cron: "15 * * * *"
+    # Jalankan setiap 1 jam (Menit ke-57 setiap jam UTC)
+    - cron: "57 * * * *"
   workflow_dispatch:
 
 jobs:
