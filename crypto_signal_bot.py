@@ -398,39 +398,46 @@ def check_exit(pair, current_price, data_1h):
 # ==========================================
 def send_telegram_alert(signal_type, pair, current_price, details,
                         entry_price=None, profit_pct=None, score=None, reasons=None):
-    display_pair = f"{pair[:-4]}/USDT"
-    emojis = {
-        'BUY': '🚀', 'BUY_STRONG': '🚀🔥', 'WATCH': '👀',
-        'SELL_EMA_MACD': '📉', 'SELL_CLOSE_EMA': '📉',
-        'STOP_LOSS': '🛑', 'TRAILING_STOP': '💰',
-        'ACTIVATE_TRAIL': '🔒', 'BREAK_EVEN': '🛡️',
-        'REKAP_MINGGUAN': '📊'
-    }
-    emoji = emojis.get(signal_type, 'ℹ️')
-    binance_url = f"https://www.binance.com/en/trade/{pair[:-4]}_USDT"
-    tv_url = f"https://www.tradingview.com/chart/?symbol=BINANCE:{pair}"
     
-    message = f"{emoji} *{signal_type.replace('_', ' ')}*\n"
-    message += f"💱 *Pair:* [{display_pair}]({binance_url}) | [TV]({tv_url})\n"
-    message += f"💲 *Price:* ${current_price:.4f}\n"
+    # 🆕 JIKA INI REKAP MINGGUAN, LANGSUNG KIRIM TEKS REKAP SAJA
+    if signal_type == "REKAP_MINGGUAN":
+        message = details
     
-    if entry_price is not None and profit_pct is not None:
-        status = "Profit" if profit_pct > 0 else "Loss"
-        message += f"▫️ *Entry:* ${entry_price:.4f}\n"
-        message += f"📊 *{status}:* {profit_pct:+.2f}%\n"
+    # FORMAT UNTUK SINYAL TRADING NORMAL
+    else:
+        display_pair = f"{pair[:-4]}/USDT"
+        emojis = {
+            'BUY': '🚀', 'BUY_STRONG': '🚀🔥', 'WATCH': '👀',
+            'SELL_EMA_MACD': '📉', 'SELL_CLOSE_EMA': '📉',
+            'STOP_LOSS': '🛑', 'TRAILING_STOP': '💰',
+            'ACTIVATE_TRAIL': '🔒', 'BREAK_EVEN': '🛡️'
+        }
+        emoji = emojis.get(signal_type, 'ℹ️')
+        binance_url = f"https://www.binance.com/en/trade/{pair[:-4]}_USDT"
+        tv_url = f"https://www.tradingview.com/chart/?symbol=BINANCE:{pair}"
         
-    if score is not None:
-        message += f"🎯 *Score:* {score}/100\n"
+        message = f"{emoji} *{signal_type.replace('_', ' ')}*\n"
+        message += f"💱 *Pair:* [{display_pair}]({binance_url}) | [TV]({tv_url})\n"
+        message += f"💲 *Price:* ${current_price:.4f}\n"
         
-    if details:
-        message += f"📝 *Note:* {details}\n"
-        
-    if reasons:
-        message += "\n*Analisis:*\n"
-        for reason in reasons[:8]:
-            message += f"  {reason}\n"
+        if entry_price is not None and profit_pct is not None:
+            status = "Profit" if profit_pct > 0 else "Loss"
+            message += f"▫️ *Entry:* ${entry_price:.4f}\n"
+            message += f"📊 *{status}:* {profit_pct:+.2f}%\n"
             
-    print(f"📢 {message.replace('*', '').replace('[', '').replace(']', '')}")
+        if score is not None:
+            message += f"🎯 *Score:* {score}/100\n"
+            
+        if details:
+            message += f"📝 *Note:* {details}\n"
+            
+        if reasons:
+            message += "\n*Analisis:*\n"
+            for reason in reasons[:8]:
+                message += f"  {reason}\n"
+                
+    print(f"📢 Mengirim pesan Telegram untuk: {signal_type}")
+    
     try:
         requests.post(
             f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage",
