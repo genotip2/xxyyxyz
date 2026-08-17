@@ -16,5 +16,14 @@
         "exit_reason": "TRAILING_STOP",
         "entry_date": "2026-08-17T13:27:39.123117+07:00",
         "exit_date": "2026-08-17T14:41:50.210982+07:00"
+    },
+    {
+        "pair": "XAUTUSDT",
+        "entry_price": 4383.79,
+        "exit_price": 4383.97,
+        "profit_pct": 0.004106036101188494,
+        "exit_reason": "TRAILING_STOP",
+        "entry_date": "2026-08-17T15:28:55.950325+07:00",
+        "exit_date": "2026-08-17T18:14:19.201559+07:00"
     }
 ]
