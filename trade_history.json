@@ -1,0 +1,11 @@
+[
+    {
+        "pair": "XAUTUSDT",
+        "entry_price": 4372.63,
+        "exit_price": 4377.24,
+        "profit_pct": 0.10542854071805005,
+        "exit_reason": "TRAILING_STOP",
+        "entry_date": "2026-08-17T11:29:42.784115+07:00",
+        "exit_date": "2026-08-17T12:24:49.508214+07:00"
+    }
+]
