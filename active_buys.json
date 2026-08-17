@@ -3,7 +3,7 @@
         "price": 4383.79,
         "time": "2026-08-17T15:28:55.950325+07:00",
         "stop_loss": 4164.6005,
-        "entry_atr": 0,
+        "entry_atr": 0.0,
         "trailing_active": false,
         "highest_price": 4383.79,
         "entry_score": 85,
