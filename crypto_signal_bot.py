@@ -599,7 +599,8 @@ def main():
                 print(f"  ✅ SINYAL {signal} (Score: {score}/100)")
                 ACTIVE_BUYS[pair] = {
                     'price': current_price, 'time': datetime.now(UTC7),
-                    'stop_loss': sl_price, 'entry_atr': atr, # Simpan ATR untuk Trailing
+                    'stop_loss': sl_price, 
+                    'entry_atr': atr if atr > 0 else (current_price * 0.02), # [PERBAIKAN]: Simpan nilai fallback jika ATR kosong
                     'trailing_active': False, 'highest_price': current_price,
                     'entry_score': score, 'break_even_active': False
                 }
