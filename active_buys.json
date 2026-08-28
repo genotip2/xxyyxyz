@@ -1,1 +1,12 @@
-{}
+{
+    "TRXUSDT": {
+        "price": 0.3395,
+        "time": "2026-08-28T14:19:31.179797+07:00",
+        "stop_loss": 0.322525,
+        "entry_atr": 0.006790000000000001,
+        "trailing_active": false,
+        "highest_price": 0.3395,
+        "entry_score": 80,
+        "break_even_active": false
+    }
+}
