@@ -8,5 +8,15 @@
         "highest_price": 0.3395,
         "entry_score": 80,
         "break_even_active": false
+    },
+    "MORPHOUSDT": {
+        "price": 2.492,
+        "time": "2026-08-30T21:02:23.586260+07:00",
+        "stop_loss": 2.3674,
+        "entry_atr": 0.04984,
+        "trailing_active": false,
+        "highest_price": 2.492,
+        "entry_score": 80,
+        "break_even_active": false
     }
 }
