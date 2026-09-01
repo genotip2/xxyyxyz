@@ -1,12 +1,1 @@
-{
-    "NEARUSDT": {
-        "price": 1.881,
-        "time": "2026-09-01T03:26:07.759653+07:00",
-        "stop_loss": 1.881,
-        "entry_atr": 0.03762,
-        "trailing_active": true,
-        "highest_price": 2.025,
-        "entry_score": 90,
-        "break_even_active": true
-    }
-}
+{}

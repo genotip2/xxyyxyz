@@ -97,5 +97,14 @@
         "exit_reason": "SELL_CLOSE_EMA",
         "entry_date": "2026-08-31T13:20:31.752365+07:00",
         "exit_date": "2026-09-01T07:09:43.308760+07:00"
+    },
+    {
+        "pair": "NEARUSDT",
+        "entry_price": 1.881,
+        "exit_price": 1.914,
+        "profit_pct": 1.7543859649122764,
+        "exit_reason": "SELL_CLOSE_EMA",
+        "entry_date": "2026-09-01T03:26:07.759653+07:00",
+        "exit_date": "2026-09-02T01:55:35.559517+07:00"
     }
 ]
