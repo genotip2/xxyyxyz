@@ -1,12 +1,1 @@
-{
-    "MORPHOUSDT": {
-        "price": 2.561,
-        "time": "2026-09-02T04:34:15.966017+07:00",
-        "stop_loss": 2.43295,
-        "entry_atr": 0.05122,
-        "trailing_active": false,
-        "highest_price": 2.561,
-        "entry_score": 85,
-        "break_even_active": false
-    }
-}
+{}
